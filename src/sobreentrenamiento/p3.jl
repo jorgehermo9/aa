@@ -328,6 +328,6 @@ plot!(g,0:(length(train_vector)-1),train_vector,xaxis="Epoch",yaxis="Loss",color
 plot!(g,0:(length(validation_vector)-1),validation_vector,xaxis="Epoch",yaxis="Loss",color=:blue,label="validation");
 plot!(g,0:(length(test_vector)-1),test_vector,xaxis="Epoch",yaxis="Loss",color=:green,label="test");
 
-display(g)
+# display(g)
 
 savefig(g,"graph.svg")
