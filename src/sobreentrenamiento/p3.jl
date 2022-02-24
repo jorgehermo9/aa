@@ -2,7 +2,7 @@ using DelimitedFiles
 using Statistics
 using Flux
 using Flux.Losses
-
+using Random
 
 
 function oneHotEncoding(feature::AbstractArray{<:Any,1}, classes::AbstractArray{<:Any,1})
@@ -174,7 +174,7 @@ function trainRNA(topology::AbstractArray{<:Int,1},dataset::Tuple{AbstractArray{
 	loss_vector = Vector{Real}()
 
 	for _ in 1:maxEpochs
-		Flux.train!(loss,params(ann),[(inputs',targets')],ADAM(learningRate))
+		Flux.train!(loss,params(ann),[(inputs',targets')], ADAM(learningRate))
 		current_loss = loss(inputs',targets')
 		append!(loss_vector,current_loss)
 		if current_loss <= minLoss
@@ -193,6 +193,31 @@ function trainRNA(topology::AbstractArray{<:Int,1},dataset::Tuple{AbstractArray{
 	return trainRNA(topology,new_dataset,maxEpochs=maxEpochs,minLoss=minLoss,learningRate=learningRate);
 end
 
+
+###### P3
+
+function holdOut(N::Int,P::Real)
+	@assert P>=0 && P<=1;
+
+	n_test = convert(Int,floor(N * P));	
+	test = randperm(N)[1:n_test];
+
+	train = filter((x)-> !(x in test),1:N);
+
+	@assert length(test)+length(train) == N
+	return (train, test);
+end
+
+function holdOut(N::Int,Pval::Real,Ptest::Real)
+	@assert Pval>=0 && Ptest>=0 && Pval+Ptest<=1;
+
+
+
+	
+	return (train, val, test);
+end
+
+holdOut(27, 0.1)
 
 dataset = readdlm("iris.data",',');
 
