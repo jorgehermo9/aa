@@ -3,7 +3,7 @@ using Statistics
 using Flux
 using Flux.Losses
 using Random
-
+using Plots
 
 function oneHotEncoding(feature::AbstractArray{<:Any,1}, classes::AbstractArray{<:Any,1})
 	if length(classes)>2
@@ -160,37 +160,99 @@ function createRNA(topology::AbstractArray{<:Int,1},numInputs::Int,numOutputs::I
 end
 
 function trainRNA(topology::AbstractArray{<:Int,1},dataset::Tuple{AbstractArray{<:Real,2},AbstractArray{Bool,2}};
-		maxEpochs::Int=1000,minLoss::Real=0,learningRate::Real=0.01)
+		validation::Tuple{AbstractArray{<:Real,2},AbstractArray{Bool,2}}=(Matrix{Real}(undef,0,0),Matrix{Bool}(undef,0,0)),
+		test::Tuple{AbstractArray{<:Real,2},AbstractArray{Bool,2}}=(Matrix{Real}(undef,0,0),Matrix{Bool}(undef,0,0)),
+		maxEpochsVal::Int=20,maxEpochs::Int=1000,minLoss::Real=0,learningRate::Real=0.01)
 
 	inputs = dataset[1];
 	targets = dataset[2];
 	numInputs = size(inputs,2);
 	numOutputs = size(targets,2);
 
+	(validation_inputs,validation_targets) = validation;
+	has_validation = length(validation_inputs) >0
+	
+	(test_inputs,test_targets) = test;
+	has_test = length(test_inputs) >0
+
+
 	ann = createRNA(topology,numInputs,numOutputs);
 
-
 	loss(x,y) = (size(y,1) == 1) ? Losses.binarycrossentropy(ann(x),y) : Losses.crossentropy(ann(x),y);
-	loss_vector = Vector{Real}()
+	train_loss_vector = Vector{Real}();
+	val_loss_vector = Vector{Real}();
+	test_loss_vector = Vector{Real}();
+
+
+	
+	push!(train_loss_vector,loss(inputs',targets'));
+	if has_validation
+		best_loss_val = loss(validation_inputs',validation_targets');
+		push!(val_loss_vector,best_loss_val);
+		best_rna_val = deepcopy(ann);
+	end
+	if has_test
+		push!(test_loss_vector,loss(test_inputs',test_targets'));
+	end
+	
+	
+	
+	epochs_val = 0;
 
 	for _ in 1:maxEpochs
 		Flux.train!(loss,params(ann),[(inputs',targets')], ADAM(learningRate))
-		current_loss = loss(inputs',targets')
-		append!(loss_vector,current_loss)
-		if current_loss <= minLoss
-			return (ann,loss_vector)
+		train_loss = loss(inputs',targets')
+		push!(train_loss_vector,train_loss)
+
+		if has_validation
+			validation_loss = loss(validation_inputs',validation_targets');
+			if validation_loss < best_loss_val
+				best_loss_val = validation_loss
+				best_rna_val = deepcopy(ann);
+				epochs_val=0;
+			else
+				epochs_val+=1;
+			end
+			push!(val_loss_vector,validation_loss);
+		end
+		
+		if has_test
+			push!(test_loss_vector,loss(test_inputs',test_targets'));
+		end
+		
+
+		if train_loss <= minLoss || epochs_val >= maxEpochsVal
+			break;
 		end
 	end
-	return (ann,loss_vector);
+
+	if has_validation
+		returned_rna = best_rna_val;
+	else 
+		returned_rna = ann;
+	end
+
+	return (returned_rna,train_loss_vector,val_loss_vector,test_loss_vector)
 end
 function trainRNA(topology::AbstractArray{<:Int,1},dataset::Tuple{AbstractArray{<:Real,2},AbstractArray{Bool,1}};
-	maxEpochs::Int=1000,minLoss::Real=0,learningRate::Real=0.01)
+	validation::Tuple{AbstractArray{<:Real,2},AbstractArray{Bool,1}}=(Matrix{Real}(undef,0,0),Vector{Bool}()),
+	test::Tuple{AbstractArray{<:Real,2},AbstractArray{Bool,1}}=(Matrix{Real}(undef,0,0),Vector{Bool}()),
+	maxEpochsVal::Int=20,maxEpochs::Int=1000,minLoss::Real=0,learningRate::Real=0.01)
 
-	inputs = dataset[1];
-	targets = dataset[2];
-	new_targets = reshape(targets,length(targets),1);
-	new_dataset = Tuple{AbstractArray{<:Real,2},AbstractArray{Bool,2}}(inputs,new_targets)
-	return trainRNA(topology,new_dataset,maxEpochs=maxEpochs,minLoss=minLoss,learningRate=learningRate);
+	(inputs,targets) = dataset;
+	(validation_inputs,validation_targets) = validation;
+	(test_inputs,test_targets) = test;
+
+ 	new_targets = reshape(targets,length(targets),1);
+	new_val_targets = reshape(validation_targets,length(validation_targets),1);
+	new_test_targets = reshape(test_targets,length(test_targets),1);
+
+	new_dataset = (inputs,new_targets);
+	new_validation = (validation_inputs,new_val_targets);
+	new_test = (test_inputs,new_test_targets);
+
+	return trainRNA(topology,new_dataset,maxEpochs=maxEpochs,minLoss=minLoss,learningRate=learningRate,
+		validation=new_validation,test=new_test,maxEpochsVal=maxEpochsVal);
 end
 
 
@@ -199,25 +261,38 @@ end
 function holdOut(N::Int,P::Real)
 	@assert P>=0 && P<=1;
 
-	n_test = convert(Int,floor(N * P));	
-	test = randperm(N)[1:n_test];
+	# Si la división no es exacta, P_part va a tener un elemento de más
+	# Y other_part va a tener un elemento de menos.
 
-	train = filter((x)-> !(x in test),1:N);
+	P_part_elems = convert(Int,ceil(N * P));	
+	P_part = randperm(N)[1:P_part_elems];
 
-	@assert length(test)+length(train) == N
-	return (train, test);
+	# Pensar manera más eficiente de hacer esto. Complejidad cuadrática
+	other_part = filter((x)-> !(x in P_part),1:N);
+
+	@assert length(P_part)+length(other_part) == N
+	return (other_part, P_part);
 end
 
 function holdOut(N::Int,Pval::Real,Ptest::Real)
 	@assert Pval>=0 && Ptest>=0 && Pval+Ptest<=1;
 
+	Ptrain = 1 - (Pval + Ptest);
 
+	(no_train,train) = holdOut(N,Ptrain);
+	M = length(no_train);
 
-	
+	Ptest_new = Ptest/(1-Ptrain);
+
+	(val_aux,test_aux) = holdOut(M,Ptest_new);
+
+	val = no_train[val_aux];
+	test = no_train[test_aux];
+
+	@assert length(train)+length(val)+length(test)==N;
 	return (train, val, test);
 end
 
-holdOut(27, 0.1)
 
 dataset = readdlm("iris.data",',');
 
@@ -226,15 +301,33 @@ targets = dataset[:,5];
 
 @assert (size(inputs,1)==size(targets,1)) "Las matrices de entradas y salidas deseadas no tienen el mismo número de filas"
 
+
 inputs = convert(Array{Float32,2},inputs);
-inputs = normalizeZeroMean(inputs)
-targets = oneHotEncoding(targets)
+targets = oneHotEncoding(targets);
 
-(ann,loss_vector) = trainRNA([12,4],(inputs,targets),maxEpochs=1000,learningRate=0.05);
+dataset_size = size(targets,1)
+(train_idx,validation_idx,test_idx) = holdOut(dataset_size,0.2,0.3)
 
-acc = accuracy(targets,ann(inputs')');
+train_inputs = inputs[train_idx,:];
+train_params = calculateZeroMeanNormalizationParameters(train_inputs);
+inputs = normalizeZeroMean(inputs,train_params);
 
-print(acc)
+train = (inputs[train_idx,:],targets[train_idx,:]);
+validation = (inputs[validation_idx,:],targets[validation_idx,:]);
+test = (inputs[test_idx,:],targets[test_idx,:]);
 
-# Resultados
-#
+(ann,train_vector,validation_vector,test_vector) = trainRNA([8],train,maxEpochs=100,learningRate=0.05,
+	test=test,validation=validation,maxEpochsVal=5);
+
+acc = accuracy(test[2],ann(test[1]')');
+
+println(acc)
+
+g = plot();
+plot!(g,0:(length(train_vector)-1),train_vector,xaxis="Epoch",yaxis="Loss",color=:red,label="train");
+plot!(g,0:(length(validation_vector)-1),validation_vector,xaxis="Epoch",yaxis="Loss",color=:blue,label="validation");
+plot!(g,0:(length(test_vector)-1),test_vector,xaxis="Epoch",yaxis="Loss",color=:green,label="test");
+
+display(g)
+
+savefig(g,"graph.svg")
