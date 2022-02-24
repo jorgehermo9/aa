@@ -207,11 +207,11 @@ function trainRNA(topology::AbstractArray{<:Int,1},dataset::Tuple{AbstractArray{
 		if has_validation
 			validation_loss = loss(validation_inputs',validation_targets');
 			if validation_loss < best_loss_val
-				best_loss_val = validation_loss
+				best_loss_val = validation_loss;
 				best_rna_val = deepcopy(ann);
 				epochs_val=0;
 			else
-				epochs_val+=1;
+				epochs_val=epochs_val+1;
 			end
 			push!(val_loss_vector,validation_loss);
 		end
@@ -306,7 +306,7 @@ inputs = convert(Array{Float32,2},inputs);
 targets = oneHotEncoding(targets);
 
 dataset_size = size(targets,1)
-(train_idx,validation_idx,test_idx) = holdOut(dataset_size,0.2,0.3)
+(train_idx,validation_idx,test_idx) = holdOut(dataset_size,0.3,0.3)
 
 train_inputs = inputs[train_idx,:];
 train_params = calculateZeroMeanNormalizationParameters(train_inputs);
@@ -316,8 +316,8 @@ train = (inputs[train_idx,:],targets[train_idx,:]);
 validation = (inputs[validation_idx,:],targets[validation_idx,:]);
 test = (inputs[test_idx,:],targets[test_idx,:]);
 
-(ann,train_vector,validation_vector,test_vector) = trainRNA([8],train,maxEpochs=100,learningRate=0.05,
-	test=test,validation=validation,maxEpochsVal=5);
+(ann,train_vector,validation_vector,test_vector) = trainRNA([12,4],train,maxEpochs=1000,learningRate=0.01,
+	test=test,validation=validation,maxEpochsVal=4);
 
 acc = accuracy(test[2],ann(test[1]')');
 
