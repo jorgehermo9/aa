@@ -268,7 +268,11 @@ function holdOut(N::Int,P::Real)
 	P_part = randperm(N)[1:P_part_elems];
 
 	# Pensar manera más eficiente de hacer esto. Complejidad cuadrática
-	other_part = filter((x)-> !(x in P_part),1:N);
+	# other_part = filter((x)-> !(x in P_part),1:N);
+	
+	# Posible solución? Complejidad lineal en deleteat y nlog n en sort, ambos sobre el vector de P_part
+	other_part = Array(1:N)
+	deleteat!(other_part, sort(P_part))
 
 	@assert length(P_part)+length(other_part) == N
 	return (other_part, P_part);
@@ -292,7 +296,6 @@ function holdOut(N::Int,Pval::Real,Ptest::Real)
 	@assert length(train)+length(val)+length(test)==N;
 	return (train, val, test);
 end
-
 
 dataset = readdlm("iris.data",',');
 
@@ -328,6 +331,6 @@ plot!(g,0:(length(train_vector)-1),train_vector,xaxis="Epoch",yaxis="Loss",color
 plot!(g,0:(length(validation_vector)-1),validation_vector,xaxis="Epoch",yaxis="Loss",color=:blue,label="validation");
 plot!(g,0:(length(test_vector)-1),test_vector,xaxis="Epoch",yaxis="Loss",color=:green,label="test");
 
-# display(g)
+display(g)
 
-savefig(g,"graph.svg")
+# savefig(g,"graph.svg")
