@@ -339,7 +339,7 @@ function confusionMatrix(outputs::AbstractArray{Bool,1},targets::AbstractArray{B
 		else
 			specifity = VN/(VN+FP);
 		end
-		if (VN + FN) == 0
+		if (VN + FN) == 0 #there is no negative outputs
 			VPN = 0;
 		else
 			VPN = VN/(VN+FN);
