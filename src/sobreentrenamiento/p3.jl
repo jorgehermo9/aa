@@ -268,11 +268,8 @@ function holdOut(N::Int,P::Real)
 	P_part = randperm(N)[1:P_part_elems];
 
 	# Pensar manera más eficiente de hacer esto. Complejidad cuadrática
-	# other_part = filter((x)-> !(x in P_part),1:N);
+	other_part = filter((x)-> !(x in P_part),1:N);
 	
-	# Posible solución? Complejidad lineal en deleteat y nlog n en sort, ambos sobre el vector de P_part
-	other_part = Array(1:N)
-	deleteat!(other_part, sort(P_part))
 
 	@assert length(P_part)+length(other_part) == N
 	return (other_part, P_part);
