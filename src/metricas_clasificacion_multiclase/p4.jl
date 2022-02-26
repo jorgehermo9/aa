@@ -343,7 +343,7 @@ function confusionMatrix(outputs::AbstractArray{Bool,1},targets::AbstractArray{B
 		else
 			specifity = VN/(VN+FP);
 		end
-		if (VN + FN) == 0 #there is no negative outputs
+		if (VN + FN) == 0 #There is no negative outputs
 			VPN = 0;
 		else
 			VPN = VN/(VN+FN);
@@ -359,7 +359,7 @@ function confusionMatrix(outputs::AbstractArray{Bool,1},targets::AbstractArray{B
 	end
 
 	err = 1 - acc;
-	if (recall + VPP) == 0
+	if (recall + VPP) == 0 # If VP ==0
 		F1=0;
 	else
 		F1 = 2 * (recall*VPP/(recall+VPP));
