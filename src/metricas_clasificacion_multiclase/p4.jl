@@ -303,15 +303,15 @@ function confusionMatrix(outputs::AbstractArray{Bool,1},targets::AbstractArray{B
 	values = matrix_values.(outputs,targets);
 
 	confusion_matrix = Matrix{Int}(undef,2,2);
-	confusion_matrix[1][1] = sum(values.==0);
-	confusion_matrix[1][2] = sum(values.==1);
-	confusion_matrix[2][1] = sum(values.==2);
-	confusion_matrix[2][2] = sum(values.==3);
+	confusion_matrix[1,1] = sum(values.==0);
+	confusion_matrix[1,2] = sum(values.==1);
+	confusion_matrix[2,1] = sum(values.==2);
+	confusion_matrix[2,2] = sum(values.==3);
 
-	VN = confusion_matrix[1][1];
-	FP = confusion_matrix[1][2];
-	FN = confusion_matrix[2][1];
-	VP = confusion_matrix[2][2];
+	VN = confusion_matrix[1,1];
+	FP = confusion_matrix[1,2];
+	FN = confusion_matrix[2,1];
+	VP = confusion_matrix[2,2];
 
 	if VN == length(targets)
 		recall = 1;
