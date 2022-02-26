@@ -257,22 +257,11 @@ end
 
 
 ###### P3
-
 function holdOut(N::Int,P::Real)
 	@assert P>=0 && P<=1;
-
-	# Si la división no es exacta, P_part va a tener un elemento de más
-	# Y other_part va a tener un elemento de menos.
-
-	P_part_elems = convert(Int,ceil(N * P));	
-	P_part = randperm(N)[1:P_part_elems];
-
-	# Pensar manera más eficiente de hacer esto. Complejidad cuadrática
-	other_part = filter((x)-> !(x in P_part),1:N);
-	
-
-	@assert length(P_part)+length(other_part) == N
-	return (other_part, P_part);
+	num_elems = convert(Int,ceil(N * P));	
+	index = randperm(N)
+	return (index[num_elems+1:end], index[1:num_elems]);
 end
 
 function holdOut(N::Int,Pval::Real,Ptest::Real)
