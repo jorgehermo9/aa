@@ -355,89 +355,158 @@ function confusionMatrix(outputs::AbstractArray{Bool,1},targets::AbstractArray{B
 	return (acc,err,recall,specifity,VPP,VPN,F1,confusion_matrix);
 end
 
-# Hay que pensar en alguna manera mejor de pasar el parámetro de forma de cálculo
-function confusionMatrix(outputs::AbstractArray{Bool,2},targets::AbstractArray{Bool,2},format::String)
-	@assert (size(outputs, 1) == size(targets, 1) && size(targets, 1) != 2)
-	@assert (format in ["weighted", "macro"])
-
-	if (size(outputs, 1) == 1)
-		confusionMatrix(outputs', targets')
-	end
-
-	a_size = size(outputs, 2)
-
-	recall = zeros(a_size)
-	specifity = zeros(a_size)
-	VPP = zeros(a_size)
-	VPN = zeros(a_size)
-	F1 = zeros(a_size)
-	confusion_matrix = zeros(2,2) # Dimensiones (2,2), (o a_size,a_size)?
-
-	for class in 1:a_size
-		if (size(outputs[:,class], 1) > 1)
-			_, _, recall[class], specifity[class], VPP[class], VPN[class], F1[class], temp_matrix = 
-				confusionMatrix(outputs[:,class], targets[:,class])
-			# TODO Fix, las matrices se están sumando sin más
-			# En el caso de que fuera de dimensiones nº clases*nº de clases
-			# habría que diferenciar en qué clase fue asignado erróneamente
-			# el patron pasado, y eso no se me ocurre como hacer ahora mismo
-			confusion_matrix = confusion_matrix + temp_matrix
-		end
-	end
-
-	if format == "weighted"
-		weights = sum.(eachcol(outputs)) ./ size(outputs, 1) # targets o outputs?
-		recall = sum(recall.*weights) # No iba la multiplicacion normal (*), habría que cambiarlo
-		specifity = sum(specifity.*weights)
-		VPP = sum(VPP.*weights)
-		VPN = sum(VPN.*weights)
-		F1 = sum(F1.*weights)
-	elseif format == "macro"
-		recall = mean(recall)
-		specifity = mean(specifity)
-		VPP = mean(VPP)
-		VPN = mean(VPN)
-		F1 = mean(F1)
-	end
-
-	acc = accuracy(outputs, targets)
-	err = 1 - acc;
-	
-	return (acc,err,recall,specifity,VPP,VPN,F1,confusion_matrix);
-end
-
-function confusionMatrix(outputs::AbstractArray{<:Real,2},targets::AbstractArray{Bool,2},format::String)
-	new_outputs = classifyOutputs(outputs)
-	return confusionMatrix(new_outputs, targets, format)
-end
-
-function confusionMatrix(outputs::AbstractArray{<:Any},targets::AbstractArray{<:Any},format::String)
-	@assert(size(outputs, 2) == size(targets, 2))
-	@assert(all([in(output, unique(targets)) for output in outputs]))
-	
-	# No contemplado el caso mencionado en el PDF, de que exista alguna clase en outputs que no esté en targets
-	onehot_targets = oneHotEncoding(targets)
-	new_output = oneHotEncoding(outputs, targets)
-
-	confusionMatrix(new_output, onehot_targets, format)
-end
-
 function confusionMatrix(outputs::AbstractArray{<:Real,1},targets::AbstractArray{Bool,1};threshold::Real=0.5)
 	classified_outputs = outputs.>= threshold;
 	return confusion_matrix(classified_outputs,targets);
 end
 
-#### Test block
-test_set = zeros(Float32, 150, 3)
-for i = 1:size(inputs, 1)
-	test_set[i, :] = ann(inputs[i,:])
+@enum Strat begin
+	macro_strat
+	weighted_strat
 end
-output_set = classifyOutputs(test_set)
-target_set = targets
-confusionMatrix(test_set, target_set, "weighted")
-confusionMatrix(["perro","gato",3],["perro","gato",3], "weighted")
-# confusionMatrix(["perro","perro",3],["perro","gato",3], "weighted")
-################
+function confusionMatrix(outputs::AbstractArray{Bool,2},targets::AbstractArray{Bool,2},strat::Strat)
+
+	@assert size(outputs,2) == size(targets,2) && size(targets,2) != 2 
+
+	numInstances = size(targets,1)
+	numClasses = size(targets,2)
+	
+	if numClasses ==1
+		vector_outputs = outputs[:,1];
+		vector_targets = targets[:,1];
+		return confusionMatrix(vector_outputs,vector_targets);
+	end
+	recall_vec = zeros(numClasses);
+	specifity_vec = zeros(numClasses);
+	VPP_vec = zeros(numClasses);
+	VPN_vec = zeros(numClasses);
+	F1_vec= zeros(numClasses);
+
+	for class in 1:numClasses
+		class_outputs = outputs[:,class]
+		class_targets = targets[:,class]
+
+		if length(class_outputs) ==0 # Si no hay patrones para esta clase???
+			continue;
+		end
+
+		(acc,err,recall,specifity,VPP,VPN,F1,confusion_matrix) =
+			confusionMatrix(class_outputs,class_targets);
+		recall_vec[class] = recall;
+		specifity_vec[class] = specifity;
+		VPP_vec[class] = VPP;
+		VPN_vec[class] = VPN;
+		F1_vec[class] = F1;
+	end
+
+	confusion_matrix = Matrix{Int}(undef,numClasses,numClasses);
+
+	for real in 1:numClasses
+		for prediction in 1:numClasses
+			real_targets = targets[:,real];
+			prediction_output = outputs[:,prediction]
+
+			# Producto escalar para contar
+			confusion_matrix[real,prediction] = real_targets' * prediction_output;  
+		end
+	end
+	overall_recall = 0;
+	overall_specifity = 0;
+	overall_VPP = 0;
+	overall_VPN = 0;
+	overall_F1 = 0;
+	if strat == macro_strat
+		overall_recall = mean(recall_vec);
+		overall_specifity = mean(specifity_vec);
+		overall_VPP = mean(VPP_vec);
+		overall_VPN = mean(VPN_vec);
+		overall_F1= mean(F1_vec);
+	elseif strat == weighted_strat
+		for class in 1:numClasses
+			class_num_instances = sum(targets[:,class])
+			factor = class_num_instances/numInstances;
+
+			overall_recall += factor * recall_vec[class];
+			overall_specifity += factor * specifity_vec[class];
+			overall_VPP += factor * VPP_vec[class];
+			overall_VPN += factor * VPN_vec[class];
+			overall_F1 += factor * F1_vec[class];
+		end
+
+	else
+		@assert false "Strat not supported"
+	end
+
+
+	acc = accuracy(targets,outputs);
+	err = 1-acc;
+	return (acc,err,overall_recall,overall_specifity,overall_VPP,
+		overall_VPN,overall_F1,confusion_matrix);
+end
+
+function confusionMatrix(outputs::AbstractArray{<:Real,2},targets::AbstractArray{Bool,2},strat::Strat)
+	new_outputs = classifyOutputs(outputs);
+	return confusionMatrix(new_outputs,targets,strat);
+end
+
+function confusionMatrix(outputs::AbstractArray{<:Any},targets::AbstractArray{<:Any},strat::Strat)
+	@assert all(in.(outputs,(unique(targets),)))
+	classes = unique(targets)
+
+	new_outputs = oneHotEncoding(outputs,classes);
+	new_targets = oneHotEncoding(targets,classes);
+	return confusionMatrix(new_outputs,new_targets,strat);
+end
+
+function unoContraTodos()
+	dataset = readdlm("iris.data",',');
+
+	inputs = dataset[:,1:4];
+	targets = dataset[:,5];
+	inputs = convert(Array{Float32,2},inputs);
+	targets = oneHotEncoding(targets);
+
+	inputs = normalizeZeroMean(inputs);
+	
+
+	fit = trainDataset;
+
+	numClasses = size(targets,2);
+	numInstances = size(targets,1);
+	outputs = Array{Float32,2}(undef,numInstances,numClasses);
+
+	for numClass in 1:numClasses
+		model = fit(inputs,targets[:,numClass]);
+		outputs[:,numClass] .= model(inputs')';
+	end
+
+	outputs = softmax(outputs,dims=2);
+	outputs = classifyOutputs(outputs);
+end
+
+##Funcion para testear la confusion matrix
+function trainDataset(inputs::AbstractArray{<:Real,2},targets::AbstractArray{Bool,2})
+	
+	dataset_size = size(targets,1)
+	(train_idx,validation_idx,test_idx) = holdOut(dataset_size,0.3,0.3)
+	
+	train_inputs = inputs[train_idx,:];
+	train_params = calculateZeroMeanNormalizationParameters(train_inputs);
+	inputs = normalizeZeroMean(inputs,train_params);
+	
+	train = (inputs[train_idx,:],targets[train_idx,:]);
+	validation = (inputs[validation_idx,:],targets[validation_idx,:]);
+	test = (inputs[test_idx,:],targets[test_idx,:]);
+	
+	(ann,train_vector,validation_vector,test_vector) = trainRNA([12,4],train,maxEpochs=1000,learningRate=0.01,
+		test=test,validation=validation,maxEpochsVal=4);
+	return ann
+end
+
+function trainDataset(inputs::AbstractArray{<:Real,2},targets::AbstractArray{Bool,1})
+ 	new_targets = reshape(targets,length(targets),1);
+	return trainDataset(inputs,new_targets);
+end
 
 dataset = readdlm("iris.data",',');
 
