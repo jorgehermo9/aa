@@ -399,17 +399,24 @@ function confusionMatrix(outputs::AbstractArray{Bool,2},targets::AbstractArray{B
 		F1_vec[class] = F1;
 	end
 
-	confusion_matrix = Matrix{Int}(undef,numClasses,numClasses);
 
-	for real in 1:numClasses
-		for prediction in 1:numClasses
-			real_targets = targets[:,real];
-			prediction_output = outputs[:,prediction]
+	# confusion_matrix = Matrix{Int}(undef,numClasses,numClasses);
 
-			# Producto escalar para contar
-			confusion_matrix[real,prediction] = real_targets' * prediction_output;  
-		end
-	end
+	# for real in 1:numClasses
+	# 	for prediction in 1:numClasses
+	# 		real_targets = targets[:,real];
+	# 		prediction_output = outputs[:,prediction]
+
+	# 		# Producto escalar para contar
+	# 		confusion_matrix[real,prediction] = real_targets' * prediction_output;  
+	# 	end
+	# end
+
+	# En vez de hacer productos escalares, multiplicar las matrices
+	# para tener la matriz de confusion
+	
+	confusion_matrix = targets' * outputs
+
 	overall_recall = 0;
 	overall_specifity = 0;
 	overall_VPP = 0;
@@ -422,17 +429,14 @@ function confusionMatrix(outputs::AbstractArray{Bool,2},targets::AbstractArray{B
 		overall_VPN = mean(VPN_vec);
 		overall_F1= mean(F1_vec);
 	elseif strat == weighted_strat
-		for class in 1:numClasses
-			class_num_instances = sum(targets[:,class])
-			factor = class_num_instances/numInstances;
+		classes_num_instances = sum(targets,dims=1)[:,1];
+		weights = classes_num_instances/numInstances;
 
-			overall_recall += factor * recall_vec[class];
-			overall_specifity += factor * specifity_vec[class];
-			overall_VPP += factor * VPP_vec[class];
-			overall_VPN += factor * VPN_vec[class];
-			overall_F1 += factor * F1_vec[class];
-		end
-
+		overall_recall = sum(recall_vec .* weights);
+		overall_specifity = sum(specifity_vec .* weights);
+		overall_VPP = sum(VPP_vec .* weights);
+		overall_VPN = sum(VPN_vec .* weights);
+		overall_F1 = sum(F1_vec .* weights);
 	else
 		@assert false "Strat not supported"
 	end
