@@ -1,7 +1,8 @@
-\documentclass{article}
+\documentclass[12pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
 \usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
 \usepackage[left=3cm, right=3cm, top=2cm]{geometry}
 
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
@@ -27,30 +28,72 @@
 \newpage
 \section{Introducción}
 
-\subsection{Descripción del problema}
 A raíz de la pandemia, el aumento del interés por el aprendizaje en diferentes ámbitos llegó tambíen a la música y con él, la aparición
-de herramientas didácticas y profesionales para aprender a tocar diferentes instrumentos.
+de herramientas para aprender a tocar diferentes instrumentos de forma autodidacta.
 
+\bigskip
 Así, para cualquiera que esté aprendiendo, el escuchar una canción que te gusta e intentar tocarla es algo que acaba siendo un proceso
 frustante y que requiere una gran cantidad de horas intentando sacar las notas que la componen.
 
+\bigskip
 Nuestro sistema se encargaría entonces de reconocer y diferenciar a partir de audios, las notas de una pieza de piano
-pudiendo, en un futuro, ser capaz de detectar acordes, tonalidades e incluso generar la propia partitura pudiéndose 
-utilizar en aplicaciones como Spotify, Tidal...
+pudiendo, en un futuro, ser capaz de detectar acordes, tonalidades e incluso generar la propia partitura, siendo útil en aplicaciones como Spotify, Tidal...
 
+\bigskip
+A lo largo de esta memoria analizaremos a fondo el problema a resolver en la Sección \ref{Descripción del problema}, desarrollaremos las diferentes soluciones en la
+Sección \ref{Desarrollo}, hablaremos sobre las conclusiones del trabajo en la Sección \ref{Conclusiones} y finalizaremos comentando las aplicaciones al mundo
+real en la Sección \ref{Trabajo futuro}. También se podrá consultar las bibliografía utilizada en la Sección \ref{Análisis bibliográfico} y \ref{Bibliografía}.
+
+\newpage
 
 \section{Descripción del problema}
+\label{Descripción del problema}
+
+Nuestro sistema se centrará en reconocer, a partir de un audio, la nota del piano que se está tocando. Escogimos este instrumento por la cantidad de recursos
+que podemos encontrar y por su naturaleza invariable al ser tocada por una u otra persona.
+
+\bigskip
+Como única restricción, en dicho audio solo puede haber una nota sonando a la vez para que el sistema sea capaz de reconocerla correctamente.
+
+\bigskip
+La base de datos con la que contamos tiene un total de 5.417 audios con más de 50 samples por cada una de las 88 nota del piano, tocadas
+desde posiciones e intensidades distintas y grabadas con micrófonos diferentes. Dichos samples están en formato \textit{.wav} con un 
+bitrate de \textit{2304kbps}, \textit{24 bits per sample} y un sample rate de \textit{48kHz}. Todo ello ocupa un total de 34.5GB en disco.
+
+\bigskip
+El origen de la base de datos es una librería de piano de la compañía FluffyAudio \textit{\url{https://www.fluffyaudio.com/shop/scoringpiano/}} 
+grabada en 2016 y pensada para jazz, música clásica y bandas sonoras.
 
 \section{Análisis bibliográfico}
+\label{Análisis bibliográfico}
+
+Trabajos como el de J Osmalskyj, J-J Embrechts, S Piérard, M van Droogenbroeck (2012). \textit{Neural Networks for Musical Chords Recognition}, ofrecen otro enfoque
+en el que, en lugar de detectar las notas por separado, analizan todo el espectro de frecuencias para poder reconocer acordes completos de diferentes instrumentos.
+Para ello, utilizan una técnica denominada Pitch Class Profile (PCP) que obtiene las relaciones energéticas de cada nota en la escala.
+
+\bigskip
+Además, como resumen Emmanouil Benetos Member, Simon Dixon, Zhiyao Duan Member, Sebastian Ewert Member (2019). \textit{Automatic Music Transcription: An Overview},
+a pasar del estado avanzado de la transcripción automática de canciones, aún están presentes retos tales como la independencia de los intrumentos, de los estilos
+musicales o la interpretación de la expresividad.
+
+\bigskip
+Otros trabajos mas antiguos como los de Foo S. W., Wong P. L. (1999). \textit{Recogition of piano notes}, describen un algoritmo capaz de reconocer notas
+de un piano a partir de piezas sintetizadas o acústicas que son digitalmente muestreadas y transformadas al dominio de frecuencia usando 
+la transformada de Q constante a partir de la cual se la aplican diferentes técnicas para identificar las notas.
+
+
 
 \section{Desarrollo}
+\label{Desarrollo}
 
 \section{Conclusiones}
+\label{Conclusiones}
 
 \section{Trabajo futuro}
+\label{Trabajo futuro}
 
 \section{Bibliografía}
-
+\label{Bibliografía}
 
 
 \end{document}

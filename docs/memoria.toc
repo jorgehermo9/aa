@@ -1,9 +1,8 @@
 \babel@toc {spanish}{}\relax 
-\contentsline {section}{\numberline {1}Introducción}{3}{}%
-\contentsline {subsection}{\numberline {1.1}Descripción del problema}{3}{}%
-\contentsline {section}{\numberline {2}Descripción del problema}{3}{}%
-\contentsline {section}{\numberline {3}Análisis bibliográfico}{3}{}%
-\contentsline {section}{\numberline {4}Desarrollo}{3}{}%
-\contentsline {section}{\numberline {5}Conclusiones}{3}{}%
-\contentsline {section}{\numberline {6}Trabajo futuro}{3}{}%
-\contentsline {section}{\numberline {7}Bibliografía}{3}{}%
+\contentsline {section}{\numberline {1}Introducción}{3}{section.1}%
+\contentsline {section}{\numberline {2}Descripción del problema}{4}{section.2}%
+\contentsline {section}{\numberline {3}Análisis bibliográfico}{4}{section.3}%
+\contentsline {section}{\numberline {4}Desarrollo}{5}{section.4}%
+\contentsline {section}{\numberline {5}Conclusiones}{5}{section.5}%
+\contentsline {section}{\numberline {6}Trabajo futuro}{5}{section.6}%
+\contentsline {section}{\numberline {7}Bibliografía}{5}{section.7}%
