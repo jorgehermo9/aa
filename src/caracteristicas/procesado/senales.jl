@@ -47,6 +47,8 @@ display(plot(graficaTiempo, graficaFrecuencia, graficaFrecuenciaMitad, layout = 
 # A que muestras se corresponden las frecuencias indicadas
 #  Como limite se puede tomar la mitad de la frecuencia de muestreo
 m1 = Int(round(f1*2*length(senalFrecuencia)/Fs));
+print(Fs);
+print(length(senalFrecuencia));
 m2 = Int(round(f2*2*length(senalFrecuencia)/Fs));
 
 # Unas caracteristicas en esa banda de frecuencias
