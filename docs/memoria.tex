@@ -56,7 +56,7 @@ que podemos encontrar y por su naturaleza invariable al ser tocada por una u otr
 Como única restricción, en dicho audio solo puede haber una nota sonando a la vez para que el sistema sea capaz de reconocerla correctamente.
 
 \bigskip
-La base de datos con la que contamos tiene un total de 5.417 audios con más de 50 samples por cada una de las 88 nota del piano, tocadas
+La base de datos con la que contamos tiene un total de 5.417 audios con más de 50 samples por cada una de las 85 notas del piano (a partir de C1), tocadas
 desde posiciones e intensidades distintas y grabadas con micrófonos diferentes. Dichos samples están en formato \textit{.wav} en estéreo con un 
 bitrate de \textit{2304kbps}, \textit{24 bits per sample} y un sample rate de \textit{48kHz}. Todo ello ocupa un total de 34.5GB en disco.
 
@@ -83,9 +83,24 @@ la transformada de Q constante a partir de la cual se la aplican diferentes téc
 
 \section{Desarrollo}
 \label{Desarrollo}
-
+Para el desarrollo de este sistema elaboraremos aproximaciones. Comenzaremos desde los mas secillo a lo mas complejo.
 \subsection{Primera aproximación}
 \label{Primera aproximación}
+
+\subsubsection{Descripción}
+En esta primera aproximación nos limitaremos a diferenciar solo entre dos notas. 
+Escogimos las notas C4 y A5 de los cuales usaremos 92 y 56 audios de cada una respectivamente.
+
+Usaremos un umbral maximo de duracion de las muestras de tres segundos. Para la frecuencia acotaremos 
+cada señal entre 0 y 5000 Hz ya que la frecuencia principal que se alcanza en el piano clásico es de 4186 Hz (C8).
+
+De los ficheros extraeremos utilizando la transformada de Fourier las siguientes características: 
+
+\begin{itemize}
+	\item Energia media de la señal.
+	\item Media y Desviación tipica la frecuencia.
+	\item Zero-crossing por segundo (las veces que la señal en el dominio del tiempo toma el valor 0 cada segundo).
+\end{itemize}
 
 \section{Conclusiones}
 \label{Conclusiones}
