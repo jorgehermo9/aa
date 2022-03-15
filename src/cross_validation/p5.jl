@@ -488,6 +488,79 @@ function unoContraTodos()
 	outputs = classifyOutputs(outputs);
 end
 
+##Cross-validation 
+function crossvalidation(N::Int, k::Int)
+	repetitions = Int(ceil(N/k)) # ceil no asegura que haya la misma cantidad de elementos en cada k
+	subsets_indexes = repeat(1:1:k, repetitions)[1:N]
+	shuffle!(subsets_indexes)
+
+	return subsets_indexes
+end
+
+function crossvalidation(targets::AbstractArray{Bool, 2}, k::Int)
+	return collect(Iterators.flatten(crossvalidation.(sum(targets, dims=1), k)))
+	# el dot operation devuelve un array de arrays, 
+	# que es engorroso para trabajar, por eso la conversión
+	
+	# Lo hice asumiendo que el array de targets está ordenado
+end
+
+function crossvalidation(targets::AbstractArray{<:Any,1}, k::Int)
+	# onehot = oneHotEncoding(targets)
+	# return crossvalidation(onehot, k)
+	unique_elem = unique(targets)
+	occurrences = [count(x -> x==n, targets) for n in unique_elem]
+	return collect(Iterators.flatten(crossvalidation.(occurrences, k)))
+end
+
+function trainCrossValidation(inputs::AbstractArray{<:Real,2}, targets::AbstractArray{Bool,2}, kfolds::Int=10)
+	Random.seed!(100)
+
+	dataset_size = size(targets,1)
+	train_idx = crossvalidation(targets, kfolds)
+
+	# Solo lo hice para una métrica (la verdad es que no sé exactamente a qué métricas se refería, las de error de la RR.NN. u otras)
+	train_err = zeros(kfolds)
+	validation_err = zeros(kfolds)
+	test_err = zeros(kfolds)
+	
+	for i = 1:kfolds
+		# Habrá alguna manera más óptima de hacerlo
+		k_idx = findall(x -> x==i, train_idx)
+		not_k_idx = [j for j in 1:dataset_size if !(j in k_idx)]
+		# No verefica que el ratio de conjunto de patrones sea mayor que 0 (length(not_k_idx) > 0)
+		
+		train_slice_idx, validation_slice_idx = holdOut(size(not_k_idx, 1), 0.3)
+		train_slice_idx, validation_slice_idx  = not_k_idx[train_slice_idx], not_k_idx[validation_slice_idx]
+
+		train_set, train_target_set = inputs[train_slice_idx, :], targets[train_slice_idx, :]
+		test_set, test_target_set = inputs[k_idx, :], targets[k_idx, :]
+		validation_set, validation_targets_set = inputs[validation_slice_idx, :], targets[validation_slice_idx, :]
+
+		train = (train_set, train_target_set)
+		test = (test_set, test_target_set)
+		validation = (validation_set, validation_targets_set)
+
+		train_params = calculateZeroMeanNormalizationParameters(train_set);
+		inputs = normalizeZeroMean(inputs, train_params);
+
+		(ann, k_train_err, k_validation_err, k_test_err) = trainRNA([12,4], train, maxEpochs=1000, 
+			learningRate=0.01, validation=validation, test=test, maxEpochsVal=4);
+
+		# Hago la media de los errores de cada iteración entrenamiento de la red, no sé si era eso realmente
+		train_err[i] = mean(k_train_err)
+		validation_err[i] = mean(k_validation_err)
+		test_err[i] = mean(k_test_err)
+	end
+
+	# Luego devuelvo la media de todos los k entrenamientos para el test set (es lo mínimo que pedía)
+	return (mean(test_err))
+	
+end
+
+# No muy seguro de cómo interpretar el valor qualitativamente, es la media de los valores de crossentropy que da la RR.NN.
+errs = trainCrossValidation(inputs, targets) 
+
 ##Funcion para testear la confusion matrix
 function trainDataset(inputs::AbstractArray{<:Real,2},targets::AbstractArray{Bool,2})
 	
