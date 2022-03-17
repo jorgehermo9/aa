@@ -122,8 +122,9 @@ end
 # Creamos una señal de n muestras: es un array de flotantes
 # y,fs = wavread("/home/jorge/github/aa/db/a4/Piano-A4-25.wav");
 
-db_dir = "/home/jorge/github/aa/db"
-classes = readdir(db_dir);
+db_dir = "/home/jorge/tmp/db/databases/piano"
+# classes = readdir(db_dir);
+classes = ["A5","C4","D1","A4"]
 all_instances = Vector{Tuple{String,String}}()
 for class in classes
 	class_dir =db_dir*"/"*class;
@@ -151,7 +152,7 @@ dataset = Array{Any,2}(undef,length(all_instances)+1,33);
 dataset[1,:] = headers[:];
 dataset[2:end,:] = all_features[:,:];
 
-writedlm( "features.csv", dataset, ',')
+writedlm( "more_features.csv", dataset, ',')
 
 
 

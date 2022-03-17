@@ -512,10 +512,10 @@ function trainDataset(inputs::AbstractArray{<:Real,2},targets::AbstractArray{Boo
 	return trainDataset(inputs,new_targets);
 end
 
-dataset = readdlm("iris.data",',');
+dataset = readdlm("/home/jorge/github/aa/src/caracteristicas/more_features.csv",',');
 
-inputs = dataset[:,1:4];
-targets = dataset[:,5];
+inputs = dataset[2:end,1:end-1];
+targets = dataset[2:end,end];
 
 @assert (size(inputs,1)==size(targets,1)) "Las matrices de entradas y salidas deseadas no tienen el mismo número de filas"
 
@@ -534,18 +534,20 @@ train = (inputs[train_idx,:],targets[train_idx,:]);
 validation = (inputs[validation_idx,:],targets[validation_idx,:]);
 test = (inputs[test_idx,:],targets[test_idx,:]);
 
-(ann,train_vector,validation_vector,test_vector) = trainRNA([12,4],train,maxEpochs=1000,learningRate=0.01,
+(ann,train_vector,validation_vector,test_vector) = trainRNA([6,6],train,maxEpochs=1000,learningRate=0.01,
 	test=test,validation=validation,maxEpochsVal=4);
 
 acc = accuracy(test[2],ann(test[1]')');
 
+matrix = confusionMatrix(ann(test[1]')',test[2],weighted_strat)[8]
+display(matrix)
 println(acc)
-
+plotlyjs();
 g = plot();
 plot!(g,0:(length(train_vector)-1),train_vector,xaxis="Epoch",yaxis="Loss",color=:red,label="train");
 plot!(g,0:(length(validation_vector)-1),validation_vector,xaxis="Epoch",yaxis="Loss",color=:blue,label="validation");
 plot!(g,0:(length(test_vector)-1),test_vector,xaxis="Epoch",yaxis="Loss",color=:green,label="test");
 
-display(g)
+display(g);
 
 # savefig(g,"graph.svg")
