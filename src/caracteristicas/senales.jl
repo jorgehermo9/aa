@@ -4,6 +4,7 @@ using Statistics
 # using Plots
 using WAV
 using SignalAnalysis
+using DelimitedFiles
 
 
 function interval(bins::Int64,max::Real)
@@ -18,11 +19,12 @@ function interval(bins::Int64,max::Real)
 	return map(g,0:bins)
 end
 
-function freqToIndex(freq::Real,fs::Real)
+function freqToIndex(freq_y::AbstractArray{<:Real,1},freq::Real,fs::Real)
+	n = length(freq_y);
 	upperBound = fs/2;
 	lowerBound = -fs/2;
 	f = min(max(freq,lowerBound),upperBound);
-	ind = Int(round(((f + upperBound)/fs) * n));
+	ind = Int(round(((f + upperBound)/fs) * n)+1);
 	return ind;
 end
 
@@ -57,8 +59,8 @@ function get_features(file::String)
 	
 	freq_y = abs.(fftshift(fft(y)));
 	
-	m1 = freqToIndex(0,fs);
-	m2 = freqToIndex(max_freq,fs);
+	m1 = freqToIndex(freq_y,0,fs);
+	m2 = freqToIndex(freq_y,max_freq,fs);
 	
 	target_freq = freq_y[m1:m2]
 	
@@ -94,8 +96,8 @@ function get_features(file::String)
 		lowerFreq = bins_interval[i];
 		upperFreq = bins_interval[i+1];
 	
-		lowerInd = freqToIndex(lowerFreq,fs);
-		upperInd = freqToIndex(upperFreq,fs);
+		lowerInd = freqToIndex(freq_y,lowerFreq,fs);
+		upperInd = freqToIndex(freq_y,upperFreq,fs);
 		interval_freq = freq_y[lowerInd:upperInd]
 		means[i] = mean(interval_freq);
 		stds[i] =std(interval_freq);
@@ -122,18 +124,34 @@ end
 
 db_dir = "/home/jorge/github/aa/db"
 classes = readdir(db_dir);
-
+all_instances = Vector{Tuple{String,String}}()
 for class in classes
 	class_dir =db_dir*"/"*class;
 	instances = readdir(class_dir);
 	for instance in instances
 		feature_dir = class_dir*"/"*instance
-		features = get_features(feature_dir);
-		println(feature_dir)
+		push!(all_instances,(class,feature_dir));
 	end
 end
 
+all_features = Array{Any,2}(undef,length(all_instances),33);
+for i in 1:length(all_instances)
+	(instance_class,instance_dir) = all_instances[i]
+	instance_features = get_features(instance_dir);
+	all_features[i,1:32] = instance_features[:];
+	all_features[i,33] = instance_class;	
+end
 
+headers = ["E","zero_crossing","m1","m2","m3","m4","m5","m6","m7","m8","m9","m10",
+"std1","std2","std3","std4","std5","std6","std7","std8","std9","std10",
+"max1","max2","max3","max4","max5","max6","max7","max8","max9","max10",
+"class"];
+
+dataset = Array{Any,2}(undef,length(all_instances)+1,33);
+dataset[1,:] = headers[:];
+dataset[2:end,:] = all_features[:,:];
+
+writedlm( "features.csv", dataset, ',')
 
 
 
