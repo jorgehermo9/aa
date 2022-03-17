@@ -81,25 +81,28 @@ Otros trabajos mas antiguos como los de Foo S. W., Wong P. L. (1999). \textit{Re
 de un piano a partir de piezas sintetizadas o acústicas que son digitalmente muestreadas y transformadas al dominio de frecuencia usando 
 la transformada de Q constante a partir de la cual se la aplican diferentes técnicas para identificar las notas.
 
+\newpage
 \section{Desarrollo}
 \label{Desarrollo}
-Para el desarrollo de este sistema elaboraremos aproximaciones. Comenzaremos desde los mas secillo a lo mas complejo.
+Para el desarrollo de este sistema utilizaremos un métedo basado en aproximaciones, es decir, comenzaremos acotando el problema e iremos aumentando
+la complejidad a medida que obtenemos resultados satisfatorios.
 \subsection{Primera aproximación}
 \label{Primera aproximación}
 
 \subsubsection{Descripción}
 En esta primera aproximación nos limitaremos a diferenciar solo entre dos notas. 
-Escogimos las notas C4 y A5 de los cuales usaremos 92 y 56 audios de cada una respectivamente.
+Escogimos las notas \textit{C4} y \textit{A5} de los cuales usaremos 92 y 56 audios de cada una, respectivamente.
 
-Usaremos un umbral maximo de duracion de las muestras de tres segundos. Para la frecuencia acotaremos 
-cada señal entre 0 y 5000 Hz ya que la frecuencia principal que se alcanza en el piano clásico es de 4186 Hz (C8).
+\bigskip
+Dado que cada muestra tiene una duración diferente, decidimos quedarnos solo con los 3 primeros segundos de cada audio (que es donde está la información más
+relevante de la nota) y, para la frecuencia, acotaremos cada señal entre 0 y 5000 Hz, ya que la frecuencia máxima que se alcanza en el piano clásico es de 4186 Hz (\textit{C8}).
 
+\bigskip
 De los ficheros extraeremos utilizando la transformada de Fourier las siguientes características: 
-
 \begin{itemize}
 	\item Energia media de la señal.
 	\item Media y Desviación tipica la frecuencia.
-	\item Zero-crossing por segundo (las veces que la señal en el dominio del tiempo toma el valor 0 cada segundo).
+	\item Zero-crossing/s (las veces que la señal en el dominio del tiempo toma el valor 0 cada segundo).
 \end{itemize}
 
 \section{Conclusiones}
