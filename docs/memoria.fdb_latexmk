@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1647509158 "/home/david/works/aa/docs/memoria.tex" "memoria.pdf" "memoria" 1647509159
-  "/home/david/works/aa/docs/memoria.tex" 1647509158 5608 fd39c878a20ad9918dfd454a80fcfb82 ""
+["pdflatex"] 1647513008 "/home/david/works/aa/docs/memoria.tex" "memoria.pdf" "memoria" 1647513009
+  "/home/david/works/aa/docs/memoria.tex" 1647513007 7016 8d3369ff89dd5163801fff6d35b578f2 ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1640600964 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1640600964 1324 c910af8c371558dc20f2d7822f66fe64 ""
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmitt10.tfm" 1640600964 768 2297ad2ac26f37e67f756dad27c77d68 ""
@@ -17,7 +17,12 @@
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmti12.tfm" 1640600964 1484 ed72f8f5cf654cda15ecc8e32bfcbee5 ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1640600964 32080 340ef9bf63678554ee606688e7b5339d ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb" 1640600964 26057 fad158094905eaf20f4ae3782af0c45c ""
+  "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb" 1640600964 36741 fa121aac0049305630cf160b86157ee4 ""
+  "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1640600964 35469 70d41d2b9ea31d5d813066df7c99281c ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1640600964 32722 d7379af29a190c3f453aba36302ff5a9 ""
+  "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb" 1640600964 32734 69e00a6b65cedb993666e42eedb3d48f ""
+  "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1640600964 32726 0a1aea6fcd6468ee2cf64d891f5c43c8 ""
+  "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1640600964 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb" 1640600964 36118 fad905eba93cff5bce1e185fe980a177 ""
   "/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1640600964 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/share/texmf-dist/tex/generic/atbegshi/atbegshi.sty" 1640600964 24708 5584a51a7101caf7e6bbf1fc27d8f7b1 ""
@@ -70,10 +75,10 @@
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1640600964 39911 2da6c67557ec033436fe5418a70a8a61 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1640708254 334353 c825108cbc13fa4a18a274c473196142 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1640708245 2920111 5935197639c7ef49d1de692aa2c9b6ae ""
-  "memoria.aux" 1647509159 2431 8829e4f0a7bb6ce8a448872b2413be3e "pdflatex"
-  "memoria.out" 1647509159 1146 1e17a23f9dc6fc87945a98b5ab0b815e "pdflatex"
-  "memoria.tex" 1647509158 5608 fd39c878a20ad9918dfd454a80fcfb82 ""
-  "memoria.toc" 1647509159 708 18eada0a693a235b9bbd45c213b6f1e0 "pdflatex"
+  "memoria.aux" 1647513009 2431 a52a4a57bb9d97eb5b6b94dfa8eb31fa "pdflatex"
+  "memoria.out" 1647513009 1146 1e17a23f9dc6fc87945a98b5ab0b815e "pdflatex"
+  "memoria.tex" 1647513007 7016 8d3369ff89dd5163801fff6d35b578f2 ""
+  "memoria.toc" 1647513009 708 35b9b7e756ed62f5ed4cf8b23d1c19e5 "pdflatex"
   "udc.jpg" 1645698760 36444 a83766351d17300c874af243f17773c8 ""
   (generated)
   "memoria.aux"

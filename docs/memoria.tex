@@ -100,9 +100,26 @@ relevante de la nota) y, para la frecuencia, acotaremos cada señal entre 0 y 50
 \bigskip
 De los ficheros extraeremos utilizando la transformada de Fourier las siguientes características: 
 \begin{itemize}
-	\item Energia media de la señal.
-	\item Media y Desviación tipica la frecuencia.
-	\item Zero-crossing/s (las veces que la señal en el dominio del tiempo toma el valor 0 cada segundo).
+	\item \textbf{Energia media de la señal}: ya que las señales con más frecuencia (más agudas) tienen más energía, esta característica nos podría
+		ayudar a diferenciar entre notas tocadas con la misma intensidad.
+	\item \textbf{Media y desviación tipica, y valor máximo de la frecuencia en intervalos no uniformes}: la frecuencia de cada nota
+		aumenta de forma exponencial siguiendo la fórmula:
+
+		\begin{equation}
+			f_{i+1} = f_{i}\cdot(\sqrt[12]{2}), f_0 = 27.5
+		\end{equation}
+
+		Por ello decidimos dividir el espectro en 10 intervalos de longitud variable siguiendo dicha distribución. 
+		Podríamos entonces obtener un intervalo donde la media y la desviación típica de la frecuencia fueran más elevados que el resto,
+		ayudándonos a identificar la nota.
+		
+		Los intervalos que usaremos son los siguientes:
+		
+		\textit{(0.0, 380.3), (380.3, 783.21), (783.21, 1210.08), (1210.08, 1662.33),\newline
+		(1662.33, 2141.47), (2141.47, 2649.11), (2649.11, 3186.93), (3186.93, 3756.73), 
+		(3756.73, 4360.42), (4360.42, 5000.0)}
+	\item \textbf{Zero-crossing/s}: esta característica determina las veces que la señal, en el dominio del tiempo, toma el valor 0 cada segundo.
+		Como dicha cracterística nos proporcionaría valores similares a la frecuencia media de la señal, podría contribuír a la correcta clasificación.
 \end{itemize}
 
 \section{Conclusiones}
