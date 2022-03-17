@@ -78,7 +78,7 @@ function get_features(file::String)
 	E = sum((y.^2) * 1/fs);
 	# mean_freq = mean(target_freq);
 	# std_freq = std(target_freq);
-	z_crossing = zero_crossing(y)
+	z_crossing = zero_crossing(y)/duration_threshold;
 	
 	# println("Energía de la señal: $(E)");
 	# println("zero crossing/s : $(z_crossing)");
