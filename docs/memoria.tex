@@ -28,7 +28,7 @@
 \newpage
 \section{Introducción}
 
-A raíz de la pandemia, el aumento del interés por el aprendizaje en diferentes ámbitos llegó tambíen a la música y con él, la aparición
+A raíz de la pandemia, el aumento del interés por el aprendizaje en diferentes ámbitos llegó tambíen a la música, y con él, la aparición
 de herramientas para aprender a tocar diferentes instrumentos de forma autodidacta.
 
 \bigskip
@@ -56,12 +56,12 @@ que podemos encontrar y por su naturaleza invariable al ser tocada por una u otr
 Como única restricción, en dicho audio solo puede haber una nota sonando a la vez para que el sistema sea capaz de reconocerla correctamente.
 
 \bigskip
-La base de datos con la que contamos tiene un total de 5.417 audios con más de 50 samples por cada una de las 85 notas del piano (a partir de C1), tocadas
-desde posiciones e intensidades distintas y grabadas con micrófonos diferentes. Dichos samples están en formato \textit{.wav} en estéreo con un 
-bitrate de \textit{2304kbps}, \textit{24 bits per sample} y un sample rate de \textit{48kHz}. Todo ello ocupa un total de 34.5GB en disco.
+La base de datos con la que contamos tiene un total de 5.417 audios con una media de más de 50 \textit{samples} por cada una de las 85 notas del piano (a partir de \textit{C1}), tocadas
+desde posiciones e intensidades distintas y grabadas con micrófonos diferentes. Dichos \textit{samples} están en formato \textit{.wav} en estéreo, con un 
+\textit{bitrate} de \textit{2304kbps}, \textit{24 bits per sample} y un \textit{sample rate} de \textit{48kHz}. Todo ello ocupa un total de \textit{34.5GB} en disco.
 
 \bigskip
-El origen de la base de datos es una librería de piano de la compañía FluffyAudio \textit{\url{https://www.fluffyaudio.com/shop/scoringpiano/}} 
+El origen de la base de datos es una librería de piano de la compañía \textit{FluffyAudio} \textit{\url{https://www.fluffyaudio.com/shop/scoringpiano/}} 
 grabada en 2016 y pensada para jazz, música clásica y bandas sonoras.
 
 \section{Análisis bibliográfico}
@@ -73,7 +73,7 @@ Para ello, utilizan una técnica denominada Pitch Class Profile (PCP) que obtien
 
 \bigskip
 Además, como resumen Emmanouil Benetos Member, Simon Dixon, Zhiyao Duan Member, Sebastian Ewert Member (2019). \textit{Automatic Music Transcription: An Overview},
-a pasar del estado avanzado de la transcripción automática de canciones, aún están presentes retos tales como la independencia de los intrumentos, de los estilos
+a pesar del estado avanzado de la transcripción automática de canciones, aún están presentes retos tales como la independencia de los intrumentos, de los estilos
 musicales o la interpretación de la expresividad.
 
 \bigskip
@@ -84,13 +84,13 @@ la transformada de Q constante a partir de la cual se la aplican diferentes téc
 \newpage
 \section{Desarrollo}
 \label{Desarrollo}
-Para el desarrollo de este sistema utilizaremos un métedo basado en aproximaciones, es decir, comenzaremos acotando el problema e iremos aumentando
+Para el desarrollo de este sistema utilizaremos un método basado en aproximaciones, es decir, comenzaremos acotando el problema e iremos aumentando
 la complejidad a medida que obtenemos resultados satisfatorios.
 \subsection{Primera aproximación}
 \label{Primera aproximación}
 
 \subsubsection{Descripción}
-En esta primera aproximación nos limitaremos a diferenciar solo entre dos notas. 
+En esta primera aproximación nos limitaremos a diferenciar únicamente entre dos notas. 
 Escogimos las notas \textit{C4} y \textit{A5} de los cuales usaremos 92 y 56 audios de cada una, respectivamente.
 
 \bigskip
@@ -102,11 +102,11 @@ De los ficheros extraeremos utilizando la transformada de Fourier las siguientes
 \begin{itemize}
 	\item \textbf{Energia media de la señal}: ya que las señales con más frecuencia (más agudas) tienen más energía, esta característica nos podría
 		ayudar a diferenciar entre notas tocadas con la misma intensidad.
-	\item \textbf{Media y desviación tipica, y valor máximo de la frecuencia en intervalos no uniformes}: la frecuencia de cada nota
+	\item \textbf{Media, desviación tipica, y valor máximo de la frecuencia en intervalos no uniformes}: la frecuencia de cada nota
 		aumenta de forma exponencial siguiendo la fórmula:
 
 		\begin{equation}
-			f_{i+1} = f_{i}\cdot(\sqrt[12]{2}), f_0 = 27.5
+			f_{i+1} = f_{i}\cdot(\sqrt[12]{2}), f_0 = 27.5 Hz
 		\end{equation}
 
 		Por ello decidimos dividir el espectro en 10 intervalos de longitud variable siguiendo dicha distribución. 
@@ -119,7 +119,7 @@ De los ficheros extraeremos utilizando la transformada de Fourier las siguientes
 		(1662.33, 2141.47), (2141.47, 2649.11), (2649.11, 3186.93), (3186.93, 3756.73), 
 		(3756.73, 4360.42), (4360.42, 5000.0)}
 	\item \textbf{Zero-crossing/s}: esta característica determina las veces que la señal, en el dominio del tiempo, toma el valor 0 cada segundo.
-		Como dicha cracterística nos proporcionaría valores similares a la frecuencia media de la señal, podría contribuír a la correcta clasificación.
+		Como dicha cracterística nos proporcionaría valores similares a la frecuencia media de la señal, podría contribuír a su correcta clasificación.
 \end{itemize}
 
 \section{Conclusiones}

@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1647513008 "/home/david/works/aa/docs/memoria.tex" "memoria.pdf" "memoria" 1647513009
-  "/home/david/works/aa/docs/memoria.tex" 1647513007 7016 8d3369ff89dd5163801fff6d35b578f2 ""
+["pdflatex"] 1647608818 "/home/david/works/aa/docs/memoria.tex" "memoria.pdf" "memoria" 1647608818
+  "/home/david/works/aa/docs/memoria.tex" 1647608817 7103 508c49ca62e8dafa987e0346f83df0dd ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1640600964 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1640600964 1324 c910af8c371558dc20f2d7822f66fe64 ""
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmitt10.tfm" 1640600964 768 2297ad2ac26f37e67f756dad27c77d68 ""
@@ -75,10 +75,10 @@
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1640600964 39911 2da6c67557ec033436fe5418a70a8a61 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1640708254 334353 c825108cbc13fa4a18a274c473196142 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1640708245 2920111 5935197639c7ef49d1de692aa2c9b6ae ""
-  "memoria.aux" 1647513009 2431 a52a4a57bb9d97eb5b6b94dfa8eb31fa "pdflatex"
-  "memoria.out" 1647513009 1146 1e17a23f9dc6fc87945a98b5ab0b815e "pdflatex"
-  "memoria.tex" 1647513007 7016 8d3369ff89dd5163801fff6d35b578f2 ""
-  "memoria.toc" 1647513009 708 35b9b7e756ed62f5ed4cf8b23d1c19e5 "pdflatex"
+  "memoria.aux" 1647608818 2431 a52a4a57bb9d97eb5b6b94dfa8eb31fa "pdflatex"
+  "memoria.out" 1647608818 1146 1e17a23f9dc6fc87945a98b5ab0b815e "pdflatex"
+  "memoria.tex" 1647608817 7103 508c49ca62e8dafa987e0346f83df0dd ""
+  "memoria.toc" 1647608818 708 35b9b7e756ed62f5ed4cf8b23d1c19e5 "pdflatex"
   "udc.jpg" 1645698760 36444 a83766351d17300c874af243f17773c8 ""
   (generated)
   "memoria.aux"
