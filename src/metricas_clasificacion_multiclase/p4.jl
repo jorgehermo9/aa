@@ -512,7 +512,7 @@ function trainDataset(inputs::AbstractArray{<:Real,2},targets::AbstractArray{Boo
 	return trainDataset(inputs,new_targets);
 end
 
-dataset = readdlm("/home/jorge/github/aa/src/caracteristicas/more_features.csv",',');
+dataset = readdlm("/home/jorge/github/aa/src/caracteristicas/features.csv",',');
 
 inputs = dataset[2:end,1:end-1];
 targets = dataset[2:end,end];
@@ -534,7 +534,7 @@ train = (inputs[train_idx,:],targets[train_idx,:]);
 validation = (inputs[validation_idx,:],targets[validation_idx,:]);
 test = (inputs[test_idx,:],targets[test_idx,:]);
 
-(ann,train_vector,validation_vector,test_vector) = trainRNA([6,6],train,maxEpochs=1000,learningRate=0.01,
+(ann,train_vector,validation_vector,test_vector) = trainRNA([12,12],train,maxEpochs=1000,learningRate=0.01,
 	test=test,validation=validation,maxEpochsVal=4);
 
 acc = accuracy(test[2],ann(test[1]')');
