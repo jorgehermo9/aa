@@ -1,7 +1,10 @@
 \documentclass[12pt]{article}
 \usepackage[utf8]{inputenc}
+\usepackage{csquotes}
 \usepackage[spanish]{babel}
 \usepackage{graphicx}
+\usepackage[style=apa]{biblatex}
+\addbibresource{references.bib}
 \usepackage[hidelinks]{hyperref}
 \usepackage[left=3cm, right=3cm, top=2cm]{geometry}
 
@@ -36,13 +39,22 @@ Así, para cualquiera que esté aprendiendo, el escuchar una canción que te gus
 frustante y que requiere una gran cantidad de horas intentando sacar las notas que la componen.
 
 \bigskip
-Nuestro sistema se encargaría entonces de reconocer y diferenciar a partir de audios, las notas de una pieza de piano
-pudiendo, en un futuro, ser capaz de detectar acordes, tonalidades e incluso generar la propia partitura, siendo útil en aplicaciones como Spotify, Tidal...
+Nuestro sistema se encargaría entonces de reconocer y diferenciar a partir de audios las notas de una pieza de piano
+pudiendo, en un futuro, ser capaz de detectar acordes y tonalidades, siendo útil en aplicaciones como Spotify, Tidal... Para ello, haremos uso
+de diferentes técnicas de aprendizaje automático como las redes de neuronas artificiales, árboles de decisión y máquinas de soporte vectorial,
+comparando su rendimiento y eligiendo la que mejor resultados nos ofrezca.
 
 \bigskip
 A lo largo de esta memoria analizaremos a fondo el problema a resolver en la Sección \ref{Descripción del problema}, desarrollaremos las diferentes soluciones en la
 Sección \ref{Desarrollo}, hablaremos sobre las conclusiones del trabajo en la Sección \ref{Conclusiones} y finalizaremos comentando las aplicaciones al mundo
 real en la Sección \ref{Trabajo futuro}. También se podrá consultar las bibliografía utilizada en la Sección \ref{Análisis bibliográfico} y \ref{Bibliografía}.
+
+\subsection{Glosario}
+\label{Glosario}
+\begin{itemize}
+	\item Sample: muestra de carácter musical
+	\item TF: transformada de Fourier
+\end{itemize}
 
 \newpage
 
@@ -53,12 +65,33 @@ Nuestro sistema se centrará en reconocer, a partir de un audio, la nota del pia
 que podemos encontrar y por su naturaleza invariable al ser tocada por una u otra persona.
 
 \bigskip
+Dada la naturaleza de nuestro sistema, descartamos utilizar la especificidad o la sensibilidad ya que nos es indiferente las clases en las que se clasifiquen
+las notas (el coste de un falso positivo o un falso negativo es el mismo).
+
+Así, como solo nos interesa una correcta clasificación global, pensamos en utilizar la precisión.
+El incoveniente de esta mátrica está en que si tenemos un conjunto de patrones desbalanceado (gran diferencia en el número de
+patrones positivos y negativos), la precisión podría alcanzar valores muy altos con sistemas que clasifiquen todos los patrones en la clase con mayor número de ellos
+en el entrenamiento. La métrica que utilizaremos entonces para valorar los resultados obtenidos y que palia los problemas
+mencionados anteriormente será la \textbf{F1 score}. Esta métrica es la media armónica de la sensibilidad y la especificidad, siguiendo la fórmula.
+El valor más alto que puede alcanzar es de 1 (todos los patrones se clasificaron correctamente) y el más bajo es de 0 (todos los patrones se clasificaron
+incorrectamente).
+
+\begin{equation}
+	f_{i+1} = f_{i}\cdot(\sqrt[12]{2}), f_0 = 27.5 Hz
+\end{equation}
+
+
+
+\subsection{Restricciones}
+\bigskip
 Como única restricción, en dicho audio solo puede haber una nota sonando a la vez para que el sistema sea capaz de reconocerla correctamente.
 
+\subsection{Características}
 \bigskip
 La base de datos con la que contamos tiene un total de 5.417 audios con una media de más de 50 \textit{samples} por cada una de las 85 notas del piano (a partir de \textit{C1}), tocadas
 desde posiciones e intensidades distintas y grabadas con micrófonos diferentes. Dichos \textit{samples} están en formato \textit{.wav} en estéreo, con un 
 \textit{bitrate} de \textit{2304kbps}, \textit{24 bits per sample} y un \textit{sample rate} de \textit{48kHz}. Todo ello ocupa un total de \textit{34.5GB} en disco.
+La duración media de los \textit{samples} es de aproximadamente xxx s.
 
 \bigskip
 El origen de la base de datos es una librería de piano de la compañía \textit{FluffyAudio} \textit{\url{https://www.fluffyaudio.com/shop/scoringpiano/}} 
@@ -66,8 +99,11 @@ grabada en 2016 y pensada para jazz, música clásica y bandas sonoras.
 
 \section{Análisis bibliográfico}
 \label{Análisis bibliográfico}
+Para profundizar en el tema antes de abordarlo, en esta sección se analizan diferentes artículos científicos relacionados con la inteligencia
+artificial y el reconocimiento de audio.
 
-Trabajos como el de J Osmalskyj, J-J Embrechts, S Piérard, M van Droogenbroeck (2012). \textit{Neural Networks for Musical Chords Recognition}, ofrecen otro enfoque
+\bigskip
+Trabajos como el de \cite{osmalsky2012neural}
 en el que, en lugar de detectar las notas por separado, analizan todo el espectro de frecuencias para poder reconocer acordes completos de diferentes instrumentos.
 Para ello, utilizan una técnica denominada Pitch Class Profile (PCP) que obtiene las relaciones energéticas de cada nota en la escala.
 
@@ -130,6 +166,6 @@ De los ficheros extraeremos utilizando la transformada de Fourier las siguientes
 
 \section{Bibliografía}
 \label{Bibliografía}
-
+\printbibliography
 
 \end{document}

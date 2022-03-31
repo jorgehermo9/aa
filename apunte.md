@@ -1,7 +1,7 @@
 explicar más que hace el sistema.
 
-hablar de consideraciones previas. Aprendizaje automatico, redes de neuronas, explicar las tecnicas
-referenciar 
+<!-- hablar de consideraciones previas. Aprendizaje automatico, redes de neuronas, explicar las tecnicas
+referenciar  -->
 
 Poner todas las citas en bibliografía
 
@@ -13,11 +13,11 @@ Poner ejemplo de de espectro, gráfica tiempo y frecuencia de una nota en descro
 
 Poner las graficas de las notas que vayamos a utilizar en las aproximaciones.
 
-Apartado restricciones/características 
+<!-- Apartado restricciones/características -->
 
 Hablar de las métricas que vamos a utilizar. Precision,VPP,especifidad...??
 
-Parrafó de introduccion análisis bibliográfico
+<!-- Parrafó de introduccion análisis bibliográfico -->
 
 8 trabajos en análisis bibliográfico y poner conclusiones.
 
@@ -29,5 +29,3 @@ Decir por qué utilizamos frecuencias hasta 5000hz, en vez de coger la frecuenci
 Decir por qué sirve utilizar la transformada de fourier. Hablar de las normalización que vamos a utilizar
 
 Ejemplo de la entrada del sistema
-
-
