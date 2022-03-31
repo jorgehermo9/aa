@@ -498,63 +498,23 @@ function crossvalidation(N::Int, k::Int)
 end
 
 function crossvalidation(targets::AbstractArray{Bool, 2}, k::Int)
-	return collect(Iterators.flatten(crossvalidation.(sum(targets, dims=1), k)))
-	# el dot operation devuelve un array de arrays, 
-	# que es engorroso para trabajar, por eso la conversión
-	
-	# Lo hice asumiendo que el array de targets está ordenado
+
+	index_vector = Vector{Int}(undef,size(targets,1))
+	classes = size(targets,2)
+
+	for i = 1:classes
+		class_targets = targets[:,i];
+		num_elems = sum(class_targets);
+		cross_val = crossvalidation(num_elems,k);
+		class_indexes = findall(x->x==1,class_targets);
+		index_vector[class_indexes] = cross_val;
+	end
 end
 
 function crossvalidation(targets::AbstractArray{<:Any,1}, k::Int)
 	onehot = oneHotEncoding(targets)
 	return crossvalidation(onehot, k)
 end
-
-function trainCrossValidation(inputs::AbstractArray{<:Real,2}, targets::AbstractArray{Bool,2}, kfolds::Int=10)
-	Random.seed!(100)
-
-	dataset_size = size(targets,1)
-	train_idx = crossvalidation(targets, kfolds)
-
-	# Solo lo hice para una métrica (la verdad es que no sé exactamente a qué métricas se refería, las de error de la RR.NN. u otras)
-	train_err = zeros(kfolds)
-	validation_err = zeros(kfolds)
-	test_err = zeros(kfolds)
-	
-	for i = 1:kfolds
-		# Habrá alguna manera más óptima de hacerlo
-		k_idx = findall(x -> x==i, train_idx)
-		not_k_idx = [j for j in 1:dataset_size if !(j in k_idx)]
-		# No verefica que el ratio de conjunto de patrones sea mayor que 0 (length(not_k_idx) > 0)
-		
-		train_slice_idx, validation_slice_idx = holdOut(size(not_k_idx, 1), 0.3)
-		train_slice_idx, validation_slice_idx  = not_k_idx[train_slice_idx], not_k_idx[validation_slice_idx]
-
-		train_set, train_target_set = inputs[train_slice_idx, :], targets[train_slice_idx, :]
-		test_set, test_target_set = inputs[k_idx, :], targets[k_idx, :]
-		validation_set, validation_targets_set = inputs[validation_slice_idx, :], targets[validation_slice_idx, :]
-
-		train = (train_set, train_target_set)
-		test = (test_set, test_target_set)
-		validation = (validation_set, validation_targets_set)
-
-		train_params = calculateZeroMeanNormalizationParameters(train_set);
-		inputs = normalizeZeroMean(inputs, train_params);
-
-		(ann, k_train_err, k_validation_err, k_test_err) = trainRNA([12,4], train, maxEpochs=1000, 
-			learningRate=0.01, validation=validation, test=test, maxEpochsVal=4);
-
-		# Hago la media de los errores de cada iteración entrenamiento de la red, no sé si era eso realmente
-		train_err[i] = k_train_err[end]
-		validation_err[i] = k_validation_err[end]
-		test_err[i] = k_test_err[end]
-	end
-
-	# Luego devuelvo la media de todos los k entrenamientos para el test set (es lo mínimo que pedía)
-	return (mean(train_err), mean(test_err), mean(test_err))
-	
-end
-
 # 6 4 3
 l = [1,1,1,1,1,1,2,2,2,2,3,3,3]
 k = crossvalidation(l, 3) # Equilibrado
@@ -563,40 +523,36 @@ sk = crossvalidation(shuffled_l, 3)
 unique.([k[1:6], k[7:10], k[11:13]])
 unique.([sk[1:6], sk[7:10], sk[11:13]])
 
-## Modificación de crossvalidation
-function trainCrossValidation(inputs::AbstractArray{<:Real,2}, targets::AbstractArray{Bool,2}, kfolds::Int=10, )
+function trainCrossValidation(inputs::AbstractArray{<:Real,2}, targets::AbstractArray{Bool,2}, kfolds::Int=10 )
+	# Pasar los inputs normalizados!!
 	Random.seed!(100)
 
-	dataset_size = size(targets,1)
-	train_idx = crossvalidation(targets, kfolds)
+	f1_folds = zeros(kfols)
+	recall_fold = zeros(kfolds)
+	precision_fold = zeros(kfolds)
+	acc_folds = zeros(kfolds)
 
-	# Solo lo hice para una métrica (la verdad es que no sé exactamente a qué métricas se refería, las de error de la RR.NN. u otras)
-	train_err = zeros(kfolds)
-	validation_err = zeros(kfolds)
-	test_err = zeros(kfolds)
-	
+	fold_vector = crossvalidation(targets, kfolds)
+
 	for i = 1:kfolds
-		# Habrá alguna manera más óptima de hacerlo
-		k_idx = findall(x -> x==i, train_idx)
-		not_k_idx = [j for j in 1:dataset_size if !(j in k_idx)]
-		# No verefica que el ratio de conjunto de patrones sea mayor que 0 (length(not_k_idx) > 0)
-		
-		train_slice_idx, validation_slice_idx = holdOut(size(not_k_idx, 1), 0.3)
-		train_slice_idx, validation_slice_idx  = not_k_idx[train_slice_idx], not_k_idx[validation_slice_idx]
+		test_fold_idx = findall(x -> x==i, fold_vector)
+		train_fold_idx = findall(x -> x!=i, fold_vector)
 
-		train_set, train_target_set = inputs[train_slice_idx, :], targets[train_slice_idx, :]
-		test_set, test_target_set = inputs[k_idx, :], targets[k_idx, :]
-		validation_set, validation_targets_set = inputs[validation_slice_idx, :], targets[validation_slice_idx, :]
+
+		(train_set,train_target_set)  = (inputs[train_fold_idx],targets[train_fold_idx]);
+		(test_set,train_target_set) = (inputs[test_fold_idx], targets[test_fold]);
+
+		# Modificar para generar el validation set en funcion del train set
+		# validation_set, validation_targets_set = inputs[validation_slice, :], targets[validation_slice, :]
 
 		train = (train_set, train_target_set)
 		test = (test_set, test_target_set)
 		validation = (validation_set, validation_targets_set)
 
-		train_params = calculateZeroMeanNormalizationParameters(train_set);
-		inputs = normalizeZeroMean(inputs, train_params);
-
-		(ann, k_train_err, k_validation_err, k_test_err) = trainRNA([12,4], train, maxEpochs=1000, 
-			learningRate=0.01, validation=validation, test=test, maxEpochsVal=4);
+		for i in 1:10
+			(ann, k_train_err, k_validation_err, k_test_err) = trainRNA([12,4], train, maxEpochs=1000, 
+				learningRate=0.01, validation=validation, test=test, maxEpochsVal=4);
+		end
 
 		# Hago la media de los errores de cada iteración entrenamiento de la red, no sé si era eso realmente
 		train_err[i] = k_train_err[end]
