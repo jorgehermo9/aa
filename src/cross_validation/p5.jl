@@ -506,11 +506,8 @@ function crossvalidation(targets::AbstractArray{Bool, 2}, k::Int)
 end
 
 function crossvalidation(targets::AbstractArray{<:Any,1}, k::Int)
-	# onehot = oneHotEncoding(targets)
-	# return crossvalidation(onehot, k)
-	unique_elem = unique(targets)
-	occurrences = [count(x -> x==n, targets) for n in unique_elem]
-	return collect(Iterators.flatten(crossvalidation.(occurrences, k)))
+	onehot = oneHotEncoding(targets)
+	return crossvalidation(onehot, k)
 end
 
 function trainCrossValidation(inputs::AbstractArray{<:Real,2}, targets::AbstractArray{Bool,2}, kfolds::Int=10)
