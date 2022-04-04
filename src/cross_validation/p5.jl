@@ -462,6 +462,7 @@ function confusionMatrix(outputs::AbstractArray{<:Any},targets::AbstractArray{<:
 	return confusionMatrix(new_outputs,new_targets,strat);
 end
 
+# Función para hacer fit de un modelo, fue para pruebas de la confusionMatrix
 function unoContraTodos()
 	dataset = readdlm("iris.data",',');
 
@@ -509,27 +510,21 @@ function crossvalidation(targets::AbstractArray{Bool, 2}, k::Int)
 		class_indexes = findall(x->x==1,class_targets);
 		index_vector[class_indexes] = cross_val;
 	end
+	return index_vector
 end
 
 function crossvalidation(targets::AbstractArray{<:Any,1}, k::Int)
 	onehot = oneHotEncoding(targets)
 	return crossvalidation(onehot, k)
 end
-# 6 4 3
-l = [1,1,1,1,1,1,2,2,2,2,3,3,3]
-k = crossvalidation(l, 3) # Equilibrado
-shuffled_l = [2, 2, 1, 1, 3, 2, 2, 3, 1, 3, 1, 1, 1]
-sk = crossvalidation(shuffled_l, 3)
-unique.([k[1:6], k[7:10], k[11:13]])
-unique.([sk[1:6], sk[7:10], sk[11:13]])
 
 function trainCrossValidation(inputs::AbstractArray{<:Real,2}, targets::AbstractArray{Bool,2}, kfolds::Int=10 )
 	# Pasar los inputs normalizados!!
-	Random.seed!(100)
+	# Random.seed!(100)
 
-	f1_folds = zeros(kfols)
-	recall_fold = zeros(kfolds)
-	precision_fold = zeros(kfolds)
+	f1_folds = zeros(kfolds)
+	recall_folds = zeros(kfolds)
+	specifity_folds = zeros(kfolds)
 	acc_folds = zeros(kfolds)
 
 	fold_vector = crossvalidation(targets, kfolds)
@@ -538,36 +533,52 @@ function trainCrossValidation(inputs::AbstractArray{<:Real,2}, targets::Abstract
 		test_fold_idx = findall(x -> x==i, fold_vector)
 		train_fold_idx = findall(x -> x!=i, fold_vector)
 
+		(train_input_set,train_target_set)  = (inputs[train_fold_idx,:],targets[train_fold_idx,:]);
+		(test_input_set,test_target_set) = (inputs[test_fold_idx,:], targets[test_fold_idx,:]);
+		
+		train = (train_input_set,train_target_set);
+		test = (test_input_set, test_target_set);
 
-		(train_set,train_target_set)  = (inputs[train_fold_idx],targets[train_fold_idx]);
-		(test_set,train_target_set) = (inputs[test_fold_idx], targets[test_fold]);
+		(acc,recall,specifity,f1) = repeatTrainRna(train,test,repeat=10);
 
-		# Modificar para generar el validation set en funcion del train set
-		# validation_set, validation_targets_set = inputs[validation_slice, :], targets[validation_slice, :]
-
-		train = (train_set, train_target_set)
-		test = (test_set, test_target_set)
-		validation = (validation_set, validation_targets_set)
-
-		for i in 1:10
-			(ann, k_train_err, k_validation_err, k_test_err) = trainRNA([12,4], train, maxEpochs=1000, 
-				learningRate=0.01, validation=validation, test=test, maxEpochsVal=4);
-		end
-
-		# Hago la media de los errores de cada iteración entrenamiento de la red, no sé si era eso realmente
-		train_err[i] = k_train_err[end]
-		validation_err[i] = k_validation_err[end]
-		test_err[i] = k_test_err[end]
+		acc_folds[i] = acc;
+		recall_folds[i] = recall;
+		specifity_folds[i] = specifity;
+		f1_folds[i] = f1;
 	end
 
-	# Luego devuelvo la media de todos los k entrenamientos para el test set (es lo mínimo que pedía)
-	return (mean(train_err), mean(test_err), mean(test_err))
+	return ((mean(acc_folds),std(acc_folds)), (mean(recall_folds),std(recall_folds)),
+		(mean(specifity_folds),std(specifity_folds)), (mean(f1_folds),std(f1_folds)))
 	
 end
 
+function repeatTrainRna(train_set::Tuple{AbstractArray{<:Real,2},AbstractArray{Bool,2}},test_set::Tuple{AbstractArray{<:Real,2},AbstractArray{Bool,2}};repeat::Int=30,val_ratio::Real=0.3)
 
-# No muy seguro de cómo interpretar el valor qualitativamente, es la media de los valores de crossentropy que da la RR.NN.
-errs = trainCrossValidation(inputs, targets)
+	(train_input_set,train_target_set)  = train_set;
+	(test_input_set,test_target_set) = test_set;
+		
+	# HoldOut para RNA, lo hago fuera del bucle...
+	(train_rna_idx,val_rna_idx) = holdOut(size(train_input_set,1),val_ratio)
+
+	train = (train_input_set[train_rna_idx,:], train_target_set[train_rna_idx,:]);
+	validation = (train_input_set[val_rna_idx,:], train_target_set[val_rna_idx,:]);
+
+	acc_rna = zeros(repeat)
+	recall_rna = zeros(repeat)
+	specifity_rna = zeros(repeat)
+	f1_rna = zeros(repeat)
+
+	for j in 1:repeat
+		(ann, k_train_err, k_validation_err, k_test_err) = trainRNA([12,4], train, maxEpochs=1000, 
+			learningRate=0.01, validation=validation, test=test_set, maxEpochsVal=4);
+
+		test_outputs = ann(test_input_set')'
+		(acc_rna[j],_,recall_rna[j],specifity_rna[j],_,_,f1_rna[j],_) =
+			confusionMatrix(test_outputs,test_target_set,macro_strat)
+		
+	end
+	return (mean(acc_rna), mean(recall_rna),mean(specifity_rna),mean(f1_rna));
+end
 
 ##Funcion para testear la confusion matrix
 function trainDataset(inputs::AbstractArray{<:Real,2},targets::AbstractArray{Bool,2})
