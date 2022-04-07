@@ -3,9 +3,9 @@ explicar más que hace el sistema.
 <!-- hablar de consideraciones previas. Aprendizaje automatico, redes de neuronas, explicar las tecnicas
 referenciar  -->
 
-Poner todas las citas en bibliografía
+<!-- Poner todas las citas en bibliografía -->
 
-\cite con latex. (vitex)
+<!-- \cite con latex. (vitex) -->
 
 diferencias notables entre las notas.
 
@@ -15,7 +15,7 @@ Poner las graficas de las notas que vayamos a utilizar en las aproximaciones.
 
 <!-- Apartado restricciones/características -->
 
-Hablar de las métricas que vamos a utilizar. Precision,VPP,especifidad...??
+<!-- Hablar de las métricas que vamos a utilizar. Precision,VPP,especifidad...?? -->
 
 <!-- Parrafó de introduccion análisis bibliográfico -->
 

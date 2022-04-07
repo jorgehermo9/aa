@@ -19,6 +19,89 @@
 
 \refsection{0}
   \datalist[entry]{apa/global//global/global}
+    \entry{benetos2018automatic}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=b068724f00d17295882e712edcc6315c}{%
+           family={Benetos},
+           familyi={B\bibinitperiod},
+           given={Emmanouil},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a9aae0a8ca29e8a3ecc7d2bbf3f6c76e}{%
+           family={Dixon},
+           familyi={D\bibinitperiod},
+           given={Simon},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=67aa64f70405af0e3a1f0669b532bf33}{%
+           family={Duan},
+           familyi={D\bibinitperiod},
+           given={Zhiyao},
+           giveni={Z\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=37dcd07107456484ea0662dfd3c305a0}{%
+           family={Ewert},
+           familyi={E\bibinitperiod},
+           given={Sebastian},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{6b373567f5f0b511ae9dee829d12c50f}
+      \strng{fullhash}{5c65fe86486f3015cde05b89a4a11fcb}
+      \strng{bibnamehash}{5c65fe86486f3015cde05b89a4a11fcb}
+      \strng{authorbibnamehash}{5c65fe86486f3015cde05b89a4a11fcb}
+      \strng{authornamehash}{6b373567f5f0b511ae9dee829d12c50f}
+      \strng{authorfullhash}{5c65fe86486f3015cde05b89a4a11fcb}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Signal Processing Magazine}
+      \field{number}{1}
+      \field{title}{Automatic music transcription: An overview}
+      \field{volume}{36}
+      \field{year}{2018}
+      \field{pages}{20\bibrangedash 30}
+      \range{pages}{11}
+    \endentry
+    \entry{foo1999recognition}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=b0e2a0807ed68cdb751ee9fd283575e5}{%
+           family={Foo},
+           familyi={F\bibinitperiod},
+           given={Say\bibnamedelima Wei},
+           giveni={S\bibinitperiod\bibinitdelim W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c2e50744ff21d6e513ef1c2a741c19e4}{%
+           family={Wong},
+           familyi={W\bibinitperiod},
+           given={Pui\bibnamedelima Leng},
+           giveni={P\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{73ceb82b2426ba6a99bfe545a03e3748}
+      \strng{fullhash}{73ceb82b2426ba6a99bfe545a03e3748}
+      \strng{bibnamehash}{73ceb82b2426ba6a99bfe545a03e3748}
+      \strng{authorbibnamehash}{73ceb82b2426ba6a99bfe545a03e3748}
+      \strng{authornamehash}{73ceb82b2426ba6a99bfe545a03e3748}
+      \strng{authorfullhash}{73ceb82b2426ba6a99bfe545a03e3748}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE International Conference on Information, Communications and Signal Processing (1999: Singapore)}
+      \field{title}{Recognition of piano notes}
+      \field{year}{1999}
+    \endentry
     \entry{osmalsky2012neural}{article}{}
       \name{author}{4}{}{%
         {{un=0,uniquepart=base,hash=a2a9cbb6a290bc444c50b2a2cf1c0f79}{%

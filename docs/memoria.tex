@@ -68,19 +68,40 @@ que podemos encontrar y por su naturaleza invariable al ser tocada por una u otr
 Dada la naturaleza de nuestro sistema, descartamos utilizar la especificidad o la sensibilidad ya que nos es indiferente las clases en las que se clasifiquen
 las notas (el coste de un falso positivo o un falso negativo es el mismo).
 
-Así, como solo nos interesa una correcta clasificación global, pensamos en utilizar la precisión.
-El incoveniente de esta mátrica está en que si tenemos un conjunto de patrones desbalanceado (gran diferencia en el número de
-patrones positivos y negativos), la precisión podría alcanzar valores muy altos con sistemas que clasifiquen todos los patrones en la clase con mayor número de ellos
-en el entrenamiento. La métrica que utilizaremos entonces para valorar los resultados obtenidos y que palia los problemas
-mencionados anteriormente será la \textbf{F1 score}. Esta métrica es la media armónica de la sensibilidad y la especificidad, siguiendo la fórmula.
-El valor más alto que puede alcanzar es de 1 (todos los patrones se clasificaron correctamente) y el más bajo es de 0 (todos los patrones se clasificaron
-incorrectamente).
+\bigskip
+Así, como solo nos interesa una correcta clasificación global, pensamos en utilizar la precisión, la cual sigue la fórmula:
 
 \begin{equation}
-	f_{i+1} = f_{i}\cdot(\sqrt[12]{2}), f_0 = 27.5 Hz
+	Precision = \frac{VN + VP}{(VN + FN + VP + FP)}
 \end{equation}
 
+\smallskip
+El incoveniente de esta métrica está en que si tenemos un conjunto de patrones desbalanceado (gran diferencia en el número de
+patrones positivos y negativos), la precisión podría alcanzar valores muy altos con sistemas que clasifiquen todos los patrones en la clase con mayor número de ellos
+en el entrenamiento.
 
+\bigskip
+La métrica que utilizaremos entonces para valorar los resultados obtenidos y que palia los problemas
+mencionados anteriormente será la \textbf{F1 score}. Esta se corresponde con la media armónica de la sensibilidad y el
+valor predictivo positivo y está caracterizada por la fórmula: 
+
+\begin{equation}
+	F1 = \left(\frac{Sensibilidad^{-1} + VPP^{-1}}{2}\right)^{-1}
+\end{equation}
+
+donde, 
+\begin{equation}
+	Sensibilidad = \frac{VP}{(FN + VP)}
+\end{equation}
+
+\begin{equation}
+	VPP = \frac{VP}{(VP + FP)}, 
+\end{equation}
+
+\smallskip
+Quizá el único inconveniente de esta métrica es su difícil interpretación, más allá de comparar los valores que ofrecen diferentes sistemas.
+El valor más alto que puede alcanzar es de 1 (todos los patrones se clasificaron correctamente) y el más bajo es de 0 (todos los patrones se clasificaron
+incorrectamente). 
 
 \subsection{Restricciones}
 \bigskip
@@ -108,13 +129,13 @@ en el que, en lugar de detectar las notas por separado, analizan todo el espectr
 Para ello, utilizan una técnica denominada Pitch Class Profile (PCP) que obtiene las relaciones energéticas de cada nota en la escala.
 
 \bigskip
-Además, como resumen Emmanouil Benetos Member, Simon Dixon, Zhiyao Duan Member, Sebastian Ewert Member (2019). \textit{Automatic Music Transcription: An Overview},
+Además, como resumen \cite{benetos2018automatic},
 a pesar del estado avanzado de la transcripción automática de canciones, aún están presentes retos tales como la independencia de los intrumentos, de los estilos
 musicales o la interpretación de la expresividad.
 
 \bigskip
-Otros trabajos mas antiguos como los de Foo S. W., Wong P. L. (1999). \textit{Recogition of piano notes}, describen un algoritmo capaz de reconocer notas
-de un piano a partir de piezas sintetizadas o acústicas que son digitalmente muestreadas y transformadas al dominio de frecuencia usando 
+Otros trabajos mas antiguos como los de \cite{foo1999recognition}, describen un algoritmo capaz de reconocer notas
+de un piano a partir de piezas sintetizadas o acústicas, que son digitalmente muestreadas y transformadas al dominio de frecuencia usando 
 la transformada de Q constante a partir de la cual se la aplican diferentes técnicas para identificar las notas.
 
 \newpage
@@ -129,9 +150,20 @@ la complejidad a medida que obtenemos resultados satisfatorios.
 En esta primera aproximación nos limitaremos a diferenciar únicamente entre dos notas. 
 Escogimos las notas \textit{C4} y \textit{A5} de los cuales usaremos 92 y 56 audios de cada una, respectivamente.
 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[height=240px]{c4.pdf}
+	\label{}
+	\caption{C4}
+	\includegraphics[height=240px]{a5.pdf}
+	\caption{A5}
+\end{figure}
+
 \bigskip
 Dado que cada muestra tiene una duración diferente, decidimos quedarnos solo con los 3 primeros segundos de cada audio (que es donde está la información más
-relevante de la nota) y, para la frecuencia, acotaremos cada señal entre 0 y 5000 Hz, ya que la frecuencia máxima que se alcanza en el piano clásico es de 4186 Hz (\textit{C8}).
+relevante de la nota) y, para la frecuencia, acotaremos cada señal entre 0 y 5000 Hz. Ya que la frecuencia máxima que se alcanza en el 
+piano clásico es de 4186 Hz (\textit{C8}) y la más baja, en nuestra base de datos, es de 32.7Hz (\textit{C1}), escogimos un rango
+de frecuncias ampliado debido a que es posible que exista información que nos ayude a identificar la nota.
 
 \bigskip
 De los ficheros extraeremos utilizando la transformada de Fourier las siguientes características: 
