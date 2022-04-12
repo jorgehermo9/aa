@@ -19,6 +19,51 @@
 
 \refsection{0}
   \datalist[entry]{apa/global//global/global}
+    \entry{baevski2021unsupervised}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=e478046d4abc39e9814f6e364a736511}{%
+           family={Baevski},
+           familyi={B\bibinitperiod},
+           given={Alexei},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=caee6b3fa31c9aa140f1d90048cd989f}{%
+           family={Hsu},
+           familyi={H\bibinitperiod},
+           given={Wei-Ning},
+           giveni={W\bibinithyphendelim N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7cf7ac6a9456559cc67ee138c7f21cec}{%
+           family={Conneau},
+           familyi={C\bibinitperiod},
+           given={Alexis},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d3ff0eff0a1d1258618c88f2ec57095f}{%
+           family={Auli},
+           familyi={A\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{3e54e4e0c7457352871cb1cf97b9ed92}
+      \strng{fullhash}{b80c791e9ad140af367a9cc42a52bb01}
+      \strng{bibnamehash}{b80c791e9ad140af367a9cc42a52bb01}
+      \strng{authorbibnamehash}{b80c791e9ad140af367a9cc42a52bb01}
+      \strng{authornamehash}{3e54e4e0c7457352871cb1cf97b9ed92}
+      \strng{authorfullhash}{b80c791e9ad140af367a9cc42a52bb01}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Advances in Neural Information Processing Systems}
+      \field{title}{Unsupervised speech recognition}
+      \field{volume}{34}
+      \field{year}{2021}
+    \endentry
     \entry{benetos2018automatic}{article}{}
       \name{author}{4}{}{%
         {{un=0,uniquepart=base,hash=b068724f00d17295882e712edcc6315c}{%
@@ -70,6 +115,50 @@
       \field{pages}{20\bibrangedash 30}
       \range{pages}{11}
     \endentry
+    \entry{chang2017audio}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=860a14ef1c4185f853e9b169ecd23e1a}{%
+           family={Chang},
+           familyi={C\bibinitperiod},
+           given={Sungkyun},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=812c4da7fdac48579be7353293ea6513}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Juheon},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b9bb72e882da8158950f5d0ddc742fed}{%
+           family={Choe},
+           familyi={C\bibinitperiod},
+           given={Sang\bibnamedelima Keun},
+           giveni={S\bibinitperiod\bibinitdelim K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0f47d6f8a9660c5c5bcdb2f43935a120}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Kyogu},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{40fa95d2346d21177ea879a54c17b79f}
+      \strng{fullhash}{0270fee55a47858fb530be759e455dd1}
+      \strng{bibnamehash}{0270fee55a47858fb530be759e455dd1}
+      \strng{authorbibnamehash}{0270fee55a47858fb530be759e455dd1}
+      \strng{authornamehash}{40fa95d2346d21177ea879a54c17b79f}
+      \strng{authorfullhash}{0270fee55a47858fb530be759e455dd1}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:1712.00166}
+      \field{title}{Audio cover song identification using convolutional neural network}
+      \field{year}{2017}
+    \endentry
     \entry{foo1999recognition}{article}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=b0e2a0807ed68cdb751ee9fd283575e5}{%
@@ -101,6 +190,34 @@
       \field{journaltitle}{IEEE International Conference on Information, Communications and Signal Processing (1999: Singapore)}
       \field{title}{Recognition of piano notes}
       \field{year}{1999}
+    \endentry
+    \entry{klapuri2004signal}{book}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=5d79b2c1c58f54540fd7dce441be6a83}{%
+           family={Klapuri},
+           familyi={K\bibinitperiod},
+           given={Anssi},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Tampere University of Technology Finland}%
+      }
+      \strng{namehash}{5d79b2c1c58f54540fd7dce441be6a83}
+      \strng{fullhash}{5d79b2c1c58f54540fd7dce441be6a83}
+      \strng{bibnamehash}{5d79b2c1c58f54540fd7dce441be6a83}
+      \strng{authorbibnamehash}{5d79b2c1c58f54540fd7dce441be6a83}
+      \strng{authornamehash}{5d79b2c1c58f54540fd7dce441be6a83}
+      \strng{authorfullhash}{5d79b2c1c58f54540fd7dce441be6a83}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Signal processing methods for the automatic transcription of music}
+      \field{year}{2004}
     \endentry
     \entry{osmalsky2012neural}{article}{}
       \name{author}{4}{}{%
@@ -147,6 +264,43 @@
       \field{year}{2012}
       \field{pages}{39\bibrangedash 46}
       \range{pages}{8}
+    \endentry
+    \entry{solanki2019music}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=7064238a67709bb4cd366ba74da2ec93}{%
+           family={Solanki},
+           familyi={S\bibinitperiod},
+           given={Arun},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a94993892234688b4b2bfbf4cf51f5e8}{%
+           family={Pandey},
+           familyi={P\bibinitperiod},
+           given={Sachin},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{094bd8370d1ed171f31e59ff675bad9d}
+      \strng{fullhash}{094bd8370d1ed171f31e59ff675bad9d}
+      \strng{bibnamehash}{094bd8370d1ed171f31e59ff675bad9d}
+      \strng{authorbibnamehash}{094bd8370d1ed171f31e59ff675bad9d}
+      \strng{authornamehash}{094bd8370d1ed171f31e59ff675bad9d}
+      \strng{authorfullhash}{094bd8370d1ed171f31e59ff675bad9d}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International Journal of Information Technology}
+      \field{title}{Music instrument recognition using deep convolutional neural networks}
+      \field{year}{2019}
+      \field{pages}{1\bibrangedash 10}
+      \range{pages}{10}
     \endentry
   \enddatalist
 \endrefsection

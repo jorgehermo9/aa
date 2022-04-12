@@ -1,4 +1,4 @@
-explicar más que hace el sistema.
+explicar más que hace el sistema.?????
 
 <!-- hablar de consideraciones previas. Aprendizaje automatico, redes de neuronas, explicar las tecnicas
 referenciar  -->
@@ -7,11 +7,11 @@ referenciar  -->
 
 <!-- \cite con latex. (vitex) -->
 
-diferencias notables entre las notas.
+diferencias notables entre las notas.????
 
-Poner ejemplo de de espectro, gráfica tiempo y frecuencia de una nota en descropción del rpoblema
+<!-- Poner ejemplo de de espectro, gráfica tiempo y frecuencia de una nota en descropción del rpoblema -->
 
-Poner las graficas de las notas que vayamos a utilizar en las aproximaciones.
+<!-- Poner las graficas de las notas que vayamos a utilizar en las aproximaciones. -->
 
 <!-- Apartado restricciones/características -->
 
@@ -24,8 +24,12 @@ Poner las graficas de las notas que vayamos a utilizar en las aproximaciones.
 Hablar del cross validation en el desarrollo. Decir que para evaluar vamos a utilizar eso, explicar como funciona el
 cross validation y decir los fold que vamos a utilizar
 
-Decir por qué utilizamos frecuencias hasta 5000hz, en vez de coger la frecuencia máxima de la nota más aguda.
+<!-- Decir por qué utilizamos frecuencias hasta 5000hz, en vez de coger la frecuencia máxima de la nota más aguda. -->
 
-Decir por qué sirve utilizar la transformada de fourier. Hablar de las normalización que vamos a utilizar
+<!-- Decir por qué sirve utilizar la transformada de fourier. Hablar de las normalización que vamos a utilizar -->
 
-Ejemplo de la entrada del sistema
+Ejemplo de la entrada del sistema?????
+
+<!-- Ponerle título al trabajo. -->
+
+Calcular el tiempo medio de los samples y sustituirlo en el apartado caracteristicas.

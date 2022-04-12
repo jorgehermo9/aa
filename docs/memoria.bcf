@@ -2794,9 +2794,17 @@
     <bcf:citekey order="1">osmalsky2012neural</bcf:citekey>
     <bcf:citekey order="2">benetos2018automatic</bcf:citekey>
     <bcf:citekey order="3">foo1999recognition</bcf:citekey>
-    <bcf:citekey order="4">osmalsky2012neural</bcf:citekey>
-    <bcf:citekey order="5">benetos2018automatic</bcf:citekey>
-    <bcf:citekey order="6">foo1999recognition</bcf:citekey>
+    <bcf:citekey order="4">chang2017audio</bcf:citekey>
+    <bcf:citekey order="5">klapuri2004signal</bcf:citekey>
+    <bcf:citekey order="6">solanki2019music</bcf:citekey>
+    <bcf:citekey order="7">baevski2021unsupervised</bcf:citekey>
+    <bcf:citekey order="8">osmalsky2012neural</bcf:citekey>
+    <bcf:citekey order="9">benetos2018automatic</bcf:citekey>
+    <bcf:citekey order="10">foo1999recognition</bcf:citekey>
+    <bcf:citekey order="11">chang2017audio</bcf:citekey>
+    <bcf:citekey order="12">klapuri2004signal</bcf:citekey>
+    <bcf:citekey order="13">solanki2019music</bcf:citekey>
+    <bcf:citekey order="14">baevski2021unsupervised</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="apa">

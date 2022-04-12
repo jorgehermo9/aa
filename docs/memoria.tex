@@ -7,9 +7,11 @@
 \addbibresource{references.bib}
 \usepackage[hidelinks]{hyperref}
 \usepackage[left=3cm, right=3cm, top=2cm]{geometry}
+\usepackage{subcaption}
 
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
-\title{\textbf{\huge Memoria - AA}}
+\title{\textbf{\huge Reconocimiento automático de notas del piano: Una comparación entre RNAs, MSVs y ADs}}
+% \title{\textbf{\huge Automatic recoginition of piano notes: A comparison between ANNs, SVMs and DTs}}
 \author{{David Rodríguez Bacelar} \\[0.25cm] {Kevin Millán Canchapoma} \\[0.25cm]{Luca D'angelo Sabín} \\[0.25cm]{Jorge Hermo González}}
 \date{\today}
 
@@ -53,7 +55,8 @@ real en la Sección \ref{Trabajo futuro}. También se podrá consultar las bibli
 \label{Glosario}
 \begin{itemize}
 	\item Sample: muestra de carácter musical
-	\item TF: transformada de Fourier
+	\item Cover: Reinterpretación de una canción por parte de alguien diferente al que la compuso.
+	% \item TF: transformada de Fourier
 \end{itemize}
 
 \newpage
@@ -121,12 +124,12 @@ grabada en 2016 y pensada para jazz, música clásica y bandas sonoras.
 \section{Análisis bibliográfico}
 \label{Análisis bibliográfico}
 Para profundizar en el tema antes de abordarlo, en esta sección se analizan diferentes artículos científicos relacionados con la inteligencia
-artificial y el reconocimiento de audio.
+artificial y el reconocimiento de audio, ya sea específicamente relacionado o no con el mundo del reconocimiento de piezas o notas musicales.
 
 \bigskip
-Trabajos como el de \cite{osmalsky2012neural}
-en el que, en lugar de detectar las notas por separado, analizan todo el espectro de frecuencias para poder reconocer acordes completos de diferentes instrumentos.
-Para ello, utilizan una técnica denominada Pitch Class Profile (PCP) que obtiene las relaciones energéticas de cada nota en la escala.
+Trabajos como el de \cite{osmalsky2012neural} nos aportan nuevos enfoques, 
+en el que, en lugar de detectar las notas por separado, analizan todo el espectro de frecuencias para poder reconocer acordes completos de diferentes instrumentos;
+utilizan una técnica llamada Pitch Class Profile (PCP), que obtiene las relaciones energéticas de cada nota en la escala a partir de un audio.
 
 \bigskip
 Además, como resumen \cite{benetos2018automatic},
@@ -137,6 +140,31 @@ musicales o la interpretación de la expresividad.
 Otros trabajos mas antiguos como los de \cite{foo1999recognition}, describen un algoritmo capaz de reconocer notas
 de un piano a partir de piezas sintetizadas o acústicas, que son digitalmente muestreadas y transformadas al dominio de frecuencia usando 
 la transformada de Q constante a partir de la cual se la aplican diferentes técnicas para identificar las notas.
+
+\bigskip
+En un terreno más general, trabajos como el de \cite{chang2017audio}, exploran la identificación de \textit{covers} utilizando
+estructuras más novedosas que no desarrollaremos en este trabajo como son las Redes de Neuronas Convolucionales. Las salidas de este
+sistema corresponderían con la probabilidad de ser una \textit{cover} (comparándola con la canción original), y se ordenarían por dicha 
+probabilidad elaborando un ranking.
+
+\bigskip
+===MEJORAR===
+También encontramos la tesis de \cite{klapuri2004signal} que propone un sistema capaz de generar una representación 
+simbólica a partir de un audio. centrandose en el desarrollo de los algoritmos que pueden ser usados para detectar sonidos harmónicos y señales polifónicas
+
+\bigskip
+El uso de redes de neuronas artificiaes también están presentes en trabajos como \cite{solanki2019music}, que aborda la identificación de
+los instrumentos que forman part de piezas polifónicas. Utiliza una red de neuronas convolucional de 8 capas y se apoya en los espectrogramas 
+MEL para mapear datos del audio.
+
+\bigskip
+Para finalizar, ya en un campo algo más alejado del musical, podemos destacar el trabajo elaborado por \cite{baevski2021unsupervised},
+el cual profundiza en el campo de reconocimiento del habla mediante inteligencia artificial.
+A diferencia de otros sistemas de reconocimiento, este trabajo no usa datos etiquetados que limiten el reconocimiento a un grupo reducido de idiomas. 
+Esta técnica necesita menos requerimientos, aprovechando representaciones auto supervisadas del habla para segmentar el audio y aprender a 
+mapear desde estas representaciones a fonemas via \textit{Adversarial Training}.
+
+\bigskip
 
 \newpage
 \section{Desarrollo}
@@ -152,11 +180,18 @@ Escogimos las notas \textit{C4} y \textit{A5} de los cuales usaremos 92 y 56 aud
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[height=240px]{c4.pdf}
-	\label{}
-	\caption{C4}
-	\includegraphics[height=240px]{a5.pdf}
-	\caption{A5}
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.0\linewidth]{c4.pdf}
+		\caption{C4}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.0\linewidth]{a5.pdf}
+		\caption{A5}
+		\label{fig:sub2}
+	\end{subfigure}
 \end{figure}
 
 \bigskip
@@ -166,7 +201,9 @@ piano clásico es de 4186 Hz (\textit{C8}) y la más baja, en nuestra base de da
 de frecuncias ampliado debido a que es posible que exista información que nos ayude a identificar la nota.
 
 \bigskip
-De los ficheros extraeremos utilizando la transformada de Fourier las siguientes características: 
+Además, como las notas de un mismo instrumento se diferencian principalmente por la frecuencia (una nota más aguda tiene una mayor frecuencia
+y una más grave, una menor), calcularemos de las señales en el dominio del tiempo su relación en el dominio de la frecuencia utilizando la
+Transformada de Fourier y, posteriormente, extraeremos las siguientes características:
 \begin{itemize}
 	\item \textbf{Energia media de la señal}: ya que las señales con más frecuencia (más agudas) tienen más energía, esta característica nos podría
 		ayudar a diferenciar entre notas tocadas con la misma intensidad.
