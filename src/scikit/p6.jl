@@ -462,33 +462,6 @@ function confusionMatrix(outputs::AbstractArray{<:Any},targets::AbstractArray{<:
 	return confusionMatrix(new_outputs,new_targets,strat);
 end
 
-# Función para hacer fit de un modelo, fue para pruebas de la confusionMatrix
-function unoContraTodos()
-	dataset = readdlm("iris.data",',');
-
-	inputs = dataset[:,1:4];
-	targets = dataset[:,5];
-	inputs = convert(Array{Float32,2},inputs);
-	targets = oneHotEncoding(targets);
-
-	inputs = normalizeZeroMean(inputs);
-	
-
-	fit = trainDataset;
-
-	numClasses = size(targets,2);
-	numInstances = size(targets,1);
-	outputs = Array{Float32,2}(undef,numInstances,numClasses);
-
-	for numClass in 1:numClasses
-		model = fit(inputs,targets[:,numClass]);
-		outputs[:,numClass] .= model(inputs')';
-	end
-
-	outputs = softmax(outputs,dims=2);
-	outputs = classifyOutputs(outputs);
-end
-
 ##Cross-validation 
 function crossvalidation(N::Int, k::Int)
 	repetitions = Int(ceil(N/k)) # ceil no asegura que haya la misma cantidad de elementos en cada k
@@ -580,30 +553,6 @@ function repeatTrainRna(train_set::Tuple{AbstractArray{<:Real,2},AbstractArray{B
 	return (mean(acc_rna), mean(recall_rna),mean(specifity_rna),mean(f1_rna));
 end
 
-##Funcion para testear la confusion matrix
-function trainDataset(inputs::AbstractArray{<:Real,2},targets::AbstractArray{Bool,2})
-	
-	dataset_size = size(targets,1)
-	(train_idx,validation_idx,test_idx) = holdOut(dataset_size,0.3,0.3)
-	
-	train_inputs = inputs[train_idx,:];
-	train_params = calculateZeroMeanNormalizationParameters(train_inputs);
-	inputs = normalizeZeroMean(inputs,train_params);
-	
-	train = (inputs[train_idx,:],targets[train_idx,:]);
-	validation = (inputs[validation_idx,:],targets[validation_idx,:]);
-	test = (inputs[test_idx,:],targets[test_idx,:]);
-	
-	(ann,train_vector,validation_vector,test_vector) = trainRNA([12,4],train,maxEpochs=1000,learningRate=0.01,
-		test=test,validation=validation,maxEpochsVal=4);
-	return ann
-end
-
-function trainDataset(inputs::AbstractArray{<:Real,2},targets::AbstractArray{Bool,1})
- 	new_targets = reshape(targets,length(targets),1);
-	return trainDataset(inputs,new_targets);
-end
-
 dataset = readdlm("/home/jorge/github/aa/src/caracteristicas/more_features.csv",',');
 
 inputs = dataset[2:end,1:end-1];
@@ -611,34 +560,10 @@ targets = dataset[2:end,end];
 
 @assert (size(inputs,1)==size(targets,1)) "Las matrices de entradas y salidas deseadas no tienen el mismo número de filas"
 
-
-
 inputs = convert(Array{Float32,2},inputs);
 targets = oneHotEncoding(targets);
 
 dataset_size = size(targets,1)
-(train_idx,validation_idx,test_idx) = holdOut(dataset_size,0.3,0.3)
-
-train_inputs = inputs[train_idx,:];
-train_params = calculateZeroMeanNormalizationParameters(train_inputs);
 inputs = normalizeZeroMean(inputs);
 
-train = (inputs[train_idx,:],targets[train_idx,:]);
-validation = (inputs[validation_idx,:],targets[validation_idx,:]);
-test = (inputs[test_idx,:],targets[test_idx,:]);
-
-(ann,train_vector,validation_vector,test_vector) = trainRNA([12,4],train,maxEpochs=1000,learningRate=0.01,
-	test=test,validation=validation,maxEpochsVal=4);
-
-acc = accuracy(test[2],ann(test[1]')');
-
-println(acc)
-
-g = plot();
-plot!(g,0:(length(train_vector)-1),train_vector,xaxis="Epoch",yaxis="Loss",color=:red,label="train");
-plot!(g,0:(length(validation_vector)-1),validation_vector,xaxis="Epoch",yaxis="Loss",color=:blue,label="validation");
-plot!(g,0:(length(test_vector)-1),test_vector,xaxis="Epoch",yaxis="Loss",color=:green,label="test");
-
-display(g)
-
-# savefig(g,"graph.svg")
+trainCrossValidation(inputs,targets)
