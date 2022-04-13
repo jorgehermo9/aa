@@ -6,7 +6,7 @@ include("src/scikit/p6.jl")
 
 
 # Random.seed!(100)
-dataset = readdlm("dataset/all_features.csv",',');
+dataset = readdlm("dataset/features.csv",',');
 
 inputs = dataset[2:end,1:end-1];
 targets = dataset[2:end,end];
@@ -120,6 +120,7 @@ for i in 1:length(models)
 	f1_std_configurations = zeros(num_configurations)
 
 	for j in 1:num_configurations
+		println("Training $(models[i]) (config $(j))")
 		configuration_parameters = configurations[j]
 		((acc_configurations[j],acc_std_configurations[j])), (recall_configurations[j],recall_std_configurations[j]),
 			(specifity_configurations[j],specifity_std_configurations[j]), (f1_configurations[j],f1_std_configurations[j]) = modelCrossValidation(models[i],configuration_parameters,inputs,targets,kfolds=folds)
