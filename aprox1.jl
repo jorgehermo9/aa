@@ -6,7 +6,7 @@ include("src/scikit/p6.jl")
 
 
 # Random.seed!(100)
-dataset = readdlm("dataset/even_more_features.csv",',');
+dataset = readdlm("dataset/all_features.csv",',');
 
 inputs = dataset[2:end,1:end-1];
 targets = dataset[2:end,end];

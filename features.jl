@@ -114,6 +114,7 @@ for i in 1:length(all_instances)
 	instance_features = get_features(instance_dir);
 	all_features[i,1:32] = instance_features[:];
 	all_features[i,33] = instance_class;	
+	println("Read instance $(instance_dir) ($(i)/$(length(all_instances)))")
 end
 
 headers = ["E","zero_crossing",
