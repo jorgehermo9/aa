@@ -52,7 +52,7 @@ for i in 1:length(topologies)
 	topology_parameters["topology"] = topologies[i];
 	topology_parameters["learning_rate"] = 0.01;
 	topology_parameters["validation_ratio"] = 0.2;
-	topology_parameters["rna_executions"] = 10;
+	topology_parameters["rna_executions"] = 30;
 	topology_parameters["max_epochs"] = 1500;
 	topology_parameters["max_epochs_val"] = 5;
 	rna_parameters[i] = topology_parameters;
