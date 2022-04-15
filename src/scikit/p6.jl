@@ -141,7 +141,6 @@ function accuracy(targets::AbstractArray{Bool,2},outputs::AbstractArray{<:Real,2
 	end
 end
 
-#  unsigned int en vez de int. No tiene sentido permitir valores negativos
 function createRNA(topology::AbstractArray{<:Int,1},numInputs::Int,numOutputs::Int)
 	ann = Chain();
 	numInputsLayer = numInputs;
