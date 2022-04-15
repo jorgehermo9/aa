@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2022.4.15)  15 APR 2022 18:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2022.4.15)  15 APR 2022 19:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -662,12 +662,12 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 <c4.pdf, id=136, 702.625pt x 501.875pt>
 File: c4.pdf Graphic file (type pdf)
 <use c4.pdf>
-Package pdftex.def Info: c4.pdf  used on input line 211.
+Package pdftex.def Info: c4.pdf  used on input line 215.
 (pdftex.def)             Requested size: 221.78923pt x 158.42075pt.
 <a5.pdf, id=137, 702.625pt x 501.875pt>
 File: a5.pdf Graphic file (type pdf)
 <use a5.pdf>
-Package pdftex.def Info: a5.pdf  used on input line 217.
+Package pdftex.def Info: a5.pdf  used on input line 221.
 (pdftex.def)             Requested size: 221.78923pt x 158.42075pt.
  [7 <./c4.pdf> <./a5.pdf
 
@@ -676,7 +676,7 @@ pdfTeX warning: pdflatex (file ./a5.pdf): PDF inclusion: multiple pdfs with page
 <best_rna_train.pdf, id=210, 702.625pt x 501.875pt>
 File: best_rna_train.pdf Graphic file (type pdf)
 <use best_rna_train.pdf>
-Package pdftex.def Info: best_rna_train.pdf  used on input line 510.
+Package pdftex.def Info: best_rna_train.pdf  used on input line 514.
 (pdftex.def)             Requested size: 443.57848pt x 316.84915pt.
 
 
@@ -702,7 +702,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  67i,12n,77p,767b,2804s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on memoria.pdf (15 pages, 292586 bytes).
+Output written on memoria.pdf (15 pages, 292767 bytes).
 PDF statistics:
  306 PDF objects out of 1000 (max. 8388607)
  246 compressed objects within 3 object streams

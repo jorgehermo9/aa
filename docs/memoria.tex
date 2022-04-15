@@ -73,6 +73,10 @@ real en la Sección \ref{Trabajo futuro}. También se podrá consultar las bibli
 \begin{itemize}
 	\item Sample: muestra de carácter musical
 	\item Cover: Reinterpretación de una canción por parte de alguien diferente al que la compuso.
+	\item VP: Verdadero positivo
+	\item VN: Verdadero negativo
+	\item FP: Falso positivo
+	\item FN: Falso negativo
 	\item RNA: Red de neuronas artificial.
 	\item SVM: \textit{Support Vector Machine} (Máquina de soporte vectorial).
 	\item kNN: \textit{K-nearest neighbors} (k vecinos más cercanos).
@@ -463,7 +467,7 @@ Se muestran los resultados de la experimentación en la tabla \ref{Tab:kNN}
 \end{table}
 
 \subsubsection{Discusión}
-Los resultados han sido muy buenos, ya que en la mayoría de casos de alcanza una precisión del 100\% o muy alta. 
+Los resultados han sido muy buenos, ya que en la mayoría de casos de alcanza una \textbf{precisión} y un \textbf{F1-Score} del 100\% o muy alto. 
 
 \bigskip
 En general, los sistemas se equivocan en muy pocos patrones. Esto se puede deber a que el problema escogido en esta aproximación
@@ -535,7 +539,7 @@ ya que el conjunto de entrenamiento no se debería utilizar para realizar predic
 Pero aunque se alcance ya un buen resultado con un modelo sencillo como puede ser la RNA anterior, caben destacar los árboles de decisión,
 que son modelos que pueden ofrecer explicabilidad sobre sus predicciones, además de presentar un entrenamiento determinista, por lo que 
 si tenemos que elegir el mejor modelo, nos decantaríamos por este (en concreto, el de altura máxima de 2, ya que es el más sencillo), 
-ya que presenta también un 100\% de precisión.
+ya que presenta también un 100\% de \textbf{F1-Score}.
 
 \bigskip
 Aunque si deseamos un modelo con una base matemática más fuerte, en vez de un modelo con una base estadística como puede ser un árbol de regresión,
