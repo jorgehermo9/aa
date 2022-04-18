@@ -1,14 +1,14 @@
 [0] Config.pm:307> INFO - This is Biber 2.17
 [0] Config.pm:310> INFO - Logfile is 'memoria.blg'
-[75] biber:340> INFO - === Mon Apr 18, 2022, 13:59:07
-[91] Biber.pm:418> INFO - Reading 'memoria.bcf'
-[171] Biber.pm:972> INFO - Found 7 citekeys in bib section 0
-[189] Biber.pm:4383> INFO - Processing section 0
-[200] Biber.pm:4574> INFO - Looking for bibtex file 'references.bib' for section 0
-[201] bibtex.pm:1713> INFO - LaTeX decoding ...
-[209] bibtex.pm:1518> INFO - Found BibTeX data source 'references.bib'
-[304] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'variable = shifted' with 'variable = non-ignorable'
-[304] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[304] Biber.pm:4203> INFO - Sorting list 'apa/global//global/global' of type 'entry' with template 'apa' and locale 'es-ES'
-[316] bbl.pm:654> INFO - Writing 'memoria.bbl' with encoding 'UTF-8'
-[322] bbl.pm:757> INFO - Output to memoria.bbl
+[74] biber:340> INFO - === Mon Apr 18, 2022, 19:21:09
+[88] Biber.pm:418> INFO - Reading 'memoria.bcf'
+[172] Biber.pm:972> INFO - Found 8 citekeys in bib section 0
+[199] Biber.pm:4383> INFO - Processing section 0
+[210] Biber.pm:4574> INFO - Looking for bibtex file 'references.bib' for section 0
+[211] bibtex.pm:1713> INFO - LaTeX decoding ...
+[218] bibtex.pm:1518> INFO - Found BibTeX data source 'references.bib'
+[318] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[318] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'variable = shifted' with 'variable = non-ignorable'
+[318] Biber.pm:4203> INFO - Sorting list 'apa/global//global/global' of type 'entry' with template 'apa' and locale 'es-ES'
+[330] bbl.pm:654> INFO - Writing 'memoria.bbl' with encoding 'UTF-8'
+[336] bbl.pm:757> INFO - Output to memoria.bbl

@@ -1,12 +1,12 @@
 # Fdb version 3
-["biber memoria"] 1650039639 "memoria.bcf" "memoria.bbl" "memoria" 1650042466
-  "memoria.bcf" 1650042466 124411 4bc16e42716efb448f153b81f5da7a22 "pdflatex"
-  "references.bib" 1650025070 1816 401cb0fb5406e890bb25e1042588dfa3 ""
+["biber memoria"] 1650302468 "memoria.bcf" "memoria.bbl" "memoria" 1650304768
+  "memoria.bcf" 1650304768 124529 08477dc61ecfaa0798ed5482d5e85c5f "pdflatex"
+  "references.bib" 1650283142 2107 0b056a6521d9282e308accd53f66d7be ""
   (generated)
   "memoria.bbl"
   "memoria.blg"
-["pdflatex"] 1650042465 "/home/jorge/github/aa/docs/memoria.tex" "memoria.pdf" "memoria" 1650042466
-  "/home/jorge/github/aa/docs/memoria.tex" 1650042464 26958 7864a672cfbca0e6356a0acf9493d74d ""
+["pdflatex"] 1650304766 "/home/jorge/github/aa/docs/memoria.tex" "memoria.pdf" "memoria" 1650304768
+  "/home/jorge/github/aa/docs/memoria.tex" 1650304765 28111 401f25f14c9c4fcbb4e7a934ce92cedf ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1647844622 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1647844622 1324 c910af8c371558dc20f2d7822f66fe64 ""
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmbxti10.tfm" 1647844622 1532 9162035f4e7176612125649e348e2195 ""
@@ -114,12 +114,12 @@
   "a5.pdf" 1649778689 30898 40c84340d6df62211e4260cf96e6ead6 ""
   "best_rna_train.pdf" 1650037537 22616 95d1a77dfc7f96e029ac3a1cf36c39a2 ""
   "c4.pdf" 1649778689 30274 a68b7e73615591376cb4d252c697488c ""
-  "memoria.aux" 1650042466 6919 3cd5b17fa0eb70254da470aeea188488 "pdflatex"
-  "memoria.bbl" 1650039640 12237 0d1cc84d62a87468e2983699f1ff553b "biber memoria"
-  "memoria.out" 1650042466 1737 e02f58c2d2810239b397b0d06b184159 "pdflatex"
-  "memoria.run.xml" 1650042466 2380 722db27dafc369c15e945061f1053552 "pdflatex"
-  "memoria.tex" 1650042464 26958 7864a672cfbca0e6356a0acf9493d74d ""
-  "memoria.toc" 1650042466 1445 2e6e3d330328d0e8c76c8c029ca75225 "pdflatex"
+  "memoria.aux" 1650304768 7324 9576905337ea224c0083901efb1c09cc "pdflatex"
+  "memoria.bbl" 1650302469 13897 0dafb2235f39e88d4f2b5a9f2b123db1 "biber memoria"
+  "memoria.out" 1650304768 1901 92fba2815b41724870076625b103375a "pdflatex"
+  "memoria.run.xml" 1650304768 2380 722db27dafc369c15e945061f1053552 "pdflatex"
+  "memoria.tex" 1650304765 28111 401f25f14c9c4fcbb4e7a934ce92cedf ""
+  "memoria.toc" 1650304768 1533 9976394be3f2a82a316922f3b625c9af "pdflatex"
   "udc.jpg" 1645725364 36444 a83766351d17300c874af243f17773c8 ""
   (generated)
   "memoria.aux"

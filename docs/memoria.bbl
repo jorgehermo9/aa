@@ -219,6 +219,47 @@
       \field{title}{Signal processing methods for the automatic transcription of music}
       \field{year}{2004}
     \endentry
+    \entry{marolt2002neural}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=69863c80046b438232bae22629da9620}{%
+           family={Marolt},
+           familyi={M\bibinitperiod},
+           given={Matija},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=213f8af8a06bcb6a1479be2db2bececc}{%
+           family={Kavcic},
+           familyi={K\bibinitperiod},
+           given={Alenka},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4f6934e8432e8387807580ed5f8a3c37}{%
+           family={Privosnik},
+           familyi={P\bibinitperiod},
+           given={Marko},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{organization}{1}{%
+        {Citeseer}%
+      }
+      \strng{namehash}{fa1863d128f4491d61059a362430f8fa}
+      \strng{fullhash}{85c036e3b92d5d173b83ff9176e1af8b}
+      \strng{bibnamehash}{85c036e3b92d5d173b83ff9176e1af8b}
+      \strng{authorbibnamehash}{85c036e3b92d5d173b83ff9176e1af8b}
+      \strng{authornamehash}{fa1863d128f4491d61059a362430f8fa}
+      \strng{authorfullhash}{85c036e3b92d5d173b83ff9176e1af8b}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Proceedings of the 2002 International Computer Music Conference}
+      \field{title}{Neural networks for note onset detection in piano music}
+      \field{year}{2002}
+    \endentry
     \entry{osmalsky2012neural}{article}{}
       \name{author}{4}{}{%
         {{un=0,uniquepart=base,hash=a2a9cbb6a290bc444c50b2a2cf1c0f79}{%

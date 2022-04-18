@@ -484,7 +484,7 @@ se puede culpar al elevado número de características que algunos sistemas conc
 ya que algunas de ellas pueden ser innecesarias o hasta contraproducentes en este sencillo problema. Sería buena opción intentar 
 reducir el número de características para futuros problemas, pero hay que tener cuidado, ya que si aumentamos el número de clases a 
 clasificar, podría darse el caso de haber eliminado una característica que sí que nos haría falta en un futuro, por lo que de momento 
-es mejor no eliminar características de momento.
+es mejor no eliminar características.
 
 En concreto, las características que creemos que son las que producen mejores resultados son las que se refieren a los intervalos 
 en frecuencia de (0.0, 380.3) y (783.21, 1210.08), ya que es ahí donde está la frecuencia de las notas C4 y A5, respectivamente.
@@ -552,6 +552,17 @@ utilizar una máquina de soporte vectorial con un \textit{kernel} polinomial de 
 
 Los algoritmos que han funcionado peor han sido ciertas configuraciones de los SVM, en concreto las que utilizan un \textit{kernel} sigmoidal.
 Entonces, utilizar un \textit{kernel} sigmoidal no parece ofrecer buenos resultados para estos patrones.
+
+
+\subsection{Segunda aproximación}
+\label{Segunda aproximación}
+Como hemos obtenido resultados muy buenos en la aproximación anterior, se va a aumentar la complejidad del problema,
+es decir, añadiremos más notas a ser clasificadas.
+
+Las notas que vamos a clasificar son: C1, C2, C3, C4, C5, C6, C7, C8, A1, A2, A3, A4, A5, A6, A7
+
+Intentaremos que el sistema funcione bien con las características que ya tenemos, pero se añadiría alguna más
+si vemos que el sistema no funciona bien.
 
 \section{Conclusiones}
 \label{Conclusiones}
