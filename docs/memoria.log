@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2022.4.15)  18 APR 2022 19:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2022.4.17)  18 APR 2022 22:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/jorge/github/aa/docs/memoria.tex
-(/home/jorge/github/aa/docs/memoria.tex
+**/home/david/works/aa/docs/memoria.tex
+(/home/david/works/aa/docs/memoria.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-02-24> (/usr/share/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
@@ -481,6 +481,16 @@ Package caption Info: hyperref package is loaded.
 )
 \c@subfigure=\count420
 \c@subtable=\count421
+) (/usr/share/texmf-dist/tex/latex/base/fixltx2e.sty
+Package: fixltx2e 2016/12/29 v2.1a fixes to LaTeX (obsolete)
+Applying: [2015/01/01] Old fixltx2e package on input line 46.
+
+
+Package fixltx2e Warning: fixltx2e is not required with releases after 2015
+(fixltx2e)                All fixes are now in the LaTeX kernel.
+(fixltx2e)                See the latexrelease package for details.
+
+Already applied: [0000/00/00] Old fixltx2e package on input line 53.
 ) (/usr/share/texmf-dist/tex/latex/titlesec/titlesec.sty
 Package: titlesec 2021/07/05 v2.14 Sectioning titles
 \ttl@box=\box51
@@ -511,26 +521,26 @@ LaTeX Info: Redefining \% on input line 26.
 )
 \openout1 = `memoria.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Info: Redefining \. on input line 35.
-LaTeX Info: Redefining \% on input line 35.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Info: Redefining \. on input line 34.
+LaTeX Info: Redefining \% on input line 34.
  (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count423
@@ -572,9 +582,9 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'memoria.bbl' found.
  (./memoria.bbl)
-Package biblatex Info: Reference section=0 on input line 35.
-Package biblatex Info: Reference segment=0 on input line 35.
-Package hyperref Info: Link coloring OFF on input line 35.
+Package biblatex Info: Reference section=0 on input line 34.
+Package biblatex Info: Reference segment=0 on input line 34.
+Package hyperref Info: Link coloring OFF on input line 34.
  (/usr/share/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (/usr/share/texmf-dist/tex/latex/refcount/refcount.sty
@@ -584,9 +594,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count429
 )
-LaTeX Info: Redefining \ref on input line 35.
-LaTeX Info: Redefining \pageref on input line 35.
-LaTeX Info: Redefining \nameref on input line 35.
+LaTeX Info: Redefining \ref on input line 34.
+LaTeX Info: Redefining \pageref on input line 34.
+LaTeX Info: Redefining \nameref on input line 34.
  (./memoria.out) (./memoria.out)
 \@outlinefile=\write4
 \openout4 = `memoria.out'.
@@ -629,16 +639,16 @@ LaTeX Info: Redefining \nameref on input line 35.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 38.
+(Font)              <14.4> on input line 37.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 38.
+(Font)              <7> on input line 37.
 <udc.jpg, id=64, 1284.8pt x 722.7pt>
 File: udc.jpg Graphic file (type jpg)
 <use udc.jpg>
-Package pdftex.def Info: udc.jpg  used on input line 42.
+Package pdftex.def Info: udc.jpg  used on input line 41.
 (pdftex.def)             Requested size: 321.19922pt x 180.67566pt.
 
-Overfull \hbox (17.62482pt too wide) in paragraph at lines 38--45
+Overfull \hbox (17.62482pt too wide) in paragraph at lines 37--44
 [][] 
  []
 
@@ -662,21 +672,28 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 <c4.pdf, id=143, 702.625pt x 501.875pt>
 File: c4.pdf Graphic file (type pdf)
 <use c4.pdf>
-Package pdftex.def Info: c4.pdf  used on input line 220.
+Package pdftex.def Info: c4.pdf  used on input line 219.
 (pdftex.def)             Requested size: 221.78923pt x 158.42075pt.
 <a5.pdf, id=144, 702.625pt x 501.875pt>
 File: a5.pdf Graphic file (type pdf)
 <use a5.pdf>
-Package pdftex.def Info: a5.pdf  used on input line 226.
+Package pdftex.def Info: a5.pdf  used on input line 225.
 (pdftex.def)             Requested size: 221.78923pt x 158.42075pt.
  [7 <./c4.pdf> <./a5.pdf
 
 pdfTeX warning: pdflatex (file ./a5.pdf): PDF inclusion: multiple pdfs with page group included in a single page
->] [8] [9] [10] [11] [12]
-<best_rna_train.pdf, id=217, 702.625pt x 501.875pt>
+>] [8] [9] [10]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[11] [12]
+<best_rna_train.pdf, id=219, 702.625pt x 501.875pt>
 File: best_rna_train.pdf Graphic file (type pdf)
 <use best_rna_train.pdf>
-Package pdftex.def Info: best_rna_train.pdf  used on input line 519.
+Package pdftex.def Info: best_rna_train.pdf  used on input line 558.
 (pdftex.def)             Requested size: 443.57848pt x 316.84915pt.
 
 
@@ -694,18 +711,18 @@ Package logreq Info: Writing requests to 'memoria.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 20350 strings out of 478276
- 360369 string characters out of 5853013
- 1161947 words of memory out of 5000000
- 38298 multiletter control sequences out of 15000+600000
- 476047 words of font info for 50 fonts, out of 8000000 for 9000
+ 20377 strings out of 478276
+ 361071 string characters out of 5853013
+ 1162099 words of memory out of 5000000
+ 38320 multiletter control sequences out of 15000+600000
+ 476399 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 67i,12n,77p,767b,2804s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on memoria.pdf (15 pages, 294190 bytes).
+ 67i,12n,77p,766b,2804s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb>
+Output written on memoria.pdf (15 pages, 304955 bytes).
 PDF statistics:
- 314 PDF objects out of 1000 (max. 8388607)
- 254 compressed objects within 3 object streams
- 56 named destinations out of 1000 (max. 500000)
+ 320 PDF objects out of 1000 (max. 8388607)
+ 258 compressed objects within 3 object streams
+ 57 named destinations out of 1000 (max. 500000)
  141 words of extra memory for PDF output out of 10000 (max. 10000000)
 

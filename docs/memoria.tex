@@ -8,8 +8,9 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage[left=3cm, right=3cm, top=2cm]{geometry}
 \usepackage{subcaption}
+\usepackage{fixltx2e}
 
-% subsubsubsection
+% more subsections
 \usepackage{titlesec}
 \setcounter{secnumdepth}{4}
 \titleformat{\paragraph}
@@ -18,13 +19,11 @@
 {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 % 
 
-
 % Confusion matrix
 % Fuente: https://tex.stackexchange.com/a/552743
 \usepackage{multirow}
 \usepackage{textcomp}
 % 
-
 
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 \title{\textbf{\huge Reconocimiento automático de notas del piano}}
@@ -263,64 +262,103 @@ Transformada de Fourier y, posteriormente, extraeremos las siguientes caracterí
 		Como dicha cracterística nos proporcionaría valores similares a la frecuencia media de la señal, podría contribuír a su correcta clasificación.
 \end{itemize}
 
-En lo referente al preprocesado de los datos, nos hemos decidido optar por una \textbf{normalización de media cero},
+\bigskip
+En lo referente al preprocesado de los datos, hemos decidido optar por una \textbf{normalización de media cero},
 debido a que los datos no están acotados en un intervalo y pueden tomar cualquier valor, ya sea
-en tiempo o en frecuencia. Aunque las frecuencias de las notas sí que están acotadas en un intervalo, en la señal
-puede haber ruído que se salga de los valores típicos, por lo que una normalización entre mínimo y máximo no es lo adecuado.
+en tiempo o en frecuencia.
 
-\bigskip
-Los parámetros de normalización para cada característica son los siguientes:
+Aunque las frecuencias de las notas sí que están acotadas en un intervalo, en la señal
+puede haber ruido que sobrepase los valores típicos, por lo que una normalización entre mínimo y máximo no sería lo adecuado.
 
-(Media $\pm$ Desviación Típica)
-\begin{itemize}
-	\item E: $0.0045678928 \pm 0.0035726614$
-	\item zero-crossing: $1797.2139 \pm 1352.7441$
-	\item m1: $16.821161 \pm 11.616611$
-	\item m2: $9.4079 \pm 5.8349323$
-	\item m3: $14.607474 \pm 11.515968$
-	\item m4: $3.8720663 \pm 3.5469663$
-	\item m5: $2.3520973 \pm 2.1539617$
-	\item m6: $0.48698702 \pm 0.6487291$
-	\item m7: $0.7153551 \pm 1.0973071$
-	\item m8: $0.40077275 \pm 0.500489$
-	\item m9: $0.22367951 \pm 0.3412378$
-	\item m10: $0.23234393 \pm 0.5112222$
-	\item std1: $54.282375 \pm 46.679535$
-	\item std2: $31.582827 \pm 27.185955$
-	\item std3: $57.896194 \pm 38.439426$
-	\item std4: $11.108885 \pm 12.696077$
-	\item std5: $7.0041313 \pm 6.732649$
-	\item std6: $0.52131796 \pm 0.72755563$
-	\item std7: $2.7318008 \pm 4.6750984$
-	\item std8: $0.9234557 \pm 1.2807367$
-	\item std9: $0.47755784 \pm 0.89846444$
-	\item std10: $0.5695597 \pm 1.2890217$
-	\item max1: $832.8222 \pm 779.30615$
-	\item max2: $567.7255 \pm 505.1785$
-	\item max3: $901.9232 \pm 548.2265$
-	\item max4: $192.80989 \pm 237.47154$
-	\item max5: $98.938354 \pm 103.55783$
-	\item max6: $4.392064 \pm 6.0777674$
-	\item max7: $40.596066 \pm 65.99385$
-	\item max8: $11.672165 \pm 15.524432$
-	\item max9: $5.7904434 \pm 10.440257$
-	\item max10: $5.6131926 \pm 11.565159$
-\end{itemize}
-Donde \textit{E} indica la \textbf{energía de la señal}, zero-crossing indica el número de veces que la señal cruza
-el eje horizontal por segundo en el tiempo (\textbf{Zero-crossing/s})
-\textit{mi} indica la \textbf{media de la intensidad} en el intervalo \textit{i} en frecuencia, 
-\textit{stdi} indica la {desviación típica de la intensidad} en el intervalo \textit{i} en frecuencia
-y \textit{maxi} indica el máximo de la intensidad en el intervalo \textit{i} en frecuencia.  
+\newpage
 
-\bigskip
-Se van a realizar experimentos sobre los siguientes modelos: RRNNAA, SVM, Árboles de decisión y kNN.
+\begin{table}[h!]
+	\caption{Parámetros de normalización para cada característica}
+	\centering
+		\begin{tabular}{||c c c||}
+			\hline
+			Característica & Media & Desviación Típica  \\ [0.5ex]
+			\hline\hline
+			E & $0.0045678928$ & $0.0035726614$ \\
+			\hline
+			zero-crossing & $1797.2139$ & $1352.7441$ \\
+			\hline
+			m\textsubscript{1} & $16.821161$ & $11.616611$ \\
+			\hline
+			m\textsubscript{2} & $9.4079$ & $5.8349323$ \\
+			\hline
+			m\textsubscript{3} & $14.607474$ & $11.515968$ \\
+			\hline
+			m\textsubscript{4} & $3.8720663$ & $3.5469663$ \\
+			\hline
+			m\textsubscript{5} & $2.3520973$ & $2.1539617$ \\
+			\hline
+			m\textsubscript{6} & $0.48698702$ & $0.6487291$ \\
+			\hline
+			m\textsubscript{7} & $0.7153551$ & $1.0973071$ \\
+			\hline
+			m\textsubscript{8} & $0.40077275$ & $0.500489$ \\
+			\hline
+			m\textsubscript{9} & $0.22367951$ & $0.3412378$ \\
+			\hline
+			m\textsubscript{10} & $0.23234393$ & $0.5112222$ \\
+			\hline
+			std\textsubscript{1} & $54.282375$ & $46.679535$ \\
+			\hline
+			std\textsubscript{2} & $31.582827$ & $27.185955$ \\
+			\hline
+			std\textsubscript{3} & $57.896194$ & $38.439426$ \\
+			\hline
+			std\textsubscript{4} & $11.108885$ & $12.696077$ \\
+			\hline
+			std\textsubscript{5} & $7.0041313$ & $6.732649$ \\
+			\hline
+			std\textsubscript{6} & $0.52131796$ & $0.72755563$ \\
+			\hline
+			std\textsubscript{7} & $2.7318008$ & $4.6750984$ \\
+			\hline
+			std\textsubscript{8} & $0.9234557$ & $1.2807367$ \\
+			\hline
+			std\textsubscript{9} & $0.47755784$ & $0.89846444$ \\
+			\hline
+			std\textsubscript{10} & $0.5695597$ & $1.2890217$ \\
+			\hline
+			max\textsubscript{1} & $832.8222$ & $779.30615$ \\
+			\hline
+			max\textsubscript{2} & $567.7255$ & $505.1785$ \\
+			\hline
+			max\textsubscript{3} & $901.9232$ & $548.2265$ \\
+			\hline
+			max\textsubscript{4} & $192.80989$ & $237.47154$ \\
+			\hline
+			max\textsubscript{5} & $98.938354$ & $103.55783$ \\
+			\hline
+			max\textsubscript{6} & $4.392064$ & $6.0777674$ \\
+			\hline
+			max\textsubscript{7} & $40.596066$ & $65.99385$ \\
+			\hline
+			max\textsubscript{8} & $11.672165$ & $15.524432$ \\
+			\hline
+			max\textsubscript{9} & $5.7904434$ & $10.440257$ \\
+			\hline
+			max\textsubscript{10} & $5.6131926$ & $11.565159$ \\
+			\hline
+		\end{tabular}
+	\label{Tab:Features}
+\end{table}
+Donde \textit{E} indica la \textbf{energía de la señal}, \textit{m\textsubscript{i}} indica la \textbf{media de la intensidad} en el intervalo \textit{i} en frecuencia, 
+\textit{std\textsubscript{i}} indica la {desviación típica de la intensidad} en el intervalo \textit{i} en frecuencia
+y \textit{max\textsubscript{i}} indica el máximo de la intensidad en el intervalo \textit{i} en frecuencia.  
+
+\newpage
+Se van a realizar experimentos sobre los siguientes modelos: RNA, SVM, Árboles de decisión y kNN.
 
 \bigskip
 Para los experimentos, se va a realizar \textbf{\textit{cross-validation}} con cada modelo, para así poder evaluar el rendimiento
 de cada uno, con independencia de la aleatoriedad que se pueda producir al seleccionar un subconjunto de patrones para test.
 En concreto, se realizará un \textbf{\textit{cross-validation}} con \textbf{10 \textit{folds}}. El valor del F1-Score y de la precisión
-del modelo será el promedio de dichos valores obtenidos en los \textit{folds}. Para obtener el valor de las métricas en cada fold, 
-se computarán para el conjunto de test seleccionado en cada fold.
+del modelo será el promedio de dichos valores obtenidos en los \textit{folds}. Para obtener el valor de las métricas en cada \textit{fold}, 
+se computarán para el conjunto de test seleccionado en cada \textit{fold}.
 
 \bigskip
 Además, como el entrenamiento de una RNA es un proceso no determinista, en cada \textit{fold}
@@ -336,9 +374,9 @@ desviación típica de la métrica.
 Para permitir la reproducibilidad de los experimentos, se utilizó \textit{100} como semilla de generación de números
 aleatorios.
 
-\paragraph{RRNNAA}
+\paragraph{RNA}
 
-Para el entrenamiento de las RRNNAA, se han utilizado los siguientes parámetros en común:
+Para el entrenamiento de las RNA, se han utilizado los siguientes parámetros en común:
 \begin{itemize}
 	\item Ratio de aprendizaje: $0.01$
 	\item Ratio de patrones para el conjunto de validación: $0.2$.
@@ -351,7 +389,7 @@ El hiperparámetro que hemos variado ha sido la arquitectura de neuronas a utili
 donde la arquitectura [$i$] denota una RNA con una única capa oculta con $i$ neuronas y la arquitectura [$i$, $j$] 
 denota una neurona con dos capas ocultas; con $i$ neuronas en la primera capa oculta y $j$ neuronas en la segunda capa oculta.
 
-Se muestran los resultados de la experimentación en la tabla \ref{Tab:ANN}
+Se muestran los resultados de la experimentación en la Tabla \ref{Tab:ANN}
 
 \begin{table}[ht]
 	\caption{Resultados RRNNA}
@@ -385,10 +423,9 @@ Se muestran los resultados de la experimentación en la tabla \ref{Tab:ANN}
 Para las máquinas de soporte vectorial hemos utilizado 8 configuraciones distintas de los hiperparámetros de \textit{kernel},
 grado del \textit{kernel} (sólo se utiliza en \textit{kernel} polinomial), \textit{gamma} y \textit{C}.
 
-Se muestran los resultados de la experimentación en la tabla \ref{Tab:SVM}
+Se muestran los resultados de la experimentación en la Tabla \ref{Tab:SVM}
 
-
-\begin{table}[ht]
+\begin{table}[h!]
 \caption{Resultados SVM}
 \centering
 	 \begin{tabular}{||c c c||}
@@ -418,9 +455,9 @@ Se muestran los resultados de la experimentación en la tabla \ref{Tab:SVM}
 \paragraph{Árboles de decisión}
 Para los árboles de decisión hemos utilizado 6 configuraciones distintas del hiperparámetro de profundidad máxima.
 
-Se muestran los resultados de la experimentación en la tabla \ref{Tab:DecisionTree}
+Se muestran los resultados de la experimentación en la Tabla \ref{Tab:DecisionTree}
 
-\begin{table}[ht]
+\begin{table}[h!]
 	\caption{Resultados Árbol de decisión}
 	\centering
 		 \begin{tabular}{||c c c||}
@@ -448,7 +485,7 @@ Para el modelo kNN hemos utilizado 6 configuraciones distintas del hiperparámet
 
 Se muestran los resultados de la experimentación en la tabla \ref{Tab:kNN}
 
-\begin{table}[ht]
+\begin{table}[h!]
 	\caption{Resultados kNN}
 	\centering
 		 \begin{tabular}{||c c c||}
@@ -475,43 +512,45 @@ Se muestran los resultados de la experimentación en la tabla \ref{Tab:kNN}
 Los resultados han sido muy buenos, ya que en la mayoría de casos de alcanza una \textbf{precisión} y un \textbf{F1-Score} del 100\% o muy alto. 
 
 \bigskip
-En general, los sistemas se equivocan en muy pocos patrones. Esto se puede deber a que el problema escogido en esta aproximación
-era muy sencillo y utilizamos un número elevado de características que puedan permitir separar las clases.
+En general, los sistemas se equivocan en muy pocos patrones. Esto se puede deber a que el problema elegido en esta aproximación
+era excesivamente sencillo para el elevado número de características escogidas, permitiéndonos separar perfectamentes los patrones
+en las dos clases.
 
 \bigskip
-En lo referente a las características, han sido correctamente elegidas, ya que alcanzamos una precisión muy alta. Pero también
-se puede culpar al elevado número de características que algunos sistemas concretos no funcionen tan bien (por ejemplo, algunos SVM), 
-ya que algunas de ellas pueden ser innecesarias o hasta contraproducentes en este sencillo problema. Sería buena opción intentar 
-reducir el número de características para futuros problemas, pero hay que tener cuidado, ya que si aumentamos el número de clases a 
-clasificar, podría darse el caso de haber eliminado una característica que sí que nos haría falta en un futuro, por lo que de momento 
-es mejor no eliminar características.
+En lo referente a las características, por un parte estas han sido correctamente elegidas, ya que alcanzamos una precisión muy alta. Pero 
+por otra parte, el hecho de que algunos sistemas concretos no 
+funcionen tan bien (por ejemplo, algunos SVM), se podría deber al elevado número de característicaa, 
+ya que algunas de ellas pueden ser innecesarias o hasta contraproducentes en este sencillo problema. Una buena estrategia sería el intentar 
+reducir el número de características en futuras aproximaciones, pero hay que tener cuidado, ya que si aumentamos el número de clases, 
+podría darse el caso de haber eliminado una característica necesaria para una correcta clasificación.
 
 En concreto, las características que creemos que son las que producen mejores resultados son las que se refieren a los intervalos 
-en frecuencia de (0.0, 380.3) y (783.21, 1210.08), ya que es ahí donde está la frecuencia de las notas C4 y A5, respectivamente.
-Las características que se corresponden a dichos intervalos son \textit{m1, std1, max1} para el primer intervalo y \textit{m3, std3, max3}
-para el segundo intervalo.
+en frecuencia de \textit{(0.0, 380.3)} y \textit{(783.21, 1210.08)}, debido a que es en ellos donde se sitúan las frecuencia de las notas 
+\textit{C4} y \textit{A5}, respectivamente.
+Las características que se corresponden a dichos intervalos son \textit{m\textsubscript{1}, std\textsubscript{1}, max\textsubscript{1}}
+para el primer intervalo y \textit{m\textsubscript{3}, std\textsubscript{3}, max\textsubscript{3}} para el segundo intervalo.
+
 Otra característica que podría funcionar sería la frecuencia en la que se alcanza el pico absoluto en intensidad de la señal,
-o la media de las K frecuencias con mayor intensidad, sin tener en cuenta la división en intervalos. O también se podría aumentar
+o la media de las K frecuencias con mayor intensidad, sin tener en cuenta la división en intervalos. También se podría aumentar
 el número de intervalos en los que obtener las características, para poder así separar mejor las notas con frecuencias más cercanas.
 
 \bigskip
 Todos los algoritmos tienen al menos una configuración con un \textbf{F1-Score} de $1.0 \pm 0.0$, por lo que es complicado encontrar uno que sea el mejor.
 
-\bigskip
 Podemos destacar la RNA con una arquitectura de una única capa oculta con 2 neuronas, ya que es un modelo muy sencillo y podemos esperar que, cuanto
-más sencillo sea un modelo, mayor será su capacidad de generalización. 
+más sencillo sea un modelo, mayor será también su capacidad de generalización. 
 
-\bigskip 
-En la figura \ref{fig:rna_train} podemos ver un gráfico del entrenamiento de dicha rna, donde se puede ver el error
-cometido en los conjuntos de test, validación y entrenamiento para cada ciclo de entrenamiento. Este entrenamiento se ha realizado
+\bigskip
+En la Figura \ref{fig:rna_train} podemos ver un gráfico del entrenamiento de dicha RNA, donde observamos el error
+cometido en los conjuntos de test, validación y entrenamiento para cada ciclo de entrenamiento. Este se ha realizado
 utilizando todos los patrones, separando un 20\% para el conjunto de test.
-Se puede observar que la curva de la gráfica desciende muy rápido, esto se puede deber a que tenemos un ratio de aprendizaje
-alto para este problema concreto. Además, se puede ver que se ha producido una parada temprana, ya que el sistema no ha realizado
-el máximo número de ciclos de entrenamiento ($1500$ ciclos).
+Además, se puede ver que se ha producido una parada temprana, ya que el sistema no ha realizado
+el máximo número de ciclos de entrenamiento ($1500$ ciclos) y se puede distinguir también como la curva de la gráfica desciende muy rápido. 
+Esto se puede deber a que tenemos un ratio de aprendizaje alto para este problema concreto.
 
 \bigskip
 En la figura 5 podemos ver una matriz de confusión para la RNA entrenada anteriormente. Las predicciones se hicieron sobre un conjunto
-de test, que supone un 20\% de todos los patrones utilizados. Se utilizó el 80\% de los patrones restantes para el entrenamiento de la RNA,
+de test que supone un 20\% de todos los patrones utilizados. El 80\% de los patrones restantes se utilizó para el entrenamiento de la RNA,
 ya que el conjunto de entrenamiento no se debería utilizar para realizar predicciones.
 
 \begin{figure}[h!]
@@ -540,7 +579,7 @@ ya que el conjunto de entrenamiento no se debería utilizar para realizar predic
     \label{sa}
 \end{table}
 
-\bigskip 
+\newpage
 Pero aunque se alcance ya un buen resultado con un modelo sencillo como puede ser la RNA anterior, caben destacar los árboles de decisión,
 que son modelos que pueden ofrecer explicabilidad sobre sus predicciones, además de presentar un entrenamiento determinista, por lo que 
 si tenemos que elegir el mejor modelo, nos decantaríamos por este (en concreto, el de altura máxima de 2, ya que es el más sencillo), 

@@ -9,7 +9,7 @@
 \contentsline {subsection}{\numberline {4.1}Primera aproximación}{7}{subsection.4.1}%
 \contentsline {subsubsection}{\numberline {4.1.1}Descripción}{7}{subsubsection.4.1.1}%
 \contentsline {subsubsection}{\numberline {4.1.2}Resultados}{10}{subsubsection.4.1.2}%
-\contentsline {paragraph}{\numberline {4.1.2.1}RRNNAA}{10}{paragraph.4.1.2.1}%
+\contentsline {paragraph}{\numberline {4.1.2.1}RNA}{10}{paragraph.4.1.2.1}%
 \contentsline {paragraph}{\numberline {4.1.2.2}SVM}{11}{paragraph.4.1.2.2}%
 \contentsline {paragraph}{\numberline {4.1.2.3}Árboles de decisión}{11}{paragraph.4.1.2.3}%
 \contentsline {paragraph}{\numberline {4.1.2.4}kNN}{11}{paragraph.4.1.2.4}%
