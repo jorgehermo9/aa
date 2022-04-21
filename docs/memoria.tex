@@ -4,11 +4,10 @@
 \usepackage[spanish, es-tabla]{babel}
 \usepackage{graphicx}
 \usepackage[style=apa]{biblatex}
-\addbibresource{references.bib}
+\addbibresource{references/references.bib}
 \usepackage[hidelinks]{hyperref}
 \usepackage[left=3cm, right=3cm, top=2cm]{geometry}
 \usepackage{subcaption}
-\usepackage{fixltx2e}
 
 % more subsections
 \usepackage{titlesec}
@@ -36,9 +35,9 @@
 \maketitle
 \HRule
 \bigskip\bigskip\bigskip\bigskip\bigskip\bigskip
-\begin{figure}[h!]
+\begin{figure}[!ht]
 	\centering
-	\includegraphics[height=180px]{udc.jpg}
+	\includegraphics[height=180px]{assets/udc.jpg}
 	\label{fig:diagram1}
 \end{figure}
 
@@ -47,6 +46,24 @@
 \tableofcontents
 
 \newpage
+\section{Glosario}
+\label{Glosario}
+\begin{itemize}
+	\item Sample: muestra de carácter musical
+	\item Cover: Reinterpretación de una canción por parte de alguien diferente al que la compuso.
+	\item VP: Verdadero positivo
+	\item VN: Verdadero negativo
+	\item FP: Falso positivo
+	\item FN: Falso negativo
+	\item RNA: Red de neuronas artificial.
+	\item SVM: \textit{Support Vector Machine} (Máquina de soporte vectorial).
+	\item kNN: \textit{K-nearest neighbors} (k vecinos más cercanos).
+	\item poly: \textit{Kernel} polinomial.
+	\item rbf: \textit{Kernel} de función de base radial (Gaussiano)
+	\item sigmoid: \textit{Kernel} sigmoidal
+	% \item TF: transformada de Fourier
+\end{itemize}
+
 \section{Introducción}
 
 A raíz de la pandemia, el aumento del interés por el aprendizaje en diferentes ámbitos llegó tambíen a la música, y con él, la aparición
@@ -66,24 +83,6 @@ comparando su rendimiento y eligiendo la que mejor resultados nos ofrezca.
 A lo largo de esta memoria analizaremos a fondo el problema a resolver en la Sección \ref{Descripción del problema}, desarrollaremos las diferentes soluciones en la
 Sección \ref{Desarrollo}, hablaremos sobre las conclusiones del trabajo en la Sección \ref{Conclusiones} y finalizaremos comentando las aplicaciones al mundo
 real en la Sección \ref{Trabajo futuro}. También se podrá consultar las bibliografía utilizada en la Sección \ref{Análisis bibliográfico} y \ref{Bibliografía}.
-
-\subsection{Glosario}
-\label{Glosario}
-\begin{itemize}
-	\item Sample: muestra de carácter musical
-	\item Cover: Reinterpretación de una canción por parte de alguien diferente al que la compuso.
-	\item VP: Verdadero positivo
-	\item VN: Verdadero negativo
-	\item FP: Falso positivo
-	\item FN: Falso negativo
-	\item RNA: Red de neuronas artificial.
-	\item SVM: \textit{Support Vector Machine} (Máquina de soporte vectorial).
-	\item kNN: \textit{K-nearest neighbors} (k vecinos más cercanos).
-	\item poly: \textit{Kernel} polinomial.
-	\item rbf: \textit{Kernel} de función de base radial (Gaussiano)
-	\item sigmoid: \textit{Kernel} sigmoidal
-	% \item TF: transformada de Fourier
-\end{itemize}
 
 \newpage
 
@@ -145,7 +144,7 @@ desde posiciones e intensidades distintas y grabadas con micrófonos diferentes.
 La duración media de los \textit{samples} es de aproximadamente 6 segundos.
 
 \bigskip
-El origen de la base de datos es una librería de piano de la compañía \textit{FluffyAudio} \textit{\url{https://www.fluffyaudio.com/shop/scoringpiano/}} 
+El origen de la base de datos es una librería de piano de la compañía \textit{FluffyAudio} \textit{\url{(https://www.fluffyaudio.com/shop/scoringpiano)}} 
 grabada en 2016 y pensada para jazz, música clásica y bandas sonoras.
 
 \section{Análisis bibliográfico}
@@ -212,17 +211,17 @@ Escogimos las notas \textit{C4} y \textit{A5} de los cuales usaremos 92 y 56 aud
 se utilizarán 148 patrones. En las figuras \ref{fig:c4} y \ref{fig:a5} podemos ver a la izquierda la señal en tiempo y, a la derecha,
 la señal en el dominio de la frecuencia.
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
 	\centering
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=1.0\linewidth]{c4.pdf}
+		\includegraphics[width=1.0\linewidth]{assets/C4.pdf}
 		\caption{C4}
 		\label{fig:c4}
 	\end{subfigure}%
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=1.0\linewidth]{a5.pdf}
+		\includegraphics[width=1.0\linewidth]{assets/A5.pdf}
 		\caption{A5}
 		\label{fig:a5}
 	\end{subfigure}
@@ -234,6 +233,12 @@ Dado que cada muestra tiene una duración diferente, decidimos quedarnos solo co
 relevante de la nota) y, para la frecuencia, acotaremos cada señal entre 0 y 5000 Hz. Ya que la frecuencia máxima que se alcanza en el 
 piano clásico es de 4186 Hz (\textit{C8}) y la más baja, en nuestra base de datos, es de 32.7Hz (\textit{C1}), escogimos un rango
 de frecuncias ampliado debido a que es posible que exista información que nos ayude a identificar la nota.
+
+\bigskip
+Para los experimentos, se va a realizar \textbf{\textit{cross-validation}} con cada modelo, para así poder evaluar el rendimiento
+de cada uno, con independencia de la aleatoriedad que se pueda producir al seleccionar un subconjunto de patrones para test.
+En concreto, se realizará un \textbf{\textit{cross-validation}} con \textbf{10 \textit{folds}}. El valor del F1-Score y de la precisión
+del modelo será el promedio de dichos valores obtenidos en los \textit{folds}.
 
 \bigskip
 Además, como las notas de un mismo instrumento se diferencian principalmente por la frecuencia (una nota más aguda tiene una mayor frecuencia
@@ -266,13 +271,14 @@ Transformada de Fourier y, posteriormente, extraeremos las siguientes caracterí
 En lo referente al preprocesado de los datos, hemos decidido optar por una \textbf{normalización de media cero},
 debido a que los datos no están acotados en un intervalo y pueden tomar cualquier valor, ya sea
 en tiempo o en frecuencia.
-
 Aunque las frecuencias de las notas sí que están acotadas en un intervalo, en la señal
 puede haber ruido que sobrepase los valores típicos, por lo que una normalización entre mínimo y máximo no sería lo adecuado.
 
+Así, obtuvimos para cada característica, la media y la desviación típica. Se muestran dichos datos en la Tabla \ref{Tab:Features}.
+
 \newpage
 
-\begin{table}[h!]
+\begin{table}[!ht]
 	\caption{Parámetros de normalización para cada característica}
 	\centering
 		\begin{tabular}{||c c c||}
@@ -346,19 +352,16 @@ puede haber ruido que sobrepase los valores típicos, por lo que una normalizaci
 		\end{tabular}
 	\label{Tab:Features}
 \end{table}
-Donde \textit{E} indica la \textbf{energía de la señal}, \textit{m\textsubscript{i}} indica la \textbf{media de la intensidad} en el intervalo \textit{i} en frecuencia, 
-\textit{std\textsubscript{i}} indica la {desviación típica de la intensidad} en el intervalo \textit{i} en frecuencia
-y \textit{max\textsubscript{i}} indica el máximo de la intensidad en el intervalo \textit{i} en frecuencia.  
+Donde:
+\begin{itemize}
+	\item \textit{E} indica la \textbf{energía de la señal}.
+	\item \textit{m\textsubscript{i}} indica la \textbf{media de la intensidad} en el intervalo \textit{i} en frecuencia.
+	\item \textit{std\textsubscript{i}} indica la {desviación típica de la intensidad} en el intervalo \textit{i} en frecuencia.
+	\item \textit{max\textsubscript{i}} indica el máximo de la intensidad en el intervalo \textit{i} en frecuencia.
+\end{itemize}	
 
 \newpage
 Se van a realizar experimentos sobre los siguientes modelos: RNA, SVM, Árboles de decisión y kNN.
-
-\bigskip
-Para los experimentos, se va a realizar \textbf{\textit{cross-validation}} con cada modelo, para así poder evaluar el rendimiento
-de cada uno, con independencia de la aleatoriedad que se pueda producir al seleccionar un subconjunto de patrones para test.
-En concreto, se realizará un \textbf{\textit{cross-validation}} con \textbf{10 \textit{folds}}. El valor del F1-Score y de la precisión
-del modelo será el promedio de dichos valores obtenidos en los \textit{folds}. Para obtener el valor de las métricas en cada \textit{fold}, 
-se computarán para el conjunto de test seleccionado en cada \textit{fold}.
 
 \bigskip
 Además, como el entrenamiento de una RNA es un proceso no determinista, en cada \textit{fold}
@@ -425,7 +428,7 @@ grado del \textit{kernel} (sólo se utiliza en \textit{kernel} polinomial), \tex
 
 Se muestran los resultados de la experimentación en la Tabla \ref{Tab:SVM}
 
-\begin{table}[h!]
+\begin{table}[!ht]
 \caption{Resultados SVM}
 \centering
 	 \begin{tabular}{||c c c||}
@@ -457,7 +460,7 @@ Para los árboles de decisión hemos utilizado 6 configuraciones distintas del h
 
 Se muestran los resultados de la experimentación en la Tabla \ref{Tab:DecisionTree}
 
-\begin{table}[h!]
+\begin{table}[!ht]
 	\caption{Resultados Árbol de decisión}
 	\centering
 		 \begin{tabular}{||c c c||}
@@ -485,7 +488,7 @@ Para el modelo kNN hemos utilizado 6 configuraciones distintas del hiperparámet
 
 Se muestran los resultados de la experimentación en la tabla \ref{Tab:kNN}
 
-\begin{table}[h!]
+\begin{table}[!ht]
 	\caption{Resultados kNN}
 	\centering
 		 \begin{tabular}{||c c c||}
@@ -519,7 +522,7 @@ en las dos clases.
 \bigskip
 En lo referente a las características, por un parte estas han sido correctamente elegidas, ya que alcanzamos una precisión muy alta. Pero 
 por otra parte, el hecho de que algunos sistemas concretos no 
-funcionen tan bien (por ejemplo, algunos SVM), se podría deber al elevado número de característicaa, 
+funcionen tan bien (por ejemplo, algunos SVM), se podría deber al elevado número de características, 
 ya que algunas de ellas pueden ser innecesarias o hasta contraproducentes en este sencillo problema. Una buena estrategia sería el intentar 
 reducir el número de características en futuras aproximaciones, pero hay que tener cuidado, ya que si aumentamos el número de clases, 
 podría darse el caso de haber eliminado una característica necesaria para una correcta clasificación.
@@ -549,13 +552,13 @@ el máximo número de ciclos de entrenamiento ($1500$ ciclos) y se puede disting
 Esto se puede deber a que tenemos un ratio de aprendizaje alto para este problema concreto.
 
 \bigskip
-En la figura 5 podemos ver una matriz de confusión para la RNA entrenada anteriormente. Las predicciones se hicieron sobre un conjunto
+En la Tabla \ref{tab:confusion_matrix} podemos ver una matriz de confusión para la RNA entrenada anteriormente. Las predicciones se hicieron sobre un conjunto
 de test que supone un 20\% de todos los patrones utilizados. El 80\% de los patrones restantes se utilizó para el entrenamiento de la RNA,
 ya que el conjunto de entrenamiento no se debería utilizar para realizar predicciones.
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
 	\centering
-	\includegraphics[width=1.0\linewidth]{best_rna_train.pdf}
+	\includegraphics[width=1.0\linewidth]{assets/best_rna_train.pdf}
 	\caption{Entrenamiento RNA }
 	\label{fig:rna_train}
 \end{figure}
@@ -578,7 +581,7 @@ ya que el conjunto de entrenamiento no se debería utilizar para realizar predic
 	
 	}
 	\caption{Matriz de confusión RNA}
-	\label{tab:my-table}
+    \label{tab:confusion_matrix}
 \end{table}
 
 \newpage
@@ -600,7 +603,39 @@ Entonces, utilizar un \textit{kernel} sigmoidal no parece ofrecer buenos resulta
 Como hemos obtenido resultados muy buenos en la aproximación anterior, se va a aumentar la complejidad del problema,
 es decir, añadiremos más notas a ser clasificadas.
 
-Las notas que vamos a clasificar son: C1, C2, C3, C4, C5, C6, C7, C8, A1, A2, A3, A4, A5, A6, A7
+Las notas que vamos a clasificar son: \textit{C1}, \textit{C2}, \textit{C3}, \textit{C4}, \textit{C5}, \textit{C6}, \textit{C7}, \textit{C8}, \textit{A1}, \textit{A2}, \textit{A3}, \textit{A4}, \textit{A5}, \textit{A6}, \textit{A7}.
+
+\begin{figure}[!ht]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.0\linewidth]{assets/C3.pdf}
+		\caption{C3}
+		\label{fig:c3}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.0\linewidth]{assets/C6.pdf}
+		\caption{A6}
+		\label{fig:c6}
+	\end{subfigure}
+\end{figure}
+
+\begin{figure}[!ht]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.0\linewidth]{assets/A3.pdf}
+		\caption{A3}
+		\label{fig:a3}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.0\linewidth]{assets/A6.pdf}
+		\caption{A6}
+		\label{fig:a6}
+	\end{subfigure}
+\end{figure}
 
 Intentaremos que el sistema funcione bien con las características que ya tenemos, pero se añadiría alguna más
 si vemos que el sistema no funciona bien.
