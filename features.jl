@@ -92,11 +92,14 @@ end
 
 # Path a la base de datos. Las clases estarán en  db_dir/<class>
 db_dir = "db/piano"
-# classes = ["A5","C4","D1","A4"]
-# classes = ["A5","C4"]
+# Aproximación 1
+# classes = ["A5","C4"] 
+
+# Aproximación 2
+classes = ["C1","C2","C3","C4","C5","C6","C7","C8","A1","A2","A3","A4","A5","A6","A7"]
 
 # Para todas las clases:
-classes = readdir(db_dir);
+# classes = readdir(db_dir);
 
 all_instances = Vector{Tuple{String,String}}()
 for class in classes
@@ -127,7 +130,7 @@ dataset = Array{Any,2}(undef,length(all_instances)+1,33);
 dataset[1,:] = headers[:];
 dataset[2:end,:] = all_features[:,:];
 
-dataset_path = "all_features.csv"
+dataset_path = "aprox2.csv"
 writedlm(dataset_path, dataset, ',')
 
 println("Dataset for classes $(classes) saved in $(dataset_path)")

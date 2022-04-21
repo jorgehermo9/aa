@@ -6,7 +6,7 @@ include("src/scikit/p6.jl")
 
 
 Random.seed!(100)
-dataset = readdlm("dataset/features.csv",',');
+dataset = readdlm("dataset/aprox2.csv",',');
 
 headers = dataset[1:1,1:end-1]
 inputs = dataset[2:end,1:end-1];
@@ -44,7 +44,7 @@ f1_models = Vector{Vector{Float64}}(undef,length(models));
 f1_std_models = Vector{Vector{Float64}}(undef,length(models));
 
 #RNA
-topologies = [[2],[4],[8],[2,4],[2,8],[4,2],[4,4],[4,8]]
+topologies = [[8],[16],[32],[8,8],[16,4],[16,8],[32,4],[32,8]]
 rna_parameters = Vector{Dict{Any,Any}}(undef, length(topologies));
 
 for i in 1:length(topologies)
@@ -52,7 +52,7 @@ for i in 1:length(topologies)
 	topology_parameters["topology"] = topologies[i];
 	topology_parameters["learning_rate"] = 0.01;
 	topology_parameters["validation_ratio"] = 0.2;
-	topology_parameters["rna_executions"] = 30;
+	topology_parameters["rna_executions"] = 1;
 	topology_parameters["max_epochs"] = 1500;
 	topology_parameters["max_epochs_val"] = 5;
 	rna_parameters[i] = topology_parameters;
@@ -68,12 +68,12 @@ svm_configs = [
 	("rbf",3,1,1),
 	("sigmoid",3,1,1),
 	
-	("poly",5,10,0.1),
+	("poly",3,10,0.1),
 	("rbf",3,10,0.1),
 	("sigmoid",3,10,0.1),
 
 	("rbf",3,0.01,100),
-	("rbf",3,100,0.01),
+	("poly",3,100,0.001),
 ]
 svm_parameters = Vector{Dict{Any,Any}}(undef, length(svm_configs));
 
@@ -88,7 +88,7 @@ end
 models_parameters[2] = svm_parameters;
 
 # DecisionTree
-tree_configs = [2 4 8 16 32 64]
+tree_configs = [4 8 16 32 64 128 256]
 tree_parameters = Vector{Dict{Any,Any}}(undef, length(tree_configs));
 
 for i in 1:length(tree_configs)
@@ -224,7 +224,6 @@ end
 # 	println("\n----------------------------")
 # end
 
-best_config=(1,1);
 best_mean_f1 = f1_models[1][1];
 best_std_f1 = f1_std_models[1][1];
 for i in 1:length(models)
@@ -291,8 +290,8 @@ if models[best_model] == :ANN
 
 	# display(g);
 	path = "best_rna_train.svg"
-	println("ANN training plot saved to $(path)")
 	savefig(g,path)
+	println("ANN training plot saved to $(path)")
 
 elseif in(models[best_model],[:kNN,:DecisionTree,:SVM])
 
