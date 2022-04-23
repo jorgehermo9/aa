@@ -23,7 +23,7 @@ function freqToIndex(freq_y::AbstractArray{<:Real,1},freq::Real,fs::Real)
 	upperBound = fs/2;
 	lowerBound = -fs/2;
 	f = min(max(freq,lowerBound),upperBound);
-	ind = Int(round(((f + fs/2)/fs) * n));
+	ind = Int(round(((f + fs/2)/fs) * n)+1);
 	return ind;
 end
 
@@ -67,8 +67,6 @@ function get_features(file::String)
 	means = zeros(bins);
 	stds = zeros(bins);
 	maximums = zeros(bins);
-	maximums_freq = zeros(bins);
-
 	intervals = Vector{Tuple{Float64,Float64}}(undef,bins);
 	for i in 1:bins
 		lowerFreq = bins_interval[i];
@@ -80,19 +78,14 @@ function get_features(file::String)
 		means[i] = mean(interval_freq);
 		stds[i] =std(interval_freq);
 		maximums[i] = maximum(interval_freq);
-		# Acceder a la segunda ocurrencia para no coger las frecuencias negativas
-		index_max_freq = findall(x->x==maximums[i],interval_freq)[1]
-		maximums_freq[i] = (index_max_freq/length(interval_freq)) * (upperFreq-lowerFreq) + lowerFreq
 		intervals[i] = (round(lowerFreq,digits=2),round(upperFreq,digits=2));
 	end
-	features = zeros(42);
+	features = zeros(1+1+30);
 	features[1] = E;
 	features[2] = z_crossing;
 	features[3:12] = means[:];
 	features[13:22] = stds[:];
-	features[23:32] = maximums[:];
-	features[33:end] = maximums_freq[:];
-
+	features[23:end] = maximums[:];
 	return features
 end
 
@@ -118,12 +111,12 @@ for class in classes
 	end
 end
 
-all_features = Array{Any,2}(undef,length(all_instances),43);
+all_features = Array{Any,2}(undef,length(all_instances),33);
 for i in 1:length(all_instances)
 	(instance_class,instance_dir) = all_instances[i]
 	instance_features = get_features(instance_dir);
-	all_features[i,1:42] = instance_features[:];
-	all_features[i,43] = instance_class;	
+	all_features[i,1:32] = instance_features[:];
+	all_features[i,33] = instance_class;	
 	println("Read instance $(instance_dir) ($(i)/$(length(all_instances)))")
 end
 
@@ -131,15 +124,13 @@ headers = ["E","zero_crossing",
 "m1","m2","m3","m4","m5","m6","m7","m8","m9","m10",
 "std1","std2","std3","std4","std5","std6","std7","std8","std9","std10",
 "max1","max2","max3","max4","max5","max6","max7","max8","max9","max10",
-"max_freq1","max_freq2","max_freq3","max_freq4","max_freq5","max_freq6","max_freq7","max_freq8","max_freq9","max_freq10",
 "class"];
 
-dataset = Array{Any,2}(undef,length(all_instances)+1,length(headers));
-
+dataset = Array{Any,2}(undef,length(all_instances)+1,33);
 dataset[1,:] = headers[:];
 dataset[2:end,:] = all_features[:,:];
 
-dataset_path = "aprox2.csv"
+dataset_path = "aprox1.csv"
 writedlm(dataset_path, dataset, ',')
 
 println("Dataset for classes $(classes) saved in $(dataset_path)")

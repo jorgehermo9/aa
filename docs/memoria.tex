@@ -274,7 +274,7 @@ en tiempo o en frecuencia.
 Aunque las frecuencias de las notas sí que están acotadas en un intervalo, en la señal
 puede haber ruido que sobrepase los valores típicos, por lo que una normalización entre mínimo y máximo no sería lo adecuado.
 
-Así, obtuvimos para cada característica, la media y la desviación típica. Se muestran dichos datos en la Tabla \ref{Tab:Features}.
+Así, obtuvimos para cada característica, la media y la desviación típica. Se muestran dichos datos en la Tabla \ref{Tab:Features_1}.
 
 \newpage
 
@@ -350,14 +350,14 @@ Así, obtuvimos para cada característica, la media y la desviación típica. Se
 			max\textsubscript{10} & $5.6131926$ & $11.565159$ \\
 			\hline
 		\end{tabular}
-	\label{Tab:Features}
+	\label{Tab:Features_1}
 \end{table}
 Donde:
 \begin{itemize}
 	\item \textit{E} indica la \textbf{energía de la señal}.
 	\item \textit{m\textsubscript{i}} indica la \textbf{media de la intensidad} en el intervalo \textit{i} en frecuencia.
-	\item \textit{std\textsubscript{i}} indica la {desviación típica de la intensidad} en el intervalo \textit{i} en frecuencia.
-	\item \textit{max\textsubscript{i}} indica el máximo de la intensidad en el intervalo \textit{i} en frecuencia.
+	\item \textit{std\textsubscript{i}} indica la \textbf{desviación típica de la intensidad} en el intervalo \textit{i} en frecuencia.
+	\item \textit{max\textsubscript{i}} indica el \textbf{máximo de la intensidad} en el intervalo \textit{i} en frecuencia.
 \end{itemize}	
 
 \newpage
@@ -392,7 +392,7 @@ El hiperparámetro que hemos variado ha sido la arquitectura de neuronas a utili
 donde la arquitectura [$i$] denota una RNA con una única capa oculta con $i$ neuronas y la arquitectura [$i$, $j$] 
 denota una neurona con dos capas ocultas; con $i$ neuronas en la primera capa oculta y $j$ neuronas en la segunda capa oculta.
 
-Se muestran los resultados de la experimentación en la Tabla \ref{Tab:ANN}
+Se muestran los resultados de la experimentación en la Tabla \ref{Tab:ANN_1}
 
 \begin{table}[ht]
 	\caption{Resultados RRNNA}
@@ -418,7 +418,7 @@ Se muestran los resultados de la experimentación en la Tabla \ref{Tab:ANN}
 			 [4, 8] & $0.9621 \pm 0.0974$ & $0.97934 \pm 0.05699$ \\
 			 \hline
 		 \end{tabular}
-	\label{Tab:ANN}
+	\label{Tab:ANN_1}
 \end{table}
 
 \paragraph{SVM}
@@ -426,39 +426,39 @@ Se muestran los resultados de la experimentación en la Tabla \ref{Tab:ANN}
 Para las máquinas de soporte vectorial hemos utilizado 8 configuraciones distintas de los hiperparámetros de \textit{kernel},
 grado del \textit{kernel} (sólo se utiliza en \textit{kernel} polinomial), \textit{gamma} y \textit{C}.
 
-Se muestran los resultados de la experimentación en la Tabla \ref{Tab:SVM}
+Se muestran los resultados de la experimentación en la Tabla \ref{Tab:SVM_1}
 
 \begin{table}[!ht]
-\caption{Resultados SVM}
-\centering
-	 \begin{tabular}{||c c c||}
-		 \hline
-		 (kernel, grado, gamma, C) & F1-Score & Precisión  \\ [0.5ex]
-		 \hline\hline
-		 (poly, $3$, $1$, $1$) & $1.0 \pm 0.0$ & $1.0 \pm 0.0$ \\
-		 \hline
-		 (rbf, $3$, $1$, $1$) & $0.93642 \pm 0.07368$ & $0.94119 \pm 0.07166$ \\
-		 \hline
-		 (sigmoid, $3$, $1$, $1$) & $0.71875 \pm 0.15823$ & $0.77143 \pm 0.11289$ \\
-		 \hline
-		 (poly, $5$, $10$, $0.1$) & $0.99 \pm 0.03162$ & $0.98571 \pm 0.04518$ \\
-		 \hline
-		 (rbf, $3$, $10$, $0.1$) & $0.76689 \pm 0.01542$ & $0.62214 \pm 0.02026$ \\
-		 \hline
-		 (sigmoid, $3$, $10$, $0.1$) & $0.70059 \pm 0.1406$ & $0.77768 \pm 0.06262$ \\
-		 \hline
-		 (rbf, $3$, $0.01$, $100$) & $1.0 \pm 0.0$ & $1.0 \pm 0.0$ \\
-		 \hline
-		 (rbf, $3$, $100$, $0.01$) & $0.76689 \pm 0.01542$ & $0.62214 \pm 0.02026$ \\
-		 \hline
-	 \end{tabular}
-\label{Tab:SVM}
+	\caption{Resultados SVM}
+	\centering
+		\begin{tabular}{||c c c||}
+			\hline
+			(kernel, grado, gamma, C) & F1-Score & Precisión  \\ [0.5ex]
+			\hline\hline
+			(poly, $3$, $1$, $1$) & $1.0 \pm 0.0$ & $1.0 \pm 0.0$ \\
+			\hline
+			(rbf, $3$, $1$, $1$) & $0.93642 \pm 0.07368$ & $0.94119 \pm 0.07166$ \\
+			\hline
+			(sigmoid, $3$, $1$, $1$) & $0.71875 \pm 0.15823$ & $0.77143 \pm 0.11289$ \\
+			\hline
+			(poly, $5$, $10$, $0.1$) & $0.99 \pm 0.03162$ & $0.98571 \pm 0.04518$ \\
+			\hline
+			(rbf, $3$, $10$, $0.1$) & $0.76689 \pm 0.01542$ & $0.62214 \pm 0.02026$ \\
+			\hline
+			(sigmoid, $3$, $10$, $0.1$) & $0.70059 \pm 0.1406$ & $0.77768 \pm 0.06262$ \\
+			\hline
+			(rbf, $3$, $0.01$, $100$) & $1.0 \pm 0.0$ & $1.0 \pm 0.0$ \\
+			\hline
+			(rbf, $3$, $100$, $0.01$) & $0.76689 \pm 0.01542$ & $0.62214 \pm 0.02026$ \\
+			\hline
+		\end{tabular}
+	\label{Tab:SVM_1}
 \end{table}
 
 \paragraph{Árboles de decisión}
 Para los árboles de decisión hemos utilizado 6 configuraciones distintas del hiperparámetro de profundidad máxima.
 
-Se muestran los resultados de la experimentación en la Tabla \ref{Tab:DecisionTree}
+Se muestran los resultados de la experimentación en la Tabla \ref{Tab:DecisionTree_1}
 
 \begin{table}[!ht]
 	\caption{Resultados Árbol de decisión}
@@ -480,13 +480,13 @@ Se muestran los resultados de la experimentación en la Tabla \ref{Tab:DecisionT
 			 $64$ & $1.0 \pm 0.0$ & $1.0 \pm 0.0$ \\
 			 \hline
 		 \end{tabular}
-	\label{Tab:DecisionTree}
+	\label{Tab:DecisionTree_1}
 \end{table}
 
 \paragraph{kNN}
 Para el modelo kNN hemos utilizado 6 configuraciones distintas del hiperparámetro de k (número de vecinos más cercanos).
 
-Se muestran los resultados de la experimentación en la tabla \ref{Tab:kNN}
+Se muestran los resultados de la experimentación en la tabla \ref{Tab:kNN_1}
 
 \begin{table}[!ht]
 	\caption{Resultados kNN}
@@ -508,7 +508,7 @@ Se muestran los resultados de la experimentación en la tabla \ref{Tab:kNN}
 			 $21$ & $0.99091 \pm 0.02875$ & $0.99286 \pm 0.02259$ \\
 			 \hline
 		 \end{tabular}
-	\label{Tab:kNN}
+	\label{Tab:kNN_1}
 \end{table}
 
 \subsubsection{Discusión}
@@ -544,7 +544,7 @@ Podemos destacar la RNA con una arquitectura de una única capa oculta con 2 neu
 más sencillo sea un modelo, mayor será también su capacidad de generalización. 
 
 \bigskip
-En la Figura \ref{fig:rna_train} podemos ver un gráfico del entrenamiento de dicha RNA, donde observamos el error
+En la Figura \ref{fig:rna_train_1} podemos ver un gráfico del entrenamiento de dicha RNA, donde observamos el error
 cometido en los conjuntos de test, validación y entrenamiento para cada ciclo de entrenamiento. Este se ha realizado
 utilizando todos los patrones, separando un 20\% para el conjunto de test.
 Además, se puede ver que se ha producido una parada temprana, ya que el sistema no ha realizado
@@ -552,15 +552,15 @@ el máximo número de ciclos de entrenamiento ($1500$ ciclos) y se puede disting
 Esto se puede deber a que tenemos un ratio de aprendizaje alto para este problema concreto.
 
 \bigskip
-En la Tabla \ref{tab:confusion_matrix} podemos ver una matriz de confusión para la RNA entrenada anteriormente. Las predicciones se hicieron sobre un conjunto
+En la Tabla \ref{tab:confusion_matrix_1} podemos ver una matriz de confusión para la RNA entrenada anteriormente. Las predicciones se hicieron sobre un conjunto
 de test que supone un 20\% de todos los patrones utilizados. El 80\% de los patrones restantes se utilizó para el entrenamiento de la RNA,
 ya que el conjunto de entrenamiento no se debería utilizar para realizar predicciones.
 
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=1.0\linewidth]{assets/best_rna_train.pdf}
-	\caption{Entrenamiento RNA }
-	\label{fig:rna_train}
+	\includegraphics[width=1.0\linewidth]{assets/best_rna_train_1.pdf}
+	\caption{Entrenamiento RNA}
+	\label{fig:rna_train_1}
 \end{figure}
 
 \begin{table}[!ht]
@@ -581,7 +581,7 @@ ya que el conjunto de entrenamiento no se debería utilizar para realizar predic
 	
 	}
 	\caption{Matriz de confusión RNA}
-    \label{tab:confusion_matrix}
+    \label{tab:confusion_matrix_1}
 \end{table}
 
 \newpage
@@ -637,12 +637,356 @@ Las notas que vamos a clasificar son: \textit{C1}, \textit{C2}, \textit{C3}, \te
 	\end{subfigure}
 \end{figure}
 
-Intentaremos que el sistema funcione bien con las características que ya tenemos, pero se añadiría alguna más
-si vemos que el sistema no funciona bien.
+
+Como hemos aumentado mucho el número de clases a clasificar, aumentaremos también el número de características 
+para poder diferenciar bien las clases que sean más similares.
+
+En concreto, añadiremos las siguientes características:
+
+\begin{itemize}
+	\item \textbf{Frecuencia a la que se alcanza el máximo de intensidad de la señal en frecuencia} en cada uno de los 10 intervalos
+	que ya se especificaron en la aproximación anterior.
+\end{itemize}
+
+No se producen cambios sobre las características que fueron incorporadas en la aproximación anterior.
+
+
+
+Para el preprocesado de los datos, utilizaremos, como se mencionó en la aproximación anterior,
+una normalización de media cero.
+Así, obtuvimos para cada característica, la media y la desviación típica. Se muestran dichos datos en las tablas \ref{Tab:Features_2_1}
+y \ref{Tab:Features_2_2}.
+
+\bigskip
+
+\begin{table}[!ht]
+	\caption{Parámetros de normalización (1)}
+	\centering
+		\begin{tabular}{||c c c||}
+			\hline
+			Característica & Media & Desviación Típica  \\ [0.5ex]
+			\hline\hline
+			E & $0.0050883736$ & $0.0088912$ \\
+			\hline
+			zero-crossing & $3743.606$ & $5035.344$ \\
+			\hline
+			m\textsubscript{1} & $15.578591$ & $18.397396$ \\
+			\hline
+			m\textsubscript{2} & $11.147778$ & $9.179351$ \\
+			\hline
+			m\textsubscript{3} & $9.6564455$ & $9.295277$ \\
+			\hline
+			m\textsubscript{4} & $4.0943613$ & $4.225765$ \\
+			\hline
+			m\textsubscript{5} & $3.6645029$ & $4.699565$ \\
+			\hline
+			m\textsubscript{6} & $1.0346977$ & $1.3888823$ \\
+			\hline
+			m\textsubscript{7} & $0.71540374$ & $1.0062366$ \\
+			\hline
+			m\textsubscript{8} & $0.68384236$ & $1.307346$ \\
+			\hline
+			m\textsubscript{9} & $0.38978294$ & $0.8350492$ \\
+			\hline
+			m\textsubscript{10} & $0.44757652$ & $1.4078437$ \\
+			\hline
+			std\textsubscript{1} & $49.61187$ & $74.658005$ \\
+			\hline
+			std\textsubscript{2} & $39.12518$ & $41.206196$ \\
+			\hline
+			std\textsubscript{3} & $29.023785$ & $34.23634$ \\
+			\hline
+			std\textsubscript{4} & $8.560635$ & $11.001557$ \\
+			\hline
+			std\textsubscript{5} & $9.463276$ & $12.920476$ \\
+			\hline
+			std\textsubscript{6} & $1.5626754$ & $2.6529887$ \\
+			\hline
+			std\textsubscript{7} & $1.6301519$ & $2.8170295$ \\
+			\hline
+			std\textsubscript{8} & $1.2500806$ & $2.295387$ \\
+			\hline
+			std\textsubscript{9} & $0.5342404$ & $0.98041487$ \\
+			\hline
+			std\textsubscript{10} & $0.7347808$ & $2.2108128$ \\
+			\hline
+			max\textsubscript{1} & $944.37256$ & $1596.2578$ \\
+			\hline
+			max\textsubscript{2} & $748.07245$ & $844.44037$ \\
+			\hline
+			max\textsubscript{3} & $442.8393$ & $524.42633$ \\
+			\hline
+			max\textsubscript{4} & $130.52594$ & $192.10622$ \\
+			\hline
+			max\textsubscript{5} & $129.60143$ & $179.40135$ \\
+			\hline
+			max\textsubscript{6} & $19.159048$ & $36.38486$ \\
+			\hline
+			max\textsubscript{7} & $22.589241$ & $40.29418$ \\
+			\hline
+			max\textsubscript{8} & $13.267355$ & $21.899231$ \\
+			\hline
+			max\textsubscript{9} & $5.3473926$ & $10.327133$ \\
+			\hline
+			max\textsubscript{10} & $5.520794$ & $13.594501$ \\
+			\hline
+		\end{tabular}
+	\label{Tab:Features_2_1}
+\end{table}
+
+\begin{table}[!ht]
+	\caption{Parámetros de normalización (2)}
+	\centering
+		\begin{tabular}{||c c c||}
+			\hline
+			Característica & Media & Desviación Típica  \\ [0.5ex]
+			max-freq\textsubscript{1} & $174.89925$ & $87.058235$ \\
+			\hline
+			max-freq\textsubscript{2} & $521.6259$ & $125.11409$ \\
+			\hline
+			max-freq\textsubscript{3} & $961.683$ & $100.904564$ \\
+			\hline
+			max-freq\textsubscript{4} & $1394.9509$ & $126.07898$ \\
+			\hline
+			max-freq\textsubscript{5} & $1897.9567$ & $174.84656$ \\
+			\hline
+			max-freq\textsubscript{6} & $2353.7712$ & $191.61922$ \\
+			\hline
+			max-freq\textsubscript{7} & $2791.1377$ & $166.82562$ \\
+			\hline
+			max-freq\textsubscript{8} & $3426.2026$ & $169.13255$ \\
+			\hline
+			max-freq\textsubscript{9} & $4093.2415$ & $226.97453$ \\
+			\hline
+			max-freq\textsubscript{10} & $4583.3877$ & $193.1689$ \\
+			\hline
+		\end{tabular}
+	\label{Tab:Features_2_2}
+\end{table}
+
+
+Donde:
+\begin{itemize}
+	\item \textit{E} indica la \textbf{energía de la señal}.
+	\item \textit{m\textsubscript{i}} indica la \textbf{media de la intensidad} en el intervalo \textit{i} en frecuencia.
+	\item \textit{std\textsubscript{i}} indica la \textbf{desviación típica de la intensidad} en el intervalo \textit{i} en frecuencia.
+	\item \textit{max\textsubscript{i}} indica el \textbf{máximo de la intensidad} en el intervalo \textit{i} en frecuencia.
+	\item \textit{max-freq\textsubscript{i}} indica la \textbf{frecuencia donde se alcanza el máximo de intensidad} en el intervalo \textit{i} en frecuencia.
+\end{itemize}	
+
+
+\bigskip
+Para estos experimentos se ha repetido 20 veces el entrenamiento de la RNA en cada \textit{fold}, devolviendo el resultado promedio de esas 20 ejecuciones.
+
+\bigskip
+Para poder evaluar el modelo con mejor rendimiento, como ya se ha dicho antes, utilizaremos como medida el promedio
+del \textbf{F1-Score} en los \textit{folds}. Si hay empate en dicha media, se elegirá el modelo con menor
+desviación típica de la métrica.
+
+
+
+\subsubsection{Resultados}
+Para permitir la reproducibilidad de los experimentos, se utilizó \textit{100} como semilla de generación de números
+aleatorios.
+
+\paragraph{RNA}
+
+Para el entrenamiento de las RNA, se han utilizado los siguientes parámetros en común:
+\begin{itemize}
+	\item Ratio de aprendizaje: $0.01$
+	\item Ratio de patrones para el conjunto de validación: $0.2$.
+	\item Máximo número de ciclos (\textit{epochs}) de entrenamiento: $1500$.
+	\item Máximo número de ciclos (\textit{epochs}) de entrenamiento sin mejorar el error de validación: $5$.
+	\item Algoritmo de optimización: ADAM.
+	\item Función de \textit{loss}: \textit{Cross Entropy}.
+\end{itemize}
+El hiperparámetro que hemos variado ha sido la arquitectura de neuronas a utilizar. Utilizamos 8 arquitecturas distintas,
+donde la arquitectura [$i$] denota una RNA con una única capa oculta con $i$ neuronas y la arquitectura [$i$, $j$] 
+denota una neurona con dos capas ocultas; con $i$ neuronas en la primera capa oculta y $j$ neuronas en la segunda capa oculta.
+
+Se muestran los resultados de la experimentación en la Tabla \ref{Tab:ANN_2}
+
+\begin{table}[!ht]
+	\caption{Resultados RNA}
+	\centering
+		 \begin{tabular}{||c c c||}
+			 \hline
+			 Arquitectura & F1-Score & Precisión  \\ [0.5ex]
+			 \hline\hline
+			 [8] & $0.92977 \pm 0.01923$ & $0.95523 \pm 0.0131$ \\
+			 \hline
+			 [16] & $0.96092 \pm 0.0163$ & $0.97591 \pm 0.0112$ \\
+			 \hline
+			 [32] & $0.96305 \pm 0.01805$ & $0.97745 \pm 0.01137$ \\
+			 \hline
+			 [8, 8] & $0.87808 \pm 0.01593$ & $0.92368 \pm 0.00628$ \\
+			 \hline
+			 [16, 4] & $0.76012 \pm 0.03119$ & $0.8518 \pm 0.0233$ \\
+			 \hline
+			 [16, 8] & $0.92264 \pm 0.02515$ & $0.95168 \pm 0.01708$ \\
+			 \hline
+			 [32, 16] & $0.9506 \pm 0.01989$ & $0.97044 \pm 0.01033$ \\
+			 \hline
+			 [32, 32] & $0.95122 \pm 0.02256$ & $0.97004 \pm 0.013$ \\
+			 \hline
+		 \end{tabular}
+	\label{Tab:ANN_2}
+	\end{table}
+
+\paragraph{SVM}
+
+Para las máquinas de soporte vectorial hemos utilizado 8 configuraciones distintas de los hiperparámetros de \textit{kernel},
+grado del \textit{kernel} (sólo se utiliza en \textit{kernel} polinomial), \textit{gamma} y \textit{C}.
+
+Se muestran los resultados de la experimentación en la Tabla \ref{Tab:SVM_2}
+
+\begin{table}[!ht]
+	\caption{Resultados SVM}
+	\centering
+		 \begin{tabular}{||c c c||}
+			 \hline
+			 (kernel, grado, gamma, C) & F1-Score & Precisión  \\ [0.5ex]
+			 \hline\hline
+			 (poly, $3$, $1$, $1$) & $0.97261 \pm 0.02358$ & $0.98158 \pm 0.01438$ \\
+			 \hline
+			 (rbf, $3$, $1$, $1$) & $0.67559 \pm 0.04297$ & $0.69947 \pm 0.05196$ \\
+			 \hline
+			 (sigmoid, $3$, $1$, $1$) & $0.28516 \pm 0.03747$ & $0.3575 \pm 0.03929$ \\
+			 \hline
+			 (poly, $3$, $10$, $0.1$) & $0.97619 \pm 0.02456$ & $0.98415 \pm 0.01345$ \\
+			 \hline
+			 (rbf, $3$, $10$, $0.1$) & $0.01607 \pm 0.00059$ & $0.13703 \pm 0.00568$ \\
+			 \hline
+			 (sigmoid, $3$, $10$, $0.1$) & $0.23652 \pm 0.03974$ & $0.33481 \pm 0.04109$ \\
+			 \hline
+			 (rbf, $3$, $0.01$, $100$) & $0.97415 \pm 0.02285$ & $0.98444 \pm 0.0122$ \\
+			 \hline
+			 (poly, $3$, $100$, $0.001$) & $0.9678 \pm 0.03578$ & $0.97987 \pm 0.01547$ \\
+			 \hline
+		 \end{tabular}
+	\label{Tab:SVM_2}
+	\end{table}
+
+\paragraph{Árboles de decisión}
+Para los árboles de decisión hemos utilizado 6 configuraciones distintas del hiperparámetro de profundidad máxima.
+
+Se muestran los resultados de la experimentación en la Tabla \ref{Tab:DecisionTree_2}
+
+\begin{table}[!ht]
+	\caption{Resultados Árbol de decisión}
+	\centering
+		 \begin{tabular}{||c c c||}
+			 \hline
+			 Altura máxima & F1-Score & Precisión  \\ [0.5ex]
+			 \hline\hline
+			 $4$ & $0.44767 \pm 0.00668$ & $0.66703 \pm 0.01287$ \\
+			 \hline
+			 $8$ & $0.86809 \pm 0.02258$ & $0.92653 \pm 0.01909$ \\
+			 \hline
+			 $16$ & $0.96505 \pm 0.02104$ & $0.9725 \pm 0.0143$ \\
+			 \hline
+			 $32$ & $0.96786 \pm 0.01849$ & $0.97302 \pm 0.01609$ \\
+			 \hline
+			 $64$ & $0.97438 \pm 0.01244$ & $0.97779 \pm 0.0102$ \\
+			 \hline
+			 $128$ & $0.97415 \pm 0.0161$ & $0.9779 \pm 0.01186$ \\
+			 \hline
+			 $256$ & $0.9672 \pm 0.02388$ & $0.97452 \pm 0.0172$ \\
+			 \hline
+		 \end{tabular}
+	\label{Tab:DecisionTree_2}
+	\end{table}
+
+\paragraph{kNN}
+Para el modelo kNN hemos utilizado 6 configuraciones distintas del hiperparámetro de k (número de vecinos más cercanos).
+
+Se muestran los resultados de la experimentación en la tabla \ref{Tab:kNN_2}
+
+\begin{table}[!ht]
+	\caption{Resultados kNN}
+	\centering
+		 \begin{tabular}{||c c c||}
+			 \hline
+			 K & F1-Score & Precisión  \\ [0.5ex]
+			 \hline\hline
+			 $2$ & $0.95086 \pm 0.01526$ & $0.97073 \pm 0.0088$ \\
+			 \hline
+			 $3$ & $0.9323 \pm 0.03125$ & $0.95942 \pm 0.0156$ \\
+			 \hline
+			 $5$ & $0.90323 \pm 0.03494$ & $0.94503 \pm 0.01712$ \\
+			 \hline
+			 $8$ & $0.86641 \pm 0.03906$ & $0.93135 \pm 0.0199$ \\
+			 \hline
+			 $13$ & $0.84065 \pm 0.02462$ & $0.90985 \pm 0.01911$ \\
+			 \hline
+			 $21$ & $0.80344 \pm 0.03804$ & $0.88737 \pm 0.02667$ \\
+			 \hline
+		 \end{tabular}
+	\label{Tab:kNN_2}
+\end{table}
+
+\subsubsection{Discusión}
+
+% TODO: poner la matriz de confusión
+% Matriz de confusion
+%     C1  C2  C3  C4  C5  C6  C7  C8  A1  A2  A3  A4  A5  A6  A7
+% C1  3   0   0   0   0   0   0   0   1   0   0   0   0   0   0
+% C2  1   6   1   0   0   0   0   0   0   0   0   0   0   0   0
+% C3  0   0   9   0   0   0   0   0   0   0   0   0   0   0   0
+% C4  0   0   1   18  0   0   0   0   0   0   0   0   0   0   0
+% C5  0   0   0   0   25  0   0   0   0   0   0   0   0   0   0
+% C6  0   0   0   0   0   10  0   0   0   0   0   0   0   0   0
+% C7  0   0   0   0   0   0   23  0   0   0   0   0   0   0   0
+% C8  0   0   0   0   0   0   0   19  0   0   0   0   0   0   1
+% A1  0   0   0   0   0   0   0   0   16  0   0   0   0   0   0
+% A2  0   0   0   0   0   0   0   0   1   15  0   0   0   0   0
+% A3  0   0   0   3   0   0   0   0   0   0   12  0   0   0   0
+% A4  0   0   0   0   0   0   0   0   0   0   0   13  0   0   0
+% A5  0   0   0   0   0   0   0   0   0   0   0   0   15  0   0
+% A6  0   0   0   0   0   0   0   0   0   0   0   0   0   15  1
+% A7  0   0   0   0   0   0   0   0   0   0   0   0   0   0   9
+% Accuracy: 0.95413
+% F1-Score: 0.93647
+% Recall: 0.93816
+% Specifity: 0.99675
+
+En general los resultados son muy buenos, ya que hay varios modelos con un alto F1-Score.
+El modelo que mejor funciona es un SVM con función de \textit{kernel} polinomial de grado 3, con
+un \textit{gamma} y \textit{C} de $10$ y $0.1$, respectivamente.
+
+Este modelo tiene un F1-Score de $0.97619 \pm 0.02456$, con una precisión de $0.98415 \pm 0.01345$ en los folds.
+De este resultado podemos concluír que nuestro sistema funciona muy bien, ya que clasificar 15 clases es un problema
+relativamente complejo.
+
+\bigskip
+Cabe destacar modelos como una RNA con una única capa oculta de $32$ neuronas; un svm con \textit{kernel} de base radial,
+con los parámetros de \textit{gamma} y \textit{C} de $0.01$ y $100$, respectivamente; un árbol de decisión con altura máxima de $64$; y
+un modelo kNN con un k de $2$. Estos modelos también presentan muy buenos resultados, aunque no los mejores.
+
+El modelo con peor rendimiento es un SVM con kernel de base radial con \textit{gamma} y \textit{C} de
+$10$ y $0.1$, respectivamente. Esta configuración del modelo tiene resultado increiblemente bajo 
+(\textit{F1-Score} de $0.01607 \pm 0.00059$), pero desconocemos a qué se puede deber.
+
+\bigskip
+En cuanto a las características, creemos que fue un acierto añadir la frecuencia a la que se encuentra el pico de intensidad
+en cada intervalo, ya que es una característica muy representativa de la señal y que sirve para diferenciar mejor las notas.
+Sin estas nuevas características, los resultados no serían tan buenos.
+
+\bigskip
+El problema que podemos observar en la matriz de confusión para el mejor sistema es que el sistema de equivoca
+en las notas más cercanas, como pueden ser A1, A2, C1 y C2, notas que tienen una frecuencia muy similar y se encuentran
+en el primer intervalo, \textit{(0.0, 380.3)}. 
+
+\bigskip
+Para poder diferenciar mejor entre estas notas, y entre futuras notas
+que puedan ser similares entre ellas, sería una buena opción que se aumentase el número de intervalos a dividir
+las frecuencias, para así poder diferenciar de mejor manera notas similares.
+
 
 \newpage
 \section{Conclusiones}
 \label{Conclusiones}
+
 \section{Trabajo futuro}
 \label{Trabajo futuro}
 

@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2022.4.17)  21 APR 2022 11:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2022.4.15)  23 APR 2022 19:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/david/works/aa/docs/memoria.tex
-(/home/david/works/aa/docs/memoria.tex
+**/home/jorge/github/aa/docs/memoria.tex
+(/home/jorge/github/aa/docs/memoria.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-02-24> (/usr/share/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
@@ -632,7 +632,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <14.4> on input line 36.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 36.
-<assets/udc.jpg, id=64, 1284.8pt x 722.7pt>
+<assets/udc.jpg, id=72, 1284.8pt x 722.7pt>
 File: assets/udc.jpg Graphic file (type jpg)
 <use assets/udc.jpg>
 Package pdftex.def Info: assets/udc.jpg  used on input line 40.
@@ -659,12 +659,12 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \openout5 = `memoria.toc'.
 
  [2] [3] [4] [5] [6]
-<assets/C4.pdf, id=143, 702.625pt x 501.875pt>
+<assets/C4.pdf, id=153, 702.625pt x 501.875pt>
 File: assets/C4.pdf Graphic file (type pdf)
 <use assets/C4.pdf>
 Package pdftex.def Info: assets/C4.pdf  used on input line 218.
 (pdftex.def)             Requested size: 221.78923pt x 158.42075pt.
-<assets/A5.pdf, id=144, 702.625pt x 501.875pt>
+<assets/A5.pdf, id=154, 702.625pt x 501.875pt>
 File: assets/A5.pdf Graphic file (type pdf)
 <use assets/A5.pdf>
 Package pdftex.def Info: assets/A5.pdf  used on input line 224.
@@ -673,31 +673,31 @@ Package pdftex.def Info: assets/A5.pdf  used on input line 224.
 
 pdfTeX warning: pdflatex (file ./assets/A5.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 >] [8] [9] [10] [11] [12]
-<assets/best_rna_train.pdf, id=221, 702.625pt x 501.875pt>
-File: assets/best_rna_train.pdf Graphic file (type pdf)
-<use assets/best_rna_train.pdf>
-Package pdftex.def Info: assets/best_rna_train.pdf  used on input line 561.
+<assets/best_rna_train_1.pdf, id=231, 702.625pt x 501.875pt>
+File: assets/best_rna_train_1.pdf Graphic file (type pdf)
+<use assets/best_rna_train_1.pdf>
+Package pdftex.def Info: assets/best_rna_train_1.pdf  used on input line 561.
 (pdftex.def)             Requested size: 443.57848pt x 316.84915pt.
- [13 <./assets/best_rna_train.pdf>] [14]
-<assets/C3.pdf, id=247, 526.96875pt x 376.40625pt>
+ [13 <./assets/best_rna_train_1.pdf>] [14]
+<assets/C3.pdf, id=257, 526.96875pt x 376.40625pt>
 File: assets/C3.pdf Graphic file (type pdf)
 <use assets/C3.pdf>
-Package pdftex.def Info: assets/C3.pdf  used on input line 610.
+Package pdftex.def Info: assets/C3.pdf  used on input line 612.
 (pdftex.def)             Requested size: 221.78923pt x 158.42265pt.
-<assets/C6.pdf, id=248, 526.96875pt x 376.40625pt>
+<assets/C6.pdf, id=258, 526.96875pt x 376.40625pt>
 File: assets/C6.pdf Graphic file (type pdf)
 <use assets/C6.pdf>
-Package pdftex.def Info: assets/C6.pdf  used on input line 616.
+Package pdftex.def Info: assets/C6.pdf  used on input line 618.
 (pdftex.def)             Requested size: 221.78923pt x 158.42265pt.
-<assets/A3.pdf, id=249, 526.96875pt x 376.40625pt>
+<assets/A3.pdf, id=259, 526.96875pt x 376.40625pt>
 File: assets/A3.pdf Graphic file (type pdf)
 <use assets/A3.pdf>
-Package pdftex.def Info: assets/A3.pdf  used on input line 626.
+Package pdftex.def Info: assets/A3.pdf  used on input line 628.
 (pdftex.def)             Requested size: 221.78923pt x 158.42265pt.
-<assets/A6.pdf, id=250, 526.96875pt x 376.40625pt>
+<assets/A6.pdf, id=260, 526.96875pt x 376.40625pt>
 File: assets/A6.pdf Graphic file (type pdf)
 <use assets/A6.pdf>
-Package pdftex.def Info: assets/A6.pdf  used on input line 632.
+Package pdftex.def Info: assets/A6.pdf  used on input line 634.
 (pdftex.def)             Requested size: 221.78923pt x 158.42265pt.
  [15 <./assets/C3.pdf> <./assets/C6.pdf
 
@@ -708,30 +708,30 @@ pdfTeX warning: pdflatex (file ./assets/A3.pdf): PDF inclusion: multiple pdfs wi
 > <./assets/A6.pdf
 
 pdfTeX warning: pdflatex (file ./assets/A6.pdf): PDF inclusion: multiple pdfs with page group included in a single page
->] [16] (./memoria.aux
+>] [16] [17] [18] [19] [20] [21] (./memoria.aux
 LaTeX Info: Redefining \sptext on input line 26.
 LaTeX Info: Redefining \. on input line 26.
 LaTeX Info: Redefining \% on input line 26.
 )
 Package rerunfilecheck Info: File `memoria.out' has not changed.
-(rerunfilecheck)             Checksum: 0419E07C9E86A68767EBB9FDD8BFBB9D;1887.
+(rerunfilecheck)             Checksum: BA44CFBDF3103A4671FE1C66B54CE56A;2121.
 Package logreq Info: Writing requests to 'memoria.run.xml'.
 \openout1 = `memoria.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 20394 strings out of 478276
- 361329 string characters out of 5853013
- 1161364 words of memory out of 5000000
- 38332 multiletter control sequences out of 15000+600000
+ 20419 strings out of 478276
+ 361728 string characters out of 5853013
+ 1165696 words of memory out of 5000000
+ 38340 multiletter control sequences out of 15000+600000
  476399 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 67i,12n,77p,766b,2804s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 67i,12n,77p,767b,2804s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb>
-Output written on memoria.pdf (16 pages, 383836 bytes).
+Output written on memoria.pdf (21 pages, 396923 bytes).
 PDF statistics:
- 422 PDF objects out of 1000 (max. 8388607)
- 326 compressed objects within 4 object streams
- 60 named destinations out of 1000 (max. 500000)
- 161 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 473 PDF objects out of 1000 (max. 8388607)
+ 372 compressed objects within 4 object streams
+ 77 named destinations out of 1000 (max. 500000)
+ 177 words of extra memory for PDF output out of 10000 (max. 10000000)
 

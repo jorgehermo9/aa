@@ -17,10 +17,11 @@ inputs = convert(Array{Float32,2},inputs);
 dataset_size = size(targets,1);
 
 # Para calcular los parámetros de normalización
-# norm_params = calculateZeroMeanNormalizationParameters(inputs)
-# for i in 1:length(headers)
-# 	println("\\item $(headers[i]): \$$(norm_params[1][i]) \\pm $(norm_params[2][i])\$")
-# end
+norm_params = calculateZeroMeanNormalizationParameters(inputs)
+for i in 1:length(headers)
+	println("$(headers[i]) & \$$(norm_params[1][i])\$ & \$$(norm_params[2][i])\$ \\\\")
+	println("\\hline")
+end
 
 inputs = normalizeZeroMean(inputs);
 
@@ -44,7 +45,7 @@ f1_models = Vector{Vector{Float64}}(undef,length(models));
 f1_std_models = Vector{Vector{Float64}}(undef,length(models));
 
 #RNA
-topologies = [[8],[16],[32],[8,8],[16,4],[16,8],[32,4],[32,8]]
+topologies = [[8],[16],[32],[8,8],[16,4],[16,8],[32,16],[32,32]]
 rna_parameters = Vector{Dict{Any,Any}}(undef, length(topologies));
 
 for i in 1:length(topologies)
@@ -52,7 +53,7 @@ for i in 1:length(topologies)
 	topology_parameters["topology"] = topologies[i];
 	topology_parameters["learning_rate"] = 0.01;
 	topology_parameters["validation_ratio"] = 0.2;
-	topology_parameters["rna_executions"] = 1;
+	topology_parameters["rna_executions"] = 20;
 	topology_parameters["max_epochs"] = 1500;
 	topology_parameters["max_epochs_val"] = 5;
 	rna_parameters[i] = topology_parameters;
@@ -147,83 +148,84 @@ for i in 1:length(models)
 end
 
 # Resultados 
-for i in 1:length(models)
-
-	println("--------------------------------")
-	println("Model: $(models[i])")
-	configurations = models_parameters[i]
-	for j in 1:length(configurations)
-		println("")
-		configuration_parameters = configurations[j]
-		for key in keys(configuration_parameters)
-			println("$(key): $(configuration_parameters[key])")
-		end
-		println("Accuracy: $(round(acc_models[i][j],digits=5)) ± $(round(acc_std_models[i][j],digits=5))")
-		println("F1-Score: $(round(f1_models[i][j],digits=5)) ± $(round(f1_std_models[i][j],digits=5))")
-		println("")
-	end
-	println("--------------------------------")
-
-end
-
-# Resultados para latex
 # for i in 1:length(models)
 
-# 	if models[i] == :ANN
-# 		config_name ="Arquitectura"
-# 		caption="RNA"
-# 	elseif models[i] == :SVM
-# 		config_name ="(kernel, grado, gamma, C)"
-# 		caption="SVM"
-# 	elseif models[i] == :DecisionTree
-# 		config_name="Altura máxima"
-# 		caption="Árbol de decisión"
-# 	elseif models[i] == :kNN
-# 		config_name="K"
-# 		caption="kNN"
-# 	else
-# 		config_name=""
-# 	end
-
-# 	println("----------------------------")
-# 	println("$(models[i])\n")
-# 	println("\\begin{table}[ht]")
-# 	println("\\caption{Resultados $(caption)}")
-# 	println("\\centering")
-# 	println("\t \\begin{tabular}{||c c c||} ")
-# 	println("\t\t \\hline ")
-# 	println("\t\t $(config_name) & F1-Score & Precisión  \\\\ [0.5ex]  ")
-# 	println("\t\t \\hline\\hline")
+# 	println("--------------------------------")
+# 	println("Model: $(models[i])")
 # 	configurations = models_parameters[i]
 # 	for j in 1:length(configurations)
+# 		println("")
 # 		configuration_parameters = configurations[j]
-# 		if models[i] == :ANN
-# 			config = configuration_parameters["topology"]
-# 		elseif models[i] == :SVM
-# 			kernel = configuration_parameters["kernel"]
-# 			kernelDegree = configuration_parameters["kernelDegree"]
-# 			kernelGamma = configuration_parameters["kernelGamma"]
-# 			C = configuration_parameters["C"]
-# 			config="($(kernel), \$$(kernelDegree)\$, \$$(kernelGamma)\$, \$$(C)\$)"
-# 		elseif models[i] == :DecisionTree
-# 			max_depth = configuration_parameters["max_depth"]
-# 			config="\$$(max_depth)\$"
-# 		elseif models[i] == :kNN
-# 			k = configuration_parameters["k"]
-# 			config="\$$(k)\$"
-# 		else
-# 			config=""
+# 		for key in keys(configuration_parameters)
+# 			println("$(key): $(configuration_parameters[key])")
 # 		end
-# 		println("\t\t $(config) & \$$(round(f1_models[i][j],digits=5)) \\pm $(round(f1_std_models[i][j],digits=5))\$ & \$$(round(acc_models[i][j],digits=5)) \\pm $(round(acc_std_models[i][j],digits=5))\$ \\\\")
-# 		println("\t\t \\hline ")
+# 		println("Accuracy: $(round(acc_models[i][j],digits=5)) ± $(round(acc_std_models[i][j],digits=5))")
+# 		println("F1-Score: $(round(f1_models[i][j],digits=5)) ± $(round(f1_std_models[i][j],digits=5))")
+# 		println("")
 # 	end
-# 	println("\t \\end{tabular}")
-# 	println("\\label{Tab:$(models[i])} ")
-# 	println("\\end{table} ")
+# 	println("--------------------------------")
 
-# 	println("\n----------------------------")
 # end
 
+# Resultados para latex
+for i in 1:length(models)
+
+	if models[i] == :ANN
+		config_name ="Arquitectura"
+		caption="RNA"
+	elseif models[i] == :SVM
+		config_name ="(kernel, grado, gamma, C)"
+		caption="SVM"
+	elseif models[i] == :DecisionTree
+		config_name="Altura máxima"
+		caption="Árbol de decisión"
+	elseif models[i] == :kNN
+		config_name="K"
+		caption="kNN"
+	else
+		config_name=""
+	end
+
+	println("----------------------------")
+	println("$(models[i])\n")
+	println("\\begin{table}[!ht]")
+	println("\\caption{Resultados $(caption)}")
+	println("\\centering")
+	println("\t \\begin{tabular}{||c c c||} ")
+	println("\t\t \\hline ")
+	println("\t\t $(config_name) & F1-Score & Precisión  \\\\ [0.5ex]  ")
+	println("\t\t \\hline\\hline")
+	configurations = models_parameters[i]
+	for j in 1:length(configurations)
+		configuration_parameters = configurations[j]
+		if models[i] == :ANN
+			config = configuration_parameters["topology"]
+		elseif models[i] == :SVM
+			kernel = configuration_parameters["kernel"]
+			kernelDegree = configuration_parameters["kernelDegree"]
+			kernelGamma = configuration_parameters["kernelGamma"]
+			C = configuration_parameters["C"]
+			config="($(kernel), \$$(kernelDegree)\$, \$$(kernelGamma)\$, \$$(C)\$)"
+		elseif models[i] == :DecisionTree
+			max_depth = configuration_parameters["max_depth"]
+			config="\$$(max_depth)\$"
+		elseif models[i] == :kNN
+			k = configuration_parameters["k"]
+			config="\$$(k)\$"
+		else
+			config=""
+		end
+		println("\t\t $(config) & \$$(round(f1_models[i][j],digits=5)) \\pm $(round(f1_std_models[i][j],digits=5))\$ & \$$(round(acc_models[i][j],digits=5)) \\pm $(round(acc_std_models[i][j],digits=5))\$ \\\\")
+		println("\t\t \\hline ")
+	end
+	println("\t \\end{tabular}")
+	println("\\label{Tab:$(models[i])} ")
+	println("\\end{table} ")
+
+	println("\n----------------------------")
+end
+
+best_config=(1,1);
 best_mean_f1 = f1_models[1][1];
 best_std_f1 = f1_std_models[1][1];
 for i in 1:length(models)

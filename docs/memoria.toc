@@ -15,6 +15,12 @@
 \contentsline {paragraph}{\numberline {5.1.2.4}kNN}{12}{paragraph.5.1.2.4}%
 \contentsline {subsubsection}{\numberline {5.1.3}Discusión}{12}{subsubsection.5.1.3}%
 \contentsline {subsection}{\numberline {5.2}Segunda aproximación}{15}{subsection.5.2}%
-\contentsline {section}{\numberline {6}Conclusiones}{16}{section.6}%
-\contentsline {section}{\numberline {7}Trabajo futuro}{16}{section.7}%
-\contentsline {section}{\numberline {8}Bibliografía}{16}{section.8}%
+\contentsline {subsubsection}{\numberline {5.2.1}Resultados}{17}{subsubsection.5.2.1}%
+\contentsline {paragraph}{\numberline {5.2.1.1}RNA}{17}{paragraph.5.2.1.1}%
+\contentsline {paragraph}{\numberline {5.2.1.2}SVM}{18}{paragraph.5.2.1.2}%
+\contentsline {paragraph}{\numberline {5.2.1.3}Árboles de decisión}{19}{paragraph.5.2.1.3}%
+\contentsline {paragraph}{\numberline {5.2.1.4}kNN}{19}{paragraph.5.2.1.4}%
+\contentsline {subsubsection}{\numberline {5.2.2}Discusión}{19}{subsubsection.5.2.2}%
+\contentsline {section}{\numberline {6}Conclusiones}{21}{section.6}%
+\contentsline {section}{\numberline {7}Trabajo futuro}{21}{section.7}%
+\contentsline {section}{\numberline {8}Bibliografía}{21}{section.8}%
