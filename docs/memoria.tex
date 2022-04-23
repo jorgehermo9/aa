@@ -601,9 +601,9 @@ Entonces, utilizar un \textit{kernel} sigmoidal no parece ofrecer buenos resulta
 \subsection{Segunda aproximación}
 \label{Segunda aproximación}
 Como hemos obtenido resultados muy buenos en la aproximación anterior, se va a aumentar la complejidad del problema,
-es decir, añadiremos más notas a ser clasificadas.
+es decir, añadiremos más notas a ser clasificadas. Serán en total 15 clases.
 
-Las notas que vamos a clasificar son: \textit{C1}, \textit{C2}, \textit{C3}, \textit{C4}, \textit{C5}, \textit{C6}, \textit{C7}, \textit{C8}, \textit{A1}, \textit{A2}, \textit{A3}, \textit{A4}, \textit{A5}, \textit{A6}, \textit{A7}.
+Las notas que vamos a clasificar son: \textit{C1}, \textit{C2}, \textit{C3}, \textit{C4}, \textit{C5}, \textit{C6}, \textit{C7}, \textit{C8}, \textit{A1}, \textit{A2}, \textit{A3}, \textit{A4}, \textit{A5}, \textit{A6} y \textit{A7}.
 
 \begin{figure}[!ht]
 	\centering
@@ -660,7 +660,7 @@ y \ref{Tab:Features_2_2}.
 \bigskip
 
 \begin{table}[!ht]
-	\caption{Parámetros de normalización (1)}
+	\caption{Parámetros de normalización (I)}
 	\centering
 		\begin{tabular}{||c c c||}
 			\hline
@@ -735,7 +735,7 @@ y \ref{Tab:Features_2_2}.
 \end{table}
 
 \begin{table}[!ht]
-	\caption{Parámetros de normalización (2)}
+	\caption{Parámetros de normalización (II)}
 	\centering
 		\begin{tabular}{||c c c||}
 			\hline
@@ -784,7 +784,7 @@ del \textbf{F1-Score} en los \textit{folds}. Si hay empate en dicha media, se el
 desviación típica de la métrica.
 
 
-
+\newpage
 \subsubsection{Resultados}
 Para permitir la reproducibilidad de los experimentos, se utilizó \textit{100} como semilla de generación de números
 aleatorios.
@@ -925,6 +925,7 @@ Se muestran los resultados de la experimentación en la tabla \ref{Tab:kNN_2}
 	\label{Tab:kNN_2}
 \end{table}
 
+\newpage
 \subsubsection{Discusión}
 
 % TODO: poner la matriz de confusión
@@ -981,6 +982,543 @@ en el primer intervalo, \textit{(0.0, 380.3)}.
 Para poder diferenciar mejor entre estas notas, y entre futuras notas
 que puedan ser similares entre ellas, sería una buena opción que se aumentase el número de intervalos a dividir
 las frecuencias, para así poder diferenciar de mejor manera notas similares.
+
+
+
+\newpage
+\subsection{Tercera aproximación}
+\label{Tercera aproximación}
+Como hemos obtenido resultados muy buenos en la aproximación anterior, se va a aumentar la complejidad del problema,
+es decir, añadiremos más notas a ser clasificadas. Serán un total de 50 clases.
+
+Las notas que vamos a clasificar son: 
+\textit{C1}, \textit{C2}, \textit{C3}, \textit{C4}, \textit{C5}, \textit{C6}, \textit{C7}, \textit{C8}, 
+\textit{A1}, \textit{A2}, \textit{A3}, \textit{A4}, \textit{A5}, \textit{A6}, \textit{A7},
+\textit{B1}, \textit{B2}, \textit{B3}, \textit{B4}, \textit{B5}, \textit{B6}, \textit{B7},
+\textit{D1}, \textit{D2}, \textit{D3}, \textit{D4}, \textit{D5}, \textit{D6}, \textit{D7},
+\textit{E1}, \textit{E2}, \textit{E3}, \textit{E4}, \textit{E5}, \textit{E6}, \textit{E7},
+\textit{F1}, \textit{F2}, \textit{F3}, \textit{F4}, \textit{F5}, \textit{F6}, \textit{F7},
+\textit{G1}, \textit{G2}, \textit{G3}, \textit{G4}, \textit{G5}, \textit{G6} y \textit{G7}.
+
+\begin{figure}[!ht]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.0\linewidth]{assets/C3.pdf}
+		\caption{C3}
+		% \label{fig:c3}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.0\linewidth]{assets/C6.pdf}
+		\caption{A6}
+		% \label{fig:c6}
+	\end{subfigure}
+\end{figure}
+
+\begin{figure}[!ht]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.0\linewidth]{assets/A3.pdf}
+		\caption{A3}
+		% \label{fig:a3}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.0\linewidth]{assets/A6.pdf}
+		\caption{A6}
+		% \label{fig:a6}
+	\end{subfigure}
+\end{figure}
+
+
+Como en esta aproximación aumentamos mucho el número de clases a clasificar (50 clases),
+nos parece buena opción aumentar las características a utilizar, pero de una forma
+distinta a la anterior aproximación. Lo que haremos será aumentar el número de intervalos
+a dividir el dominio de la frecuencia; de 10 intervalos que teníamos anteriormente, a 30 intervalos.
+De esta manera, esperamos que se puede clasificar mejor notas que tengan frecuencias muy cercanas,
+además de repartir mejor el número de notas que coinciden en cada intervalos.
+
+En concreto, los intervalos de frecuencias que utilizaremos serán los siguientes:
+
+\textit{(0.0, 63.845)},\textit{(63.845, 131.486)}, 
+\textit{(131.486, 203.149)},\textit{(203.149, 279.074)}, 
+\textit{(279.074, 359.513)},\textit{(359.513, 444.735)}, 
+\textit{(444.735, 535.025)},\textit{(535.025, 630.684)}, 
+\textit{(630.684, 732.032)}, \textit{(732.032, 839.405)},
+\textit{(839.405, 953.163)}, \textit{(953.163, 1073.686)},
+\textit{(1073.686, 1201.376)}, \textit{(1201.376, 1336.658)}, 
+\textit{(1336.658, 1479.984)}, \textit{(1479.984, 1631.833)},
+\textit{(1631.833, 1792.712)}, \textit{(1792.712, 1963.157)},
+\textit{(1963.157, 2143.737)}, \textit{(2143.737, 2335.055)}, 
+\textit{(2335.055, 2537.749)}, \textit{(2537.749, 2752.496)}, 
+\textit{(2752.496, 2980.013)}, \textit{(2980.013, 3221.059)}, 
+\textit{(3221.059, 3476.437)}, \textit{(3476.437, 3747.002)},
+\textit{(3747.002, 4033.655)}, \textit{(4033.655, 4337.353)},
+\textit{(4337.353, 4659.11)} y \textit{(4659.11, 5000.0)}
+
+
+
+Para el preprocesado de los datos, utilizaremos, como se mencionó en aproximaciones anteriores,
+una normalización de media cero.
+Así, obtuvimos para cada característica, la media y la desviación típica. Se muestran dichos datos en las tablas \ref{Tab:Features_3_1},
+\ref{Tab:Features_3_2} \ref{Tab:Features_3_3} y \ref{Tab:Features_3_4},
+
+\bigskip
+
+\begin{table}
+	\caption{Parámetros de normalización (I)}
+	\centering
+		\begin{tabular}{||c c c||}
+			\hline
+			Característica & Media & Desviación Típica  \\ [0.5ex]
+			\hline\hline
+			E & $0.0054126005$ & $0.009019938$ \\
+			\hline
+			zero-crossing & $3397.5913$ & $4540.8813$ \\
+			\hline
+			m\textsubscript{1} & $2.5406487$ & $5.2477403$ \\
+			\hline
+			m\textsubscript{2} & $20.31295$ & $34.20369$ \\
+			\hline
+			m\textsubscript{3} & $18.736494$ & $33.777767$ \\
+			\hline
+			m\textsubscript{4} & $19.506176$ & $27.648252$ \\
+			\hline
+			m\textsubscript{5} & $17.283388$ & $26.778984$ \\
+			\hline
+			m\textsubscript{6} & $14.071337$ & $21.961533$ \\
+			\hline
+			m\textsubscript{7} & $15.653144$ & $21.659325$ \\
+			\hline
+			m\textsubscript{8} & $7.2894015$ & $11.942419$ \\
+			\hline
+			m\textsubscript{9} & $10.673911$ & $22.342806$ \\
+			\hline
+			m\textsubscript{10} & $8.886631$ & $17.860262$ \\
+			\hline
+			m\textsubscript{11} & $8.768464$ & $14.431124$ \\
+			\hline
+			m\textsubscript{12} & $9.399654$ & $13.1116905$ \\
+			\hline
+			m\textsubscript{13} & $7.141891$ & $16.054686$ \\
+			\hline
+			m\textsubscript{14} & $5.671832$ & $9.146762$ \\
+			\hline
+			m\textsubscript{15} & $4.4691596$ & $7.688136$ \\
+			\hline
+			m\textsubscript{16} & $4.622483$ & $7.50842$ \\
+			\hline
+			m\textsubscript{17} & $2.8246067$ & $5.453456$ \\
+			\hline
+			m\textsubscript{18} & $2.1192815$ & $3.5254076$ \\
+			\hline
+			m\textsubscript{19} & $3.2075806$ & $5.558346$ \\
+			\hline
+			m\textsubscript{20} & $1.3101652$ & $2.2760432$ \\
+			\hline
+			m\textsubscript{21} & $1.5997506$ & $4.51931$ \\
+			\hline
+			m\textsubscript{22} & $1.4330753$ & $3.7737772$ \\
+			\hline
+			m\textsubscript{23} & $0.9662523$ & $2.9858894$ \\
+			\hline
+			m\textsubscript{24} & $0.79353756$ & $1.8264828$ \\
+			\hline
+			m\textsubscript{25} & $0.48343834$ & $0.8716932$ \\
+			\hline
+			m\textsubscript{26} & $0.6009706$ & $1.4477166$ \\
+			\hline
+			m\textsubscript{27} & $0.3706837$ & $0.93128383$ \\
+			\hline
+			m\textsubscript{28} & $0.41856125$ & $1.3392309$ \\
+			\hline
+			m\textsubscript{29} & $0.38214317$ & $1.6580197$ \\
+			\hline
+			m\textsubscript{30} & $0.13477807$ & $0.25888646$ \\
+			\hline
+		\end{tabular}
+	\label{Tab:Features_3_1}
+\end{table}
+
+\begin{table}
+	\caption{Parámetros de normalización (II)}
+	\centering
+		\begin{tabular}{||c c c||}
+			\hline
+			Característica & Media & Desviación Típica  \\ [0.5ex]
+			\hline\hline
+			std\textsubscript{1} & $3.777772$ & $9.5573845$ \\
+			\hline
+			std\textsubscript{2} & $43.746407$ & $101.179634$ \\
+			\hline
+			std\textsubscript{3} & $44.765743$ & $106.52451$ \\
+			\hline
+			std\textsubscript{4} & $44.928486$ & $86.98192$ \\
+			\hline
+			std\textsubscript{5} & $36.79204$ & $74.466835$ \\
+			\hline
+			std\textsubscript{6} & $34.05622$ & $69.12505$ \\
+			\hline
+			std\textsubscript{7} & $35.642204$ & $58.005997$ \\
+			\hline
+			std\textsubscript{8} & $14.239829$ & $31.195595$ \\
+			\hline
+			std\textsubscript{9} & $20.148722$ & $46.739002$ \\
+			\hline
+			std\textsubscript{10} & $18.305641$ & $41.97697$ \\
+			\hline
+			std\textsubscript{11} & $15.096799$ & $33.64003$ \\
+			\hline
+			std\textsubscript{12} & $17.944155$ & $31.481377$ \\
+			\hline
+			std\textsubscript{13} & $14.973824$ & $42.54836$ \\
+			\hline
+			std\textsubscript{14} & $10.101966$ & $21.576153$ \\
+			\hline
+			std\textsubscript{15} & $7.4685116$ & $17.61445$ \\
+			\hline
+			std\textsubscript{16} & $7.9542217$ & $17.202675$ \\
+			\hline
+			std\textsubscript{17} & $5.18349$ & $11.849964$ \\
+			\hline
+			std\textsubscript{18} & $2.358577$ & $5.2823844$ \\
+			\hline
+			std\textsubscript{19} & $6.350091$ & $12.173027$ \\
+			\hline
+			std\textsubscript{20} & $1.757622$ & $4.281193$ \\
+			\hline
+			std\textsubscript{21} & $2.7778556$ & $8.633124$ \\
+			\hline
+			std\textsubscript{22} & $2.4016538$ & $6.636576$ \\
+			\hline
+			std\textsubscript{23} & $1.6487495$ & $5.640244$ \\
+			\hline
+			std\textsubscript{24} & $1.3393545$ & $3.0001454$ \\
+			\hline
+			std\textsubscript{25} & $0.606615$ & $1.4506007$ \\
+			\hline
+			std\textsubscript{26} & $0.9203455$ & $2.2596686$ \\
+			\hline
+			std\textsubscript{27} & $0.4674074$ & $1.0911392$ \\
+			\hline
+			std\textsubscript{28} & $0.64302534$ & $2.1712365$ \\
+			\hline
+			std\textsubscript{29} & $0.45122066$ & $1.628174$ \\
+			\hline
+			std\textsubscript{30} & $0.19327588$ & $0.4538704$ \\
+			\hline
+		\end{tabular}
+	\label{Tab:Features_3_2}
+\end{table}
+
+\begin{table}
+	\caption{Parámetros de normalización (III)}
+	\centering
+		\begin{tabular}{||c c c||}
+			\hline
+			Característica & Media & Desviación Típica  \\ [0.5ex]
+			\hline\hline
+			max\textsubscript{1} & $33.78178$ & $108.59057$ \\
+			\hline
+			max\textsubscript{2} & $448.6926$ & $1190.1057$ \\
+			\hline
+			max\textsubscript{3} & $473.44827$ & $1207.2843$ \\
+			\hline
+			max\textsubscript{4} & $464.8955$ & $994.3883$ \\
+			\hline
+			max\textsubscript{5} & $362.47415$ & $770.89215$ \\
+			\hline
+			max\textsubscript{6} & $343.7377$ & $698.5618$ \\
+			\hline
+			max\textsubscript{7} & $339.793$ & $571.1343$ \\
+			\hline
+			max\textsubscript{8} & $146.53598$ & $331.86856$ \\
+			\hline
+			max\textsubscript{9} & $187.07274$ & $410.4047$ \\
+			\hline
+			max\textsubscript{10} & $172.76352$ & $362.9538$ \\
+			\hline
+			max\textsubscript{11} & $142.42677$ & $321.43628$ \\
+			\hline
+			max\textsubscript{12} & $170.99661$ & $295.21555$ \\
+			\hline
+			max\textsubscript{13} & $140.03787$ & $364.36176$ \\
+			\hline
+			max\textsubscript{14} & $98.230865$ & $208.93227$ \\
+			\hline
+			max\textsubscript{15} & $68.81298$ & $154.13226$ \\
+			\hline
+			max\textsubscript{16} & $74.12923$ & $160.24773$ \\
+			\hline
+			max\textsubscript{17} & $51.78036$ & $117.74015$ \\
+			\hline
+			max\textsubscript{18} & $20.73961$ & $55.032047$ \\
+			\hline
+			max\textsubscript{19} & $55.946613$ & $99.87239$ \\
+			\hline
+			max\textsubscript{20} & $16.036867$ & $44.92402$ \\
+			\hline
+			max\textsubscript{21} & $23.404562$ & $60.15183$ \\
+			\hline
+			max\textsubscript{22} & $19.944548$ & $46.585274$ \\
+			\hline
+			max\textsubscript{23} & $14.242097$ & $44.026596$ \\
+			\hline
+			max\textsubscript{24} & $11.504292$ & $23.90699$ \\
+			\hline
+			max\textsubscript{25} & $5.2844114$ & $13.773306$ \\
+			\hline
+			max\textsubscript{26} & $7.49625$ & $17.74915$ \\
+			\hline
+			max\textsubscript{27} & $3.6148624$ & $8.03344$ \\
+			\hline
+			max\textsubscript{28} & $4.8835807$ & $14.053778$ \\
+			\hline
+			max\textsubscript{29} & $3.2500324$ & $9.766679$ \\
+			\hline
+			max\textsubscript{30} & $1.6198401$ & $3.8292391$ \\
+			\hline
+		\end{tabular}
+	\label{Tab:Features_3_3}
+\end{table}
+
+\begin{table}
+	\caption{Parámetros de normalización (IV)}
+	\centering
+		\begin{tabular}{||c c c||}
+			\hline
+			Característica & Media & Desviación Típica  \\ [0.5ex]
+			\hline\hline
+			max-freq\textsubscript{1} & $35.377235$ & $14.779791$ \\
+			\hline
+			max-freq\textsubscript{2} & $109.41023$ & $14.310052$ \\
+			\hline
+			max-freq\textsubscript{3} & $157.08893$ & $22.204115$ \\
+			\hline
+			max-freq\textsubscript{4} & $237.34592$ & $25.370153$ \\
+			\hline
+			max-freq\textsubscript{5} & $310.14645$ & $24.312443$ \\
+			\hline
+			max-freq\textsubscript{6} & $403.7519$ & $27.410894$ \\
+			\hline
+			max-freq\textsubscript{7} & $489.3408$ & $23.016937$ \\
+			\hline
+			max-freq\textsubscript{8} & $584.6093$ & $31.939516$ \\
+			\hline
+			max-freq\textsubscript{9} & $672.22675$ & $27.801172$ \\
+			\hline
+			max-freq\textsubscript{10} & $781.4551$ & $30.98548$ \\
+			\hline
+			max-freq\textsubscript{11} & $904.9106$ & $33.565907$ \\
+			\hline
+			max-freq\textsubscript{12} & $1004.27$ & $35.98437$ \\
+			\hline
+			max-freq\textsubscript{13} & $1136.5785$ & $49.034184$ \\
+			\hline
+			max-freq\textsubscript{14} & $1269.4824$ & $45.24625$ \\
+			\hline
+			max-freq\textsubscript{15} & $1409.3927$ & $50.92556$ \\
+			\hline
+			max-freq\textsubscript{16} & $1535.1046$ & $41.005337$ \\
+			\hline
+			max-freq\textsubscript{17} & $1704.3861$ & $49.30979$ \\
+			\hline
+			max-freq\textsubscript{18} & $1873.1862$ & $58.287815$ \\
+			\hline
+			max-freq\textsubscript{19} & $2052.2415$ & $60.40939$ \\
+			\hline
+			max-freq\textsubscript{20} & $2217.6611$ & $66.80756$ \\
+			\hline
+			max-freq\textsubscript{21} & $2417.3076$ & $57.010002$ \\
+			\hline
+			max-freq\textsubscript{22} & $2638.4033$ & $58.779163$ \\
+			\hline
+			max-freq\textsubscript{23} & $2857.4375$ & $74.33377$ \\
+			\hline
+			max-freq\textsubscript{24} & $3086.9392$ & $80.97323$ \\
+			\hline
+			max-freq\textsubscript{25} & $3342.3274$ & $80.32275$ \\
+			\hline
+			max-freq\textsubscript{26} & $3589.7864$ & $78.69773$ \\
+			\hline
+			max-freq\textsubscript{27} & $3879.9844$ & $98.408936$ \\
+			\hline
+			max-freq\textsubscript{28} & $4168.601$ & $103.71468$ \\
+			\hline
+			max-freq\textsubscript{29} & $4459.1206$ & $91.55003$ \\
+			\hline
+			max-freq\textsubscript{30} & $4837.6816$ & $100.40303$ \\
+			\hline
+		\end{tabular}
+	\label{Tab:Features_3_4}
+\end{table}
+
+
+
+Donde:
+\begin{itemize}
+	\item \textit{E} indica la \textbf{energía de la señal}.
+	\item \textit{m\textsubscript{i}} indica la \textbf{media de la intensidad} en el intervalo \textit{i} en frecuencia.
+	\item \textit{std\textsubscript{i}} indica la \textbf{desviación típica de la intensidad} en el intervalo \textit{i} en frecuencia.
+	\item \textit{max\textsubscript{i}} indica el \textbf{máximo de la intensidad} en el intervalo \textit{i} en frecuencia.
+	\item \textit{max-freq\textsubscript{i}} indica la \textbf{frecuencia donde se alcanza el máximo de intensidad} en el intervalo \textit{i} en frecuencia.
+\end{itemize}	
+
+
+\bigskip
+Para estos experimentos se ha repetido 20 veces el entrenamiento de la RNA en cada \textit{fold}, devolviendo el resultado promedio de esas 20 ejecuciones.
+
+\bigskip
+Para poder evaluar el modelo con mejor rendimiento, como ya se ha dicho anteriormente, utilizaremos como medida el promedio
+del \textbf{F1-Score} en los \textit{folds}. Si hay empate en dicha media, se elegirá el modelo con menor
+desviación típica de la métrica.
+
+
+\newpage
+\subsubsection{Resultados}
+Para permitir la reproducibilidad de los experimentos, se utilizó \textit{100} como semilla de generación de números
+aleatorios.
+
+\paragraph{RNA}
+
+Para el entrenamiento de las RNA, se han utilizado los siguientes parámetros en común:
+\begin{itemize}
+	\item Ratio de aprendizaje: $0.01$
+	\item Ratio de patrones para el conjunto de validación: $0.2$.
+	\item Máximo número de ciclos (\textit{epochs}) de entrenamiento: $1500$.
+	\item Máximo número de ciclos (\textit{epochs}) de entrenamiento sin mejorar el error de validación: $5$.
+	\item Algoritmo de optimización: ADAM.
+	\item Función de \textit{loss}: \textit{Cross Entropy}.
+\end{itemize}
+El hiperparámetro que hemos variado ha sido la arquitectura de neuronas a utilizar. Utilizamos 8 arquitecturas distintas,
+donde la arquitectura [$i$] denota una RNA con una única capa oculta con $i$ neuronas y la arquitectura [$i$, $j$] 
+denota una neurona con dos capas ocultas; con $i$ neuronas en la primera capa oculta y $j$ neuronas en la segunda capa oculta.
+
+Se muestran los resultados de la experimentación en la Tabla \ref{Tab:ANN_3}
+
+\begin{table}[!ht]
+	\caption{Resultados RNA}
+	\centering
+		 \begin{tabular}{||c c c||}
+			 \hline
+			 Arquitectura & F1-Score & Precisión  \\ [0.5ex]
+			 \hline\hline
+			 [8] & $0.92977 \pm 0.01923$ & $0.95523 \pm 0.0131$ \\
+			 \hline
+			 [16] & $0.96092 \pm 0.0163$ & $0.97591 \pm 0.0112$ \\
+			 \hline
+			 [32] & $0.96305 \pm 0.01805$ & $0.97745 \pm 0.01137$ \\
+			 \hline
+			 [8, 8] & $0.87808 \pm 0.01593$ & $0.92368 \pm 0.00628$ \\
+			 \hline
+			 [16, 4] & $0.76012 \pm 0.03119$ & $0.8518 \pm 0.0233$ \\
+			 \hline
+			 [16, 8] & $0.92264 \pm 0.02515$ & $0.95168 \pm 0.01708$ \\
+			 \hline
+			 [32, 16] & $0.9506 \pm 0.01989$ & $0.97044 \pm 0.01033$ \\
+			 \hline
+			 [32, 32] & $0.95122 \pm 0.02256$ & $0.97004 \pm 0.013$ \\
+			 \hline
+		 \end{tabular}
+	\label{Tab:ANN_3}
+	\end{table}
+
+\paragraph{SVM}
+
+Para las máquinas de soporte vectorial hemos utilizado 8 configuraciones distintas de los hiperparámetros de \textit{kernel},
+grado del \textit{kernel} (sólo se utiliza en \textit{kernel} polinomial), \textit{gamma} y \textit{C}.
+
+Se muestran los resultados de la experimentación en la Tabla \ref{Tab:SVM_3}
+
+\begin{table}[!ht]
+	\caption{Resultados SVM}
+	\centering
+		 \begin{tabular}{||c c c||}
+			 \hline
+			 (kernel, grado, gamma, C) & F1-Score & Precisión  \\ [0.5ex]
+			 \hline\hline
+			 (poly, $3$, $1$, $1$) & $0.97261 \pm 0.02358$ & $0.98158 \pm 0.01438$ \\
+			 \hline
+			 (rbf, $3$, $1$, $1$) & $0.67559 \pm 0.04297$ & $0.69947 \pm 0.05196$ \\
+			 \hline
+			 (sigmoid, $3$, $1$, $1$) & $0.28516 \pm 0.03747$ & $0.3575 \pm 0.03929$ \\
+			 \hline
+			 (poly, $3$, $10$, $0.1$) & $0.97619 \pm 0.02456$ & $0.98415 \pm 0.01345$ \\
+			 \hline
+			 (rbf, $3$, $10$, $0.1$) & $0.01607 \pm 0.00059$ & $0.13703 \pm 0.00568$ \\
+			 \hline
+			 (sigmoid, $3$, $10$, $0.1$) & $0.23652 \pm 0.03974$ & $0.33481 \pm 0.04109$ \\
+			 \hline
+			 (rbf, $3$, $0.01$, $100$) & $0.97415 \pm 0.02285$ & $0.98444 \pm 0.0122$ \\
+			 \hline
+			 (poly, $3$, $100$, $0.001$) & $0.9678 \pm 0.03578$ & $0.97987 \pm 0.01547$ \\
+			 \hline
+		 \end{tabular}
+	\label{Tab:SVM_3}
+	\end{table}
+
+\paragraph{Árboles de decisión}
+Para los árboles de decisión hemos utilizado 6 configuraciones distintas del hiperparámetro de profundidad máxima.
+
+Se muestran los resultados de la experimentación en la Tabla \ref{Tab:DecisionTree_3}
+
+\begin{table}[!ht]
+	\caption{Resultados Árbol de decisión}
+	\centering
+		 \begin{tabular}{||c c c||}
+			 \hline
+			 Altura máxima & F1-Score & Precisión  \\ [0.5ex]
+			 \hline\hline
+			 $4$ & $0.44767 \pm 0.00668$ & $0.66703 \pm 0.01287$ \\
+			 \hline
+			 $8$ & $0.86809 \pm 0.02258$ & $0.92653 \pm 0.01909$ \\
+			 \hline
+			 $16$ & $0.96505 \pm 0.02104$ & $0.9725 \pm 0.0143$ \\
+			 \hline
+			 $32$ & $0.96786 \pm 0.01849$ & $0.97302 \pm 0.01609$ \\
+			 \hline
+			 $64$ & $0.97438 \pm 0.01244$ & $0.97779 \pm 0.0102$ \\
+			 \hline
+			 $128$ & $0.97415 \pm 0.0161$ & $0.9779 \pm 0.01186$ \\
+			 \hline
+			 $256$ & $0.9672 \pm 0.02388$ & $0.97452 \pm 0.0172$ \\
+			 \hline
+		 \end{tabular}
+	\label{Tab:DecisionTree_3}
+	\end{table}
+
+\paragraph{kNN}
+Para el modelo kNN hemos utilizado 6 configuraciones distintas del hiperparámetro de k (número de vecinos más cercanos).
+
+Se muestran los resultados de la experimentación en la tabla \ref{Tab:kNN_3}
+
+\begin{table}[!ht]
+	\caption{Resultados kNN}
+	\centering
+		 \begin{tabular}{||c c c||}
+			 \hline
+			 K & F1-Score & Precisión  \\ [0.5ex]
+			 \hline\hline
+			 $2$ & $0.95086 \pm 0.01526$ & $0.97073 \pm 0.0088$ \\
+			 \hline
+			 $3$ & $0.9323 \pm 0.03125$ & $0.95942 \pm 0.0156$ \\
+			 \hline
+			 $5$ & $0.90323 \pm 0.03494$ & $0.94503 \pm 0.01712$ \\
+			 \hline
+			 $8$ & $0.86641 \pm 0.03906$ & $0.93135 \pm 0.0199$ \\
+			 \hline
+			 $13$ & $0.84065 \pm 0.02462$ & $0.90985 \pm 0.01911$ \\
+			 \hline
+			 $21$ & $0.80344 \pm 0.03804$ & $0.88737 \pm 0.02667$ \\
+			 \hline
+		 \end{tabular}
+	\label{Tab:kNN_3}
+\end{table}
+
+\newpage
+\subsubsection{Discusión}
 
 
 \newpage
