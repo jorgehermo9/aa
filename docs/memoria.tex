@@ -601,7 +601,8 @@ Entonces, utilizar un \textit{kernel} sigmoidal no parece ofrecer buenos resulta
 \subsection{Segunda aproximación}
 \label{Segunda aproximación}
 Como hemos obtenido resultados muy buenos en la aproximación anterior, se va a aumentar la complejidad del problema,
-es decir, añadiremos más notas a ser clasificadas. Serán en total 15 notas.
+es decir, añadiremos más notas a ser clasificadas. Se clasificarán entonces 15 notas, y se dispondrá de 
+1090 patrones para ser utilizados por el sistema.
 
 Las notas que vamos a clasificar son: \textit{C1}, \textit{C2}, \textit{C3}, \textit{C4}, \textit{C5}, \textit{C6}, \textit{C7}, \textit{C8}, \textit{A1}, \textit{A2}, \textit{A3}, \textit{A4}, \textit{A5}, \textit{A6} y \textit{A7}.
 
@@ -989,7 +990,8 @@ las frecuencias, para así poder diferenciar de mejor manera notas similares.
 \subsection{Tercera aproximación}
 \label{Tercera aproximación}
 Como hemos obtenido resultados muy buenos en la aproximación anterior, se va a aumentar la complejidad del problema,
-es decir, añadiremos más notas a ser clasificadas. Serán un total de 50 notas.
+es decir, añadiremos más notas a ser clasificadas. Serán un total de 50 notas a clasificar, y se dispondrá de 
+3194 patrones para ser utilizados por los modelos.
 
 Las notas que vamos a clasificar son: 
 \textit{C1}, \textit{C2}, \textit{C3}, \textit{C4}, \textit{C5}, \textit{C6}, \textit{C7}, \textit{C8}, 
@@ -1572,6 +1574,39 @@ Se muestran los resultados de la experimentación en la tabla \ref{Tab:kNN_3}
 % G5  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   10  0   0
 % G6  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   7   0
 % G7  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   17
+
+
+Los resultados de esta iteración son muy buenos, ya que hemos aumentado en gran medida el número de notas
+a clasificar (50) y hemos conseguido varios modelos con más de un 99\% de \textit{F1-Score} y precisión. 
+
+\bigskip
+En concreto,el modelo que mejor funciona es un SVM con un \textit{kernel} de base radial y con valores de \textit{gamma} y
+\textit{C} de $0.01$ y $100$, respectivamente. Este modelo alcanzó un \textit{F1-Score} de 
+$0.99594 \pm 0.00411$ y una precisión de $0.99563 \pm 0.00257$, unos valores muy altos y que indican
+que el sistema funciona muy bien. 
+
+\bigskip
+Caben destacar también modelos que alcanzan un rendimiento parecido,
+como puede ser un SVM con un kernel polinomial de grado $3$, con ambos valores de \textit{gamma} y \textit{C} de $1$,
+además de una RNA con una única capa oculta con $32$ neuronas.
+
+\bigskip
+En contra, el modelo que peor rendimiento presenta es un SVM con un \textit{kernel} de base radial,
+con valores de \textit{gamma} y \textit{C} de $10$ y $0.1$, respectivamente. Cabe destacar que este modelo
+es similar al modelo que presenta el mejor rendimiento, siendo lo único que cambia los parámetros de
+\textit{gamma} y \textit{C}. Es notable ver que un ligero cambio en estos dos parámetros, puede 
+producir que un sistema pase de ser muy malo, a ser tremendamente bueno.
+
+\bigskip
+Como hemos podido ver, los resultados son muy buenos en general, pero estos sistemas tienen un problema (principalmente las RRNNAA),
+y es que el tiempo de entrenamiento es mucho mayor que en aproximaciones anteriores. Creemos que esto se puede deber tanto por
+aumentar el número de instancias (anteriormente $1090$, y en esta aproximación, $3194$) a utilizar por el sistema,
+como por el número de características que se utilizan ($122$). Como hemos obtenido resultados muy buenos, estaría bien que
+en una próxima aproximación se intente reducir el número de características, intentando no perder el rendimiento
+de clasificación del sistema, y así poder producir modelos que sean más rápidos de entrenar, a la vez que más rápidos
+para realizar predicciones ante futuros patrones.
+
+
 
 \newpage
 \section{Conclusiones}
