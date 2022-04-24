@@ -606,6 +606,10 @@ es decir, añadiremos más notas a ser clasificadas. Se clasificarán entonces 1
 
 Las notas que vamos a clasificar son: \textit{C1}, \textit{C2}, \textit{C3}, \textit{C4}, \textit{C5}, \textit{C6}, \textit{C7}, \textit{C8}, \textit{A1}, \textit{A2}, \textit{A3}, \textit{A4}, \textit{A5}, \textit{A6} y \textit{A7}.
 
+\bigskip
+Se puede ver algunos ejemplos de los samples que vamos a utilizar, con su señal en el dominio del tiempo y en el
+dominio de la frecuencia, en las figuras \ref{fig:c3}, \ref{fig:c6}, \ref{fig:a3} y \ref{fig:a6}.
+
 \begin{figure}[!ht]
 	\centering
 	\begin{subfigure}{.5\textwidth}
@@ -620,6 +624,7 @@ Las notas que vamos a clasificar son: \textit{C1}, \textit{C2}, \textit{C3}, \te
 		\caption{A6}
 		\label{fig:c6}
 	\end{subfigure}
+	\caption{}
 \end{figure}
 
 \begin{figure}[!ht]
@@ -636,6 +641,7 @@ Las notas que vamos a clasificar son: \textit{C1}, \textit{C2}, \textit{C3}, \te
 		\caption{A6}
 		\label{fig:a6}
 	\end{subfigure}
+	\caption{}
 \end{figure}
 
 
@@ -1002,36 +1008,42 @@ Las notas que vamos a clasificar son:
 \textit{F1}, \textit{F2}, \textit{F3}, \textit{F4}, \textit{F5}, \textit{F6}, \textit{F7},
 \textit{G1}, \textit{G2}, \textit{G3}, \textit{G4}, \textit{G5}, \textit{G6} y \textit{G7}.
 
+\bigskip
+Se pueden ver algunos ejemplos de estas notas, en el dominio del tiempo y de la frecuencia, en las figuras
+\ref{fig:d1}, \ref{fig:e1}, \ref{fig:f1} y \ref{fig:g1}
+
 \begin{figure}[!ht]
 	\centering
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=1.0\linewidth]{assets/C3.pdf}
-		\caption{C3}
-		% \label{fig:c3}
+		\includegraphics[width=1.0\linewidth]{assets/D1.pdf}
+		\caption{D1}
+		\label{fig:d1}
 	\end{subfigure}%
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=1.0\linewidth]{assets/C6.pdf}
-		\caption{A6}
-		% \label{fig:c6}
+		\includegraphics[width=1.0\linewidth]{assets/E1.pdf}
+		\caption{E1}
+		\label{fig:e1}
 	\end{subfigure}
+	\caption{}
 \end{figure}
 
 \begin{figure}[!ht]
 	\centering
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=1.0\linewidth]{assets/A3.pdf}
-		\caption{A3}
-		% \label{fig:a3}
+		\includegraphics[width=1.0\linewidth]{assets/F1.pdf}
+		\caption{F1}
+		\label{fig:f1}
 	\end{subfigure}%
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=1.0\linewidth]{assets/A6.pdf}
-		\caption{A6}
-		% \label{fig:a6}
+		\includegraphics[width=1.0\linewidth]{assets/G1.pdf}
+		\caption{G1}
+		\label{fig:g1}
 	\end{subfigure}
+	\caption{}
 \end{figure}
 
 
@@ -1521,6 +1533,7 @@ Se muestran los resultados de la experimentación en la tabla \ref{Tab:kNN_3}
 
 \newpage
 \subsubsection{Discusión}
+% TODO: Poner la matriz de confusión
 % Mejor modelo: SVM gamma=0,01, C=100,kernel=rbf, grado=3
 % Matriz de confusión para este modelo:
 %     C1  C2  C3  C4  C5  C6  C7  C8  A1  A2  A3  A4  A5  A6  A7  B1  B2  B3  B4  B5  B6  B7  D1  D2  D3  D4  D5  D6  D7  E1  E2  E3  E4  E5  E6  E7  F1  F2  F3  F4  F5  F6  F7  G1  G2  G3  G4  G5  G6  G7
@@ -1605,7 +1618,6 @@ como por el número de características que se utilizan ($122$). Como hemos obte
 en una próxima aproximación se intente reducir el número de características, intentando no perder el rendimiento
 de clasificación del sistema, y así poder producir modelos que sean más rápidos de entrenar, a la vez que más rápidos
 para realizar predicciones ante futuros patrones.
-
 
 
 \newpage

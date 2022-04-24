@@ -15,8 +15,8 @@ function freqToIndex(freq_y::AbstractArray{<:Real,1},freq::Real,fs::Real)
 end
 
 # A3 C6 A6
-nota="C1"
-id="110"
+nota="G1"
+id="117"
 archivo="Piano-$(nota)-$(id).wav"
 y,fs = wavread("/home/jorge/github/aa/db/piano/$(nota)/$(archivo)");
 
