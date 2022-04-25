@@ -1,12 +1,12 @@
 # Fdb version 3
-["biber memoria"] 1650740668 "memoria.bcf" "memoria.bbl" "memoria" 1650827507
-  "memoria.bcf" 1650827507 124540 6f0b42e650a7cfb793bf8bcb9b9d5551 "pdflatex"
+["biber memoria"] 1650740668 "memoria.bcf" "memoria.bbl" "memoria" 1650922537
+  "memoria.bcf" 1650922537 124540 6f0b42e650a7cfb793bf8bcb9b9d5551 "pdflatex"
   "references/references.bib" 1650715211 2107 0b056a6521d9282e308accd53f66d7be ""
   (generated)
   "memoria.bbl"
   "memoria.blg"
-["pdflatex"] 1650827506 "/home/jorge/github/aa/docs/memoria.tex" "memoria.pdf" "memoria" 1650827507
-  "/home/jorge/github/aa/docs/memoria.tex" 1650827505 76637 027ad10497e2d0e310c3b38c4b3586e3 ""
+["pdflatex"] 1650922536 "/home/jorge/github/aa/docs/memoria.tex" "memoria.pdf" "memoria" 1650922537
+  "/home/jorge/github/aa/docs/memoria.tex" 1650922529 112907 983f94b779b0a7ff01be91be12678ea8 ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1647844622 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1647844622 1324 c910af8c371558dc20f2d7822f66fe64 ""
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmbxti10.tfm" 1647844622 1532 9162035f4e7176612125649e348e2195 ""
@@ -125,12 +125,12 @@
   "assets/G1.pdf" 1650819994 24568 26e008db4e35ca6c40dba629a809a97a ""
   "assets/best_rna_train_1.pdf" 1650716679 22616 95d1a77dfc7f96e029ac3a1cf36c39a2 ""
   "assets/udc.jpg" 1650715211 36444 a83766351d17300c874af243f17773c8 ""
-  "memoria.aux" 1650827507 14188 e342ae41216ce876596ae3d014959c5d "pdflatex"
+  "memoria.aux" 1650922537 14722 f1b4686d2f8def20f5ace808396ab4f1 "pdflatex"
   "memoria.bbl" 1650740670 13897 0dafb2235f39e88d4f2b5a9f2b123db1 "biber memoria"
-  "memoria.out" 1650827507 2519 4df6c26535414b5a17e3c4b41e0b653c "pdflatex"
-  "memoria.run.xml" 1650827507 2391 e967521f1a15710d35fb123f8c946986 "pdflatex"
-  "memoria.tex" 1650827505 76637 027ad10497e2d0e310c3b38c4b3586e3 ""
-  "memoria.toc" 1650827507 2600 38ae13aa9097d0736baa7963e0bffeef "pdflatex"
+  "memoria.out" 1650922537 2519 4df6c26535414b5a17e3c4b41e0b653c "pdflatex"
+  "memoria.run.xml" 1650922537 2391 e967521f1a15710d35fb123f8c946986 "pdflatex"
+  "memoria.tex" 1650922529 112907 983f94b779b0a7ff01be91be12678ea8 ""
+  "memoria.toc" 1650922537 2600 c948c194608b0437fd3c2a7508a39abe "pdflatex"
   (generated)
   "memoria.aux"
   "memoria.bcf"

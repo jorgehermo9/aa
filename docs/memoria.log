@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2022.4.24)  24 APR 2022 21:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2022.4.24)  25 APR 2022 23:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -511,26 +511,26 @@ LaTeX Info: Redefining \% on input line 26.
 )
 \openout1 = `memoria.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Info: Redefining \. on input line 33.
-LaTeX Info: Redefining \% on input line 33.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Info: Redefining \. on input line 35.
+LaTeX Info: Redefining \% on input line 35.
  (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count423
@@ -572,9 +572,9 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'memoria.bbl' found.
  (./memoria.bbl)
-Package biblatex Info: Reference section=0 on input line 33.
-Package biblatex Info: Reference segment=0 on input line 33.
-Package hyperref Info: Link coloring OFF on input line 33.
+Package biblatex Info: Reference section=0 on input line 35.
+Package biblatex Info: Reference segment=0 on input line 35.
+Package hyperref Info: Link coloring OFF on input line 35.
  (/usr/share/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (/usr/share/texmf-dist/tex/latex/refcount/refcount.sty
@@ -584,9 +584,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count429
 )
-LaTeX Info: Redefining \ref on input line 33.
-LaTeX Info: Redefining \pageref on input line 33.
-LaTeX Info: Redefining \nameref on input line 33.
+LaTeX Info: Redefining \ref on input line 35.
+LaTeX Info: Redefining \pageref on input line 35.
+LaTeX Info: Redefining \nameref on input line 35.
  (./memoria.out) (./memoria.out)
 \@outlinefile=\write4
 \openout4 = `memoria.out'.
@@ -629,16 +629,16 @@ LaTeX Info: Redefining \nameref on input line 33.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 36.
+(Font)              <14.4> on input line 38.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 36.
+(Font)              <7> on input line 38.
 <assets/udc.jpg, id=84, 1284.8pt x 722.7pt>
 File: assets/udc.jpg Graphic file (type jpg)
 <use assets/udc.jpg>
-Package pdftex.def Info: assets/udc.jpg  used on input line 40.
+Package pdftex.def Info: assets/udc.jpg  used on input line 42.
 (pdftex.def)             Requested size: 321.19922pt x 180.67566pt.
 
-Overfull \hbox (17.62482pt too wide) in paragraph at lines 36--43
+Overfull \hbox (17.62482pt too wide) in paragraph at lines 38--45
 [][] 
  []
 
@@ -662,12 +662,12 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 <assets/C4.pdf, id=169, 702.625pt x 501.875pt>
 File: assets/C4.pdf Graphic file (type pdf)
 <use assets/C4.pdf>
-Package pdftex.def Info: assets/C4.pdf  used on input line 218.
+Package pdftex.def Info: assets/C4.pdf  used on input line 220.
 (pdftex.def)             Requested size: 221.78923pt x 158.42075pt.
 <assets/A5.pdf, id=170, 702.625pt x 501.875pt>
 File: assets/A5.pdf Graphic file (type pdf)
 <use assets/A5.pdf>
-Package pdftex.def Info: assets/A5.pdf  used on input line 224.
+Package pdftex.def Info: assets/A5.pdf  used on input line 226.
 (pdftex.def)             Requested size: 221.78923pt x 158.42075pt.
  [7 <./assets/C4.pdf> <./assets/A5.pdf
 
@@ -676,28 +676,28 @@ pdfTeX warning: pdflatex (file ./assets/A5.pdf): PDF inclusion: multiple pdfs wi
 <assets/best_rna_train_1.pdf, id=246, 702.625pt x 501.875pt>
 File: assets/best_rna_train_1.pdf Graphic file (type pdf)
 <use assets/best_rna_train_1.pdf>
-Package pdftex.def Info: assets/best_rna_train_1.pdf  used on input line 561.
+Package pdftex.def Info: assets/best_rna_train_1.pdf  used on input line 563.
 (pdftex.def)             Requested size: 443.57848pt x 316.84915pt.
  [13 <./assets/best_rna_train_1.pdf>] [14]
 <assets/C3.pdf, id=276, 526.96875pt x 376.40625pt>
 File: assets/C3.pdf Graphic file (type pdf)
 <use assets/C3.pdf>
-Package pdftex.def Info: assets/C3.pdf  used on input line 617.
+Package pdftex.def Info: assets/C3.pdf  used on input line 619.
 (pdftex.def)             Requested size: 221.78923pt x 158.42265pt.
 <assets/C6.pdf, id=277, 526.96875pt x 376.40625pt>
 File: assets/C6.pdf Graphic file (type pdf)
 <use assets/C6.pdf>
-Package pdftex.def Info: assets/C6.pdf  used on input line 623.
+Package pdftex.def Info: assets/C6.pdf  used on input line 625.
 (pdftex.def)             Requested size: 221.78923pt x 158.42265pt.
 <assets/A3.pdf, id=278, 526.96875pt x 376.40625pt>
 File: assets/A3.pdf Graphic file (type pdf)
 <use assets/A3.pdf>
-Package pdftex.def Info: assets/A3.pdf  used on input line 634.
+Package pdftex.def Info: assets/A3.pdf  used on input line 636.
 (pdftex.def)             Requested size: 221.78923pt x 158.42265pt.
 <assets/A6.pdf, id=279, 526.96875pt x 376.40625pt>
 File: assets/A6.pdf Graphic file (type pdf)
 <use assets/A6.pdf>
-Package pdftex.def Info: assets/A6.pdf  used on input line 640.
+Package pdftex.def Info: assets/A6.pdf  used on input line 642.
 (pdftex.def)             Requested size: 221.78923pt x 158.42265pt.
  [15 <./assets/C3.pdf> <./assets/C6.pdf
 
@@ -709,27 +709,47 @@ pdfTeX warning: pdflatex (file ./assets/A3.pdf): PDF inclusion: multiple pdfs wi
 
 pdfTeX warning: pdflatex (file ./assets/A6.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 >] [16] [17] [18] [19] [20] [21]
-<assets/D1.pdf, id=421, 526.96875pt x 376.40625pt>
+<assets/D1.pdf, id=423, 526.96875pt x 376.40625pt>
 File: assets/D1.pdf Graphic file (type pdf)
 <use assets/D1.pdf>
-Package pdftex.def Info: assets/D1.pdf  used on input line 1019.
+Package pdftex.def Info: assets/D1.pdf  used on input line 1049.
 (pdftex.def)             Requested size: 221.78923pt x 158.42265pt.
-<assets/E1.pdf, id=422, 526.96875pt x 376.40625pt>
+<assets/E1.pdf, id=424, 526.96875pt x 376.40625pt>
 File: assets/E1.pdf Graphic file (type pdf)
 <use assets/E1.pdf>
-Package pdftex.def Info: assets/E1.pdf  used on input line 1025.
+Package pdftex.def Info: assets/E1.pdf  used on input line 1055.
 (pdftex.def)             Requested size: 221.78923pt x 158.42265pt.
-<assets/F1.pdf, id=423, 526.96875pt x 376.40625pt>
+<assets/F1.pdf, id=425, 526.96875pt x 376.40625pt>
 File: assets/F1.pdf Graphic file (type pdf)
 <use assets/F1.pdf>
-Package pdftex.def Info: assets/F1.pdf  used on input line 1036.
+Package pdftex.def Info: assets/F1.pdf  used on input line 1066.
 (pdftex.def)             Requested size: 221.78923pt x 158.42265pt.
-<assets/G1.pdf, id=424, 526.96875pt x 376.40625pt>
+<assets/G1.pdf, id=426, 526.96875pt x 376.40625pt>
 File: assets/G1.pdf Graphic file (type pdf)
 <use assets/G1.pdf>
-Package pdftex.def Info: assets/G1.pdf  used on input line 1042.
+Package pdftex.def Info: assets/G1.pdf  used on input line 1072.
 (pdftex.def)             Requested size: 221.78923pt x 158.42265pt.
- [22 <./assets/D1.pdf> <./assets/E1.pdf
+
+Overfull \hbox (3.96642pt too wide) in paragraph at lines 1089--1104
+\OT1/cmr/m/it/12 359.513)\OT1/cmr/m/n/12 ,\OT1/cmr/m/it/12 (359.513, 444.735)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (444.735, 535.025)\OT1/cmr/m/n/12 ,\OT1/cmr/m/it/12 (535.025, 630.684)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (630.684, 732.032)\OT1/cmr/m/n/12 ,
+ []
+
+
+Overfull \hbox (6.91365pt too wide) in paragraph at lines 1089--1104
+\OT1/cmr/m/it/12 (1201.376, 1336.658)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (1336.658, 1479.984)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (1479.984, 1631.833)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (1631.833, 1792.712)\OT1/cmr/m/n/12 ,
+ []
+
+
+Overfull \hbox (6.91365pt too wide) in paragraph at lines 1089--1104
+\OT1/cmr/m/it/12 (1792.712, 1963.157)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (1963.157, 2143.737)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (2143.737, 2335.055)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (2335.055, 2537.749)\OT1/cmr/m/n/12 ,
+ []
+
+
+Overfull \hbox (6.91365pt too wide) in paragraph at lines 1089--1104
+\OT1/cmr/m/it/12 (2537.749, 2752.496)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (2752.496, 2980.013)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (2980.013, 3221.059)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (3221.059, 3476.437)\OT1/cmr/m/n/12 ,
+ []
+
+[22] [23 <./assets/D1.pdf> <./assets/E1.pdf
 
 pdfTeX warning: pdflatex (file ./assets/E1.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 > <./assets/F1.pdf
@@ -738,27 +758,12 @@ pdfTeX warning: pdflatex (file ./assets/F1.pdf): PDF inclusion: multiple pdfs wi
 > <./assets/G1.pdf
 
 pdfTeX warning: pdflatex (file ./assets/G1.pdf): PDF inclusion: multiple pdfs with page group included in a single page
->]
-Overfull \hbox (3.96642pt too wide) in paragraph at lines 1059--1074
-\OT1/cmr/m/it/12 359.513)\OT1/cmr/m/n/12 ,\OT1/cmr/m/it/12 (359.513, 444.735)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (444.735, 535.025)\OT1/cmr/m/n/12 ,\OT1/cmr/m/it/12 (535.025, 630.684)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (630.684, 732.032)\OT1/cmr/m/n/12 ,
+>] [24] [25] [26] [27] [28] [29] [30]
+Overfull \hbox (40.12169pt too wide) in paragraph at lines 1660--1689
+ [][] 
  []
 
-
-Overfull \hbox (6.91365pt too wide) in paragraph at lines 1059--1074
-\OT1/cmr/m/it/12 (1201.376, 1336.658)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (1336.658, 1479.984)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (1479.984, 1631.833)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (1631.833, 1792.712)\OT1/cmr/m/n/12 ,
- []
-
-
-Overfull \hbox (6.91365pt too wide) in paragraph at lines 1059--1074
-\OT1/cmr/m/it/12 (1792.712, 1963.157)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (1963.157, 2143.737)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (2143.737, 2335.055)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (2335.055, 2537.749)\OT1/cmr/m/n/12 ,
- []
-
-
-Overfull \hbox (6.91365pt too wide) in paragraph at lines 1059--1074
-\OT1/cmr/m/it/12 (2537.749, 2752.496)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (2752.496, 2980.013)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (2980.013, 3221.059)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (3221.059, 3476.437)\OT1/cmr/m/n/12 ,
- []
-
-[23] [24] [25] [26] [27] [28] [29] [30] [31] (./memoria.aux
+[31] [32] (./memoria.aux
 LaTeX Info: Redefining \sptext on input line 26.
 LaTeX Info: Redefining \. on input line 26.
 LaTeX Info: Redefining \% on input line 26.
@@ -770,18 +775,18 @@ Package logreq Info: Writing requests to 'memoria.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 20494 strings out of 478276
- 362922 string characters out of 5853013
- 1191505 words of memory out of 5000000
- 38384 multiletter control sequences out of 15000+600000
+ 20499 strings out of 478276
+ 363009 string characters out of 5853013
+ 1359638 words of memory out of 5000000
+ 38386 multiletter control sequences out of 15000+600000
  476399 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 67i,12n,77p,767b,2804s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 67i,12n,77p,1192b,2804s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb>
-Output written on memoria.pdf (31 pages, 508825 bytes).
+Output written on memoria.pdf (32 pages, 519489 bytes).
 PDF statistics:
- 660 PDF objects out of 1000 (max. 8388607)
- 515 compressed objects within 6 object streams
- 104 named destinations out of 1000 (max. 500000)
+ 668 PDF objects out of 1000 (max. 8388607)
+ 522 compressed objects within 6 object streams
+ 107 named destinations out of 1000 (max. 500000)
  221 words of extra memory for PDF output out of 10000 (max. 10000000)
 
