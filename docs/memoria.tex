@@ -145,14 +145,14 @@ desde posiciones e intensidades distintas y grabadas con micrófonos diferentes.
 \textit{bitrate} de \textit{2304kbps}, \textit{24 bits per sample} y un \textit{sample rate} de \textit{48kHz}. Todo ello ocupa un total de \textit{34.5GB} en disco.
 La duración media de los \textit{samples} es de aproximadamente 6 segundos.
 
-Se puede ver un ejemplo del espectrograma de una de las \textit{samples} que vamos a utilizar en la figura
-\ref{fig:ejemplo_espectrograma}
+Se puede ver un ejemplo del espectrograma de una de las \textit{samples} que vamos a utilizar en la figura 
+\ref{fig:ejemplo_espectrograma}.
 
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=1.0\linewidth]{assets/A5.pdf}
-	\label{fig:ejemplo_espectrograma}
 	\caption{Notas A5 en tiempo y frecuencia}
+	\label{fig:ejemplo_espectrograma}
 \end{figure}
 
 \bigskip
@@ -196,7 +196,7 @@ En el trabajo de \cite{marolt2002neural} destacamos el uso de sistemas conexioni
 presentándose como una alternativa viable a los algoritmos ya existentes
 
 \bigskip
-El uso de redes de neuronas artificiaes también están presentes en trabajos como \cite{solanki2019music}, que aborda la identificación de
+El uso de redes de neuronas artificiales también están presentes en trabajos como \cite{solanki2019music}, que aborda la identificación de
 los instrumentos que forman part de piezas polifónicas. Utiliza una red de neuronas convolucional de 8 capas y se apoya en los espectrogramas 
 MEL para mapear datos del audio.
 
@@ -247,10 +247,19 @@ piano clásico es de 4186 Hz (\textit{C8}) y la más baja, en nuestra base de da
 de frecuncias ampliado debido a que es posible que exista información que nos ayude a identificar la nota.
 
 \bigskip
-Para los experimentos, se va a realizar \textbf{\textit{cross-validation}} con cada modelo, para así poder evaluar el rendimiento
-de cada uno, con independencia de la aleatoriedad que se pueda producir al seleccionar un subconjunto de patrones para test.
+El \textbf{\textit{cross-validation}} consiste en repetir y calcular la media aritmética obtenida de las medidas de la evaluación 
+sobre k \textit{folds} distintas (vease figura \ref{fig:esquema-cross-validation} ). Para los experimentos, vamos a realizar 
+esta técnica con cada modelo, para así poder evaluar el rendimiento de cada uno, con independencia de la aleatoriedad que se 
+pueda producir al seleccionar un subconjunto de patrones para test. 
 En concreto, se realizará un \textbf{\textit{cross-validation}} con \textbf{10 \textit{folds}}. El valor del F1-Score y de la precisión
 del modelo será el promedio de dichos valores obtenidos en los \textit{folds}.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.5\linewidth]{assets/Esquema_cross_validation.pdf}
+	\caption{Esquema k-fold cross validation, con k=4}
+	\label{fig:esquema-cross-validation}
+\end{figure}
 
 \bigskip
 Además, como las notas de un mismo instrumento se diferencian principalmente por la frecuencia (una nota más aguda tiene una mayor frecuencia
@@ -373,7 +382,31 @@ Donde:
 \end{itemize}	
 
 \newpage
-Se van a realizar experimentos sobre los siguientes modelos: RNA, SVM, Árboles de decisión y kNN.
+Se van a realizar experimentos sobre los siguientes modelos: RNA, SVM, Árboles de decisión y kNN. Que explicaremos brevemente a continuación.
+
+\bigskip
+Las \textbf{\textit{Redes de Neuronas Artificiales}} se trata de modelo computacional basado en la funcionalidad de los cerebros humanos 
+que consiste en un conjunto de unidades, llamadas neuronas artificiales, conectadas entre sí para transmitirse señales. La información 
+de entrada atraviesa la red neuronal (donde se somete a diversas operaciones) produciendo unos valores de salida. Destacamos el articulo de 
+\cite{krogh2008artificial} para entender mejor este modelo.
+
+\bigskip
+\textbf{\textit{Support Vector Machine}} o \textit{SVM} es un algoritmo de aprendizaje automático cuyo objetivo es encontrar un hiperplano 
+que separe de la mejor forma posible dos clases diferentes de puntos de datos. “De la mejor forma posible” 
+implica el hiperplano con el margen más amplio entre las dos clases, trabajos como el de \cite{cortes1995support} nos pueden servir 
+para profundizar más en este algoritmo.
+
+\bigskip
+El objetivo del "\textit{Aprendizaje basado en arboles de decisión"} es crear un modelo que predice el valor de una variable de 
+destino en función de diversas variables de entrada, este usa los \textbf{\textit{Árboles de decisión}} como modelo predictivo el cual 
+consiste en que dado un conjunto de datos se fabrican diagramas de construcciones lógicas que sirven para
+representar y categorizar una serie de condiciones que ocurren de forma sucesiva, para la resolución de un 
+problema. Véanse trabajos como la \cite{myles2004introduction} para profundizar más en este modelo.
+
+\bigskip
+\textbf{\textit{ k-nearest neighbors}} o \textit{kNN} es un método de clasificación supervisada que sirve esencialmente para clasificar valores
+ buscando los puntos de datos “más similares” (por cercanía) aprendidos en la etapa de entrenamiento y haciendo conjeturas de nuevos 
+ puntos basado en esa clasificación. Podemos tomar como ejemplo articulos como \cite{guo2003knn} para entender mejor este modelo.
 
 \bigskip
 Además, como el entrenamiento de una RNA es un proceso no determinista, en cada \textit{fold}
