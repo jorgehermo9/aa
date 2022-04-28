@@ -135,19 +135,6 @@ incorrectamente). Entonces, para facilitar la interpretación de la métrica, ta
 el F1-Score para determinar el mejor.
 
 \newpage
-Además, utitlizaremos varias técnicas de aprendizaje supervisado como son:
-\begin{itemize}
-	\item Las \textbf{Redes de Neuronas Artificiales} o \textit{RNAs}, un modelo de aprendizaje automático clásico que
-	intenta simular el funcionamiento natural del cerebro, haciendo uso de estrucutras como las neuronas artificiales y en la que
-	la información se almacena y modifica en los pesos de las conexiones de dichas neuronas. Ver \cite{krogh2008artificial}.
-	\item \textbf{Support Vector Machine} o \textit{SVMs}, un modelo basado, como en las \textit{RNAs}, en la división del espacio del problema para clasificar
-	los diferentes patrones y del que se puede profundizar más en el artículo que las introduce de \cite{cortes1995support}.
-	\item \textbf{Árboles de decisión}, técnicas que permiten también subdividir el espacio donde se sitúan los patrones, esta vez
-	siguiendo una estructura de árbol donde se va tomando una rama u otra en función del valor de los distintos atributos. Ver \cite{myles2004introduction}.
-	\item \textbf{ k-Nearest Neighbors} o \textit{k-NN}, un método con un enfoque diferente, basado en instancias, donde la clasificación
-	se realiza en función de los patrones que más se parecen al de entrada. Ver \cite{guo2003knn}.
-\end{itemize}
-
 \subsection{Restricciones}
 \bigskip
 Como única restricción, en dicho audio solo puede haber una nota sonando a la vez para que el sistema sea capaz de reconocerla correctamente.
@@ -228,6 +215,29 @@ mapear desde estas representaciones a fonemas via \textit{Adversarial Training}.
 \label{Desarrollo}
 Para el desarrollo de este sistema utilizaremos un método basado en aproximaciones, es decir, comenzaremos acotando el problema e iremos aumentando
 la complejidad a medida que obtenemos resultados satisfatorios.
+
+\bigskip
+Utitlizaremos varias técnicas de aprendizaje supervisado como son:
+\begin{itemize}
+	\item Las \textbf{Redes de Neuronas Artificiales} o \textit{RNAs}, un modelo de aprendizaje automático clásico que
+	intenta simular el funcionamiento natural del cerebro, haciendo uso de estrucutras como las neuronas artificiales y en la que
+	la información se almacena y modifica en los pesos de las conexiones de dichas neuronas. Ver \cite{krogh2008artificial}.
+	\item \textbf{Support Vector Machine} o \textit{SVMs}, un modelo basado, como en las \textit{RNAs}, en la división del espacio del problema para clasificar
+	los diferentes patrones y del que se puede profundizar más en el artículo que las introduce de \cite{cortes1995support}.
+	\item \textbf{Árboles de decisión}, técnicas que permiten también subdividir el espacio donde se sitúan los patrones, esta vez
+	siguiendo una estructura de árbol donde se va tomando una rama u otra en función del valor de los distintos atributos. Ver \cite{myles2004introduction}.
+	\item \textbf{ k-Nearest Neighbors} o \textit{k-NN}, un método con un enfoque diferente, basado en instancias, donde la clasificación
+	se realiza en función de los patrones que más se parecen al de entrada. Ver \cite{guo2003knn}.
+\end{itemize}
+
+\bigskip
+Además, para mejor la calidad de los experimentos y no depender de la selección aleatoria del conjunto de test y de entrenamiento, utilizaremos
+la técnica de \textit{cross validation} (validación cruzada). Esta técnica consiste en repetir y calcular la media aritmética obtenida de las medidas de la evaluación 
+sobre k \textit{folds} (conjuntos) distintos.
+
+En concreto, se realizará un \textit{cross validation} con 10 \textit{folds}. El valor del F1-Score y de la precisión
+del modelo será el promedio de dichos valores obtenidos en los \textit{folds}.
+
 \subsection{Primera aproximación}
 \label{Primera aproximación}
 
@@ -259,14 +269,6 @@ Dado que cada muestra tiene una duración diferente, decidimos quedarnos solo co
 relevante de la nota) y, para la frecuencia, acotaremos cada señal entre 0 y 5000 Hz. Ya que la frecuencia máxima que se alcanza en el 
 piano clásico es de 4186 Hz (\textit{C8}) y la más baja, en nuestra base de datos, es de 32.7Hz (\textit{C1}), escogimos un rango
 de frecuncias ampliado debido a que es posible que exista información que nos ayude a identificar la nota.
-
-\bigskip
-El \textbf{\textit{cross-validation}} consiste en repetir y calcular la media aritmética obtenida de las medidas de la evaluación 
-sobre k \textit{folds} distintos (vease Figura \ref{fig:esquema-cross-validation} ). Para los experimentos, vamos a realizar 
-esta técnica con cada modelo, para así poder evaluar el rendimiento de cada uno, con independencia de la aleatoriedad que se 
-pueda producir al seleccionar un subconjunto de patrones para test. 
-En concreto, se realizará un \textbf{\textit{cross-validation}} con \textbf{10 \textit{folds}}. El valor del F1-Score y de la precisión
-del modelo será el promedio de dichos valores obtenidos en los \textit{folds}.
 
 % \begin{figure}[!h]
 % 	\centering

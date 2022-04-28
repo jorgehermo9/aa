@@ -743,7 +743,6 @@ INPUT ./assets/A5.pdf
 INPUT ./assets/A5.pdf
 INPUT assets/A5.pdf
 INPUT ./assets/A5.pdf
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbxti10.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmti8.tfm
 INPUT ./assets/best_rna_train_1.pdf
 INPUT ./assets/best_rna_train_1.pdf
@@ -797,7 +796,6 @@ INPUT ./memoria.out
 INPUT memoria.run.xml
 OUTPUT memoria.run.xml
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
-INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
