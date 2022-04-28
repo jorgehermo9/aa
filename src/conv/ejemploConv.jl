@@ -73,6 +73,9 @@ println("He creado ", length(gruposIndicesBatch), " grupos de indices para distr
 # Sólo resta iterar por cada batch para construir el vector de batches
 train_set = [ (train_imgs[:,:,:,indicesBatch], onehotbatch(train_labels[indicesBatch], labels)) for indicesBatch in gruposIndicesBatch];
 
+# Cambiar a asi para audio
+# train_set = [ (train_imgs[:,indicesBatch], onehotbatch(train_labels[indicesBatch], labels)) for indicesBatch in gruposIndicesBatch];
+
 # Creamos un batch similar, pero con todas las imagenes de test
 test_set = (test_imgs, onehotbatch(test_labels, labels));
 
@@ -153,6 +156,7 @@ ann = Chain(
     # Entradas a esta capa: matriz 4D de dimension 288 x <numPatrones>
     # Salidas de esta capa: matriz 4D de dimension  10 x <numPatrones>
     Dense(288, 10),
+	# El 10 indica el número de labels
 
     # Finalmente, capa softmax
     #  Toma las salidas de la capa anterior y aplica la funcion softmax de tal manera
