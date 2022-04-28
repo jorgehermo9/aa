@@ -132,7 +132,21 @@ donde,
 Quizá el único inconveniente de esta métrica es su difícil interpretación, más allá de comparar los valores que ofrecen diferentes sistemas.
 El valor más alto que puede alcanzar es de 1 (todos los patrones se clasificaron correctamente) y el más bajo es de 0 (todos los patrones se clasificaron
 incorrectamente). Entonces, para facilitar la interpretación de la métrica, también se mostrará la precisión de cada modelo, pero se utilizará
-el F1-Score para determinar el mejor modelo.
+el F1-Score para determinar el mejor.
+
+\newpage
+Además, utitlizaremos varias técnicas de aprendizaje supervisado como son:
+\begin{itemize}
+	\item Las \textbf{Redes de Neuronas Artificiales} o \textit{RNAs}, un modelo de aprendizaje automático clásico que
+	intenta simular el funcionamiento natural del cerebro, haciendo uso de estrucutras como las neuronas artificiales y en la que
+	la información se almacena y modifica en los pesos de las conexiones de dichas neuronas. Ver \cite{krogh2008artificial}.
+	\item \textbf{Support Vector Machine} o \textit{SVMs}, un modelo basado, como en las \textit{RNAs}, en la división del espacio del problema para clasificar
+	los diferentes patrones y del que se puede profundizar más en el artículo que las introduce de \cite{cortes1995support}.
+	\item \textbf{Árboles de decisión}, técnicas que permiten también subdividir el espacio donde se sitúan los patrones, esta vez
+	siguiendo una estructura de árbol donde se va tomando una rama u otra en función del valor de los distintos atributos. Ver \cite{myles2004introduction}.
+	\item \textbf{ k-Nearest Neighbors} o \textit{k-NN}, un método con un enfoque diferente, basado en instancias, donde la clasificación
+	se realiza en función de los patrones que más se parecen al de entrada. Ver \cite{guo2003knn}.
+\end{itemize}
 
 \subsection{Restricciones}
 \bigskip
@@ -145,14 +159,14 @@ desde posiciones e intensidades distintas y grabadas con micrófonos diferentes.
 \textit{bitrate} de \textit{2304kbps}, \textit{24 bits per sample} y un \textit{sample rate} de \textit{48kHz}. Todo ello ocupa un total de \textit{34.5GB} en disco.
 La duración media de los \textit{samples} es de aproximadamente 6 segundos.
 
-Se puede ver un ejemplo del espectrograma de una de las \textit{samples} que vamos a utilizar en la figura 
-\ref{fig:ejemplo_espectrograma}.
+Se puede ver un ejemplo del espectrograma de una de las \textit{samples} que vamos a utilizar en la Figura 
+\ref{fig:espectro}.
 
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=1.0\linewidth]{assets/A5.pdf}
 	\caption{Notas A5 en tiempo y frecuencia}
-	\label{fig:ejemplo_espectrograma}
+	\label{fig:espectro}
 \end{figure}
 
 \bigskip
@@ -220,7 +234,7 @@ la complejidad a medida que obtenemos resultados satisfatorios.
 \subsubsection{Descripción}
 En esta primera aproximación nos limitaremos a diferenciar únicamente entre dos notas. 
 Escogimos las notas \textit{C4} y \textit{A5} de los cuales usaremos 92 y 56 audios de cada una, respectivamente, en total
-se utilizarán 148 patrones. En las figuras \ref{fig:c4} y \ref{fig:a5} podemos ver a la izquierda la señal en tiempo y, a la derecha,
+se utilizarán 148 patrones. En las Figuras \ref{fig:c4} y \ref{fig:a5} podemos ver a la izquierda la señal en tiempo y, a la derecha,
 la señal en el dominio de la frecuencia.
 
 \begin{figure}[!ht]
@@ -248,18 +262,18 @@ de frecuncias ampliado debido a que es posible que exista información que nos a
 
 \bigskip
 El \textbf{\textit{cross-validation}} consiste en repetir y calcular la media aritmética obtenida de las medidas de la evaluación 
-sobre k \textit{folds} distintas (vease figura \ref{fig:esquema-cross-validation} ). Para los experimentos, vamos a realizar 
+sobre k \textit{folds} distintos (vease Figura \ref{fig:esquema-cross-validation} ). Para los experimentos, vamos a realizar 
 esta técnica con cada modelo, para así poder evaluar el rendimiento de cada uno, con independencia de la aleatoriedad que se 
 pueda producir al seleccionar un subconjunto de patrones para test. 
 En concreto, se realizará un \textbf{\textit{cross-validation}} con \textbf{10 \textit{folds}}. El valor del F1-Score y de la precisión
 del modelo será el promedio de dichos valores obtenidos en los \textit{folds}.
 
-\begin{figure}[!h]
-	\centering
-	\includegraphics[width=0.5\linewidth]{assets/Esquema_cross_validation.pdf}
-	\caption{Esquema k-fold cross validation, con k=4}
-	\label{fig:esquema-cross-validation}
-\end{figure}
+% \begin{figure}[!h]
+% 	\centering
+% 	\includegraphics[width=0.5\linewidth]{assets/Esquema_cross_validation.pdf}
+% 	\caption{Esquema k-fold cross validation, con k=4}
+% 	\label{fig:esquema-cross-validation}
+% \end{figure}
 
 \bigskip
 Además, como las notas de un mismo instrumento se diferencian principalmente por la frecuencia (una nota más aguda tiene una mayor frecuencia
@@ -382,34 +396,7 @@ Donde:
 \end{itemize}	
 
 \newpage
-Se van a realizar experimentos sobre los siguientes modelos: RNA, SVM, Árboles de decisión y kNN. Que explicaremos brevemente a continuación.
-
-\bigskip
-Las \textbf{\textit{Redes de Neuronas Artificiales}} se trata de modelo computacional basado en la funcionalidad de los cerebros humanos 
-que consiste en un conjunto de unidades, llamadas neuronas artificiales, conectadas entre sí para transmitirse señales. La información 
-de entrada atraviesa la red neuronal (donde se somete a diversas operaciones) produciendo unos valores de salida. Destacamos el articulo de 
-\cite{krogh2008artificial} para entender mejor este modelo.
-
-\bigskip
-\textbf{\textit{Support Vector Machine}} o \textit{SVM} es un algoritmo de aprendizaje automático cuyo objetivo es encontrar un hiperplano 
-que separe de la mejor forma posible dos clases diferentes de puntos de datos. “De la mejor forma posible” 
-implica el hiperplano con el margen más amplio entre las dos clases, trabajos como el de \cite{cortes1995support} nos pueden servir 
-para profundizar más en este algoritmo.
-
-\bigskip
-El objetivo del "\textit{Aprendizaje basado en arboles de decisión"} es crear un modelo que predice el valor de una variable de 
-destino en función de diversas variables de entrada, este usa los \textbf{\textit{Árboles de decisión}} como modelo predictivo el cual 
-consiste en que dado un conjunto de datos se fabrican diagramas de construcciones lógicas que sirven para
-representar y categorizar una serie de condiciones que ocurren de forma sucesiva, para la resolución de un 
-problema. Véanse trabajos como la \cite{myles2004introduction} para profundizar más en este modelo.
-
-\bigskip
-\textbf{\textit{ k-nearest neighbors}} o \textit{kNN} es un método de clasificación supervisada que sirve esencialmente para clasificar valores
- buscando los puntos de datos “más similares” (por cercanía) aprendidos en la etapa de entrenamiento y haciendo conjeturas de nuevos 
- puntos basado en esa clasificación. Podemos tomar como ejemplo articulos como \cite{guo2003knn} para entender mejor este modelo.
-
-\bigskip
-Además, como el entrenamiento de una RNA es un proceso no determinista, en cada \textit{fold}
+Como el entrenamiento de una RNA es un proceso no determinista, en cada \textit{fold}
 tendremos que entrenar la RNA varias veces, y promediar los resultados. Para estos experimentos,
 se ha repetido 30 veces el entrenamiento de la RNA en cada \textit{fold}, devolviendo el resultado promedio de esas 30 ejecuciones.
 
@@ -433,11 +420,13 @@ Para el entrenamiento de las RNA, se han utilizado los siguientes parámetros en
 	\item Algoritmo de optimización: ADAM.
 	\item Función de \textit{loss}: \textit{Binary Cross Entropy}.
 \end{itemize}
-El hiperparámetro que hemos variado ha sido la arquitectura de neuronas a utilizar. Utilizamos 8 arquitecturas distintas,
+
+El hiperparámetro que hemos variado ha sido la arquitectura de neuronas a utilizar.
+Utilizamos 8 arquitecturas distintas,
 donde la arquitectura [$i$] denota una RNA con una única capa oculta con $i$ neuronas y la arquitectura [$i$, $j$] 
 denota una neurona con dos capas ocultas; con $i$ neuronas en la primera capa oculta y $j$ neuronas en la segunda capa oculta.
 
-Se muestran los resultados de la experimentación en la Tabla \ref{Tab:ANN_1}
+Se muestran los resultados de la experimentación en la Tabla \ref{Tab:ANN_1}.
 
 \begin{table}[ht]
 	\caption{Resultados RRNNA}
@@ -471,7 +460,7 @@ Se muestran los resultados de la experimentación en la Tabla \ref{Tab:ANN_1}
 Para las máquinas de soporte vectorial hemos utilizado 8 configuraciones distintas de los hiperparámetros de \textit{kernel},
 grado del \textit{kernel} (sólo se utiliza en \textit{kernel} polinomial), \textit{gamma} y \textit{C}.
 
-Se muestran los resultados de la experimentación en la Tabla \ref{Tab:SVM_1}
+Se muestran los resultados de la experimentación en la Tabla \ref{Tab:SVM_1}.
 
 \begin{table}[!ht]
 	\caption{Resultados SVM}
@@ -503,7 +492,7 @@ Se muestran los resultados de la experimentación en la Tabla \ref{Tab:SVM_1}
 \paragraph{Árboles de decisión}
 Para los árboles de decisión hemos utilizado 6 configuraciones distintas del hiperparámetro de profundidad máxima.
 
-Se muestran los resultados de la experimentación en la Tabla \ref{Tab:DecisionTree_1}
+Se muestran los resultados de la experimentación en la Tabla \ref{Tab:DecisionTree_1}.
 
 \begin{table}[!ht]
 	\caption{Resultados Árbol de decisión}
@@ -531,7 +520,7 @@ Se muestran los resultados de la experimentación en la Tabla \ref{Tab:DecisionT
 \paragraph{kNN}
 Para el modelo kNN hemos utilizado 6 configuraciones distintas del hiperparámetro de k (número de vecinos más cercanos).
 
-Se muestran los resultados de la experimentación en la tabla \ref{Tab:kNN_1}
+Se muestran los resultados de la experimentación en la Tabla \ref{Tab:kNN_1}.
 
 \begin{table}[!ht]
 	\caption{Resultados kNN}
@@ -653,7 +642,7 @@ Las notas que vamos a clasificar son: \textit{C1}, \textit{C2}, \textit{C3}, \te
 
 \bigskip
 Se puede ver algunos ejemplos de los samples que vamos a utilizar, con su señal en el dominio del tiempo y en el
-dominio de la frecuencia, en las figuras \ref{fig:c3}, \ref{fig:c6}, \ref{fig:a3} y \ref{fig:a6}.
+dominio de la frecuencia, en las Figuras \ref{fig:c3}, \ref{fig:c6}, \ref{fig:a3} y \ref{fig:a6}.
 
 \begin{figure}[!ht]
 	\centering
@@ -689,24 +678,22 @@ dominio de la frecuencia, en las figuras \ref{fig:c3}, \ref{fig:c6}, \ref{fig:a3
 	\caption{}
 \end{figure}
 
-
-Como hemos aumentado mucho el número de clases a clasificar, aumentaremos también el número de características 
-para poder diferenciar bien las clases que sean más similares.
+\newpage
+Como hemos aumentado mucho el número de clases a clasificar, decidimos aumentar también el número de características 
+para lograr una correcta diferenciación entre las clases que sean más similares.
 
 En concreto, añadiremos las siguientes características:
 
 \begin{itemize}
-	\item \textbf{Frecuencia a la que se alcanza el máximo de intensidad de la señal en frecuencia} en cada uno de los 10 intervalos
+	\item \textbf{Frecuencia en la que se alcanza la máxima intensidad} en cada uno de los 10 intervalos
 	que ya se especificaron en la aproximación anterior.
 \end{itemize}
 
 No se producen cambios sobre las características que fueron incorporadas en la aproximación anterior.
 
-
-
 Para el preprocesado de los datos, utilizaremos, como se mencionó en la aproximación anterior,
 una normalización de media cero.
-Así, obtuvimos para cada característica, la media y la desviación típica. Se muestran dichos datos en las tablas \ref{Tab:Features_2_1}
+Así, obtuvimos para cada característica, la media y la desviación típica. Se muestran dichos datos en las Tablas \ref{Tab:Features_2_1}
 y \ref{Tab:Features_2_2}.
 
 \bigskip
@@ -816,18 +803,14 @@ y \ref{Tab:Features_2_2}.
 	\label{Tab:Features_2_2}
 \end{table}
 
-
+\newpage
+\hphantom{skip}
+\newpage
 Donde:
 \begin{itemize}
-	\item \textit{E} indica la \textbf{energía de la señal}.
-	\item \textit{m\textsubscript{i}} indica la \textbf{media de la intensidad} en el intervalo \textit{i} en frecuencia.
-	\item \textit{std\textsubscript{i}} indica la \textbf{desviación típica de la intensidad} en el intervalo \textit{i} en frecuencia.
-	\item \textit{max\textsubscript{i}} indica el \textbf{máximo de la intensidad} en el intervalo \textit{i} en frecuencia.
 	\item \textit{max-freq\textsubscript{i}} indica la \textbf{frecuencia donde se alcanza el máximo de intensidad} en el intervalo \textit{i} en frecuencia.
-\end{itemize}	
+\end{itemize}
 
-
-\bigskip
 Para estos experimentos se ha repetido 20 veces el entrenamiento de la RNA en cada \textit{fold}, devolviendo el resultado promedio de esas 20 ejecuciones.
 
 \bigskip
@@ -1007,33 +990,33 @@ En general los resultados son muy buenos, ya que hay varios modelos con un alto 
 El modelo que mejor funciona es un SVM con función de \textit{kernel} polinomial de grado 3, con
 un \textit{gamma} y \textit{C} de $10$ y $0.1$, respectivamente.
 
-Este modelo tiene un F1-Score de $0.97619 \pm 0.02456$, con una precisión de $0.98415 \pm 0.01345$ en los folds.
+Este modelo tiene un F1-Score de $0.97619 \pm 0.02456$, con una precisión de $0.98415 \pm 0.01345$ en los \textit{folds}.
 De este resultado podemos concluír que nuestro sistema funciona muy bien, ya que clasificar 15 notas es un problema
 relativamente complejo.
 
 \bigskip
-Cabe destacar modelos como una RNA con una única capa oculta de $32$ neuronas; un svm con \textit{kernel} de base radial,
-con los parámetros de \textit{gamma} y \textit{C} de $0.01$ y $100$, respectivamente; un árbol de decisión con altura máxima de $64$; y
+Cabe destacar modelos como la RNA con una única capa oculta de $32$ neuronas; el SVM con \textit{kernel} de base radial,
+con los parámetros de \textit{gamma} $0.01$ y de \textit{C} $100$; un árbol de decisión con altura máxima de $64$; y
 un modelo kNN con un k de $2$. Estos modelos también presentan muy buenos resultados, aunque no los mejores.
 
 El modelo con peor rendimiento es un SVM con kernel de base radial con \textit{gamma} y \textit{C} de
-$10$ y $0.1$, respectivamente. Esta configuración del modelo tiene resultado increiblemente bajo 
-(\textit{F1-Score} de $0.01607 \pm 0.00059$), pero desconocemos a qué se puede deber.
+$10$ y $0.1$, respectivamente. Esta configuración del modelo un \textit{F1-Score} de tan solo $0.01607 \pm 0.00059$, 
+desconociendo realmente a qué se debe realmente este tan bajo resultado.
 
 \bigskip
 En cuanto a las características, creemos que fue un acierto añadir la frecuencia a la que se encuentra el pico de intensidad
 en cada intervalo, ya que es una característica muy representativa de la señal y que sirve para diferenciar mejor las notas.
-Sin estas nuevas características, los resultados no serían tan buenos.
+Sin estas nuevas características (y habiendo hecho las pruebas), los resultados no serían tan buenos.
 
 \bigskip
-El problema que podemos observar en la matriz de confusión (Tabla \ref{tab:confusion_matrix_2}) para el mejor sistema es que el sistema de equivoca
-en las notas más cercanas, como pueden ser A1, A2, C1 y C2, notas que tienen una frecuencia muy similar y se encuentran
+El problema que podemos observar en la matriz de confusión (Tabla \ref{tab:confusion_matrix_2}) para el mejor sistema es que el sistema se equivoca
+en las notas más cercanas, como pueden ser \textit{A1}, \textit{A2}, \textit{C1} y \textit{C2}; notas que tienen una frecuencia muy similar y se encuentran
 en el primer intervalo, \textit{(0.0, 380.3)}. 
 
 \bigskip
-Para poder diferenciar mejor entre estas notas, y entre futuras notas
-que puedan ser similares entre ellas, sería una buena opción que se aumentase el número de intervalos a dividir
-las frecuencias, para así poder diferenciar de mejor manera notas similares.
+Para poder diferenciar mejor entre estas notas (y entre futuras notas
+que puedan ser similares entre ellas), sería una buena opción que se aumentase el número de intervalos a dividir
+las frecuencias, para así poder diferenciar de mejor manera dichas notas.
 
 \begin{table}[!ht]
 	\centering
@@ -1068,7 +1051,7 @@ las frecuencias, para así poder diferenciar de mejor manera notas similares.
 \newpage
 \subsection{Tercera aproximación}
 \label{Tercera aproximación}
-Como hemos obtenido resultados muy buenos en la aproximación anterior, se va a aumentar la complejidad del problema,
+Como hemos obtenido resultados muy buenos en la aproximación anterior, seguiremos aumentando la complejidad del problema,
 es decir, añadiremos más notas a ser clasificadas. Serán un total de 50 notas a clasificar, y se dispondrá de 
 3194 patrones para ser utilizados por los modelos.
 
@@ -1081,9 +1064,8 @@ Las notas que vamos a clasificar son:
 \textit{F1}, \textit{F2}, \textit{F3}, \textit{F4}, \textit{F5}, \textit{F6}, \textit{F7},
 \textit{G1}, \textit{G2}, \textit{G3}, \textit{G4}, \textit{G5}, \textit{G6} y \textit{G7}.
 
-\bigskip
-Se pueden ver algunos ejemplos de estas notas, en el dominio del tiempo y de la frecuencia, en las figuras
-\ref{fig:d1}, \ref{fig:e1}, \ref{fig:f1} y \ref{fig:g1}
+Se pueden ver algunos ejemplos de estas notas, en el dominio del tiempo y de la frecuencia, en las Figuras
+\ref{fig:d1}, \ref{fig:e1}, \ref{fig:f1} y \ref{fig:g1}.
 
 \begin{figure}[!ht]
 	\centering
@@ -1119,14 +1101,15 @@ Se pueden ver algunos ejemplos de estas notas, en el dominio del tiempo y de la 
 	\caption{}
 \end{figure}
 
-
-Como en esta aproximación aumentamos mucho el número de clases a clasificar (50 clases),
-nos parece buena opción aumentar las características a utilizar, pero de una forma
-distinta a la anterior aproximación. Lo que haremos será aumentar el número de intervalos
+\bigskip
+Como en esta aproximación aumentamos mucho el número de clases a clasificar (50 en total),
+nos parece buena opción aumentar también las características utilizadas, pero desde un enfoque
+diferente a la anterior aproximación. Lo que haremos será aumentar el número de intervalos
 a dividir el dominio de la frecuencia; de 10 intervalos que teníamos anteriormente, a 30 intervalos.
 De esta manera, esperamos que se puede clasificar mejor notas que tengan frecuencias muy cercanas,
-además de repartir mejor el número de notas que coinciden en cada intervalos.
+además de repartir mejor el número de notas que coinciden en cada intervalo.
 
+\newpage
 En concreto, los intervalos de frecuencias que utilizaremos serán los siguientes:
 
 \textit{(0.0, 63.845)},\textit{(63.845, 131.486)}, 
@@ -1145,14 +1128,10 @@ En concreto, los intervalos de frecuencias que utilizaremos serán los siguiente
 \textit{(3747.002, 4033.655)}, \textit{(4033.655, 4337.353)},
 \textit{(4337.353, 4659.11)} y \textit{(4659.11, 5000.0)}
 
-
-
 Para el preprocesado de los datos, utilizaremos, como se mencionó en aproximaciones anteriores,
 una normalización de media cero.
-Así, obtuvimos para cada característica, la media y la desviación típica. Se muestran dichos datos en las tablas \ref{Tab:Features_3_1},
-\ref{Tab:Features_3_2} \ref{Tab:Features_3_3} y \ref{Tab:Features_3_4},
-
-\bigskip
+Así, obtuvimos para cada característica, la media y la desviación típica. Se muestran dichos datos en las Tablas \ref{Tab:Features_3_1},
+\ref{Tab:Features_3_2} \ref{Tab:Features_3_3} y \ref{Tab:Features_3_4}.
 
 \begin{table}
 	\caption{Parámetros de normalización (I)}
@@ -1442,19 +1421,9 @@ Así, obtuvimos para cada característica, la media y la desviación típica. Se
 	\label{Tab:Features_3_4}
 \end{table}
 
+\newpage
+\hphantom{skip}
 
-
-Donde:
-\begin{itemize}
-	\item \textit{E} indica la \textbf{energía de la señal}.
-	\item \textit{m\textsubscript{i}} indica la \textbf{media de la intensidad} en el intervalo \textit{i} en frecuencia.
-	\item \textit{std\textsubscript{i}} indica la \textbf{desviación típica de la intensidad} en el intervalo \textit{i} en frecuencia.
-	\item \textit{max\textsubscript{i}} indica el \textbf{máximo de la intensidad} en el intervalo \textit{i} en frecuencia.
-	\item \textit{max-freq\textsubscript{i}} indica la \textbf{frecuencia donde se alcanza el máximo de intensidad} en el intervalo \textit{i} en frecuencia.
-\end{itemize}	
-
-
-\bigskip
 Para estos experimentos se ha repetido 20 veces el entrenamiento de la RNA en cada \textit{fold}, devolviendo el resultado promedio de esas 20 ejecuciones.
 
 \bigskip
@@ -1481,7 +1450,7 @@ El hiperparámetro que hemos variado ha sido la arquitectura de neuronas a utili
 donde la arquitectura [$i$] denota una RNA con una única capa oculta con $i$ neuronas y la arquitectura [$i$, $j$] 
 denota una neurona con dos capas ocultas; con $i$ neuronas en la primera capa oculta y $j$ neuronas en la segunda capa oculta.
 
-Se muestran los resultados de la experimentación en la Tabla \ref{Tab:ANN_3}
+Se muestran los resultados de la experimentación en la Tabla \ref{Tab:ANN_3}.
 
 \begin{table}[!ht]
 	\caption{Resultados RNA}
@@ -1515,7 +1484,7 @@ Se muestran los resultados de la experimentación en la Tabla \ref{Tab:ANN_3}
 Para las máquinas de soporte vectorial hemos utilizado 8 configuraciones distintas de los hiperparámetros de \textit{kernel},
 grado del \textit{kernel} (sólo se utiliza en \textit{kernel} polinomial), \textit{gamma} y \textit{C}.
 
-Se muestran los resultados de la experimentación en la Tabla \ref{Tab:SVM_3}
+Se muestran los resultados de la experimentación en la Tabla \ref{Tab:SVM_3}.
 
 \begin{table}[!ht]
 	\caption{Resultados SVM}
@@ -1547,7 +1516,7 @@ Se muestran los resultados de la experimentación en la Tabla \ref{Tab:SVM_3}
 \paragraph{Árboles de decisión}
 Para los árboles de decisión hemos utilizado 6 configuraciones distintas del hiperparámetro de profundidad máxima.
 
-Se muestran los resultados de la experimentación en la Tabla \ref{Tab:DecisionTree_3}
+Se muestran los resultados de la experimentación en la Tabla \ref{Tab:DecisionTree_3}.
 
 \begin{table}[!ht]
 	\caption{Resultados Árbol de decisión}
@@ -1577,7 +1546,7 @@ Se muestran los resultados de la experimentación en la Tabla \ref{Tab:DecisionT
 \paragraph{kNN}
 Para el modelo kNN hemos utilizado 6 configuraciones distintas del hiperparámetro de k (número de vecinos más cercanos).
 
-Se muestran los resultados de la experimentación en la tabla \ref{Tab:kNN_3}
+Se muestran los resultados de la experimentación en la tabla \ref{Tab:kNN_3}.
 
 \begin{table}[!ht]
 	\caption{Resultados kNN}
@@ -1661,40 +1630,41 @@ Se muestran los resultados de la experimentación en la tabla \ref{Tab:kNN_3}
 
 
 Los resultados de esta iteración son muy buenos, ya que hemos aumentado en gran medida el número de notas
-a clasificar (50) y hemos conseguido varios modelos con más de un 99\% de \textit{F1-Score} y precisión. 
+a clasificar y hemos conseguido varios modelos con más de un 99\% de F1-Score y precisión. 
 
 \bigskip
-En concreto,el modelo que mejor funciona es un SVM con un \textit{kernel} de base radial y con valores de \textit{gamma} y
-\textit{C} de $0.01$ y $100$, respectivamente. Este modelo alcanzó un \textit{F1-Score} de 
+En concreto, el modelo que mejor funciona es un SVM con un \textit{kernel} de base radial y con valores de \textit{gamma} y
+\textit{C} de $0.01$ y $100$, respectivamente. Este modelo alcanzó un F1-Score de 
 $0.99594 \pm 0.00411$ y una precisión de $0.99563 \pm 0.00257$, unos valores muy altos y que indican
 que el sistema funciona muy bien. 
 
 \bigskip
 Caben destacar también modelos que alcanzan un rendimiento parecido,
-como puede ser un SVM con un kernel polinomial de grado $3$, con ambos valores de \textit{gamma} y \textit{C} de $1$,
+como puede ser un SVM con un \textit{kernel} polinomial de grado $3$, con ambos valores de \textit{gamma} y \textit{C} de $1$,
 además de una RNA con una única capa oculta con $32$ neuronas.
 
 \bigskip
 En contra, el modelo que peor rendimiento presenta es un SVM con un \textit{kernel} de base radial,
 con valores de \textit{gamma} y \textit{C} de $10$ y $0.1$, respectivamente. Cabe destacar que este modelo
 es similar al modelo que presenta el mejor rendimiento, siendo lo único que cambia los parámetros de
-\textit{gamma} y \textit{C}. Es notable ver que un ligero cambio en estos dos parámetros, puede 
-producir que un sistema pase de ser muy malo, a ser tremendamente bueno.
+\textit{gamma} y \textit{C}. Es notable ver que un ligero cambio en estos dos parámetros puede 
+producir que un sistema pase de ser muy malo, a ser muchísimo mejor.
 
 \bigskip
-Como hemos podido ver, los resultados son muy buenos en general, pero estos sistemas tienen un problema (principalmente las RRNNAA),
+Como hemos podido ver, los resultados son muy buenos en general, pero algunos de estos sistemas tienen un problema (principalmente las RNAs),
 y es que el tiempo de entrenamiento es mucho mayor que en aproximaciones anteriores. Creemos que esto se puede deber tanto por
-aumentar el número de instancias (anteriormente $1090$, y en esta aproximación, $3194$) a utilizar por el sistema,
-como por el número de características que se utilizan ($122$). Como hemos obtenido resultados muy buenos, estaría bien que
-en una próxima aproximación se intente reducir el número de características, intentando no perder el rendimiento
-de clasificación del sistema, y así poder producir modelos que sean más rápidos de entrenar, a la vez que más rápidos
-para realizar predicciones ante futuros patrones.
+aumentar el número de instancias a utilizar por el sistema (anteriormente $1090$, y en esta aproximación $3194$),
+como por el número de características que se utilizan ($122$).
+Así, y ante resultados tan satisfactorios, creemos que en futuras aproximaciones deberíamos intentar reducir el número de características, 
+siempre tratando de no perder el rendimiento
+de clasificación del sistema, permitiéndonos producir modelos que sean más rápidos de entrenar, a la vez que más rápidos
+para realizar predicciones ante nuevos patrones.
 
 \bigskip
 En la matriz de confusión de la Tabla \ref{tab:confusion_matrix_3} hemos omitido por razones de tamaño las filas y las columnas donde 
 el sistema no se confunde, a excepción de las 5 primeras y las 8 ultimas para definir el rango de notas de esta aproximación y su 
 patrón diagonal de aciertos. Al igual que anteriores aproximaciones podemos destacar que los fallos son entre notas con frecuencias muy
-parecidas como pueden ser G1(\textit{48,99 Hz}) y A1(\textit{55 Hz}) o G1(\textit{48,99 Hz}) y E2(\textit{82,40 Hz}).
+parecidas como pueden ser \textit{G1}(\textit{48,99 Hz}) y \textit{A1}(\textit{55 Hz}) o \textit{G1}(\textit{48,99 Hz}) y \textit{E2}(\textit{82,40 Hz}).
 
 \begin{table}[!ht]
 	\centering

@@ -159,6 +159,45 @@
       \field{title}{Audio cover song identification using convolutional neural network}
       \field{year}{2017}
     \endentry
+    \entry{cortes1995support}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=17acda211a651e90e228f1776ee07818}{%
+           family={Cortes},
+           familyi={C\bibinitperiod},
+           given={Corinna},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c2b3e05872463585b4be6aab10d10d63}{%
+           family={Vapnik},
+           familyi={V\bibinitperiod},
+           given={Vladimir},
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{4c67d5268f413e83454c8adc14ab43c3}
+      \strng{fullhash}{4c67d5268f413e83454c8adc14ab43c3}
+      \strng{bibnamehash}{4c67d5268f413e83454c8adc14ab43c3}
+      \strng{authorbibnamehash}{4c67d5268f413e83454c8adc14ab43c3}
+      \strng{authornamehash}{4c67d5268f413e83454c8adc14ab43c3}
+      \strng{authorfullhash}{4c67d5268f413e83454c8adc14ab43c3}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Machine learning}
+      \field{number}{3}
+      \field{title}{Support-vector networks}
+      \field{volume}{20}
+      \field{year}{1995}
+      \field{pages}{273\bibrangedash 297}
+      \range{pages}{25}
+    \endentry
     \entry{foo1999recognition}{article}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=b0e2a0807ed68cdb751ee9fd283575e5}{%
@@ -191,6 +230,61 @@
       \field{title}{Recognition of piano notes}
       \field{year}{1999}
     \endentry
+    \entry{guo2003knn}{article}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=f1ef1cc4017c4994bca001e1c9793a9c}{%
+           family={Guo},
+           familyi={G\bibinitperiod},
+           given={Gongde},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a753993c6afc6bfea114ea4114b2e619}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Hui},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4edb28bbe86173db7bb183166e5a4a0a}{%
+           family={Bell},
+           familyi={B\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b6959e3ba8aa8ae19fa07aabd9efd904}{%
+           family={Bi},
+           familyi={B\bibinitperiod},
+           given={Yaxin},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9b300bd187cdfcaddc17f85227f757cc}{%
+           family={Greer},
+           familyi={G\bibinitperiod},
+           given={Kieran},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{organization}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{248d63f573e8edf6355f4d56d57745a5}
+      \strng{fullhash}{694a479e08f73698a600a242137e5e90}
+      \strng{bibnamehash}{694a479e08f73698a600a242137e5e90}
+      \strng{authorbibnamehash}{694a479e08f73698a600a242137e5e90}
+      \strng{authornamehash}{248d63f573e8edf6355f4d56d57745a5}
+      \strng{authorfullhash}{694a479e08f73698a600a242137e5e90}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{OTM Confederated International Conferences" On the Move to Meaningful Internet Systems"}
+      \field{title}{KNN model-based approach in classification}
+      \field{year}{2003}
+      \field{pages}{986\bibrangedash 996}
+      \range{pages}{11}
+    \endentry
     \entry{klapuri2004signal}{book}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=5d79b2c1c58f54540fd7dce441be6a83}{%
@@ -218,6 +312,39 @@
       \field{labeltitlesource}{title}
       \field{title}{Signal processing methods for the automatic transcription of music}
       \field{year}{2004}
+    \endentry
+    \entry{krogh2008artificial}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=6403d5c11a92c83a009c3def1b494036}{%
+           family={Krogh},
+           familyi={K\bibinitperiod},
+           given={Anders},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Nature Publishing Group}%
+      }
+      \strng{namehash}{6403d5c11a92c83a009c3def1b494036}
+      \strng{fullhash}{6403d5c11a92c83a009c3def1b494036}
+      \strng{bibnamehash}{6403d5c11a92c83a009c3def1b494036}
+      \strng{authorbibnamehash}{6403d5c11a92c83a009c3def1b494036}
+      \strng{authornamehash}{6403d5c11a92c83a009c3def1b494036}
+      \strng{authorfullhash}{6403d5c11a92c83a009c3def1b494036}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Nature biotechnology}
+      \field{number}{2}
+      \field{title}{What are artificial neural networks?}
+      \field{volume}{26}
+      \field{year}{2008}
+      \field{pages}{195\bibrangedash 197}
+      \range{pages}{3}
     \endentry
     \entry{marolt2002neural}{article}{}
       \name{author}{3}{}{%
@@ -259,6 +386,63 @@
       \field{journaltitle}{Proceedings of the 2002 International Computer Music Conference}
       \field{title}{Neural networks for note onset detection in piano music}
       \field{year}{2002}
+    \endentry
+    \entry{myles2004introduction}{article}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=0f689e984422d296b73ca9270b8d2167}{%
+           family={Myles},
+           familyi={M\bibinitperiod},
+           given={Anthony\bibnamedelima J},
+           giveni={A\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3cc6d82c86a1a0f72f77a3dbb6461f86}{%
+           family={Feudale},
+           familyi={F\bibinitperiod},
+           given={Robert\bibnamedelima N},
+           giveni={R\bibinitperiod\bibinitdelim N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=621013bf54d3546375ad71f17f020b5b}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Yang},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=24c4bd191523f8e6eda2642ff53e12db}{%
+           family={Woody},
+           familyi={W\bibinitperiod},
+           given={Nathaniel\bibnamedelima A},
+           giveni={N\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f7fd27f2c5327d74869b386ef51cd798}{%
+           family={Brown},
+           familyi={B\bibinitperiod},
+           given={Steven\bibnamedelima D},
+           giveni={S\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{95345022f84b752d11472e173913f216}
+      \strng{fullhash}{9f72c52bb5fafc87883cc6f4865d141e}
+      \strng{bibnamehash}{9f72c52bb5fafc87883cc6f4865d141e}
+      \strng{authorbibnamehash}{9f72c52bb5fafc87883cc6f4865d141e}
+      \strng{authornamehash}{95345022f84b752d11472e173913f216}
+      \strng{authorfullhash}{9f72c52bb5fafc87883cc6f4865d141e}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Chemometrics: A Journal of the Chemometrics Society}
+      \field{number}{6}
+      \field{title}{An introduction to decision tree modeling}
+      \field{volume}{18}
+      \field{year}{2004}
+      \field{pages}{275\bibrangedash 285}
+      \range{pages}{11}
     \endentry
     \entry{osmalsky2012neural}{article}{}
       \name{author}{4}{}{%
