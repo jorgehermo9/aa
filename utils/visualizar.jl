@@ -14,9 +14,8 @@ function freqToIndex(freq_y::AbstractArray{<:Real,1},freq::Real,fs::Real)
 	return ind;
 end
 
-# A3 C6 A6
-nota="G1"
-id="117"
+nota="F#1"
+id="98"
 archivo="Piano-$(nota)-$(id).wav"
 y,fs = wavread("/home/jorge/github/aa/db/piano/$(nota)/$(archivo)");
 
@@ -53,11 +52,11 @@ f = map(x -> x * (max_freq)/length(target_freq),1:length(target_freq));
 freq_graph = plot(f,target_freq, label = "Freq",xaxis="f[hz]",c=:orange);
 
 graph = plot(time_graph,freq_graph,layout=(1,2));
-display(graph);
+#display(graph);
 # savefig(time_graph,"$(nota)_time_graph.svg")
 # savefig(freq_graph,"$(nota)_freq_graph.svg")
 savefig(graph,"$(nota)_graph.svg")
-
+println("Saved graph to $(nota)_graph.svg")
 
 
 

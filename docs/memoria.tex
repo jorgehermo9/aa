@@ -1057,6 +1057,7 @@ Como hemos obtenido resultados muy buenos en la aproximación anterior, seguirem
 es decir, añadiremos más notas a ser clasificadas. Serán un total de 50 notas a clasificar, y se dispondrá de 
 3194 patrones para ser utilizados por los modelos.
 
+\bigskip
 Las notas que vamos a clasificar son: 
 \textit{C1}, \textit{C2}, \textit{C3}, \textit{C4}, \textit{C5}, \textit{C6}, \textit{C7}, \textit{C8}, 
 \textit{A1}, \textit{A2}, \textit{A3}, \textit{A4}, \textit{A5}, \textit{A6}, \textit{A7},
@@ -1704,6 +1705,73 @@ parecidas como pueden ser \textit{G1}(\textit{48,99 Hz}) y \textit{A1}(\textit{5
 	\caption{Matriz de confusión mejor modelo }
 	\label{tab:confusion_matrix_3}
 \end{table}
+
+\newpage
+\subsection{Cuarta aproximación}
+\label{Cuarta aproximación}
+Como hemos obtenido resultados muy buenos en la aproximación anterior, seguiremos aumentando la complejidad del problema,
+es decir, añadiremos más notas a ser clasificadas. Serán un total de 85 notas a clasificar, y se dispondrá de 
+5406 patrones para ser utilizados por los modelos. 
+
+\bigskip
+Las notas que vamos a clasificar constituyen el total de notas del
+piano, por lo que en esta aproximación es donde veremos cómo de bien se comporta nuestro sistema ante el problema
+completo.
+En concreto, las nuevas notas que añadimos son los sostenidos de las notas, que además presentan un especial problema,
+ya que la frecuencia de una nota y su sostenido están muy cercanas, ya que están separadas por un semitono.
+
+\bigskip
+Las notas que vamos a clasificar son: 
+\textit{A1}, \textit{A2}, \textit{A3}, \textit{A4}, \textit{A5}, \textit{A6}, \textit{A7},
+\textit{A\#1}, \textit{A\#2}, \textit{A\#3}, \textit{A\#4}, \textit{A\#5}, \textit{A\#6}, \textit{A\#7},
+\textit{B1}, \textit{B2}, \textit{B3}, \textit{B4}, \textit{B5}, \textit{B6}, \textit{B7},
+\textit{C1}, \textit{C2}, \textit{C3}, \textit{C4}, \textit{C5}, \textit{C6}, \textit{C7}, \textit{C8},
+\textit{C\#1}, \textit{C\#2}, \textit{C\#3}, \textit{C\#4}, \textit{C\#5}, \textit{C\#6}, \textit{C\#7}, \textit{C8}, 
+\textit{D1}, \textit{D2}, \textit{D3}, \textit{D4}, \textit{D5}, \textit{D6}, \textit{D7},
+\textit{D\#1}, \textit{D\#2}, \textit{D\#3}, \textit{D\#4}, \textit{D\#5}, \textit{D\#6}, \textit{D\#7},
+\textit{E1}, \textit{E2}, \textit{E3}, \textit{E4}, \textit{E5}, \textit{E6}, \textit{E7},
+\textit{F1}, \textit{F2}, \textit{F3}, \textit{F4}, \textit{F5}, \textit{F6}, \textit{F7},
+\textit{F\#1}, \textit{F\#2}, \textit{F\#3}, \textit{F\#4}, \textit{F\#5}, \textit{F\#6}, \textit{F\#7},
+\textit{G1}, \textit{G2}, \textit{G3}, \textit{G4}, \textit{G5}, \textit{G6}, \textit{G7}.
+\textit{G\#1}, \textit{G\#2}, \textit{G\#3}, \textit{G\#4}, \textit{G\#5}, \textit{G\#6} y \textit{G\#7}.
+
+Se pueden ver algunos ejemplos de estas notas, en el dominio del tiempo y de la frecuencia, en las Figuras
+\ref{fig:a1_sos}, \ref{fig:c1_sos}, \ref{fig:d1_sos} y \ref{fig:f1_sos}.
+
+\begin{figure}[!ht]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.0\linewidth]{assets/A1_sos.pdf}
+		\caption{A\#1}
+		\label{fig:a1_sos}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.0\linewidth]{assets/C1_sos.pdf}
+		\caption{C\#1}
+		\label{fig:c1_sos}
+	\end{subfigure}
+	\caption{}
+\end{figure}
+
+\begin{figure}[!ht]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.0\linewidth]{assets/D1_sos.pdf}
+		\caption{D\#1}
+		\label{fig:d1_sos}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.0\linewidth]{assets/F1_sos.pdf}
+		\caption{F\#1}
+		\label{fig:f1_sos}
+	\end{subfigure}
+	\caption{}
+\end{figure}
+
 
 \newpage
 \section{Conclusiones}
