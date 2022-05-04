@@ -6,7 +6,7 @@ include("src/scikit/p6.jl")
 
 
 Random.seed!(100)
-dataset = readdlm("dataset/aprox3.csv",',');
+dataset = readdlm("dataset/aprox4.csv",',');
 
 headers = dataset[1:1,1:end-1]
 inputs = dataset[2:end,1:end-1];
@@ -45,7 +45,7 @@ f1_models = Vector{Vector{Float64}}(undef,length(models));
 f1_std_models = Vector{Vector{Float64}}(undef,length(models));
 
 #RNA
-topologies = [[8],[16],[32],[8,8],[16,4],[16,8],[32,16],[32,32]]
+topologies = [[8],[16],[32],[64],[128],[256],[64,2],[64,4]]
 rna_parameters = Vector{Dict{Any,Any}}(undef, length(topologies));
 
 for i in 1:length(topologies)
@@ -54,7 +54,7 @@ for i in 1:length(topologies)
 	topology_parameters["learning_rate"] = 0.01;
 	topology_parameters["validation_ratio"] = 0.2;
 	topology_parameters["rna_executions"] = 20;
-	topology_parameters["max_epochs"] = 1500;
+	topology_parameters["max_epochs"] = 200;
 	topology_parameters["max_epochs_val"] = 5;
 	rna_parameters[i] = topology_parameters;
 end
