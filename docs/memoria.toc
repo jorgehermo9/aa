@@ -31,6 +31,6 @@
 \contentsline {subsection}{\numberline {5.4}Cuarta aproximación}{34}{subsection.5.4}%
 \contentsline {subsubsection}{\numberline {5.4.1}Resultados}{35}{subsubsection.5.4.1}%
 \contentsline {subsubsection}{\numberline {5.4.2}Discusión}{35}{subsubsection.5.4.2}%
-\contentsline {section}{\numberline {6}Conclusiones}{36}{section.6}%
-\contentsline {section}{\numberline {7}Trabajo futuro}{36}{section.7}%
-\contentsline {section}{\numberline {8}Bibliografía}{36}{section.8}%
+\contentsline {section}{\numberline {6}Conclusiones}{40}{section.6}%
+\contentsline {section}{\numberline {7}Trabajo futuro}{40}{section.7}%
+\contentsline {section}{\numberline {8}Bibliografía}{40}{section.8}%

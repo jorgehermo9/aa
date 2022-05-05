@@ -242,10 +242,7 @@ max_freq29 & $4471.467$ & $94.344215$ \\
 \hline
 max_freq30 & $4826.714$ & $102.89994$ \\
 \hline
-abs_max & $1445.9364$ & $1557.9128$ \\
-\hline
-abs_max_freq & $980.58826$ & $1027.9849$ \\
-\hline
+
 Training ANN (config 1)
 Training ANN (config 2)
 Training ANN (config 3)

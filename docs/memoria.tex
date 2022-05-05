@@ -57,7 +57,7 @@
 	\item VN: Verdadero negativo
 	\item FP: Falso positivo
 	\item FN: Falso negativo
-	\item RNA: Red de neuronas artificial.
+	\item RNA: Red de neuronas artificiales.
 	\item SVM: \textit{Support Vector Machine} (Máquina de soporte vectorial).
 	\item kNN: \textit{K-nearest neighbors} (k vecinos más cercanos).
 	\item poly: \textit{Kernel} polinomial.
@@ -1658,7 +1658,7 @@ Las notas que vamos a clasificar constituyen el total de notas del
 piano, por lo que en esta aproximación será donde veamos cómo de bien se comporta nuestro sistema ante el problema
 completo.
 En concreto, las nuevas notas que añadimos son los sostenidos de cada escala. Estos presentan un especial problema, ya que solo están a distancia de un semitono con
-respecto a la nota original resultando en frecuencias muy cercanas.
+respecto a la nota original, resultando en frecuencias muy cercanas.
 
 \bigskip
 Así, las notas que vamos a clasificar son: 
@@ -1714,8 +1714,299 @@ Se pueden ver algunos ejemplos de estas notas, en el dominio del tiempo y de la 
 
 \newpage
 \subsubsection{Resultados}
-\subsubsection{Discusión}
+\begin{table}
+	\caption{Parámetros de normalización (I)}
+	\centering
+		\begin{tabular}{||c c c||}
+			\hline
+			Característica & Media & Desviación Típica \\ [0.5ex]
+			\hline\hline
+			E & $0.005290622$ & $0.009127998$ \\
+			\hline
+			zero-crossing & $3317.7852$ & $4477.6226$ \\
+			\hline
+			abs-max & $1445.9364$ & $1557.9128$ \\
+			\hline
+			abs-max-freq & $980.58826$ & $1027.9849$ \\
+			\hline
+			m\textsubscript{1} & $2.5213237$ & $4.892542$ \\
+			\hline
+			m\textsubscript{2} & $19.776129$ & $34.19082$ \\
+			\hline
+			m\textsubscript{3} & $18.500994$ & $33.448643$ \\
+			\hline
+			m\textsubscript{4} & $20.293629$ & $28.46877$ \\
+			\hline
+			m\textsubscript{5} & $15.832674$ & $24.200994$ \\
+			\hline
+			m\textsubscript{6} & $13.741416$ & $21.621166$ \\
+			\hline
+			m\textsubscript{7} & $13.71829$ & $20.745993$ \\
+			\hline
+			m\textsubscript{8} & $10.299257$ & $17.33558$ \\
+			\hline
+			m\textsubscript{9} & $9.490465$ & $18.469109$ \\
+			\hline
+			m\textsubscript{10} & $9.750799$ & $19.446434$ \\
+			\hline
+			m\textsubscript{11} & $9.340946$ & $13.882007$ \\
+			\hline
+			m\textsubscript{12} & $7.7851214$ & $11.177626$ \\
+			\hline
+			m\textsubscript{13} & $6.734947$ & $13.808262$ \\
+			\hline
+			m\textsubscript{14} & $5.5433474$ & $8.790224$ \\
+			\hline
+			m\textsubscript{15} & $4.2768292$ & $6.906526$ \\
+			\hline
+			m\textsubscript{16} & $4.459063$ & $7.8797054$ \\
+			\hline
+			m\textsubscript{17} & $2.9236934$ & $5.253287$ \\
+			\hline
+			m\textsubscript{18} & $2.6162808$ & $5.561383$ \\
+			\hline
+			m\textsubscript{19} & $2.5326357$ & $4.6802435$ \\
+			\hline
+			m\textsubscript{20} & $1.656642$ & $4.287465$ \\
+			\hline
+			m\textsubscript{21} & $1.6121823$ & $4.2043204$ \\
+			\hline
+			m\textsubscript{22} & $1.1647563$ & $3.044825$ \\
+			\hline
+			m\textsubscript{23} & $0.87163603$ & $2.4234502$ \\
+			\hline
+			m\textsubscript{24} & $0.83163273$ & $2.1765046$ \\
+			\hline
+			m\textsubscript{25} & $0.61601394$ & $1.4981358$ \\
+			\hline
+			m\textsubscript{26} & $0.5027224$ & $1.2157471$ \\
+			\hline
+			m\textsubscript{27} & $0.44925115$ & $1.2129601$ \\
+			\hline
+			m\textsubscript{28} & $0.3179743$ & $1.0582143$ \\
+			\hline
+			m\textsubscript{29} & $0.30106485$ & $1.2961926$ \\
+			\hline
+			m\textsubscript{30} & $0.12668554$ & $0.24906345$ \\
+			\hline
+		\end{tabular}
+	\label{Tab:Features_4_1}
+\end{table}
 
+\begin{table}
+	\caption{Parámetros de normalización (II)}
+	\centering
+		\begin{tabular}{||c c c||}
+			\hline
+			Característica & Media & Desviación Típica  \\ [0.5ex]
+			\hline\hline
+			std1 & $3.7071$ & $8.894764$ \\
+			\hline
+			std2 & $41.93409$ & $100.38277$ \\
+			\hline
+			std3 & $41.496273$ & $100.46413$ \\
+			\hline
+			std4 & $50.62945$ & $97.251366$ \\
+			\hline
+			std5 & $32.27192$ & $66.25659$ \\
+			\hline
+			std6 & $31.772036$ & $64.703476$ \\
+			\hline
+			std7 & $30.200518$ & $56.291985$ \\
+			\hline
+			std8 & $24.33468$ & $49.075897$ \\
+			\hline
+			std9 & $17.22069$ & $40.07678$ \\
+			\hline
+			std10 & $21.47563$ & $49.664173$ \\
+			\hline
+			std11 & $16.356256$ & $32.295124$ \\
+			\hline
+			std12 & $13.809475$ & $27.013056$ \\
+			\hline
+			std13 & $13.494098$ & $35.255543$ \\
+			\hline
+			std14 & $9.511233$ & $19.50926$ \\
+			\hline
+			std15 & $7.4176326$ & $16.4802$ \\
+			\hline
+			std16 & $7.555132$ & $18.873085$ \\
+			\hline
+			std17 & $5.6317873$ & $11.938161$ \\
+			\hline
+			std18 & $3.8923404$ & $10.900163$ \\
+			\hline
+			std19 & $4.617325$ & $10.1336155$ \\
+			\hline
+			std20 & $2.5670214$ & $8.334569$ \\
+			\hline
+			std21 & $2.7792637$ & $7.7385535$ \\
+			\hline
+			std22 & $1.8842899$ & $5.510914$ \\
+			\hline
+			std23 & $1.4960651$ & $4.586712$ \\
+			\hline
+			std24 & $1.4450701$ & $3.7847013$ \\
+			\hline
+			std25 & $0.90402246$ & $2.5514781$ \\
+			\hline
+			std26 & $0.7006507$ & $1.8386049$ \\
+			\hline
+			std27 & $0.6376248$ & $1.6106461$ \\
+			\hline
+			std28 & $0.48451066$ & $1.7358224$ \\
+			\hline
+			std29 & $0.38622695$ & $1.3208534$ \\
+			\hline
+			std30 & $0.18503572$ & $0.458966$ \\
+			\hline
+		\end{tabular}
+	\label{Tab:Features_4_2}
+\end{table}
+
+\begin{table}
+	\caption{Parámetros de normalización (III)}
+	\centering
+		\begin{tabular}{||c c c||}
+			\hline
+			Característica & Media & Desviación Típica  \\ [0.5ex]
+			\hline\hline
+			max1 & $33.110157$ & $99.81226$ \\
+			\hline
+			max2 & $415.37152$ & $1154.7861$ \\
+			\hline
+			max3 & $422.34433$ & $1112.5609$ \\
+			\hline
+			max4 & $536.3476$ & $1134.9387$ \\
+			\hline
+			max5 & $317.401$ & $698.8781$ \\
+			\hline
+			max6 & $316.10635$ & $644.3593$ \\
+			\hline
+			max7 & $293.7506$ & $569.4251$ \\
+			\hline
+			max8 & $239.86774$ & $471.9059$ \\
+			\hline
+			max9 & $162.63959$ & $375.88123$ \\
+			\hline
+			max10 & $207.69164$ & $447.70316$ \\
+			\hline
+			max11 & $156.60005$ & $323.31445$ \\
+			\hline
+			max12 & $132.93877$ & $264.18588$ \\
+			\hline
+			max13 & $129.61961$ & $310.57278$ \\
+			\hline
+			max14 & $90.64936$ & $186.6918$ \\
+			\hline
+			max15 & $72.60896$ & $163.45084$ \\
+			\hline
+			max16 & $68.42438$ & $165.54524$ \\
+			\hline
+			max17 & $55.859993$ & $115.98919$ \\
+			\hline
+			max18 & $35.653084$ & $97.61015$ \\
+			\hline
+			max19 & $40.517826$ & $84.012886$ \\
+			\hline
+			max20 & $22.404512$ & $67.51314$ \\
+			\hline
+			max21 & $23.722889$ & $55.782883$ \\
+			\hline
+			max22 & $16.067352$ & $41.516422$ \\
+			\hline
+			max23 & $13.351332$ & $36.865856$ \\
+			\hline
+			max24 & $11.76221$ & $26.125443$ \\
+			\hline
+			max25 & $7.4373846$ & $19.201763$ \\
+			\hline
+			max26 & $5.7013874$ & $14.642168$ \\
+			\hline
+			max27 & $4.8674684$ & $10.794909$ \\
+			\hline
+			max28 & $3.8479474$ & $11.645865$ \\
+			\hline
+			max29 & $2.9212744$ & $8.312529$ \\
+			\hline
+			max30 & $1.5820836$ & $3.9503338$ \\
+			\hline
+		\end{tabular}
+	\label{Tab:Features_4_3}
+\end{table}
+
+\begin{table}
+	\caption{Parámetros de normalización (IV)}
+	\centering
+		\begin{tabular}{||c c c||}
+			\hline
+			Característica & Media & Desviación Típica  \\ [0.5ex]
+			\hline\hline
+			max-freq\textsubscript{1} & $34.545124$ & $14.418398$ \\
+			\hline
+			max-freq\textsubscript{2} & $108.99156$ & $14.543035$ \\
+			\hline
+			max-freq\textsubscript{3} & $157.66272$ & $22.50655$ \\
+			\hline
+			max-freq\textsubscript{4} & $237.14865$ & $26.168978$ \\
+			\hline
+			max-freq\textsubscript{5} & $308.71167$ & $24.800741$ \\
+			\hline
+			max-freq\textsubscript{6} & $404.29333$ & $26.971804$ \\
+			\hline
+			max-freq\textsubscript{7} & $488.65253$ & $23.474133$ \\
+			\hline
+			max-freq\textsubscript{8} & $584.63116$ & $31.848839$ \\
+			\hline
+			max-freq\textsubscript{9} & $671.4978$ & $29.488453$ \\
+			\hline
+			max-freq\textsubscript{10} & $784.3489$ & $33.213223$ \\
+			\hline
+			max-freq\textsubscript{11} & $905.13873$ & $34.916843$ \\
+			\hline
+			max-freq\textsubscript{12} & $1005.73865$ & $39.89346$ \\
+			\hline
+			max-freq\textsubscript{13} & $1136.8329$ & $46.666904$ \\
+			\hline
+			max-freq\textsubscript{14} & $1264.4369$ & $42.46175$ \\
+			\hline
+			max-freq\textsubscript{15} & $1412.9193$ & $49.629932$ \\
+			\hline
+			max-freq\textsubscript{16} & $1537.3774$ & $44.49866$ \\
+			\hline
+			max-freq\textsubscript{17} & $1700.5549$ & $47.24032$ \\
+			\hline
+			max-freq\textsubscript{18} & $1871.9404$ & $52.69005$ \\
+			\hline
+			max-freq\textsubscript{19} & $2058.1985$ & $61.4545$ \\
+			\hline
+			max-freq\textsubscript{20} & $2220.4458$ & $62.312325$ \\
+			\hline
+			max-freq\textsubscript{21} & $2422.4363$ & $62.446247$ \\
+			\hline
+			max-freq\textsubscript{22} & $2629.6775$ & $65.41493$ \\
+			\hline
+			max-freq\textsubscript{23} & $2861.094$ & $72.73729$ \\
+			\hline
+			max-freq\textsubscript{24} & $3082.9204$ & $77.84288$ \\
+			\hline
+			max-freq\textsubscript{25} & $3346.068$ & $74.768135$ \\
+			\hline
+			max-freq\textsubscript{26} & $3592.8464$ & $87.46203$ \\
+			\hline
+			max-freq\textsubscript{27} & $3867.4265$ & $90.45616$ \\
+			\hline
+			max-freq\textsubscript{28} & $4171.0786$ & $102.07654$ \\
+			\hline
+			max-freq\textsubscript{29} & $4471.467$ & $94.344215$ \\
+			\hline
+			max-freq\textsubscript{30} & $4826.714$ & $102.89994$ \\
+			\hline
+		\end{tabular}
+	\label{Tab:Features_4_4}
+\end{table}
+
+\subsubsection{Discusión}
 
 \newpage
 \section{Conclusiones}
