@@ -97,7 +97,7 @@ dataset_size = size(targets,1);
 
 # Para calcular los parámetros de normalización
 norm_params = calculateZeroMeanNormalizationParameters(inputs)
-for i in 1:length(headers)
+for i in 1:size(inputs,2)
 	println("$(headers[i]) & \$$(norm_params[1][i])\$ & \$$(norm_params[2][i])\$ \\\\")
 	println("\\hline")
 end
