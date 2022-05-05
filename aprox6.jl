@@ -16,8 +16,8 @@ include("src/scikit/p6.jl")
 
 Random.seed!(100)
 
-all_signals   = load("dataset/db.jld2", "all_signals")[:,1:300];
-all_labels = load("dataset/db.jld2", "all_labels")[1:300];
+all_signals   = load("dataset/db.jld2", "all_signals");
+all_labels = load("dataset/db.jld2", "all_labels");
 
 all_signals = normalizeZeroMean(all_signals);
 
