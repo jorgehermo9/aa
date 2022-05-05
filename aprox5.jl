@@ -8,8 +8,87 @@ include("src/scikit/p6.jl")
 Random.seed!(100)
 dataset = readdlm("dataset/aprox4.csv",',');
 
-headers = dataset[1:1,1:end-1]
-inputs = dataset[2:end,1:end-1];
+headers = dataset[1,1:end-1]
+
+# Selección de características
+# Top 70 características con mrmr-enhanced. Discretización
+# del dataset con 10 bins utilizando estrategia de cuantiles.
+selectedFeatures = [
+	"abs_max_freq",
+	"max_freq19",
+	"max_freq17",
+	"max_freq14",
+	"max_freq13",
+	"max_freq21",
+	"max_freq12",
+	"max_freq27",
+	"max_freq11",
+	"max_freq20",
+	"max_freq16",
+	"max_freq23",
+	"max_freq7",
+	"max_freq24",
+	"max_freq10",
+	"max_freq15",
+	"max_freq22",
+	"max_freq9",
+	"max_freq18",
+	"max_freq8",
+	"max_freq25",
+	"max_freq26",
+	"max_freq28",
+	"zero_crossing",
+	"max_freq5",
+	"max_freq6",
+	"max_freq29",
+	"max_freq30",
+	"max8",
+	"max_freq4",
+	"max6",
+	"std8",
+	"std6",
+	"abs_max",
+	"std7",
+	"max11",
+	"max9",
+	"max12",
+	"max10",
+	"max14",
+	"max7",
+	"max13",
+	"max_freq2",
+	"max5",
+	"std10",
+	"max17",
+	"max15",
+	"std9",
+	"max_freq3",
+	"max16",
+	"max4",
+	"m8",
+	"std11",
+	"E",
+	"m6",
+	"std14",
+	"std13",
+	"std5",
+	"std12",
+	"std4",
+	"m7",
+	"std15",
+	"max18",
+	"max_freq1",
+	"max19",
+	"std16",
+	"std17",
+	"m4",
+	"max21",
+	"m10",
+]
+
+selectedFeaturesIdx = findall(x -> in(x,selectedFeatures),headers)
+
+inputs = dataset[2:end,selectedFeaturesIdx];
 targets = dataset[2:end,end];
 
 inputs = convert(Array{Float32,2},inputs);
@@ -18,7 +97,7 @@ dataset_size = size(targets,1);
 
 # Para calcular los parámetros de normalización
 norm_params = calculateZeroMeanNormalizationParameters(inputs)
-for i in 1:length(headers)
+for i in 1:size(inputs,2)
 	println("$(headers[i]) & \$$(norm_params[1][i])\$ & \$$(norm_params[2][i])\$ \\\\")
 	println("\\hline")
 end
@@ -53,7 +132,7 @@ for i in 1:length(topologies)
 	topology_parameters["topology"] = topologies[i];
 	topology_parameters["learning_rate"] = 0.01;
 	topology_parameters["validation_ratio"] = 0.2;
-	topology_parameters["rna_executions"] = 20;
+	topology_parameters["rna_executions"] = 10;
 	topology_parameters["max_epochs"] = 200;
 	topology_parameters["max_epochs_val"] = 5;
 	rna_parameters[i] = topology_parameters;
