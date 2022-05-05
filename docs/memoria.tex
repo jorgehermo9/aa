@@ -231,7 +231,7 @@ Utitlizaremos varias técnicas de aprendizaje supervisado como son:
 \end{itemize}
 
 \bigskip
-Además, para mejor la calidad de los experimentos y no depender de la selección aleatoria del conjunto de test y de entrenamiento, utilizaremos
+Además, para mejorar la calidad de los experimentos y no depender de la selección aleatoria del conjunto de test y de entrenamiento, utilizaremos
 la técnica de \textit{cross validation} (validación cruzada). Esta técnica consiste en repetir y calcular la media aritmética obtenida de las medidas de la evaluación 
 sobre k \textit{folds} (conjuntos) distintos.
 
@@ -431,7 +431,7 @@ denota una neurona con dos capas ocultas; con $i$ neuronas en la primera capa oc
 Se muestran los resultados de la experimentación en la Tabla \ref{Tab:ANN_1}.
 
 \begin{table}[ht]
-	\caption{Resultados RRNNA}
+	\caption{Resultados RNA}
 	\centering
 		 \begin{tabular}{||c c c||}
 			 \hline
@@ -548,7 +548,7 @@ Se muestran los resultados de la experimentación en la Tabla \ref{Tab:kNN_1}.
 \end{table}
 
 \subsubsection{Discusión}
-Los resultados han sido muy buenos, ya que en la mayoría de casos de alcanza una \textbf{precisión} y un \textbf{F1-Score} del 100\% o muy alto. 
+Los resultados han sido muy buenos, ya que en la mayoría de casos se alcanza una \textbf{precisión} y un \textbf{F1-Score} del 100\% o muy alto. 
 
 \bigskip
 En general, los sistemas se equivocan en muy pocos patrones. Esto se puede deber a que el problema elegido en esta aproximación
@@ -1576,62 +1576,6 @@ Se muestran los resultados de la experimentación en la tabla \ref{Tab:kNN_3}.
 
 \newpage
 \subsubsection{Discusión}
-% TODO: Poner la matriz de confusión
-% Mejor modelo: SVM gamma=0,01, C=100,kernel=rbf, grado=3
-% Matriz de confusión para este modelo:
-%     C1  C2  C3  C4  C5  C6  C7  C8  A1  A2  A3  A4  A5  A6  A7  B1  B2  B3  B4  B5  B6  B7  D1  D2  D3  D4  D5  D6  D7  E1  E2  E3  E4  E5  E6  E7  F1  F2  F3  F4  F5  F6  F7  G1  G2  G3  G4  G5  G6  G7
-% C1  7   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% C2  0   7   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% C3  0   0   11  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% C4  0   0   0   15  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% C5  0   0   0   0   32  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% C6  0   0   0   0   0   9   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% C7  0   0   0   0   0   0   14  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% C8  0   0   0   0   0   0   0   26  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% A1  0   0   0   0   0   0   0   0   10  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% A2  0   0   0   0   0   0   0   0   0   14  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% A3  0   0   0   0   0   0   0   0   0   0   13  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% A4  0   0   0   0   0   0   0   0   0   0   0   15  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% A5  0   0   0   0   0   0   0   0   0   0   0   0   11  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% A6  0   0   0   0   0   0   0   0   0   0   0   0   0   11  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% A7  0   0   0   0   0   0   0   0   0   0   0   0   0   0   13  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% B1  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   12  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% B2  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   13  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% B3  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   27  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% B4  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   18  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% B5  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   14  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% B6  0   0   0   0   0   0   0   1   0   0   0   0   0   0   0   0   0   0   0   0   18  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% B7  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   14  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% D1  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   5   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% D2  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   7   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% D3  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   9   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% D4  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   17  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% D5  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   8   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% D6  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   16  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% D7  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   13  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% E1  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   8   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% E2  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   7   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% E3  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   7   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% E4  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   10  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% E5  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   22  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% E6  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   11  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% E7  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   17  0   0   0   0   0   0   0   0   0   0   0   0   0   0
-% F1  0   0   0   0   0   0   0   0   2   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   4   0   0   0   0   0   0   0   0   0   0   0   0   0
-% F2  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   12  0   0   0   0   0   0   0   0   0   0   0   0
-% F3  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   9   0   0   0   0   0   0   0   0   0   0   0
-% F4  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   12  0   0   0   0   0   0   0   0   0   0
-% F5  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   14  0   0   0   0   0   0   0   0   0
-% F6  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   16  0   0   0   0   0   0   0   0
-% F7  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   15  0   0   0   0   0   0   0
-% G1  0   0   0   0   0   0   0   0   3   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1   0   0   0   0   0   0   0   0   0   0   0   0   5   0   0   0   0   0   0
-% G2  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   12  0   0   0   0   0
-% G3  0   0   0   0   0   0   0   0   2   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   5   0   0   0   0
-% G4  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   11  0   0   0
-% G5  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   10  0   0
-% G6  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   7   0
-% G7  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   17
-
-
 Los resultados de esta iteración son muy buenos, ya que hemos aumentado en gran medida el número de notas
 a clasificar y hemos conseguido varios modelos con más de un 99\% de F1-Score y precisión. 
 
@@ -1671,8 +1615,6 @@ parecidas como pueden ser \textit{G1}(\textit{48,99 Hz}) y \textit{A1}(\textit{5
 
 \begin{table}[!ht]
 	\centering
-	% \begin{turn}{90}
-
 	\resizebox{17cm}{!}{
 		\begin{tabular}{cccccccccccccccccccccccccccccccccccccc}
 			&                          & \multicolumn{36}{c}{Predicc.}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 \\ \cline{3-38} 
@@ -1701,7 +1643,6 @@ parecidas como pueden ser \textit{G1}(\textit{48,99 Hz}) y \textit{A1}(\textit{5
 \multicolumn{1}{c|}{}                       & \multicolumn{1}{c|}{G7}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{17} \\ \cline{2-38} 
 		\end{tabular}
 	}
-	% \end{turn}
 	\caption{Matriz de confusión mejor modelo }
 	\label{tab:confusion_matrix_3}
 \end{table}
@@ -1709,19 +1650,18 @@ parecidas como pueden ser \textit{G1}(\textit{48,99 Hz}) y \textit{A1}(\textit{5
 \newpage
 \subsection{Cuarta aproximación}
 \label{Cuarta aproximación}
-Como hemos obtenido resultados muy buenos en la aproximación anterior, seguiremos aumentando la complejidad del problema,
-es decir, añadiremos más notas a ser clasificadas. Serán un total de 85 notas a clasificar, y se dispondrá de 
+Como seguimos obteniendo resultados muy satisfactorios, en esta aproximación aumentaremos a 85 las notas a clasificar, y dispondremos de 
 5406 patrones para ser utilizados por los modelos. 
 
 \bigskip
 Las notas que vamos a clasificar constituyen el total de notas del
-piano, por lo que en esta aproximación es donde veremos cómo de bien se comporta nuestro sistema ante el problema
+piano, por lo que en esta aproximación será donde veamos cómo de bien se comporta nuestro sistema ante el problema
 completo.
-En concreto, las nuevas notas que añadimos son los sostenidos de las notas, que además presentan un especial problema,
-ya que la frecuencia de una nota y su sostenido están muy cercanas, ya que están separadas por un semitono.
+En concreto, las nuevas notas que añadimos son los sostenidos de cada escala. Estos presentan un especial problema, ya que solo están a distancia de un semitono con
+respecto a la nota original resultando en frecuencias muy cercanas.
 
 \bigskip
-Las notas que vamos a clasificar son: 
+Así, las notas que vamos a clasificar son: 
 \textit{A1}, \textit{A2}, \textit{A3}, \textit{A4}, \textit{A5}, \textit{A6}, \textit{A7},
 \textit{A\#1}, \textit{A\#2}, \textit{A\#3}, \textit{A\#4}, \textit{A\#5}, \textit{A\#6}, \textit{A\#7},
 \textit{B1}, \textit{B2}, \textit{B3}, \textit{B4}, \textit{B5}, \textit{B6}, \textit{B7},
@@ -1771,6 +1711,10 @@ Se pueden ver algunos ejemplos de estas notas, en el dominio del tiempo y de la 
 	\end{subfigure}
 	\caption{}
 \end{figure}
+
+\newpage
+\subsubsection{Resultados}
+\subsubsection{Discusión}
 
 
 \newpage
