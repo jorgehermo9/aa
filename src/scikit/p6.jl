@@ -1,6 +1,7 @@
 using Statistics
 using Flux
 using Flux.Losses
+using Flux: onehotbatch, onecold
 using Random
 using ScikitLearn
 
@@ -541,11 +542,117 @@ function repeatTrainRna(train_set::Tuple{AbstractArray{<:Real,2},AbstractArray{B
 	return (mean(acc_rna), mean(recall_rna),mean(specifity_rna),mean(f1_rna));
 end
 
+function trainConv(parameters::Dict{Any,Any},train_set::Tuple{AbstractArray{<:Real,3},AbstractArray{Bool,2}},
+	test_set::Tuple{AbstractArray{<:Real,3},AbstractArray{Bool,2}})
+
+	# ann = createRNA(topology,numInputs,numOutputs);
+
+	
+
+	ann = deepcopy(parameters["ann"])
+
+	# Definimos la funcion de loss de forma similar a las prácticas de la asignatura
+	loss(x, y) = (size(y,1) == 1) ? Losses.binarycrossentropy(ann(x),y) : Losses.crossentropy(ann(x),y);
+	# Para calcular la precisión, hacemos un "one cold encoding" de las salidas del modelo y de las salidas deseadas, y comparamos ambos vectores
+	f1(batch) = confusionMatrix(onecold(ann(batch[1])),onecold(batch[2]),macro_strat)[7];
+
+	# println("Ciclo 0: f1-score en el conjunto de entrenamiento: $(100 * f1(train_set))%");
+
+
+
+	# Optimizador que se usa: ADAM, con esta tasa de aprendizaje:
+	opt = ADAM(0.001);
+
+	train_loss_vector = Vector{Real}();
+	test_loss_vector = Vector{Real}();
+
+	push!(train_loss_vector,loss(train_set[1],train_set[2]));
+	push!(test_loss_vector,loss(test_set[1],test_set[2]));
+	
+
+
+	# println("Comenzando entrenamiento...")
+	mejorF1 = -Inf;
+	criterioFin = false;
+	numCiclo = 0;
+	numCicloUltimaMejora = 0;
+	mejorModelo = nothing;
+
+	while (!criterioFin)
+
+
+		# Se entrena un ciclo
+		Flux.train!(loss, params(ann), [train_set], opt);
+
+		push!(train_loss_vector,loss(train_set[1],train_set[2]))
+		push!(test_loss_vector,loss(test_set[1],test_set[2]));
+		numCiclo += 1;
+
+		# Se calcula la precision en el conjunto de entrenamiento:
+		f1Entrenamiento = f1(train_set);
+		# println("Ciclo ", numCiclo, ": F1-Score en el conjunto de entrenamiento: ", 100*f1Entrenamiento, " %");
+
+		# Si se mejora la precision en el conjunto de entrenamiento, se calcula la de test y se guarda el modelo
+		if (f1Entrenamiento >= mejorF1)
+			mejorF1 = f1Entrenamiento;
+			f1Test = f1(test_set);
+			# println("   Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: ", 100*f1Test, " %");
+			mejorModelo = deepcopy(ann);
+			numCicloUltimaMejora = numCiclo;
+		end
+
+		# Si no se ha mejorado en 5 ciclos, se baja la tasa de aprendizaje
+		if (numCiclo - numCicloUltimaMejora >= 5) && (opt.eta > 1e-6)
+			opt.eta /= 10.0
+			# println("   No se ha mejorado en 5 ciclos, se baja la tasa de aprendizaje a ", opt.eta);
+			numCicloUltimaMejora = numCiclo;
+		end
+
+		# Criterios de parada:
+
+		# Si la precision en entrenamiento es lo suficientemente buena, se para el entrenamiento
+		if (f1Entrenamiento >= 0.999)
+			# println("   Se para el entenamiento por haber llegado a un F1-Score de 99.9%")
+			criterioFin = true;
+		end
+
+		# Si no se mejora la precision en el conjunto de entrenamiento durante 10 ciclos, se para el entrenamiento
+		if (numCiclo - numCicloUltimaMejora >= 10)
+			# println("   Se para el entrenamiento por no haber mejorado el F1-Score en el conjunto de entrenamiento durante 10 ciclos")
+			criterioFin = true;
+		end
+	end
+	return (mejorModelo, train_loss_vector, test_loss_vector)
+end
+
+
+
+function repeatTrainConv(train_set::Tuple{AbstractArray{<:Real,3},AbstractArray{Bool,2}},test_set::Tuple{AbstractArray{<:Real,3},AbstractArray{Bool,2}},parameters::Dict{Any,Any})
+
+	(test_input_set,test_target_set) = test_set;
+
+	executions = parameters["conv_executions"];
+	acc_rna = zeros(executions)
+	recall_rna = zeros(executions)
+	specifity_rna = zeros(executions)
+	f1_rna = zeros(executions)
+
+	for j in 1:executions
+		(ann, train_vector, test_vector) = trainConv(parameters, train_set, test_set);\
+
+		test_outputs = ann(test_input_set)
+		(acc_rna[j],_,recall_rna[j],specifity_rna[j],_,_,f1_rna[j],_) =
+			confusionMatrix(test_outputs',test_target_set',macro_strat)
+	end
+	return (mean(acc_rna), mean(recall_rna),mean(specifity_rna),mean(f1_rna));
+end
+
+
 function modelCrossValidation(model_symbol::Symbol,parameters::Dict{Any,Any},
 	inputs::AbstractArray{<:Real,2}, targets::AbstractArray{Any,1}; kfolds::Int=10 )
 	# Pasar los inputs normalizados!!
 
-	@assert (in(model_symbol,[:ANN,:kNN,:DecisionTree,:SVM])) "model not supported"
+	@assert (in(model_symbol,[:ANN,:kNN,:DecisionTree,:SVM,:CONV])) "model not supported"
 
 	f1_folds = zeros(kfolds)
 	recall_folds = zeros(kfolds)
@@ -555,6 +662,13 @@ function modelCrossValidation(model_symbol::Symbol,parameters::Dict{Any,Any},
 	fold_vector = crossvalidation(targets, kfolds)
 	if model_symbol == :ANN
 		targets = oneHotEncoding(targets)
+	end
+
+	if model_symbol == :CONV
+		# Transformar matriz de m x n en m x 1 x n, para poder aplicar las 
+		# convoluciones
+		inputs = reshape(inputs,(size(inputs,1),1,size(inputs,2)))
+		targets = oneHotEncoding(targets)'
 	end
 
 	for i = 1:kfolds
@@ -567,6 +681,13 @@ function modelCrossValidation(model_symbol::Symbol,parameters::Dict{Any,Any},
 			train = (train_input_set, train_target_set);
 			test = (test_input_set, test_target_set);
 			(acc,recall,specifity,f1) = repeatTrainRna(train,test,parameters);
+		elseif model_symbol == :CONV
+			
+			train  = (inputs[:,:,train_fold_idx],targets[:,train_fold_idx]);
+			test = (inputs[:,:,test_fold_idx], targets[:,test_fold_idx]);
+
+			(acc,recall,specifity,f1) = repeatTrainConv(train,test,parameters);
+
 
 		elseif in(model_symbol,[:kNN,:DecisionTree,:SVM])
 			(train_input_set,train_target_set)  = (inputs[train_fold_idx,:],targets[train_fold_idx]);
