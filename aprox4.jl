@@ -45,7 +45,7 @@ f1_models = Vector{Vector{Float64}}(undef,length(models));
 f1_std_models = Vector{Vector{Float64}}(undef,length(models));
 
 #RNA
-topologies = [[8],[16],[32],[64],[128],[256],[64,2],[64,4]]
+topologies = [[16],[32],[64],[128],[256],[512],[64,64],[64,128]]
 rna_parameters = Vector{Dict{Any,Any}}(undef, length(topologies));
 
 for i in 1:length(topologies)
@@ -71,7 +71,7 @@ svm_configs = [
 	
 	("poly",3,10,0.1),
 	("rbf",3,10,0.1),
-	("sigmoid",3,10,0.1),
+	("rbf",3,0.001,100),
 
 	("rbf",3,0.01,100),
 	("poly",3,100,0.001),
@@ -89,7 +89,7 @@ end
 models_parameters[2] = svm_parameters;
 
 # DecisionTree
-tree_configs = [4 8 16 32 64 128 256]
+tree_configs = [32 64 128 256 512 1024]
 tree_parameters = Vector{Dict{Any,Any}}(undef, length(tree_configs));
 
 for i in 1:length(tree_configs)
@@ -100,7 +100,7 @@ end
 models_parameters[3] = tree_parameters;
 
 #kNN
-knn_configs = [2 3 5 8 13 21]
+knn_configs = [2 3 7 15 31 63]
 knn_parameters = Vector{Dict{Any,Any}}(undef, length(knn_configs));
 
 for i in 1:length(knn_configs)

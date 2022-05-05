@@ -4,15 +4,63 @@ using Flux.Losses
 using Flux: onehotbatch, onecold
 using JLD2, FileIO
 using Statistics: mean
+using Random
 
 
-train_imgs   = load("MNIST.jld2", "train_imgs");
-train_labels = load("MNIST.jld2", "train_labels");
-test_imgs    = load("MNIST.jld2", "test_imgs");
-test_labels  = load("MNIST.jld2", "test_labels");
+function normalizeZeroMean!(data::AbstractArray{<:Real,2}, parameters::NTuple{2,AbstractArray{<:Real,2}})
+	data_mean = parameters[1];
+	data_std = parameters[2];
+	normalize(value,col_mean,col_std) = (col_std==0) ? 0 : (value-col_mean)/col_std;
+
+	data[:,:] = normalize.(data,data_mean,data_std);
+end
+
+function normalizeZeroMean!(data::AbstractArray{<:Real,2})
+	parameters = calculateZeroMeanNormalizationParameters(data);
+	normalizeZeroMean!(data,parameters);
+end
+
+function normalizeZeroMean(data::AbstractArray{<:Real,2},parameters::NTuple{2,AbstractArray{<:Real,2}})
+	cloned = copy(data);
+	normalizeZeroMean!(cloned,parameters);
+	return cloned;
+end
+
+function normalizeZeroMean(data::AbstractArray{<:Real,2})
+	cloned = copy(data);
+	normalizeZeroMean!(cloned);
+	return cloned;
+end
 
 
-labels = 0:9; # Las etiquetas
+function holdOut(N::Int,P::Real)
+	@assert P>=0 && P<=1;
+	num_elems = convert(Int,round(N * P));	
+	index = randperm(N);
+	return (index[num_elems+1:end], index[1:num_elems]);
+end
+
+
+all_signals   = load("db.jld2", "all_signals");
+all_labels = load("db.jld2", "all_labels");
+all_labels_onehot = load("db.jld2","all_labels_onehot");
+
+display(typeof(all_signals))
+all_signals = normalizeZeroMean(all_signals);
+
+# 20% de los patrones para test
+(train_idx,test_idx) = holdOut(size(all_signals,2),0.2)
+
+train_signals = all_signals[:,train_idx];
+train_labels = all_labels[train_idx];
+train_labels_onehot = all_labels_onehot[:,train_idx];
+
+
+test_signals = all_signals[:,test_idx];
+test_labels = all_labels[test_idx];
+test_labels_onehot = all_labels_onehot[:,test_idx];
+
+labels = 0:2; # Las etiquetas
 
 # Tanto train_imgs como test_imgs son arrays de arrays bidimensionales (arrays de imagenes), es decir, son del tipo Array{Array{Float32,2},1}
 #  Generalmente en Deep Learning los datos estan en tipo Float32 y no Float64, es decir, tienen menos precision
@@ -27,27 +75,27 @@ labels = 0:9; # Las etiquetas
 #   Channels = 1 -> son imagenes en escala de grises
 #     Si fuesen en color, Channels = 3 (rojo, verde, azul)
 # Esta conversion se puede hacer con la siguiente funcion:
-function convertirArrayImagenesHWCN(imagenes)
-    numPatrones = length(imagenes);
-    nuevoArray = Array{Float32,4}(undef, 28, 28, 1, numPatrones); # Importante que sea un array de Float32
-    for i in 1:numPatrones
-        @assert (size(imagenes[i])==(28,28)) "Las imagenes no tienen tamaño 28x28";
-        nuevoArray[:,:,1,i] .= imagenes[i][:,:];
-    end;
-    return nuevoArray;
-end;
-train_imgs = convertirArrayImagenesHWCN(train_imgs);
-test_imgs = convertirArrayImagenesHWCN(test_imgs);
+# function convertirArrayImagenesHWCN(imagenes)
+#     numPatrones = length(imagenes);
+#     nuevoArray = Array{Float32,4}(undef, 28, 28, 1, numPatrones); # Importante que sea un array de Float32
+#     for i in 1:numPatrones
+#         @assert (size(imagenes[i])==(28,28)) "Las imagenes no tienen tamaño 28x28";
+#         nuevoArray[:,:,1,i] .= imagenes[i][:,:];
+#     end;
+#     return nuevoArray;
+# end;
+# train_imgs = convertirArrayImagenesHWCN(train_imgs);
+# test_imgs = convertirArrayImagenesHWCN(test_imgs);
 
-test_set = (test_imgs, onehotbatch(test_labels, labels));
+println("Tamaño de la matriz de entrenamiento: ", size(train_signals))
+println("Tamaño de la matriz de test:          ", size(test_signals))
 
-println("Tamaño de la matriz de entrenamiento: ", size(train_imgs))
-println("Tamaño de la matriz de test:          ", size(test_imgs))
+
 
 
 # Cuidado: en esta base de datos las imagenes ya estan con valores entre 0 y 1
 # En otro caso, habria que normalizarlas
-println("Valores minimo y maximo de las entradas: (", minimum(train_imgs), ", ", maximum(train_imgs), ")");
+println("Valores minimo y maximo de las entradas: (", minimum(train_signals), ", ", maximum(train_signals), ")");
 
 
 

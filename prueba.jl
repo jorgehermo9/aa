@@ -19,11 +19,11 @@ inputs = normalizeZeroMean(inputs);
 folds = 10;
 
 parameters = Dict();
-parameters["topology"] = [256];
+parameters["topology"] = [64];
 parameters["learning_rate"] = 0.01;
 parameters["validation_ratio"] = 0.2;
-parameters["rna_executions"] = 10;
-parameters["max_epochs"] = 200;
+parameters["rna_executions"] = 1;
+parameters["max_epochs"] = 300;
 parameters["max_epochs_val"] = 5;
 
 parameters["kernel"] = "rbf";
@@ -32,7 +32,7 @@ parameters["kernelGamma"] = 0.01;
 parameters["C"] = 100;
 
 
-model_symbol = :SVM
+model_symbol = :ANN
 
 test_ratio = 0.2
 train_idx,test_idx = holdOut(size(targets,1),test_ratio)

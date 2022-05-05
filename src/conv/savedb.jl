@@ -95,7 +95,7 @@ n_target_freq = Int(round(m2-m1+1))
 classes_unique = unique(classes)
 display(classes_unique)
 
-all_signals = Array{Any,2}(undef,n_target_freq,length(all_instances));
+all_signals = Array{Float32,2}(undef,n_target_freq,length(all_instances));
 all_labels = Vector(undef,length(all_instances));
 
 for i in 1:length(all_instances)
