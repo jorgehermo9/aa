@@ -7,8 +7,87 @@ include("src/scikit/p6.jl")
 
 dataset = readdlm("dataset/aprox4.csv",',');
 
-headers = dataset[1:1,1:end-1]
-inputs = dataset[2:end,1:end-1];
+headers = dataset[1,1:end-1]
+
+# Selección de características
+# Top 70 características con mrmr-enhanced. Discretización
+# del dataset con 10 bins utilizando estrategia de cuantiles.
+selectedFeatures = [
+	"abs_max_freq",
+	"max_freq19",
+	"max_freq17",
+	"max_freq14",
+	"max_freq13",
+	"max_freq21",
+	"max_freq12",
+	"max_freq27",
+	"max_freq11",
+	"max_freq20",
+	"max_freq16",
+	"max_freq23",
+	"max_freq7",
+	"max_freq24",
+	"max_freq10",
+	"max_freq15",
+	"max_freq22",
+	"max_freq9",
+	"max_freq18",
+	"max_freq8",
+	"max_freq25",
+	"max_freq26",
+	"max_freq28",
+	"zero_crossing",
+	"max_freq5",
+	"max_freq6",
+	"max_freq29",
+	"max_freq30",
+	"max8",
+	"max_freq4",
+	"max6",
+	"std8",
+	"std6",
+	"abs_max",
+	"std7",
+	"max11",
+	"max9",
+	"max12",
+	"max10",
+	"max14",
+	"max7",
+	"max13",
+	"max_freq2",
+	"max5",
+	"std10",
+	"max17",
+	"max15",
+	"std9",
+	"max_freq3",
+	"max16",
+	"max4",
+	"m8",
+	"std11",
+	"E",
+	"m6",
+	"std14",
+	"std13",
+	"std5",
+	"std12",
+	"std4",
+	"m7",
+	"std15",
+	"max18",
+	"max_freq1",
+	"max19",
+	"std16",
+	"std17",
+	"m4",
+	"max21",
+	"m10",
+]
+
+selectedFeaturesIdx = findall(x -> in(x,selectedFeatures),headers)
+display(selectedFeaturesIdx)
+inputs = dataset[2:end,selectedFeaturesIdx];
 targets = dataset[2:end,end];
 
 inputs = convert(Array{Float32,2},inputs);
@@ -28,11 +107,11 @@ parameters["max_epochs_val"] = 5;
 
 parameters["kernel"] = "rbf";
 parameters["kernelDegree"] = 3;
-parameters["kernelGamma"] = 0.01;
+parameters["kernelGamma"] = 0.001;
 parameters["C"] = 100;
 
 
-model_symbol = :ANN
+model_symbol = :SVM
 
 test_ratio = 0.2
 train_idx,test_idx = holdOut(size(targets,1),test_ratio)

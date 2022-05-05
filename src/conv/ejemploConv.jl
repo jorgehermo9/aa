@@ -106,6 +106,8 @@ ann = Chain(
     #      Si fuese, por ejemplo, una imagen en RGB, serian 3 canales de entrada
     #   16 canales de salida: se generan 16 filtros
     #  Es decir, se generan 16 imagenes a partir de la imagen original con filtros 3x3
+
+	
     # Entradas a esta capa: matriz 4D de dimension 28 x 28 x 1canal    x <numPatrones>
     # Salidas de esta capa: matriz 4D de dimension 28 x 28 x 16canales x <numPatrones>
     Conv((3, 3), 1=>16, pad=(1,1), funcionTransferenciaCapasConvolucionales),
@@ -204,7 +206,7 @@ end
 
 # Sin embargo, para aplicar un patron no hace falta hacer todo eso.
 #  Se puede aplicar patrones a la RNA simplemente haciendo, por ejemplo
-ann(train_set[numBatchCoger][1][:,:,:,numImagenEnEseBatch]);
+display(onecold(ann(train_set[numBatchCoger][1][:,:,:,numImagenEnEseBatch])));
 
 
 

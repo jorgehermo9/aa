@@ -457,7 +457,9 @@ function confusionMatrix(outputs::AbstractArray{<:Real,2},targets::AbstractArray
 end
 
 function confusionMatrix(outputs::AbstractArray{<:Any},targets::AbstractArray{<:Any},strat::Strat)
-	@assert all(in.(outputs,(unique(targets),)))
+	# Quito el assert porque si se hace un holdOut, puede ser que no se distribuyan
+	# los patrones de forma estratificada (Me hizo falta esto para la parte de redes convolucionales)
+	# @assert all(in.(outputs,(unique(targets),)))
 	# Combinar las clases de outputs y targets
 	classes = unique([outputs targets])
 

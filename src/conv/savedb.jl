@@ -38,7 +38,7 @@ function get_signal(file::String)
 
 	max_freq = 5000;
 	
-	duration_threshold = 3
+	duration_threshold = 1.5
 	index_threshold = Int(duration_threshold * fs);
 	y = y[:,1];
 	
@@ -56,7 +56,7 @@ function get_signal(file::String)
 	m1 = freqToIndex(freq_y,0,fs);
 	m2 = freqToIndex(freq_y,max_freq,fs);
 	
-	target_freq = freq_y[m1:m2]
+	target_freq = freq_y[m1:(m2-1)]
 	# display(target_freq)
 	
 	# plotlyjs();
@@ -84,13 +84,22 @@ for class in classes
 	end
 end
 
+# Utilizamos aquí como duración máxima 1.5 segundos, ya que hay algunos audios con 
+# menos de dos segundos de duración. (En concreto, A#7 o B7). Esto no supone ningún problema
+# en las aproximaciones anteriores, ya que los segundos de duración determinan la frecuencia
+# de sampling, y, por lo tanto, el número de elementos en el array de intensidades en frecuencia/tiempo.
+# En la aproximación anterior no nos hacía falta tener en cuenta que pudiese haber muestras con
+# distinto sampling (si era menor de 3s, pues se utilizaba el sampling de esa duración menor), 
+# Y con ese muestreo, pues se sacaban las características. Aquí es distinto, ya que necesitamos
+# que todas las instancias tengan el mismo número de posiciones (n*fs), por lo que tenemos que 
+# utilizar un max_duration que haga que todas las instancias tengan el mismo número de posiciones. 
 fs  = 48000
-max_duration = 3
+max_duration = 1.5
 n = fs*max_duration
 max_freq = 5000
 m1 = (0+fs/2)/fs * n
 m2 = (5000+fs/2)/fs * n
-n_target_freq = Int(round(m2-m1+1))
+n_target_freq = Int(round(m2-m1))
 
 classes_unique = unique(classes)
 display(classes_unique)
@@ -101,8 +110,8 @@ all_labels = Vector(undef,length(all_instances));
 for i in 1:length(all_instances)
 	(instance_class,instance_dir) = all_instances[i]
 	all_labels[i] = instance_class
-	all_signals[:,i] = get_signal(instance_dir);
 	println("Read instance $(instance_dir) ($(i)/$(length(all_instances)))")
+	all_signals[:,i] = get_signal(instance_dir);
 end
 
 all_labels_onehot = oneHotEncoding(all_labels,classes_unique)'
