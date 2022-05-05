@@ -86,6 +86,19 @@ A lo largo de esta memoria analizaremos a fondo el problema a resolver en la Sec
 Sección \ref{Desarrollo}, hablaremos sobre las conclusiones del trabajo en la Sección \ref{Conclusiones} y finalizaremos comentando las aplicaciones al mundo
 real en la Sección \ref{Trabajo futuro}. También se podrá consultar las bibliografía utilizada en la Sección \ref{Análisis bibliográfico} y \ref{Bibliografía}.
 
+\bigskip
+Para el análisis utilizaremos distintas técnicas de aprendizaje supervisado como son:
+\begin{itemize}
+	\item Las \textbf{Redes de Neuronas Artificiales} o \textit{RNAs}, un modelo de aprendizaje automático clásico que
+	intenta simular el funcionamiento natural del cerebro, haciendo uso de estrucutras como las neuronas artificiales y en la que
+	la información se almacena y modifica en los pesos de las conexiones de dichas neuronas. Ver \cite{krogh2008artificial}.
+	\item \textbf{Support Vector Machine} o \textit{SVMs}, un modelo basado, como en las \textit{RNAs}, en la división del espacio del problema para clasificar
+	los diferentes patrones y del que se puede profundizar más en el artículo que las introduce de \cite{cortes1995support}.
+	\item \textbf{Árboles de decisión}, técnicas que permiten también subdividir el espacio donde se sitúan los patrones, esta vez
+	siguiendo una estructura de árbol donde se va tomando una rama u otra en función del valor de los distintos atributos. Ver \cite{myles2004introduction}.
+	\item \textbf{ k-Nearest Neighbors} o \textit{k-NN}, un método con un enfoque diferente, basado en instancias, donde la clasificación
+	se realiza en función de los patrones que más se parecen al de entrada. Ver \cite{guo2003knn}.
+\end{itemize}
 \newpage
 
 \section{Descripción del problema}
@@ -217,20 +230,6 @@ Para el desarrollo de este sistema utilizaremos un método basado en aproximacio
 la complejidad a medida que obtenemos resultados satisfatorios.
 
 \bigskip
-Utitlizaremos varias técnicas de aprendizaje supervisado como son:
-\begin{itemize}
-	\item Las \textbf{Redes de Neuronas Artificiales} o \textit{RNAs}, un modelo de aprendizaje automático clásico que
-	intenta simular el funcionamiento natural del cerebro, haciendo uso de estrucutras como las neuronas artificiales y en la que
-	la información se almacena y modifica en los pesos de las conexiones de dichas neuronas. Ver \cite{krogh2008artificial}.
-	\item \textbf{Support Vector Machine} o \textit{SVMs}, un modelo basado, como en las \textit{RNAs}, en la división del espacio del problema para clasificar
-	los diferentes patrones y del que se puede profundizar más en el artículo que las introduce de \cite{cortes1995support}.
-	\item \textbf{Árboles de decisión}, técnicas que permiten también subdividir el espacio donde se sitúan los patrones, esta vez
-	siguiendo una estructura de árbol donde se va tomando una rama u otra en función del valor de los distintos atributos. Ver \cite{myles2004introduction}.
-	\item \textbf{ k-Nearest Neighbors} o \textit{k-NN}, un método con un enfoque diferente, basado en instancias, donde la clasificación
-	se realiza en función de los patrones que más se parecen al de entrada. Ver \cite{guo2003knn}.
-\end{itemize}
-
-\bigskip
 Además, para mejorar la calidad de los experimentos y no depender de la selección aleatoria del conjunto de test y de entrenamiento, utilizaremos
 la técnica de \textit{cross validation} (validación cruzada). Esta técnica consiste en repetir y calcular la media aritmética obtenida de las medidas de la evaluación 
 sobre k \textit{folds} (conjuntos) distintos.
@@ -269,13 +268,6 @@ Dado que cada muestra tiene una duración diferente, decidimos quedarnos solo co
 relevante de la nota) y, para la frecuencia, acotaremos cada señal entre 0 y 5000 Hz. Ya que la frecuencia máxima que se alcanza en el 
 piano clásico es de 4186 Hz (\textit{C8}) y la más baja, en nuestra base de datos, es de 32.7Hz (\textit{C1}), escogimos un rango
 de frecuncias ampliado debido a que es posible que exista información que nos ayude a identificar la nota.
-
-% \begin{figure}[!h]
-% 	\centering
-% 	\includegraphics[width=0.5\linewidth]{assets/Esquema_cross_validation.pdf}
-% 	\caption{Esquema k-fold cross validation, con k=4}
-% 	\label{fig:esquema-cross-validation}
-% \end{figure}
 
 \bigskip
 Además, como las notas de un mismo instrumento se diferencian principalmente por la frecuencia (una nota más aguda tiene una mayor frecuencia
@@ -636,14 +628,16 @@ Entonces, utilizar un \textit{kernel} sigmoidal no parece ofrecer buenos resulta
 \newpage
 \subsection{Segunda aproximación}
 \label{Segunda aproximación}
-Como hemos obtenido resultados muy buenos en la aproximación anterior, se va a aumentar la complejidad del problema,
-es decir, añadiremos más notas a ser clasificadas. Se clasificarán entonces 15 notas, y se dispondrá de 
+
+\subsubsection{Descripción}
+Como hemos obtenido resultados muy buenos en la aproximación anterior, aumentaremos la complejidad del problema,
+es decir, añadiremos más notas a ser clasificadas. Se clasificarán entonces 15 notas y se dispondrá de 
 1090 patrones para ser utilizados por el sistema.
 
 Las notas que vamos a clasificar son: \textit{C1}, \textit{C2}, \textit{C3}, \textit{C4}, \textit{C5}, \textit{C6}, \textit{C7}, \textit{C8}, \textit{A1}, \textit{A2}, \textit{A3}, \textit{A4}, \textit{A5}, \textit{A6} y \textit{A7}.
 
 \bigskip
-Se puede ver algunos ejemplos de los samples que vamos a utilizar, con su señal en el dominio del tiempo y en el
+Se puede ver algunos ejemplos de los \textit{samples} que vamos a utilizar, con su señal en el dominio del tiempo y en el
 dominio de la frecuencia, en las Figuras \ref{fig:c3}, \ref{fig:c6}, \ref{fig:a3} y \ref{fig:a6}.
 
 \begin{figure}[!ht]
@@ -810,6 +804,10 @@ y \ref{Tab:Features_2_2}.
 \newpage
 Donde:
 \begin{itemize}
+	\item \textit{E} indica la \textbf{energía de la señal}.
+	\item \textit{m\textsubscript{i}} indica la \textbf{media de la intensidad} en el intervalo \textit{i} en frecuencia.
+	\item \textit{std\textsubscript{i}} indica la \textbf{desviación típica de la intensidad} en el intervalo \textit{i} en frecuencia.
+	\item \textit{max\textsubscript{i}} indica el \textbf{máximo de la intensidad} en el intervalo \textit{i} en frecuencia.
 	\item \textit{max-freq\textsubscript{i}} indica la \textbf{frecuencia donde se alcanza el máximo de intensidad} en el intervalo \textit{i} en frecuencia.
 \end{itemize}
 
@@ -965,29 +963,6 @@ Se muestran los resultados de la experimentación en la tabla \ref{Tab:kNN_2}
 \newpage
 \subsubsection{Discusión}
 
-% TODO: poner la matriz de confusión
-% Matriz de confusion
-%     C1  C2  C3  C4  C5  C6  C7  C8  A1  A2  A3  A4  A5  A6  A7
-% C1  3   0   0   0   0   0   0   0   1   0   0   0   0   0   0
-% C2  1   6   1   0   0   0   0   0   0   0   0   0   0   0   0
-% C3  0   0   9   0   0   0   0   0   0   0   0   0   0   0   0
-% C4  0   0   1   18  0   0   0   0   0   0   0   0   0   0   0
-% C5  0   0   0   0   25  0   0   0   0   0   0   0   0   0   0
-% C6  0   0   0   0   0   10  0   0   0   0   0   0   0   0   0
-% C7  0   0   0   0   0   0   23  0   0   0   0   0   0   0   0
-% C8  0   0   0   0   0   0   0   19  0   0   0   0   0   0   1
-% A1  0   0   0   0   0   0   0   0   16  0   0   0   0   0   0
-% A2  0   0   0   0   0   0   0   0   1   15  0   0   0   0   0
-% A3  0   0   0   3   0   0   0   0   0   0   12  0   0   0   0
-% A4  0   0   0   0   0   0   0   0   0   0   0   13  0   0   0
-% A5  0   0   0   0   0   0   0   0   0   0   0   0   15  0   0
-% A6  0   0   0   0   0   0   0   0   0   0   0   0   0   15  1
-% A7  0   0   0   0   0   0   0   0   0   0   0   0   0   0   9
-% Accuracy: 0.95413
-% F1-Score: 0.93647
-% Recall: 0.93816
-% Specifity: 0.99675
-
 En general los resultados son muy buenos, ya que hay varios modelos con un alto F1-Score.
 El modelo que mejor funciona es un SVM con función de \textit{kernel} polinomial de grado 3, con
 un \textit{gamma} y \textit{C} de $10$ y $0.1$, respectivamente.
@@ -1053,6 +1028,8 @@ las frecuencias, para así poder diferenciar de mejor manera dichas notas.
 \newpage
 \subsection{Tercera aproximación}
 \label{Tercera aproximación}
+
+\subsubsection{Descripción}
 Como hemos obtenido resultados muy buenos en la aproximación anterior, seguiremos aumentando la complejidad del problema,
 es decir, añadiremos más notas a ser clasificadas. Serán un total de 50 notas a clasificar, y se dispondrá de 
 3194 patrones para ser utilizados por los modelos.
@@ -1427,6 +1404,14 @@ Así, obtuvimos para cada característica, la media y la desviación típica. Se
 \newpage
 \hphantom{skip}
 
+Donde:
+\begin{itemize}
+	\item \textit{E} indica la \textbf{energía de la señal}.
+	\item \textit{m\textsubscript{i}} indica la \textbf{media de la intensidad} en el intervalo \textit{i} en frecuencia.
+	\item \textit{std\textsubscript{i}} indica la \textbf{desviación típica de la intensidad} en el intervalo \textit{i} en frecuencia.
+	\item \textit{max\textsubscript{i}} indica el \textbf{máximo de la intensidad} en el intervalo \textit{i} en frecuencia.
+	\item \textit{max-freq\textsubscript{i}} indica la \textbf{frecuencia donde se alcanza el máximo de intensidad} en el intervalo \textit{i} en frecuencia.
+\end{itemize}
 Para estos experimentos se ha repetido 20 veces el entrenamiento de la RNA en cada \textit{fold}, devolviendo el resultado promedio de esas 20 ejecuciones.
 
 \bigskip
@@ -1650,7 +1635,9 @@ parecidas como pueden ser \textit{G1}(\textit{48,99 Hz}) y \textit{A1}(\textit{5
 \newpage
 \subsection{Cuarta aproximación}
 \label{Cuarta aproximación}
-Como seguimos obteniendo resultados muy satisfactorios, en esta aproximación aumentaremos a 85 las notas a clasificar, y dispondremos de 
+
+\subsubsection{Descripción}
+Como seguimos obteniendo resultados muy satisfactorios, en esta aproximación aumentaremos a 85 las notas a clasificar y dispondremos de 
 5406 patrones para ser utilizados por los modelos. 
 
 \bigskip
@@ -1659,6 +1646,13 @@ piano, por lo que en esta aproximación será donde veamos cómo de bien se comp
 completo.
 En concreto, las nuevas notas que añadimos son los sostenidos de cada escala. Estos presentan un especial problema, ya que solo están a distancia de un semitono con
 respecto a la nota original, resultando en frecuencias muy cercanas.
+
+\bigskip
+Para intentar paliar este inconveniente, decidimos añadir dos nuevas características que son:
+\begin{itemize}
+	\item \textbf{Itensidad absoluta máxima}: Que determina la itensidad máxima que alcanza la señal en frecuencia.
+	\item \textbf{Frecuencia absoluta máxima}: Que determina la frecuencia absoluta máxima que toma la señal.
+\end{itemize}
 
 \bigskip
 Así, las notas que vamos a clasificar son: 
@@ -1678,6 +1672,7 @@ Así, las notas que vamos a clasificar son:
 Se pueden ver algunos ejemplos de estas notas, en el dominio del tiempo y de la frecuencia, en las Figuras
 \ref{fig:a1_sos}, \ref{fig:c1_sos}, \ref{fig:d1_sos} y \ref{fig:f1_sos}.
 
+\newpage
 \begin{figure}[!ht]
 	\centering
 	\begin{subfigure}{.5\textwidth}
@@ -1712,8 +1707,9 @@ Se pueden ver algunos ejemplos de estas notas, en el dominio del tiempo y de la 
 	\caption{}
 \end{figure}
 
-\newpage
-\subsubsection{Resultados}
+Se muestran a continuación los parámetros de normalización (volveremos a utilizar media cero) para cada característica en las Tablas \ref{Tab:Features_4_1},
+\ref{Tab:Features_4_2} \ref{Tab:Features_4_3} y \ref{Tab:Features_4_4}.
+
 \begin{table}
 	\caption{Parámetros de normalización (I)}
 	\centering
@@ -1800,65 +1796,65 @@ Se pueden ver algunos ejemplos de estas notas, en el dominio del tiempo y de la 
 			\hline
 			Característica & Media & Desviación Típica  \\ [0.5ex]
 			\hline\hline
-			std1 & $3.7071$ & $8.894764$ \\
+			std\textsubscript{1} & $3.7071$ & $8.894764$ \\
 			\hline
-			std2 & $41.93409$ & $100.38277$ \\
+			std\textsubscript{2} & $41.93409$ & $100.38277$ \\
 			\hline
-			std3 & $41.496273$ & $100.46413$ \\
+			std\textsubscript{3} & $41.496273$ & $100.46413$ \\
 			\hline
-			std4 & $50.62945$ & $97.251366$ \\
+			std\textsubscript{4} & $50.62945$ & $97.251366$ \\
 			\hline
-			std5 & $32.27192$ & $66.25659$ \\
+			std\textsubscript{5} & $32.27192$ & $66.25659$ \\
 			\hline
-			std6 & $31.772036$ & $64.703476$ \\
+			std\textsubscript{6} & $31.772036$ & $64.703476$ \\
 			\hline
-			std7 & $30.200518$ & $56.291985$ \\
+			std\textsubscript{7} & $30.200518$ & $56.291985$ \\
 			\hline
-			std8 & $24.33468$ & $49.075897$ \\
+			std\textsubscript{8} & $24.33468$ & $49.075897$ \\
 			\hline
-			std9 & $17.22069$ & $40.07678$ \\
+			std\textsubscript{9} & $17.22069$ & $40.07678$ \\
 			\hline
-			std10 & $21.47563$ & $49.664173$ \\
+			std\textsubscript{10} & $21.47563$ & $49.664173$ \\
 			\hline
-			std11 & $16.356256$ & $32.295124$ \\
+			std\textsubscript{11} & $16.356256$ & $32.295124$ \\
 			\hline
-			std12 & $13.809475$ & $27.013056$ \\
+			std\textsubscript{12} & $13.809475$ & $27.013056$ \\
 			\hline
-			std13 & $13.494098$ & $35.255543$ \\
+			std\textsubscript{13} & $13.494098$ & $35.255543$ \\
 			\hline
-			std14 & $9.511233$ & $19.50926$ \\
+			std\textsubscript{14} & $9.511233$ & $19.50926$ \\
 			\hline
-			std15 & $7.4176326$ & $16.4802$ \\
+			std\textsubscript{15} & $7.4176326$ & $16.4802$ \\
 			\hline
-			std16 & $7.555132$ & $18.873085$ \\
+			std\textsubscript{16} & $7.555132$ & $18.873085$ \\
 			\hline
-			std17 & $5.6317873$ & $11.938161$ \\
+			std\textsubscript{17} & $5.6317873$ & $11.938161$ \\
 			\hline
-			std18 & $3.8923404$ & $10.900163$ \\
+			std\textsubscript{18} & $3.8923404$ & $10.900163$ \\
 			\hline
-			std19 & $4.617325$ & $10.1336155$ \\
+			std\textsubscript{19} & $4.617325$ & $10.1336155$ \\
 			\hline
-			std20 & $2.5670214$ & $8.334569$ \\
+			std\textsubscript{20} & $2.5670214$ & $8.334569$ \\
 			\hline
-			std21 & $2.7792637$ & $7.7385535$ \\
+			std\textsubscript{21} & $2.7792637$ & $7.7385535$ \\
 			\hline
-			std22 & $1.8842899$ & $5.510914$ \\
+			std\textsubscript{22} & $1.8842899$ & $5.510914$ \\
 			\hline
-			std23 & $1.4960651$ & $4.586712$ \\
+			std\textsubscript{23} & $1.4960651$ & $4.586712$ \\
 			\hline
-			std24 & $1.4450701$ & $3.7847013$ \\
+			std\textsubscript{24} & $1.4450701$ & $3.7847013$ \\
 			\hline
-			std25 & $0.90402246$ & $2.5514781$ \\
+			std\textsubscript{25} & $0.90402246$ & $2.5514781$ \\
 			\hline
-			std26 & $0.7006507$ & $1.8386049$ \\
+			std\textsubscript{26} & $0.7006507$ & $1.8386049$ \\
 			\hline
-			std27 & $0.6376248$ & $1.6106461$ \\
+			std\textsubscript{27} & $0.6376248$ & $1.6106461$ \\
 			\hline
-			std28 & $0.48451066$ & $1.7358224$ \\
+			std\textsubscript{28} & $0.48451066$ & $1.7358224$ \\
 			\hline
-			std29 & $0.38622695$ & $1.3208534$ \\
+			std\textsubscript{29} & $0.38622695$ & $1.3208534$ \\
 			\hline
-			std30 & $0.18503572$ & $0.458966$ \\
+			std\textsubscript{30} & $0.18503572$ & $0.458966$ \\
 			\hline
 		\end{tabular}
 	\label{Tab:Features_4_2}
@@ -1871,65 +1867,65 @@ Se pueden ver algunos ejemplos de estas notas, en el dominio del tiempo y de la 
 			\hline
 			Característica & Media & Desviación Típica  \\ [0.5ex]
 			\hline\hline
-			max1 & $33.110157$ & $99.81226$ \\
+			max\textsubscript{1} & $33.110157$ & $99.81226$ \\
 			\hline
-			max2 & $415.37152$ & $1154.7861$ \\
+			max\textsubscript{2} & $415.37152$ & $1154.7861$ \\
 			\hline
-			max3 & $422.34433$ & $1112.5609$ \\
+			max\textsubscript{3} & $422.34433$ & $1112.5609$ \\
 			\hline
-			max4 & $536.3476$ & $1134.9387$ \\
+			max\textsubscript{4} & $536.3476$ & $1134.9387$ \\
 			\hline
-			max5 & $317.401$ & $698.8781$ \\
+			max\textsubscript{5} & $317.401$ & $698.8781$ \\
 			\hline
-			max6 & $316.10635$ & $644.3593$ \\
+			max\textsubscript{6} & $316.10635$ & $644.3593$ \\
 			\hline
-			max7 & $293.7506$ & $569.4251$ \\
+			max\textsubscript{7} & $293.7506$ & $569.4251$ \\
 			\hline
-			max8 & $239.86774$ & $471.9059$ \\
+			max\textsubscript{8} & $239.86774$ & $471.9059$ \\
 			\hline
-			max9 & $162.63959$ & $375.88123$ \\
+			max\textsubscript{9} & $162.63959$ & $375.88123$ \\
 			\hline
-			max10 & $207.69164$ & $447.70316$ \\
+			max\textsubscript{10} & $207.69164$ & $447.70316$ \\
 			\hline
-			max11 & $156.60005$ & $323.31445$ \\
+			max\textsubscript{11} & $156.60005$ & $323.31445$ \\
 			\hline
-			max12 & $132.93877$ & $264.18588$ \\
+			max\textsubscript{12} & $132.93877$ & $264.18588$ \\
 			\hline
-			max13 & $129.61961$ & $310.57278$ \\
+			max\textsubscript{13} & $129.61961$ & $310.57278$ \\
 			\hline
-			max14 & $90.64936$ & $186.6918$ \\
+			max\textsubscript{14} & $90.64936$ & $186.6918$ \\
 			\hline
-			max15 & $72.60896$ & $163.45084$ \\
+			max\textsubscript{15} & $72.60896$ & $163.45084$ \\
 			\hline
-			max16 & $68.42438$ & $165.54524$ \\
+			max\textsubscript{16} & $68.42438$ & $165.54524$ \\
 			\hline
-			max17 & $55.859993$ & $115.98919$ \\
+			max\textsubscript{17} & $55.859993$ & $115.98919$ \\
 			\hline
-			max18 & $35.653084$ & $97.61015$ \\
+			max\textsubscript{18} & $35.653084$ & $97.61015$ \\
 			\hline
-			max19 & $40.517826$ & $84.012886$ \\
+			max\textsubscript{19} & $40.517826$ & $84.012886$ \\
 			\hline
-			max20 & $22.404512$ & $67.51314$ \\
+			max\textsubscript{20} & $22.404512$ & $67.51314$ \\
 			\hline
-			max21 & $23.722889$ & $55.782883$ \\
+			max\textsubscript{21} & $23.722889$ & $55.782883$ \\
 			\hline
-			max22 & $16.067352$ & $41.516422$ \\
+			max\textsubscript{22} & $16.067352$ & $41.516422$ \\
 			\hline
-			max23 & $13.351332$ & $36.865856$ \\
+			max\textsubscript{23} & $13.351332$ & $36.865856$ \\
 			\hline
-			max24 & $11.76221$ & $26.125443$ \\
+			max\textsubscript{24} & $11.76221$ & $26.125443$ \\
 			\hline
-			max25 & $7.4373846$ & $19.201763$ \\
+			max\textsubscript{25} & $7.4373846$ & $19.201763$ \\
 			\hline
-			max26 & $5.7013874$ & $14.642168$ \\
+			max\textsubscript{26} & $5.7013874$ & $14.642168$ \\
 			\hline
-			max27 & $4.8674684$ & $10.794909$ \\
+			max\textsubscript{27} & $4.8674684$ & $10.794909$ \\
 			\hline
-			max28 & $3.8479474$ & $11.645865$ \\
+			max\textsubscript{28} & $3.8479474$ & $11.645865$ \\
 			\hline
-			max29 & $2.9212744$ & $8.312529$ \\
+			max\textsubscript{29} & $2.9212744$ & $8.312529$ \\
 			\hline
-			max30 & $1.5820836$ & $3.9503338$ \\
+			max\textsubscript{30} & $1.5820836$ & $3.9503338$ \\
 			\hline
 		\end{tabular}
 	\label{Tab:Features_4_3}
@@ -2006,8 +2002,182 @@ Se pueden ver algunos ejemplos de estas notas, en el dominio del tiempo y de la 
 	\label{Tab:Features_4_4}
 \end{table}
 
+\newpage
+\hphantom{skip}
+
+Donde:
+\begin{itemize}
+	\item \textit{E} indica la \textbf{energía de la señal}.
+	\item \textit{m\textsubscript{i}} indica la \textbf{media de la intensidad} en el intervalo \textit{i} en frecuencia.
+	\item \textit{std\textsubscript{i}} indica la \textbf{desviación típica de la intensidad} en el intervalo \textit{i} en frecuencia.
+	\item \textit{max\textsubscript{i}} indica el \textbf{máximo de la intensidad} en el intervalo \textit{i} en frecuencia.
+	\item \textit{max-freq\textsubscript{i}} indica la \textbf{frecuencia donde se alcanza el máximo de intensidad} en el intervalo \textit{i} en frecuencia.
+\end{itemize}
+
+Para estos experimentos se volvió a repetir 20 veces el entrenamiento de la RNA en cada \textit{fold}, devolviendo el resultado promedio.
+
+\bigskip
+Utilizaremos de nuevo como medida el promedio del \textbf{F1-Score} en los \textit{folds}. Si hay empate en dicha media, se elegirá el modelo con menor
+desviación típica de la métrica.
+
+\subsubsection{Resultados}
+Para permitir la reproducibilidad de los experimentos, se utilizó \textit{100} como semilla de generación de números
+aleatorios.
+
+\paragraph{RNA}
+
+Para el entrenamiento de las RNA, se han utilizado los siguientes parámetros en común:
+\begin{itemize}
+	\item Ratio de aprendizaje: $0.01$
+	\item Ratio de patrones para el conjunto de validación: $0.2$.
+	\item Máximo número de ciclos (\textit{epochs}) de entrenamiento: $1500$.
+	\item Máximo número de ciclos (\textit{epochs}) de entrenamiento sin mejorar el error de validación: $5$.
+	\item Algoritmo de optimización: ADAM.
+	\item Función de \textit{loss}: \textit{Cross Entropy}.
+\end{itemize}
+El hiperparámetro que hemos variado ha sido, de nuevo, la arquitectura de neuronas a utilizar, obteniendo 8 configuraciones diferentes.
+
+Se muestran los resultados de la experimentación en la Tabla \ref{Tab:ANN_4}.
+
+\begin{table}[!ht]
+	\caption{Resultados RNA}
+	\centering
+		 \begin{tabular}{||c c c||}
+			 \hline
+			 Arquitectura & F1-Score & Precisión  \\ [0.5ex]
+			 \hline\hline
+			 [8] & $0.61159 \pm 0.00726$ & $0.72347 \pm 0.01032$ \\
+			 \hline 
+			 [16] & $0.94935 \pm 0.00947$ & $0.96091 \pm 0.00726$ \\
+			 \hline 
+			 [32] & $0.98842 \pm 0.00442$ & $0.99019 \pm 0.00429$ \\
+			 \hline 
+			 [64] & $0.99333 \pm 0.00284$ & $0.99434 \pm 0.00198$ \\
+			 \hline 
+			 [128] & $0.99373 \pm 0.00251$ & $0.99461 \pm 0.00199$ \\
+			 \hline 
+			 [256] & $0.99187 \pm 0.00396$ & $0.99359 \pm 0.00251$ \\
+			 \hline 
+			 [64, 2] & $0.0092 \pm 0.00042$ & $0.08762 \pm 0.0026$ \\
+			 \hline 
+			 [64, 4] & $0.09252 \pm 0.00233$ & $0.24616 \pm 0.00595$ \\
+			 \hline 
+		 \end{tabular}
+	\label{Tab:ANN_4}
+	\end{table}
+
+\paragraph{SVM}
+
+Para las máquinas de soporte vectorial hemos utilizado 8 configuraciones distintas de los hiperparámetros de \textit{kernel},
+grado del \textit{kernel} (sólo se utiliza en \textit{kernel} polinomial), \textit{gamma} y \textit{C}.
+
+Se muestran los resultados de la experimentación en la Tabla \ref{Tab:SVM_4}.
+
+\newpage
+\begin{table}[!ht]
+	\caption{Resultados SVM}
+	\centering
+		 \begin{tabular}{||c c c||}
+			 \hline
+			 (kernel, grado, gamma, C) & F1-Score & Precisión  \\ [0.5ex]
+			 \hline\hline
+			 (poly, $3$, $1$, $1$) & $0.99159 \pm 0.00332$ & $0.9923 \pm 0.00338$ \\
+			 \hline 
+			 (rbf, $3$, $1$, $1$) & $0.08438 \pm 0.01307$ & $0.09002 \pm 0.00789$ \\
+			 \hline 
+			 (sigmoid, $3$, $1$, $1$) & $0.06786 \pm 0.01064$ & $0.13478 \pm 0.01425$ \\
+			 \hline 
+			 (poly, $3$, $10$, $0.1$) & $0.99076 \pm 0.00477$ & $0.9915 \pm 0.00378$ \\
+			 \hline 
+			 (rbf, $3$, $10$, $0.1$) & $0.00068 \pm 3.0e-5$ & $0.02965 \pm 0.00136$ \\
+			 \hline 
+			 (sigmoid, $3$, $10$, $0.1$) & $0.05124 \pm 0.00703$ & $0.12204 \pm 0.00731$ \\
+			 \hline 
+			 (rbf, $3$, $0.01$, $100$) & $0.9956 \pm 0.0026$ & $0.99538 \pm 0.00197$ \\
+			 \hline 
+			 (poly, $3$, $100$, $0.001$) & $0.99063 \pm 0.00557$ & $0.99163 \pm 0.00463$ \\
+			 \hline 
+		 \end{tabular}
+	\label{Tab:SVM_4}
+	\end{table}
+
+\paragraph{Árboles de decisión}
+Para los árboles de decisión hemos utilizado 6 configuraciones distintas del hiperparámetro de profundidad máxima.
+
+Se muestran los resultados de la experimentación en la Tabla \ref{Tab:DecisionTree_4}.
+
+\begin{table}[!ht]
+	\caption{Resultados Árbol de decisión}
+	\centering
+		 \begin{tabular}{||c c c||}
+			 \hline
+			 Altura máxima & F1-Score & Precisión  \\ [0.5ex]
+			 \hline\hline
+			 $4$ & $0.07672 \pm 0.00479$ & $0.17206 \pm 0.00787$ \\
+			 \hline 
+			 $8$ & $0.2806 \pm 0.02056$ & $0.39652 \pm 0.02116$ \\
+			 \hline 
+			 $16$ & $0.74431 \pm 0.01699$ & $0.80295 \pm 0.0143$ \\
+			 \hline 
+			 $32$ & $0.92636 \pm 0.01628$ & $0.93634 \pm 0.01272$ \\
+			 \hline 
+			 $64$ & $0.9341 \pm 0.01341$ & $0.94189 \pm 0.01142$ \\
+			 \hline 
+			 $128$ & $0.93041 \pm 0.01481$ & $0.93899 \pm 0.01207$ \\
+			 \hline 
+			 $256$ & $0.93511 \pm 0.01253$ & $0.94258 \pm 0.01015$ \\
+			 \hline 
+		 \end{tabular}
+	\label{Tab:DecisionTree_4}
+	\end{table}
+
+\paragraph{kNN}
+Para el modelo kNN hemos utilizado 6 configuraciones distintas del hiperparámetro de k (número de vecinos más cercanos).
+
+Se muestran los resultados de la experimentación en la tabla \ref{Tab:kNN_4}.
+
+\begin{table}[!ht]
+	\caption{Resultados kNN}
+	\centering
+		\begin{tabular}{||c c c||}
+			\hline
+			K & F1-Score & Precisión  \\ [0.5ex]
+			\hline\hline
+			$2$ & $0.98281 \pm 0.00692$ & $0.98412 \pm 0.00579$ \\
+			\hline 
+			$3$ & $0.983 \pm 0.00663$ & $0.98503 \pm 0.00459$ \\
+			\hline 
+			$5$ & $0.97531 \pm 0.00598$ & $0.9798 \pm 0.00496$ \\
+			\hline 
+			$8$ & $0.96985 \pm 0.00808$ & $0.97606 \pm 0.006$ \\
+			\hline 
+			$13$ & $0.95775 \pm 0.01248$ & $0.96784 \pm 0.00757$ \\
+			\hline 
+			$21$ & $0.94695 \pm 0.01167$ & $0.95725 \pm 0.01003$ \\
+			\hline 
+		\end{tabular}
+	\label{Tab:kNN_4}
+\end{table}
+
 \subsubsection{Discusión}
 
+Como se puede ver en los resultados, el funcionamiento de nuestro sistema resolviendo el problema completo, es decir, clasificando todas las notas
+del piano, es sorprendente. Con el mejor modelo (de nuevo un SVM), obtuvimos una precisión de $0.99538$ ± $0.00197$ y un F1-Score de $0.9956$ ± $0.0026$,
+haciendo uso de un \textit{kernel} de base radial, un valor de \textit{gamma} $0.01$ y un valor de \textit{C} $100$.
+
+\bigskip
+De nuevo destacar que, a pesar de obtener RNAs con valores de F1-Score muy altos (\textgreater99\%), el tiempo invertido en el entrenamiento las
+hace modelos menos interesantes, sobre todo comparados con los modelos basados en SVM o kNN.
+
+\bigskip
+Con respecto a las características, creemos que tanto la \textbf{frecuencia máxima absoluta} y la \textbf{itensidad máxima absoluta en frecuencia},
+son importantes a la hora de clasificar correctamente las notas. Sin embargo, ahora que tenemos el problema completo resuelto, consideramos que
+es el momento de tratar de minimizar el número de características necesarias, perdiendo la menor precisión en la clasificación posible.
+Este aspecto será en el que nos centremos en la siguiente aproximación.
+
+\bigskip
+Se muestra en la Tabla \ref{tab:confusion_matrix_3} la matriz de confusión del mejor modelo obtenido, puediendo observar como se
+confunde mayoritariamente en notas que se encuentran a distancias cercanas como son \textit{A5} y \textit{A\#5} o \textit{F7} y \textit{G7}. 
 \newpage
 \section{Conclusiones}
 \label{Conclusiones}

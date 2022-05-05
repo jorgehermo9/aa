@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.4.30)  5 MAY 2022 11:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.4.30)  6 MAY 2022 00:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -632,7 +632,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <14.4> on input line 38.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 38.
-<assets/udc.jpg, id=96, 1284.8pt x 722.7pt>
+<assets/udc.jpg, id=108, 1284.8pt x 722.7pt>
 File: assets/udc.jpg Graphic file (type jpg)
 <use assets/udc.jpg>
 Package pdftex.def Info: assets/udc.jpg  used on input line 42.
@@ -658,48 +658,48 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \tf@toc=\write5
 \openout5 = `memoria.toc'.
 
- [2] [3] [4]
-<assets/A5.pdf, id=157, 702.625pt x 501.875pt>
+ [2] [3] [4] [5]
+<assets/A5.pdf, id=185, 702.625pt x 501.875pt>
 File: assets/A5.pdf Graphic file (type pdf)
 <use assets/A5.pdf>
-Package pdftex.def Info: assets/A5.pdf  used on input line 154.
+Package pdftex.def Info: assets/A5.pdf  used on input line 167.
 (pdftex.def)             Requested size: 443.57848pt x 316.84915pt.
- [5 <./assets/A5.pdf>] [6] [7]
-<assets/C4.pdf, id=210, 702.625pt x 501.875pt>
+ [6 <./assets/A5.pdf>] [7] [8]
+<assets/C4.pdf, id=233, 702.625pt x 501.875pt>
 File: assets/C4.pdf Graphic file (type pdf)
 <use assets/C4.pdf>
-Package pdftex.def Info: assets/C4.pdf  used on input line 254.
+Package pdftex.def Info: assets/C4.pdf  used on input line 253.
 (pdftex.def)             Requested size: 221.78923pt x 158.42075pt.
 File: assets/A5.pdf Graphic file (type pdf)
 <use assets/A5.pdf>
-Package pdftex.def Info: assets/A5.pdf  used on input line 260.
+Package pdftex.def Info: assets/A5.pdf  used on input line 259.
 (pdftex.def)             Requested size: 221.78923pt x 158.42075pt.
- [8] [9 <./assets/C4.pdf>] [10] [11] [12] [13] [14]
-<assets/best_rna_train_1.pdf, id=280, 702.625pt x 501.875pt>
+ [9 <./assets/C4.pdf>] [10] [11] [12] [13] [14]
+<assets/best_rna_train_1.pdf, id=295, 702.625pt x 501.875pt>
 File: assets/best_rna_train_1.pdf Graphic file (type pdf)
 <use assets/best_rna_train_1.pdf>
-Package pdftex.def Info: assets/best_rna_train_1.pdf  used on input line 597.
+Package pdftex.def Info: assets/best_rna_train_1.pdf  used on input line 589.
 (pdftex.def)             Requested size: 443.57848pt x 316.84915pt.
  [15 <./assets/best_rna_train_1.pdf>] [16]
-<assets/C3.pdf, id=310, 526.96875pt x 376.40625pt>
+<assets/C3.pdf, id=325, 526.96875pt x 376.40625pt>
 File: assets/C3.pdf Graphic file (type pdf)
 <use assets/C3.pdf>
-Package pdftex.def Info: assets/C3.pdf  used on input line 653.
+Package pdftex.def Info: assets/C3.pdf  used on input line 647.
 (pdftex.def)             Requested size: 221.78923pt x 158.42265pt.
-<assets/C6.pdf, id=311, 526.96875pt x 376.40625pt>
+<assets/C6.pdf, id=326, 526.96875pt x 376.40625pt>
 File: assets/C6.pdf Graphic file (type pdf)
 <use assets/C6.pdf>
-Package pdftex.def Info: assets/C6.pdf  used on input line 659.
+Package pdftex.def Info: assets/C6.pdf  used on input line 653.
 (pdftex.def)             Requested size: 221.78923pt x 158.42265pt.
-<assets/A3.pdf, id=312, 526.96875pt x 376.40625pt>
+<assets/A3.pdf, id=327, 526.96875pt x 376.40625pt>
 File: assets/A3.pdf Graphic file (type pdf)
 <use assets/A3.pdf>
-Package pdftex.def Info: assets/A3.pdf  used on input line 670.
+Package pdftex.def Info: assets/A3.pdf  used on input line 664.
 (pdftex.def)             Requested size: 221.78923pt x 158.42265pt.
-<assets/A6.pdf, id=313, 526.96875pt x 376.40625pt>
+<assets/A6.pdf, id=328, 526.96875pt x 376.40625pt>
 File: assets/A6.pdf Graphic file (type pdf)
 <use assets/A6.pdf>
-Package pdftex.def Info: assets/A6.pdf  used on input line 676.
+Package pdftex.def Info: assets/A6.pdf  used on input line 670.
 (pdftex.def)             Requested size: 221.78923pt x 158.42265pt.
  [17 <./assets/C3.pdf> <./assets/C6.pdf
 
@@ -711,43 +711,43 @@ pdfTeX warning: pdflatex (file ./assets/A3.pdf): PDF inclusion: multiple pdfs wi
 
 pdfTeX warning: pdflatex (file ./assets/A6.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 >] [18] [19] [20] [21] [22] [23]
-<assets/D1.pdf, id=457, 526.96875pt x 376.40625pt>
+<assets/D1.pdf, id=472, 526.96875pt x 376.40625pt>
 File: assets/D1.pdf Graphic file (type pdf)
 <use assets/D1.pdf>
-Package pdftex.def Info: assets/D1.pdf  used on input line 1077.
+Package pdftex.def Info: assets/D1.pdf  used on input line 1054.
 (pdftex.def)             Requested size: 221.78923pt x 158.42265pt.
-<assets/E1.pdf, id=458, 526.96875pt x 376.40625pt>
+<assets/E1.pdf, id=473, 526.96875pt x 376.40625pt>
 File: assets/E1.pdf Graphic file (type pdf)
 <use assets/E1.pdf>
-Package pdftex.def Info: assets/E1.pdf  used on input line 1083.
+Package pdftex.def Info: assets/E1.pdf  used on input line 1060.
 (pdftex.def)             Requested size: 221.78923pt x 158.42265pt.
-<assets/F1.pdf, id=459, 526.96875pt x 376.40625pt>
+<assets/F1.pdf, id=474, 526.96875pt x 376.40625pt>
 File: assets/F1.pdf Graphic file (type pdf)
 <use assets/F1.pdf>
-Package pdftex.def Info: assets/F1.pdf  used on input line 1094.
+Package pdftex.def Info: assets/F1.pdf  used on input line 1071.
 (pdftex.def)             Requested size: 221.78923pt x 158.42265pt.
-<assets/G1.pdf, id=460, 526.96875pt x 376.40625pt>
+<assets/G1.pdf, id=475, 526.96875pt x 376.40625pt>
 File: assets/G1.pdf Graphic file (type pdf)
 <use assets/G1.pdf>
-Package pdftex.def Info: assets/G1.pdf  used on input line 1100.
+Package pdftex.def Info: assets/G1.pdf  used on input line 1077.
 (pdftex.def)             Requested size: 221.78923pt x 158.42265pt.
  [24]
-Overfull \hbox (3.96642pt too wide) in paragraph at lines 1118--1133
+Overfull \hbox (3.96642pt too wide) in paragraph at lines 1095--1110
 \OT1/cmr/m/it/12 359.513)\OT1/cmr/m/n/12 ,\OT1/cmr/m/it/12 (359.513, 444.735)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (444.735, 535.025)\OT1/cmr/m/n/12 ,\OT1/cmr/m/it/12 (535.025, 630.684)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (630.684, 732.032)\OT1/cmr/m/n/12 ,
  []
 
 
-Overfull \hbox (6.91365pt too wide) in paragraph at lines 1118--1133
+Overfull \hbox (6.91365pt too wide) in paragraph at lines 1095--1110
 \OT1/cmr/m/it/12 (1201.376, 1336.658)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (1336.658, 1479.984)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (1479.984, 1631.833)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (1631.833, 1792.712)\OT1/cmr/m/n/12 ,
  []
 
 
-Overfull \hbox (6.91365pt too wide) in paragraph at lines 1118--1133
+Overfull \hbox (6.91365pt too wide) in paragraph at lines 1095--1110
 \OT1/cmr/m/it/12 (1792.712, 1963.157)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (1963.157, 2143.737)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (2143.737, 2335.055)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (2335.055, 2537.749)\OT1/cmr/m/n/12 ,
  []
 
 
-Overfull \hbox (6.91365pt too wide) in paragraph at lines 1118--1133
+Overfull \hbox (6.91365pt too wide) in paragraph at lines 1095--1110
 \OT1/cmr/m/it/12 (2537.749, 2752.496)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (2752.496, 2980.013)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (2980.013, 3221.059)\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 (3221.059, 3476.437)\OT1/cmr/m/n/12 ,
  []
 
@@ -761,32 +761,32 @@ pdfTeX warning: pdflatex (file ./assets/F1.pdf): PDF inclusion: multiple pdfs wi
 
 pdfTeX warning: pdflatex (file ./assets/G1.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 >] [26] [27] [28] [29] [30] [31] [32]
-Overfull \hbox (40.12169pt too wide) in paragraph at lines 1618--1646
+Overfull \hbox (40.12169pt too wide) in paragraph at lines 1603--1631
  [][] 
  []
 
-[33]
-<assets/A1_sos.pdf, id=621, 526.96875pt x 376.40625pt>
+[33] [34]
+<assets/A1_sos.pdf, id=642, 526.96875pt x 376.40625pt>
 File: assets/A1_sos.pdf Graphic file (type pdf)
 <use assets/A1_sos.pdf>
-Package pdftex.def Info: assets/A1_sos.pdf  used on input line 1685.
+Package pdftex.def Info: assets/A1_sos.pdf  used on input line 1680.
 (pdftex.def)             Requested size: 221.78923pt x 158.42265pt.
-<assets/C1_sos.pdf, id=622, 526.96875pt x 376.40625pt>
+<assets/C1_sos.pdf, id=643, 526.96875pt x 376.40625pt>
 File: assets/C1_sos.pdf Graphic file (type pdf)
 <use assets/C1_sos.pdf>
-Package pdftex.def Info: assets/C1_sos.pdf  used on input line 1691.
+Package pdftex.def Info: assets/C1_sos.pdf  used on input line 1686.
 (pdftex.def)             Requested size: 221.78923pt x 158.42265pt.
-<assets/D1_sos.pdf, id=623, 526.96875pt x 376.40625pt>
+<assets/D1_sos.pdf, id=644, 526.96875pt x 376.40625pt>
 File: assets/D1_sos.pdf Graphic file (type pdf)
 <use assets/D1_sos.pdf>
-Package pdftex.def Info: assets/D1_sos.pdf  used on input line 1702.
+Package pdftex.def Info: assets/D1_sos.pdf  used on input line 1697.
 (pdftex.def)             Requested size: 221.78923pt x 158.42265pt.
-<assets/F1_sos.pdf, id=624, 526.96875pt x 376.40625pt>
+<assets/F1_sos.pdf, id=645, 526.96875pt x 376.40625pt>
 File: assets/F1_sos.pdf Graphic file (type pdf)
 <use assets/F1_sos.pdf>
-Package pdftex.def Info: assets/F1_sos.pdf  used on input line 1708.
+Package pdftex.def Info: assets/F1_sos.pdf  used on input line 1703.
 (pdftex.def)             Requested size: 221.78923pt x 158.42265pt.
- [34] [35 <./assets/A1_sos.pdf> <./assets/C1_sos.pdf
+ [35 <./assets/A1_sos.pdf> <./assets/C1_sos.pdf
 
 pdfTeX warning: pdflatex (file ./assets/C1_sos.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 > <./assets/D1_sos.pdf
@@ -795,30 +795,37 @@ pdfTeX warning: pdflatex (file ./assets/D1_sos.pdf): PDF inclusion: multiple pdf
 > <./assets/F1_sos.pdf
 
 pdfTeX warning: pdflatex (file ./assets/F1_sos.pdf): PDF inclusion: multiple pdfs with page group included in a single page
->] [36] [37] [38] [39] [40] (./memoria.aux
+>] [36] [37] [38] [39] [40] [41]
+LaTeX Font Info:    Trying to load font information for OML+cmr on input line 2169.
+ (/usr/share/texmf-dist/tex/latex/base/omlcmr.fd
+File: omlcmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <12> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 2169.
+ [42] [43] (./memoria.aux
 LaTeX Info: Redefining \sptext on input line 26.
 LaTeX Info: Redefining \. on input line 26.
 LaTeX Info: Redefining \% on input line 26.
 )
 Package rerunfilecheck Info: File `memoria.out' has not changed.
-(rerunfilecheck)             Checksum: 841E645C3D6A632C18053B40A958C403;2912.
+(rerunfilecheck)             Checksum: B9F2520CB2E89597692F1B2431710422;3290.
 Package logreq Info: Writing requests to 'memoria.run.xml'.
 \openout1 = `memoria.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 20626 strings out of 478238
- 366201 string characters out of 5850456
- 1363541 words of memory out of 5000000
- 38514 multiletter control sequences out of 15000+600000
- 476389 words of font info for 51 fonts, out of 8000000 for 9000
+ 20668 strings out of 478238
+ 366850 string characters out of 5850456
+ 1361745 words of memory out of 5000000
+ 38538 multiletter control sequences out of 15000+600000
+ 476726 words of font info for 52 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  67i,12n,77p,1191b,2804s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb>
-Output written on memoria.pdf (40 pages, 621431 bytes).
+{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
+Output written on memoria.pdf (43 pages, 640884 bytes).
 PDF statistics:
- 838 PDF objects out of 1000 (max. 8388607)
- 651 compressed objects within 7 object streams
- 129 named destinations out of 1000 (max. 500000)
- 265 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 891 PDF objects out of 1000 (max. 8388607)
+ 699 compressed objects within 7 object streams
+ 143 named destinations out of 1000 (max. 500000)
+ 289 words of extra memory for PDF output out of 10000 (max. 10000000)
 

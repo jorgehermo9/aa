@@ -2791,30 +2791,30 @@
     <bcf:datasource type="file" datatype="bibtex" glob="false">references/references.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">osmalsky2012neural</bcf:citekey>
-    <bcf:citekey order="2">benetos2018automatic</bcf:citekey>
-    <bcf:citekey order="3">foo1999recognition</bcf:citekey>
-    <bcf:citekey order="4">chang2017audio</bcf:citekey>
-    <bcf:citekey order="5">klapuri2004signal</bcf:citekey>
-    <bcf:citekey order="6">marolt2002neural</bcf:citekey>
-    <bcf:citekey order="7">solanki2019music</bcf:citekey>
-    <bcf:citekey order="8">baevski2021unsupervised</bcf:citekey>
-    <bcf:citekey order="9">krogh2008artificial</bcf:citekey>
-    <bcf:citekey order="10">cortes1995support</bcf:citekey>
-    <bcf:citekey order="11">myles2004introduction</bcf:citekey>
-    <bcf:citekey order="12">guo2003knn</bcf:citekey>
-    <bcf:citekey order="13">osmalsky2012neural</bcf:citekey>
-    <bcf:citekey order="14">benetos2018automatic</bcf:citekey>
-    <bcf:citekey order="15">foo1999recognition</bcf:citekey>
-    <bcf:citekey order="16">chang2017audio</bcf:citekey>
-    <bcf:citekey order="17">klapuri2004signal</bcf:citekey>
-    <bcf:citekey order="18">marolt2002neural</bcf:citekey>
-    <bcf:citekey order="19">solanki2019music</bcf:citekey>
-    <bcf:citekey order="20">baevski2021unsupervised</bcf:citekey>
-    <bcf:citekey order="21">krogh2008artificial</bcf:citekey>
-    <bcf:citekey order="22">cortes1995support</bcf:citekey>
-    <bcf:citekey order="23">myles2004introduction</bcf:citekey>
-    <bcf:citekey order="24">guo2003knn</bcf:citekey>
+    <bcf:citekey order="1">krogh2008artificial</bcf:citekey>
+    <bcf:citekey order="2">cortes1995support</bcf:citekey>
+    <bcf:citekey order="3">myles2004introduction</bcf:citekey>
+    <bcf:citekey order="4">guo2003knn</bcf:citekey>
+    <bcf:citekey order="5">osmalsky2012neural</bcf:citekey>
+    <bcf:citekey order="6">benetos2018automatic</bcf:citekey>
+    <bcf:citekey order="7">foo1999recognition</bcf:citekey>
+    <bcf:citekey order="8">chang2017audio</bcf:citekey>
+    <bcf:citekey order="9">klapuri2004signal</bcf:citekey>
+    <bcf:citekey order="10">marolt2002neural</bcf:citekey>
+    <bcf:citekey order="11">solanki2019music</bcf:citekey>
+    <bcf:citekey order="12">baevski2021unsupervised</bcf:citekey>
+    <bcf:citekey order="13">krogh2008artificial</bcf:citekey>
+    <bcf:citekey order="14">cortes1995support</bcf:citekey>
+    <bcf:citekey order="15">myles2004introduction</bcf:citekey>
+    <bcf:citekey order="16">guo2003knn</bcf:citekey>
+    <bcf:citekey order="17">osmalsky2012neural</bcf:citekey>
+    <bcf:citekey order="18">benetos2018automatic</bcf:citekey>
+    <bcf:citekey order="19">foo1999recognition</bcf:citekey>
+    <bcf:citekey order="20">chang2017audio</bcf:citekey>
+    <bcf:citekey order="21">klapuri2004signal</bcf:citekey>
+    <bcf:citekey order="22">marolt2002neural</bcf:citekey>
+    <bcf:citekey order="23">solanki2019music</bcf:citekey>
+    <bcf:citekey order="24">baevski2021unsupervised</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="apa">
