@@ -5,7 +5,11 @@ using Flux: onehotbatch, onecold
 using JLD2, FileIO
 using Statistics: mean
 using Random
+using Statistics
 
+function calculateZeroMeanNormalizationParameters(data::AbstractArray{<:Real,2})
+	(mean(data,dims=1),std(data,dims=1))
+end
 
 function normalizeZeroMean!(data::AbstractArray{<:Real,2}, parameters::NTuple{2,AbstractArray{<:Real,2}})
 	data_mean = parameters[1];
@@ -110,7 +114,7 @@ println("Valores minimo y maximo de las entradas: (", minimum(train_signals), ",
 # Cuantos patrones va a tener cada particion
 batch_size = 128
 # Creamos los indices: partimos el vector 1:N en grupos de batch_size
-gruposIndicesBatch = Iterators.partition(1:size(train_imgs,4), batch_size);
+gruposIndicesBatch = Iterators.partition(1:size(train_signals,2), batch_size);
 println("He creado ", length(gruposIndicesBatch), " grupos de indices para distribuir los patrones en batches");
 
 
@@ -123,20 +127,13 @@ println("He creado ", length(gruposIndicesBatch), " grupos de indices para distr
 #  Por tanto, cada batch será un par dado por
 #     (train_imgs[:,:,:,indicesBatch], onehotbatch(train_labels[indicesBatch], labels))
 # Sólo resta iterar por cada batch para construir el vector de batches
-train_set = [ (train_imgs[:,:,:,indicesBatch], onehotbatch(train_labels[indicesBatch], labels)) for indicesBatch in gruposIndicesBatch];
+train_set = [ (train_signals[:,indicesBatch], train_labels_onehot[:,indicesBatch]) for indicesBatch in gruposIndicesBatch];
 
 # Cambiar a asi para audio
 # train_set = [ (train_imgs[:,indicesBatch], onehotbatch(train_labels[indicesBatch], labels)) for indicesBatch in gruposIndicesBatch];
 
 # Creamos un batch similar, pero con todas las imagenes de test
-test_set = (test_imgs, onehotbatch(test_labels, labels));
-
-
-# Hago esto simplemente para liberar memoria, las variables train_imgs y test_imgs ocupan mucho y ya no las vamos a usar
-train_imgs = nothing;
-test_imgs = nothing;
-GC.gc(); # Pasar el recolector de basura
-
+test_set = (test_signals, test_labels_onehot);
 
 
 
@@ -156,13 +153,13 @@ ann = Chain(
     #  Es decir, se generan 16 imagenes a partir de la imagen original con filtros 3x3
     # Entradas a esta capa: matriz 4D de dimension 28 x 28 x 1canal    x <numPatrones>
     # Salidas de esta capa: matriz 4D de dimension 28 x 28 x 16canales x <numPatrones>
-    Conv((3, 3), 1=>16, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    Conv((2,1), 1=>16, pad=1, funcionTransferenciaCapasConvolucionales),
 
     # Capa maxpool: es una funcion
     # Divide el tamaño en 2 en el eje x y en el eje y: Pasa imagenes 28x28 a 14x14
     # Entradas a esta capa: matriz 4D de dimension 28 x 28 x 16canales x <numPatrones>
     # Salidas de esta capa: matriz 4D de dimension 14 x 14 x 16canales x <numPatrones>
-    MaxPool((2,2)),
+    MaxPool(2),
 
     # Tercera capa: segunda convolucion: Le llegan 16 imagenes de tamaño 14x14
     #  16=>32:
@@ -171,7 +168,7 @@ ann = Chain(
     #  Es decir, se generan 32 imagenes a partir de las 16 imagenes de entrada con filtros 3x3
     # Entradas a esta capa: matriz 4D de dimension 14 x 14 x 16canales x <numPatrones>
     # Salidas de esta capa: matriz 4D de dimension 14 x 14 x 32canales x <numPatrones>
-    Conv((3, 3), 16=>32, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    Conv(2, 16=>32, pad=(1,1), funcionTransferenciaCapasConvolucionales),
 
     # Capa maxpool: es una funcion
     # Divide el tamaño en 2 en el eje x y en el eje y: Pasa imagenes 14x14 a 7x7
@@ -186,7 +183,7 @@ ann = Chain(
     #  Es decir, se generan 32 imagenes a partir de las 32 imagenes de entrada con filtros 3x3
     # Entradas a esta capa: matriz 4D de dimension 7 x 7 x 32canales x <numPatrones>
     # Salidas de esta capa: matriz 4D de dimension 7 x 7 x 32canales x <numPatrones>
-    Conv((3, 3), 32=>32, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    Conv((3, 1), 32=>32, pad=(1,1), funcionTransferenciaCapasConvolucionales),
 
     # Capa maxpool: es una funcion
     # Divide el tamaño en 2 en el eje x y en el eje y: Pasa imagenes 7x7 a 3x3
@@ -199,15 +196,16 @@ ann = Chain(
     #  Es decir, cada patron de tamaño 3 x 3 x 32 lo convierte en un array de longitud 3*3*32
     # Entradas a esta capa: matriz 4D de dimension 3 x 3 x 32canales x <numPatrones>
     # Salidas de esta capa: matriz 4D de dimension 288 x <numPatrones>
-    x -> reshape(x, :, size(x, 4)),
-
     # Capa totalmente conectada
+
+	# 32 filtros x numColumnas
+
     #  Como una capa oculta de un perceptron multicapa "clasico"
     #  Parametros: numero de entradas (288) y numero de salidas (10)
     #   Se toman 10 salidas porque tenemos 10 clases (numeros de 0 a 9)
     # Entradas a esta capa: matriz 4D de dimension 288 x <numPatrones>
     # Salidas de esta capa: matriz 4D de dimension  10 x <numPatrones>
-    Dense(288, 10),
+    Dense(288, 85),
 	# El 10 indica el número de labels
 
     # Finalmente, capa softmax
@@ -230,16 +228,17 @@ ann = Chain(
 
 # Vamos a probar la RNA capa por capa y poner algunos datos de cada capa
 # Usaremos como entrada varios patrones de un batch
-numBatchCoger = 1; numImagenEnEseBatch = [12, 6];
+numBatchCoger = 1; batchNumSignals = [1, 2];
 # Para coger esos patrones de ese batch:
 #  train_set es un array de tuplas (una tupla por batch), donde, en cada tupla, el primer elemento son las entradas y el segundo las salidas deseadas
 #  Por tanto:
 #   train_set[numBatchCoger] -> La tupla del batch seleccionado
 #   train_set[numBatchCoger][1] -> El primer elemento de esa tupla, es decir, las entradas de ese batch
-#   train_set[numBatchCoger][1][:,:,:,numImagenEnEseBatch] -> Los patrones seleccionados de las entradas de ese batch
-entradaCapa = train_set[numBatchCoger][1][:,:,:,numImagenEnEseBatch];
+#   train_set[numBatchCoger][1][:,:,:,batchNumSignals] -> Los patrones seleccionados de las entradas de ese batch
+entradaCapa = train_set[numBatchCoger][1][:,batchNumSignals];
 numCapas = length(params(ann));
 println("La RNA tiene ", numCapas, " capas:");
+display(ann)
 for numCapa in 1:numCapas
     println("   Capa ", numCapa, ": ", ann[numCapa]);
     # Le pasamos la entrada a esta capa
@@ -252,7 +251,7 @@ end
 
 # Sin embargo, para aplicar un patron no hace falta hacer todo eso.
 #  Se puede aplicar patrones a la RNA simplemente haciendo, por ejemplo
-ann(train_set[numBatchCoger][1][:,:,:,numImagenEnEseBatch]);
+ann(train_set[numBatchCoger][1][:,batchNumSignals]);
 
 
 

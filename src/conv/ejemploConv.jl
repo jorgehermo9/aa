@@ -224,7 +224,7 @@ accuracy(batch) = mean(onecold(ann(batch[1])) .== onecold(batch[2]));
 #  Por tanto, mean(accuracy.(train_set)) calcula la precision promedia
 #   (no es totalmente preciso, porque el ultimo batch tiene menos elementos, pero es una diferencia baja)
 println("Ciclo 0: Precision en el conjunto de entrenamiento: ", 100*mean(accuracy.(train_set)), " %");
-
+display(train_set)
 
 # Optimizador que se usa: ADAM, con esta tasa de aprendizaje:
 opt = ADAM(0.001);
