@@ -192,6 +192,17 @@ ann = Chain(
 
 )
 
+ann = Chain(
+	Conv((5,), 1=>16, pad=1, funcionTransferenciaCapasConvolucionales),
+	MaxPool((10,)),
+	Conv((5,), 16=>32, pad=1, funcionTransferenciaCapasConvolucionales),
+	MaxPool((10,)),
+	Conv((5,), 32=>32, pad=1, funcionTransferenciaCapasConvolucionales),
+	MaxPool((5,)),
+	x -> reshape(x, :, size(x, 3)),
+	Dense(480, length(unique(all_labels))),
+	softmax
+)
 
 
 
