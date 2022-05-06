@@ -2160,8 +2160,8 @@ Se muestran los resultados de la experimentación en la tabla \ref{Tab:kNN_4}.
 \subsubsection{Discusión}
 
 Como se puede ver en los resultados, el funcionamiento de nuestro sistema resolviendo el problema completo, es decir, clasificando todas las notas
-del piano, es sorprendente. Con el mejor modelo (de nuevo un SVM), obtuvimos una precisión de $0.99538$ ± $0.00197$ y un F1-Score de $0.9956$ ± $0.0026$,
-haciendo uso de un \textit{kernel} de base radial, un valor de \textit{gamma} $0.01$ y un valor de \textit{C} $100$.
+del piano, es sorprendente. Con el mejor modelo (de nuevo un SVM), obtuvimos una precisión de $0.99612$ ± $0.00324$ y un F1-Score de $0.99605$ ± $0.00408$,
+haciendo uso de un \textit{kernel} de base radial, un valor de \textit{gamma} $0.001$ y un valor de \textit{C} $100$.
 
 \bigskip
 De nuevo destacar que, a pesar de obtener RNAs con valores de F1-Score muy altos (\textgreater99\%), el tiempo invertido en el entrenamiento las
@@ -2174,8 +2174,8 @@ es el momento de tratar de minimizar el número de características necesarias, 
 Este aspecto será en el que nos centremos en la siguiente aproximación.
 
 \bigskip
-Se muestra en la Tabla \ref{tab:confusion_matrix_4} la matriz de confusión del mejor modelo obtenido, puediendo observar como se
-confunde mayoritariamente en notas que se encuentran a distancias cercanas como son \textit{A5} y \textit{A\#5} o \textit{F7} y \textit{G7}. 
+Se muestra en la Tabla \ref{tab:confusion_matrix_4} la matriz de confusión del mejor modelo obtenido. En ella, podemos observar como se
+confunde mayoritariamente en notas que se encuentran a distancias cercanas como son \textit{C7} y \textit{C\#7} o \textit{A1} y \textit{A\#1}. 
 
 \begin{table}[!ht]
 	\centering
@@ -2210,8 +2210,385 @@ confunde mayoritariamente en notas que se encuentran a distancias cercanas como 
 		\end{tabular}
 	}
 	% \end{turn}
-	\caption{Matriz de confusión mejor modelo }
-	\label{tab:confusion_matrix_3}
+	\caption{Matriz de confusión mejor modelo}
+	\label{tab:confusion_matrix_4}
+\end{table}
+
+\newpage
+
+\subsection{Quinta aproximación}
+\label{Cuarta aproximación}
+
+\subsubsection{Descripción}
+Las notas que vamos a clasificar constituyen el total de notas del
+piano, por lo que en esta aproximación será donde veamos cómo de bien se comporta nuestro sistema ante el problema
+completo.
+En concreto, las nuevas notas que añadimos son los sostenidos de cada escala. Estos presentan un especial problema, ya que solo están a distancia de un semitono con
+respecto a la nota original, resultando en frecuencias muy cercanas.
+
+Se muestran a continuación los parámetros de normalización (volveremos a utilizar media cero) para cada característica en las Tablas \ref{Tab:Features_4_1},
+\ref{Tab:Features_4_2} \ref{Tab:Features_4_3} y \ref{Tab:Features_4_4}.
+
+\begin{table}
+	\caption{Parámetros de normalización (I)}
+	\centering
+		\begin{tabular}{||c c c||}
+			\hline
+			Característica & Media & Desviación Típica \\ [0.5ex]
+			\hline\hline
+			E & $0.005290622$ & $0.009127998$ \\
+			\hline
+			zero-crossing & $3317.7852$ & $4477.6226$ \\
+			\hline
+			abs-max & $1445.9364$ & $1557.9128$ \\
+			\hline
+			abs-max-freq & $980.58826$ & $1027.9849$ \\
+			\hline
+			m\textsubscript{1} & $2.5213237$ & $4.892542$ \\
+			\hline
+			m\textsubscript{2} & $19.776129$ & $34.19082$ \\
+			\hline
+			m\textsubscript{3} & $18.500994$ & $33.448643$ \\
+			\hline
+			m\textsubscript{4} & $20.293629$ & $28.46877$ \\
+			\hline
+			m\textsubscript{5} & $15.832674$ & $24.200994$ \\
+			\hline
+			m\textsubscript{6} & $13.741416$ & $21.621166$ \\
+			\hline
+			m\textsubscript{7} & $13.71829$ & $20.745993$ \\
+			\hline
+			m\textsubscript{8} & $10.299257$ & $17.33558$ \\
+			\hline
+			m\textsubscript{9} & $9.490465$ & $18.469109$ \\
+			\hline
+			m\textsubscript{10} & $9.750799$ & $19.446434$ \\
+			\hline
+			m\textsubscript{11} & $9.340946$ & $13.882007$ \\
+			\hline
+			m\textsubscript{12} & $7.7851214$ & $11.177626$ \\
+			\hline
+			m\textsubscript{13} & $6.734947$ & $13.808262$ \\
+			\hline
+			m\textsubscript{14} & $5.5433474$ & $8.790224$ \\
+			\hline
+			m\textsubscript{15} & $4.2768292$ & $6.906526$ \\
+			\hline
+			m\textsubscript{16} & $4.459063$ & $7.8797054$ \\
+			\hline
+			m\textsubscript{17} & $2.9236934$ & $5.253287$ \\
+			\hline
+			m\textsubscript{18} & $2.6162808$ & $5.561383$ \\
+			\hline
+			m\textsubscript{19} & $2.5326357$ & $4.6802435$ \\
+			\hline
+			m\textsubscript{20} & $1.656642$ & $4.287465$ \\
+			\hline
+			m\textsubscript{21} & $1.6121823$ & $4.2043204$ \\
+			\hline
+			m\textsubscript{22} & $1.1647563$ & $3.044825$ \\
+			\hline
+			m\textsubscript{23} & $0.87163603$ & $2.4234502$ \\
+			\hline
+			m\textsubscript{24} & $0.83163273$ & $2.1765046$ \\
+			\hline
+			m\textsubscript{25} & $0.61601394$ & $1.4981358$ \\
+			\hline
+			m\textsubscript{26} & $0.5027224$ & $1.2157471$ \\
+			\hline
+			m\textsubscript{27} & $0.44925115$ & $1.2129601$ \\
+			\hline
+			m\textsubscript{28} & $0.3179743$ & $1.0582143$ \\
+			\hline
+			m\textsubscript{29} & $0.30106485$ & $1.2961926$ \\
+			\hline
+			m\textsubscript{30} & $0.12668554$ & $0.24906345$ \\
+			\hline
+		\end{tabular}
+	\label{Tab:Features_4_1}
+\end{table}
+
+\begin{table}
+	\caption{Parámetros de normalización (II)}
+	\centering
+		\begin{tabular}{||c c c||}
+			\hline
+			Característica & Media & Desviación Típica  \\ [0.5ex]
+			\hline\hline
+			std\textsubscript{1} & $3.7071$ & $8.894764$ \\
+			\hline
+			std\textsubscript{2} & $41.93409$ & $100.38277$ \\
+			\hline
+			std\textsubscript{3} & $41.496273$ & $100.46413$ \\
+			\hline
+			std\textsubscript{4} & $50.62945$ & $97.251366$ \\
+			\hline
+			std\textsubscript{5} & $32.27192$ & $66.25659$ \\
+			\hline
+			std\textsubscript{6} & $31.772036$ & $64.703476$ \\
+			\hline
+			std\textsubscript{7} & $30.200518$ & $56.291985$ \\
+			\hline
+			std\textsubscript{8} & $24.33468$ & $49.075897$ \\
+			\hline
+			std\textsubscript{9} & $17.22069$ & $40.07678$ \\
+			\hline
+			std\textsubscript{10} & $21.47563$ & $49.664173$ \\
+			\hline
+			std\textsubscript{11} & $16.356256$ & $32.295124$ \\
+			\hline
+			std\textsubscript{12} & $13.809475$ & $27.013056$ \\
+			\hline
+			std\textsubscript{13} & $13.494098$ & $35.255543$ \\
+			\hline
+			std\textsubscript{14} & $9.511233$ & $19.50926$ \\
+			\hline
+			std\textsubscript{15} & $7.4176326$ & $16.4802$ \\
+			\hline
+			std\textsubscript{16} & $7.555132$ & $18.873085$ \\
+			\hline
+			std\textsubscript{17} & $5.6317873$ & $11.938161$ \\
+			\hline
+			std\textsubscript{18} & $3.8923404$ & $10.900163$ \\
+			\hline
+			std\textsubscript{19} & $4.617325$ & $10.1336155$ \\
+			\hline
+			std\textsubscript{20} & $2.5670214$ & $8.334569$ \\
+			\hline
+			std\textsubscript{21} & $2.7792637$ & $7.7385535$ \\
+			\hline
+			std\textsubscript{22} & $1.8842899$ & $5.510914$ \\
+			\hline
+			std\textsubscript{23} & $1.4960651$ & $4.586712$ \\
+			\hline
+			std\textsubscript{24} & $1.4450701$ & $3.7847013$ \\
+			\hline
+			std\textsubscript{25} & $0.90402246$ & $2.5514781$ \\
+			\hline
+			std\textsubscript{26} & $0.7006507$ & $1.8386049$ \\
+			\hline
+			std\textsubscript{27} & $0.6376248$ & $1.6106461$ \\
+			\hline
+			std\textsubscript{28} & $0.48451066$ & $1.7358224$ \\
+			\hline
+			std\textsubscript{29} & $0.38622695$ & $1.3208534$ \\
+			\hline
+			std\textsubscript{30} & $0.18503572$ & $0.458966$ \\
+			\hline
+		\end{tabular}
+	\label{Tab:Features_4_2}
+\end{table}
+
+\newpage
+\hphantom{skip}
+
+Donde:
+\begin{itemize}
+	\item \textit{E} indica la \textbf{energía de la señal}.
+	\item \textit{m\textsubscript{i}} indica la \textbf{media de la intensidad} en el intervalo \textit{i} en frecuencia.
+	\item \textit{std\textsubscript{i}} indica la \textbf{desviación típica de la intensidad} en el intervalo \textit{i} en frecuencia.
+	\item \textit{max\textsubscript{i}} indica el \textbf{máximo de la intensidad} en el intervalo \textit{i} en frecuencia.
+	\item \textit{max-freq\textsubscript{i}} indica la \textbf{frecuencia donde se alcanza el máximo de intensidad} en el intervalo \textit{i} en frecuencia.
+\end{itemize}
+
+Para estos experimentos se volvió a repetir 20 veces el entrenamiento de la RNA en cada \textit{fold}, devolviendo el resultado promedio.
+
+\bigskip
+Utilizaremos de nuevo como medida el promedio del \textbf{F1-Score} en los \textit{folds}. Si hay empate en dicha media, se elegirá el modelo con menor
+desviación típica de la métrica.
+
+\subsubsection{Resultados}
+Para permitir la reproducibilidad de los experimentos, se utilizó \textit{100} como semilla de generación de números
+aleatorios.
+
+\paragraph{RNA}
+
+Para el entrenamiento de las RNA, se han utilizado los siguientes parámetros en común:
+\begin{itemize}
+	\item Ratio de aprendizaje: $0.01$
+	\item Ratio de patrones para el conjunto de validación: $0.2$.
+	\item Máximo número de ciclos (\textit{epochs}) de entrenamiento: $1500$.
+	\item Máximo número de ciclos (\textit{epochs}) de entrenamiento sin mejorar el error de validación: $5$.
+	\item Algoritmo de optimización: ADAM.
+	\item Función de \textit{loss}: \textit{Cross Entropy}.
+\end{itemize}
+El hiperparámetro que hemos variado ha sido, de nuevo, la arquitectura de neuronas a utilizar, obteniendo 8 configuraciones diferentes.
+
+Se muestran los resultados de la experimentación en la Tabla \ref{Tab:ANN_4}.
+
+\begin{table}[!ht]
+	\caption{Resultados RNA}
+	\centering
+		\begin{tabular}{||c c c||}
+			\hline
+			Arquitectura & F1-Score & Precisión \\ [0.5ex]
+			\hline\hline
+			[16] & $0.91452 \pm 0.00544$ & $0.92437 \pm 0.00475$ \\
+			\hline 
+			[32] & $0.97012 \pm 0.00554$ & $0.97169 \pm 0.00485$ \\
+			\hline 
+			[64] & $0.98034 \pm 0.00697$ & $0.98149 \pm 0.00567$ \\
+			\hline 
+			[128] & $0.98007 \pm 0.00613$ & $0.98054 \pm 0.00449$ \\
+			\hline 
+			[256] & $0.9757 \pm 0.0058$ & $0.97508 \pm 0.00582$ \\
+			\hline 
+			[512] & $0.94062 \pm 0.00657$ & $0.94438 \pm 0.00534$ \\
+			\hline 
+			[64, 64] & $0.95589 \pm 0.00402$ & $0.95973 \pm 0.00353$ \\
+			\hline 
+			[64, 128] & $0.95232 \pm 0.00708$ & $0.95488 \pm 0.00592$ \\
+			\hline 
+		\end{tabular}
+	\label{Tab:ANN_4}
+	\end{table}
+
+\paragraph{SVM}
+
+Para las máquinas de soporte vectorial hemos utilizado 8 configuraciones distintas de los hiperparámetros de \textit{kernel},
+grado del \textit{kernel} (sólo se utiliza en \textit{kernel} polinomial), \textit{gamma} y \textit{C}.
+
+Se muestran los resultados de la experimentación en la Tabla \ref{Tab:SVM_4}.
+
+\newpage
+\begin{table}[!ht]
+	\caption{Resultados SVM}
+	\centering
+		 \begin{tabular}{||c c c||}
+			\hline 
+			(kernel, grado, gamma, C) & F1-Score & Precisión \\ [0.5ex]  
+			\hline\hline
+			(poly, $3$, $1$, $1$) & $0.98565 \pm 0.00523$ & $0.9872 \pm 0.00429$ \\
+			\hline 
+			(rbf, $3$, $1$, $1$) & $0.13958 \pm 0.01127$ & $0.12843 \pm 0.0095$ \\
+			\hline 
+			(sigmoid, $3$, $1$, $1$) & $0.0372 \pm 0.00548$ & $0.10149 \pm 0.00667$ \\
+			\hline 
+			(poly, $3$, $10$, $0.1$) & $0.98545 \pm 0.00508$ & $0.98636 \pm 0.00365$ \\
+			\hline 
+			(rbf, $3$, $10$, $0.1$) & $0.00068 \pm 3.0e-5$ & $0.02965 \pm 0.00136$ \\
+			\hline 
+			(rbf, $3$, $0.001$, $100$) & $0.99186 \pm 0.00543$ & $0.99156 \pm 0.00571$ \\
+			\hline 
+			(rbf, $3$, $0.01$, $100$) & $0.99375 \pm 0.00263$ & $0.99315 \pm 0.00212$ \\
+			\hline 
+			(poly, $3$, $100$, $0.001$) & $0.98557 \pm 0.00386$ & $0.98683 \pm 0.00308$ \\
+			\hline 
+		 \end{tabular}
+	\label{Tab:SVM_4}
+	\end{table}
+
+\paragraph{Árboles de decisión}
+Para los árboles de decisión hemos utilizado 6 configuraciones distintas del hiperparámetro de profundidad máxima.
+
+Se muestran los resultados de la experimentación en la Tabla \ref{Tab:DecisionTree_4}.
+
+\begin{table}[!ht]
+	\caption{Resultados Árbol de decisión}
+	\centering
+		 \begin{tabular}{||c c c||}
+			\hline 
+			Altura máxima & F1-Score & Precisión \\ [0.5ex]  
+			\hline\hline
+			$32$ & $0.93524 \pm 0.01075$ & $0.9389 \pm 0.00772$ \\
+			\hline 
+			$64$ & $0.92723 \pm 0.01297$ & $0.93348 \pm 0.01031$ \\
+			\hline 
+			$128$ & $0.93011 \pm 0.01126$ & $0.93468 \pm 0.01126$ \\
+			\hline 
+			$256$ & $0.93144 \pm 0.01067$ & $0.93798 \pm 0.00985$ \\
+			\hline 
+			$512$ & $0.92927 \pm 0.00971$ & $0.93616 \pm 0.00711$ \\
+			\hline 
+			$1024$ & $0.92633 \pm 0.01424$ & $0.93278 \pm 0.01285$ \\
+			\hline
+		 \end{tabular}
+	\label{Tab:DecisionTree_4}
+	\end{table}
+
+\paragraph{kNN}
+Para el modelo kNN hemos utilizado 6 configuraciones distintas del hiperparámetro de k (número de vecinos más cercanos).
+
+Se muestran los resultados de la experimentación en la tabla \ref{Tab:kNN_4}.
+
+\begin{table}[!ht]
+	\caption{Resultados kNN}
+	\centering
+		\begin{tabular}{||c c c||}
+			\hline 
+			K & F1-Score & Precisión \\ [0.5ex]  
+			\hline\hline
+			$2$ & $0.9699 \pm 0.00444$ & $0.9699 \pm 0.00401$ \\
+			\hline 
+			$3$ & $0.9739 \pm 0.0055$ & $0.97356 \pm 0.00475$ \\
+			\hline 
+			$7$ & $0.96825 \pm 0.00482$ & $0.96936 \pm 0.00492$ \\
+			\hline 
+			$15$ & $0.95356 \pm 0.01199$ & $0.95761 \pm 0.00756$ \\
+			\hline 
+			$31$ & $0.92823 \pm 0.01575$ & $0.93464 \pm 0.01214$ \\
+			\hline 
+			$63$ & $0.88728 \pm 0.01083$ & $0.90243 \pm 0.00881$ \\
+			\hline
+		\end{tabular}
+	\label{Tab:kNN_4}
+\end{table}
+
+\subsubsection{Discusión}
+
+Como se puede ver en los resultados, el funcionamiento de nuestro sistema resolviendo el problema completo, es decir, clasificando todas las notas
+del piano, es sorprendente. Con el mejor modelo (de nuevo un SVM), obtuvimos una precisión de $0.99612$ ± $0.00324$ y un F1-Score de $0.99605$ ± $0.00408$,
+haciendo uso de un \textit{kernel} de base radial, un valor de \textit{gamma} $0.001$ y un valor de \textit{C} $100$.
+
+\bigskip
+De nuevo destacar que, a pesar de obtener RNAs con valores de F1-Score muy altos (\textgreater99\%), el tiempo invertido en el entrenamiento las
+hace modelos menos interesantes, sobre todo comparados con los modelos basados en SVM o kNN.
+
+\bigskip
+Con respecto a las características, creemos que tanto la \textbf{frecuencia máxima absoluta} y la \textbf{itensidad máxima absoluta en frecuencia},
+son importantes a la hora de clasificar correctamente las notas. Sin embargo, ahora que tenemos el problema completo resuelto, consideramos que
+es el momento de tratar de minimizar el número de características necesarias, perdiendo la menor precisión en la clasificación posible.
+Este aspecto será en el que nos centremos en la siguiente aproximación.
+
+\bigskip
+Se muestra en la Tabla \ref{tab:confusion_matrix_4} la matriz de confusión del mejor modelo obtenido. En ella, podemos observar como se
+confunde mayoritariamente en notas que se encuentran a distancias cercanas como son \textit{C7} y \textit{C\#7} o \textit{A1} y \textit{A\#1}. 
+
+\begin{table}[!ht]
+	\centering
+	% \begin{turn}{90}
+
+	\resizebox{\textwidth}{!}{
+		\begin{tabular}{cccccccccccccccccccccccccccccccccccccc}
+			&                          & \multicolumn{36}{c}{Predicc.}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 \\ \cline{3-38} 
+			& \multicolumn{1}{c|}{}    & \multicolumn{1}{c|}{C1} & \multicolumn{1}{c|}{C2} & \multicolumn{1}{c|}{C3} & \multicolumn{1}{c|}{C4} & \multicolumn{1}{c|}{C5} & \multicolumn{1}{c|}{C6} & \multicolumn{1}{c|}{C7} & \multicolumn{1}{c|}{C8} & \multicolumn{1}{c|}{A1} & \multicolumn{1}{c|}{A2} & \multicolumn{1}{c|}{...}                  & \multicolumn{1}{c|}{B4} & \multicolumn{1}{c|}{B5} & \multicolumn{1}{c|}{B6} & \multicolumn{1}{c|}{B7} & \multicolumn{1}{c|}{D1} & \multicolumn{1}{c|}{...}                  & \multicolumn{1}{c|}{E1} & \multicolumn{1}{c|}{E2} & \multicolumn{1}{c|}{E3} & \multicolumn{1}{c|}{...}                  & \multicolumn{1}{c|}{E6} & \multicolumn{1}{c|}{E7} & \multicolumn{1}{c|}{F1} & \multicolumn{1}{c|}{F2} & \multicolumn{1}{c|}{F3} & \multicolumn{1}{c|}{...}                  & \multicolumn{1}{c|}{F6} & \multicolumn{1}{c|}{F7} & \multicolumn{1}{c|}{G1} & \multicolumn{1}{c|}{G2} & \multicolumn{1}{c|}{G3} & \multicolumn{1}{c|}{G4} & \multicolumn{1}{c|}{G5} & \multicolumn{1}{c|}{G6} & \multicolumn{1}{c|}{G7} \\ \cline{2-38} 
+\multicolumn{1}{c|}{\multirow{22}{*}{Real}} & \multicolumn{1}{c|}{C1}  & \multicolumn{1}{c|}{7}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{\multirow{5}{*}{,,,}} & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{\multirow{5}{*}{,,,}} & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{\multirow{5}{*}{,,,}} & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{\multirow{5}{*}{,,,}} & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  \\ \cline{2-12} \cline{14-18} \cline{20-22} \cline{24-28} \cline{30-38} 
+\multicolumn{1}{c|}{}                       & \multicolumn{1}{c|}{C2}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{7}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  \\ \cline{2-12} \cline{14-18} \cline{20-22} \cline{24-28} \cline{30-38} 
+\multicolumn{1}{c|}{}                       & \multicolumn{1}{c|}{C3}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{11} & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  \\ \cline{2-12} \cline{14-18} \cline{20-22} \cline{24-28} \cline{30-38} 
+\multicolumn{1}{c|}{}                       & \multicolumn{1}{c|}{C4}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{15} & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  \\ \cline{2-12} \cline{14-18} \cline{20-22} \cline{24-28} \cline{30-38} 
+\multicolumn{1}{c|}{}                       & \multicolumn{1}{c|}{C5}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{32} & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  \\ \cline{2-12} \cline{14-18} \cline{20-22} \cline{24-28} \cline{30-38} 
+\multicolumn{1}{c|}{}                       & \multicolumn{1}{c|}{...} & \multicolumn{36}{c|}{...}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     \\ \cline{2-12} \cline{14-18} \cline{20-22} \cline{24-28} \cline{30-38} 
+\multicolumn{1}{c|}{}                       & \multicolumn{1}{c|}{B5}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{\multirow{3}{*}{...}} & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{14} & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{\multirow{3}{*}{...}} & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{\multirow{3}{*}{...}} & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{\multirow{3}{*}{...}} & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  \\ \cline{2-12} \cline{14-18} \cline{20-22} \cline{24-28} \cline{30-38} 
+\multicolumn{1}{c|}{}                       & \multicolumn{1}{c|}{B6}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{1}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{18} & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  \\ \cline{2-12} \cline{14-18} \cline{20-22} \cline{24-28} \cline{30-38} 
+\multicolumn{1}{c|}{}                       & \multicolumn{1}{c|}{B7}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{14} & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  \\ \cline{2-12} \cline{14-18} \cline{20-22} \cline{24-28} \cline{30-38} 
+\multicolumn{1}{c|}{}                       & \multicolumn{1}{c|}{...} & \multicolumn{36}{c|}{...}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     \\ \cline{2-12} \cline{14-18} \cline{20-22} \cline{24-28} \cline{30-38} 
+\multicolumn{1}{c|}{}                       & \multicolumn{1}{c|}{E7}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{\multirow{3}{*}{...}} & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{\multirow{3}{*}{...}} & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{\multirow{3}{*}{..}}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{17} & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{\multirow{3}{*}{...}} & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  \\ \cline{2-12} \cline{14-18} \cline{20-22} \cline{24-28} \cline{30-38} 
+\multicolumn{1}{c|}{}                       & \multicolumn{1}{c|}{F1}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{2}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{4}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  \\ \cline{2-12} \cline{14-18} \cline{20-22} \cline{24-28} \cline{30-38} 
+\multicolumn{1}{c|}{}                       & \multicolumn{1}{c|}{F2}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{12} & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  \\ \cline{2-12} \cline{14-18} \cline{20-22} \cline{24-28} \cline{30-38} 
+\multicolumn{1}{c|}{}                       & \multicolumn{1}{c|}{...} & \multicolumn{36}{c|}{...}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     \\ \cline{2-12} \cline{14-18} \cline{20-22} \cline{24-28} \cline{30-38} 
+\multicolumn{1}{c|}{}                       & \multicolumn{1}{c|}{F7}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{\multirow{8}{*}{...}} & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{\multirow{8}{*}{...}} & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{\multirow{8}{*}{...}} & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{\multirow{8}{*}{...}} & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{15} & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  \\ \cline{2-12} \cline{14-18} \cline{20-22} \cline{24-28} \cline{30-38} 
+\multicolumn{1}{c|}{}                       & \multicolumn{1}{c|}{G1}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{3}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{1}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{5}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  \\ \cline{2-12} \cline{14-18} \cline{20-22} \cline{24-28} \cline{30-38} 
+\multicolumn{1}{c|}{}                       & \multicolumn{1}{c|}{G2}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{12} & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  \\ \cline{2-12} \cline{14-18} \cline{20-22} \cline{24-28} \cline{30-38} 
+\multicolumn{1}{c|}{}                       & \multicolumn{1}{c|}{G3}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{2}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{5}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  \\ \cline{2-12} \cline{14-18} \cline{20-22} \cline{24-28} \cline{30-38} 
+\multicolumn{1}{c|}{}                       & \multicolumn{1}{c|}{G4}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{11} & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  \\ \cline{2-12} \cline{14-18} \cline{20-22} \cline{24-28} \cline{30-38} 
+\multicolumn{1}{c|}{}                       & \multicolumn{1}{c|}{G5}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{10} & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  \\ \cline{2-12} \cline{14-18} \cline{20-22} \cline{24-28} \cline{30-38} 
+\multicolumn{1}{c|}{}                       & \multicolumn{1}{c|}{G6}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{7}  & \multicolumn{1}{c|}{0}  \\ \cline{2-12} \cline{14-18} \cline{20-22} \cline{24-28} \cline{30-38} 
+\multicolumn{1}{c|}{}                       & \multicolumn{1}{c|}{G7}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{17} \\ \cline{2-38} 
+		\end{tabular}
+	}
+	% \end{turn}
+	\caption{Matriz de confusión mejor modelo}
+	\label{tab:confusion_matrix_4}
 \end{table}
 
 \newpage
