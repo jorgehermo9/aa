@@ -57,22 +57,11 @@ function get_signal(file::String)
 	m2 = freqToIndex(freq_y,max_freq,fs);
 	
 	target_freq = freq_y[m1:(m2-1)]
-	# display(target_freq)
-	
-	# plotlyjs();
-	# time_graph = plot(y,label = "Time");
-	# f = map(x -> x * (max_freq)/length(target_freq),1:length(target_freq));
-	
-	# freq_graph = plot(f,target_freq, label = "Freq");
-	
-	
-	# display(plot(time_graph,freq_graph,layout=(1,2)));
 	return target_freq;
 end
 
 
-# db_dir = "/home/jorge/github/aa/db/piano"
-db_dir = "/home/jorge/github/aa/utils/reduced/piano"
+db_dir = "db/piano"
 
 classes = readdir(db_dir);
 
@@ -112,11 +101,7 @@ end
 
 all_labels_onehot = oneHotEncoding(all_labels,classes_unique)'
 
-# display(all_signals)
-# display(all_labels_onehot)
-
-
-path = "low_res_db_2.jld2"
+path = "dataset/db.jld2"
 @save path all_signals all_labels all_labels_onehot
 
 println("Saved signal and labels to $(path)")

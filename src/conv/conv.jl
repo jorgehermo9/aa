@@ -9,7 +9,7 @@ using Statistics
 
 include("../scikit/p6.jl")
 
-db_dir = "low_res_db.jld2"
+db_dir = "dataset/db.jld2"
 all_signals   = load(db_dir, "all_signals");
 all_labels = load(db_dir, "all_labels");
 all_labels_onehot = load(db_dir,"all_labels_onehot");

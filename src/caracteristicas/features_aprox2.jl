@@ -98,7 +98,7 @@ end
 
 
 # Path a la base de datos. Las clases estarán en  db_dir/<class>
-db_dir = "../../db/piano"
+db_dir = "db/piano"
 classes = ["C1","C2","C3","C4","C5","C6","C7","C8","A1","A2","A3","A4","A5","A6","A7"]
 
 # Para todas las clases:
@@ -135,7 +135,7 @@ dataset = Array{Any,2}(undef,length(all_instances)+1,length(headers));
 dataset[1,:] = headers[:];
 dataset[2:end,:] = all_features[:,:];
 
-dataset_path = "aprox2.csv"
+dataset_path = "dataset/aprox2.csv"
 writedlm(dataset_path, dataset, ',')
 
 println("Dataset for classes $(classes) saved in $(dataset_path)")

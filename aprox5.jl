@@ -87,6 +87,7 @@ selectedFeatures = [
 ]
 
 selectedFeaturesIdx = findall(x -> in(x,selectedFeatures),headers)
+headers = headers[selectedFeaturesIdx]
 
 inputs = dataset[2:end,selectedFeaturesIdx];
 targets = dataset[2:end,end];
@@ -97,9 +98,9 @@ dataset_size = size(targets,1);
 
 # Para calcular los parámetros de normalización
 norm_params = calculateZeroMeanNormalizationParameters(inputs)
-for i in 1:size(inputs,2)
-	println("$(headers[i]) & \$$(norm_params[1][i])\$ & \$$(norm_params[2][i])\$ \\\\")
-	println("\\hline")
+for i in 1:length(selectedFeatures)
+	featidx = findall(f -> f == selectedFeatures[i],headers)[1]
+	println("$(headers[featidx]) & \$$(norm_params[1][featidx])\$ & \$$(norm_params[2][featidx])\$ \\\\")
 end
 
 inputs = normalizeZeroMean(inputs);

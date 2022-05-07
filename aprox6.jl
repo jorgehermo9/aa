@@ -16,7 +16,7 @@ include("src/scikit/p6.jl")
 
 Random.seed!(100)
 
-db_path = "dataset/low_res_db.jld2"
+db_path = "dataset/db.jld2"
 all_signals   = load(db_path, "all_signals");
 all_labels = load(db_path, "all_labels");
 
