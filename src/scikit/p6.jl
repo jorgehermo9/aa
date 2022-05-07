@@ -561,7 +561,7 @@ function trainConv(parameters::Dict{Any,Any},train_set::Tuple{AbstractArray{<:Re
 
 
 	# Optimizador que se usa: ADAM, con esta tasa de aprendizaje:
-	opt = ADAM(0.001);
+	opt = ADAM(0.01);
 
 	train_loss_vector = Vector{Real}();
 	test_loss_vector = Vector{Real}();
