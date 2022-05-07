@@ -605,13 +605,12 @@ function trainConv(parameters::Dict{Any,Any},train_set::Tuple{AbstractArray{<:Re
 			numCicloUltimaMejora = numCiclo;
 		end
 
-		# No hacer esto, ya tarda mucho sin esto y no da muchos mejores resultados...
-		# # Si no se ha mejorado en 5 ciclos, se baja la tasa de aprendizaje
-		# if (numCiclo - numCicloUltimaMejora >= 5) && (opt.eta > 1e-6)
-		# 	opt.eta /= 10.0
-		# 	# println("   No se ha mejorado en 5 ciclos, se baja la tasa de aprendizaje a ", opt.eta);
-		# 	numCicloUltimaMejora = numCiclo;
-		# end
+		# Si no se ha mejorado en 5 ciclos, se baja la tasa de aprendizaje
+		if (numCiclo - numCicloUltimaMejora >= 5) && (opt.eta > 1e-6)
+			opt.eta /= 10.0
+			println("   No se ha mejorado en 5 ciclos, se baja la tasa de aprendizaje a ", opt.eta);
+			numCicloUltimaMejora = numCiclo;
+		end
 
 		# Criterios de parada:
 

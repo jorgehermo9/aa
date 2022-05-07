@@ -2711,16 +2711,12 @@ Para el entrenamiento de las Redes Convolucionales, se han utilizado los siguien
 \begin{itemize}
 	\item Métrica a maximizar: \textit{F1-Score} 
 	\item Ratio de aprendizaje: $0.01$
-	% \item Máximo número de ciclos de entrenamiento sin mejorar la métrica antes de disminuír la tasa de aprendizaje: $5$.
+	\item Máximo número de ciclos de entrenamiento sin mejorar la métrica antes de disminuír la tasa de aprendizaje: $5$.
 	\item Máximo valor de \textit{F1-Score} para parar el entrenamiento: $99.9\%$.
 	\item Máximo número de ciclos de entrenamiento sin mejorar el valor de la métrica antes de parar el entrenamiento: $10$.
 	\item Algoritmo de optimización: \textit{ADAM}.
 	\item Función de \textit{loss}: \textit{Cross Entropy}.
 \end{itemize}
-
-\bigskip
-No se disminuye la tasa de aprendizaje tras pasar algunos ciclos sin aumentar el valor de la métrica. Esto no producía 
-mejores resultados y hacía que tardase más el entrenamiento.
 
 \bigskip
 Se han utilizado 10 arquitecturas diferentes en los resultados, variando el filtro
