@@ -198,6 +198,45 @@
       \field{pages}{273\bibrangedash 297}
       \range{pages}{25}
     \endentry
+    \entry{peng2005mrmr}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=24d43467609f9e0dc1dc08fceb70e334}{%
+           family={Ding},
+           familyi={D\bibinitperiod},
+           given={Chris},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8de02dca906e7d49cc6ec7bea2c7aaac}{%
+           family={Peng},
+           familyi={P\bibinitperiod},
+           given={Hanchuan},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{c94df0d7d9dd430fc835113a417e2fa3}
+      \strng{fullhash}{c94df0d7d9dd430fc835113a417e2fa3}
+      \strng{bibnamehash}{c94df0d7d9dd430fc835113a417e2fa3}
+      \strng{authorbibnamehash}{c94df0d7d9dd430fc835113a417e2fa3}
+      \strng{authornamehash}{c94df0d7d9dd430fc835113a417e2fa3}
+      \strng{authorfullhash}{c94df0d7d9dd430fc835113a417e2fa3}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of bioinformatics and computational biology}
+      \field{month}{05}
+      \field{title}{Peng, H.: Minimum Redundancy Feature Selection from Microarray Gene Expression Data. Journal of Bioinformatics and Computational Biology 3(2), 185-205}
+      \field{volume}{3}
+      \field{year}{2005}
+      \field{pages}{185\bibrangedash 205}
+      \range{pages}{21}
+      \verb{doi}
+      \verb 10.1142/S0219720005001004
+      \endverb
+    \endentry
     \entry{foo1999recognition}{article}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=b0e2a0807ed68cdb751ee9fd283575e5}{%
@@ -284,6 +323,37 @@
       \field{year}{2003}
       \field{pages}{986\bibrangedash 996}
       \range{pages}{11}
+    \endentry
+    \entry{mRMR-enhanced}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=637e16aaebe57a6aee7a46cbf9ed121a}{%
+           family={Hermo\bibnamedelima González},
+           familyi={H\bibinitperiod\bibinitdelim G\bibinitperiod},
+           given={Jorge},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{637e16aaebe57a6aee7a46cbf9ed121a}
+      \strng{fullhash}{637e16aaebe57a6aee7a46cbf9ed121a}
+      \strng{bibnamehash}{637e16aaebe57a6aee7a46cbf9ed121a}
+      \strng{authorbibnamehash}{637e16aaebe57a6aee7a46cbf9ed121a}
+      \strng{authornamehash}{637e16aaebe57a6aee7a46cbf9ed121a}
+      \strng{authorfullhash}{637e16aaebe57a6aee7a46cbf9ed121a}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{mRMR-enhanced}}
+      \field{year}{2022}
+      \verb{urlraw}
+      \verb https://github.com/jorgehermo9/mrmr-enhanced
+      \endverb
+      \verb{url}
+      \verb https://github.com/jorgehermo9/mrmr-enhanced
+      \endverb
     \endentry
     \entry{klapuri2004signal}{book}{}
       \name{author}{1}{}{%

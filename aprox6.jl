@@ -304,7 +304,7 @@ inputs = reshape(inputs,(size(inputs,1),1,size(inputs,2)))
 targets = oneHotEncoding(targets)'
 
 test_ratio = 0.2
-train_idx,test_idx = holdOut(size(targets,1),test_ratio)
+train_idx,test_idx = holdOut(size(targets,2),test_ratio)
 
 
 train_inputs,train_targets = inputs[:,:,train_idx],targets[:,train_idx]
@@ -337,7 +337,7 @@ println("------------------------------")
 println("Results using whole dataset for best model with $(test_ratio) test ratio:\n")
 
 (acc,_,recall,specifity,_,
-		_,f1,matrix) =confusionMatrix(test_outputs,test_targets,macro_strat)
+		_,f1,matrix) =confusionMatrix(onecold(test_outputs),onecold(test_targets),macro_strat)
 
 
 # Print confusion matrix

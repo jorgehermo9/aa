@@ -52,6 +52,7 @@
 \label{Glosario}
 \begin{itemize}
 	\item Sample: muestra de carácter musical
+ 	\item Dataset: Conjunto de datos
 	\item Cover: Reinterpretación de una canción por parte de alguien diferente al que la compuso.
 	\item VP: Verdadero positivo
 	\item VN: Verdadero negativo
@@ -2167,7 +2168,7 @@ haciendo uso de un \textit{kernel} de base radial, un valor de \textit{gamma} $0
 \bigskip
 De nuevo destacar que, a pesar de obtener RNAs con valores de F1-Score muy altos (\textgreater99\%), el tiempo invertido en el entrenamiento las
 hace modelos menos interesantes, sobre todo comparados con los modelos basados en SVM o kNN. Incluso tras la reducción del número máximo de
-cliclos de entrenamiento de 1500 en las aproximaciones pasdas a 200.
+ciclos de entrenamiento de 1500 en las aproximaciones pasadas, a 200 ciclos en esta aproximación.
 
 \bigskip
 Con respecto a las características, creemos que tanto la \textbf{frecuencia máxima absoluta} y la \textbf{intensidad máxima absoluta en frecuencia},
@@ -2219,7 +2220,7 @@ confunde mayoritariamente en notas que se encuentran a distancias cercanas como 
 \newpage
 
 \subsection{Quinta aproximación}
-\label{Cuarta aproximación}
+\label{Quinta aproximación}
 
 \subsubsection{Descripción}
 Una vez ya hemos comprobado que nuestro sistema obtiene resultados muy satisfactorios ante el problema completo, ahora
@@ -2228,14 +2229,20 @@ Esto nos ayudará a disminuir, tanto el tiempo de entrenamiento, como el tiempo 
 en sistemas más rápidos y más eficientes en términos de energía consumida.
 
 \bigskip
-Para seleccionar las características más relevantes en la clasificación, hemos utilizado una herramienta desarrollada
-por Jorge Hermo https://github.com/jorgehermo9/mrmr-enhanced.
+Para seleccionar las características más relevantes en la clasificación, hemos utilizado la herramienta \textit{mRMR-enhanced} (véase \cite{mRMR-enhanced}).
 
-Explicar que hace el algoritmo mrmrmrmrmrmr enhanced edition
+Esta herramienta utiliza el concepto de información mutua para realizar un ranking de las características del \textit{dataset},
+siguiendo el algoritmo de máxima relevancia-mínima redundancia (\textit{mRMR}), propuesto por \cite{peng2005mrmr}. Este algoritmo busca obtener un ranking
+de características que maximice la relevancia (ganancia de información) respecto a la clase, pero que también se minimice
+la redundancia entre características.
+
+\bigskip
+Este algoritmo necesita que los datos estén discretizados, por lo que se ha preprocesado el \textit{dataset}, utilizando
+una discretización de 10 \textit{bins}, siguiendo una estrategia de reparto de los datos por cuantiles. 
 
 \bigskip
 Así, tras algunas pruebas, hemos decidido seleccionar las 70 primeras características. Se muestran los parámetros de normalización
-para cada una de ellas (ordenadas por orden de relevancia) en las Tablas \ref{Tab:Features_5_1}, \ref{Tab:Features_5_2} y \ref{Tab:Features_5_3}.
+para cada una de ellas (ordenadas según el ranking producido por el algoritmo \textit{mRMR}) en las Tablas \ref{Tab:Features_5_1}, \ref{Tab:Features_5_2} y \ref{Tab:Features_5_3}.
 
 \begin{table}
 	\caption{Parámetros de normalización (I)}
@@ -2588,6 +2595,41 @@ Se muestran los resultados de la experimentación en la tabla \ref{Tab:kNN_5}.
 
 \subsubsection{Discusión}
 
+Como se puede ver en los resultados, el funcionamiento de nuestro sistema sigue siendo
+muy bueno, a pesar de haber reducido el número de  características de $122$ a $70$. 
+El mejor modelo es, de nuevo, un SVM. Dicho modelo alcanza una precisión
+de $0.99315 \pm 0.00212$ y un \textit{F1-Score} de $0.99375 \pm 0.00263$,
+unos valores más que suficientes para ser considerado un éxito. 
+Los parámetros de dicho mejor modelo son, un \textit{kernel} de base radial,
+un valor de \textit{gamma} de $0.01$ y un valor de \textit{C} de 100.
+
+\bigskip
+Aunque el mejor modelo de esta aproximación sea muy similar al mejor
+modelo de la cuarta aproximación, cabe destacar que en las RNAs sí hay
+arquitecturas en las que se alcanza peores resultados, pero no es muy grave,
+la que las mejores RNAs siguen teniendo un \textit{F1-Score} superior al $99\%$
+
+\bigskip
+También cabe destacar que, con la reducción del número de las características y,
+por consecuente, la reducción de la dimensionalidad del problema, los modelos basados
+en \textit{kNN} presentan resultados aún mejores que en la aproximación anterior,
+esto es un resultado que tiene sentido que sea así, ya que las instancias se pueden
+distribuír de una mejor manera en el espacio latente de nuestro problema.
+
+\bigskip
+Entonces, podemos concluír que llevar a cabo una reducción de características ha sido
+satisfactorio y presenta una mejor solución que no hacerlo, puesto que aunque el mejor
+modelo sea similar, la reducción de características hace que los modelos sean más rápidos
+de entrenar y más rápidos en hacer predicciones, a la vez que un aumento de la potencia de
+generalización, ya que se sabe que, cuanto más sencillo sea un modelo, mejor capacidad
+de generalización tiene.
+
+\bigskip
+Se muestra en la tabla \ref{confusion_matrix_5} la matriz de confusión del mejor
+modelo obtenido en una ejecución con una separación de $20\%$ para test. Presenta
+resultados muy similares a los de la aproximación anterior.
+
+
 \begin{table}[!ht]
 	\centering
 	% \begin{turn}{90}
@@ -2624,6 +2666,94 @@ Se muestran los resultados de la experimentación en la tabla \ref{Tab:kNN_5}.
 	\caption{Matriz de confusión mejor modelo}
 	\label{tab:confusion_matrix_5}
 \end{table}
+
+
+\subsection{Sexta aproximación}
+\label{Sexta aproximación}
+
+\subsubsection{Descripción}
+
+En esta aproximación utilizaremos técnicas de \textit{Deep Learning} para producir los modelos.
+En concreto, utilizaremos redes convolucionales.
+
+Vamos a utilizar nuestra base de datos de otra manera. En lugar de utilizar 3 segundos de audio, utilizaremos
+solo 0.1 segundos de la muestra, ya que con 3 segundos el tiempo de entrenamiento es excesivo con 
+5406 instancias. Entonces, la matriz que representa la base de datos será de $500$ x $5046$. Las 500 filas
+se obtienen de la siguiente manera: 
+
+\bigskip
+$filas = fs \cdot d_s \cdot \frac{f_max}{fs}$ 
+\bigskip
+Donde, en nuestro caso, $fs = 48000hz$, $d_s = 0.1s$ y $f_max = 5000hz$
+
+\bigskip
+Al reducir los segundos que utizamos de las muestras, además de hacer que tarden menos en entrenarse las redes,
+también estamos intentando mejorar el funcionamiento de nuestro modelo, ya que se puede funcionar bien
+utilizando muestras de 0,1 segundos, sería un avance para poder reconocer notas en tiempo real, sin necesidad
+de tener que utilizar \textit{samples} de 3 segundos.
+
+\bigskip
+En lo referente de los datos, se ha realizado una normalización de media cero y desviación
+típica 1.
+
+\bigskip
+Utilizaremos de nuevo como medida el promedio del \textbf{F1-Score} en los \textit{folds}. Si hay empate en dicha media, se elegirá el modelo con menor
+desviación típica de la métrica.
+
+\subsubsection{Resultados}
+Para permitir la reproducibilidad de los experimentos, se utilizó \textit{100} como semilla de generación de números
+aleatorios.
+
+\paragraph{Redes Convolucionales}
+
+Para el entrenamiento de las Redes Convolucionales, se han utilizado los siguientes parámetros en común:
+\begin{itemize}
+	\item Métrica a maximizar: \textit{F1-Score} 
+	\item Ratio de aprendizaje: $0.001$
+	\item Máximo número de ciclos de entrenamiento sin mejorar la métrica antes de disminuír la tasa de aprendizaje: $5$.
+	\item Máximo valor de \textit{F1-Score} para parar el entrenamiento: $99.9\%$.
+	\item Máximo número de ciclos de entrenamiento sin mejorar el valor de la métrica antes de parar el entrenamiento: $10$.
+	\item Algoritmo de optimización: \textit{ADAM}.
+	\item Función de \textit{loss}: \textit{Cross Entropy}.
+\end{itemize}
+
+Se han utilizado 10 arquitecturas diferentes en los resultados, variando el filtro
+de convolución, el tipo de capa de \textit{pooling} y el tamaño de la ventana de la capa 
+de \textit{pooling}
+
+Se muestran los resultados de la experimentación en la Tabla \ref{Tab:CONV_6}.
+
+\begin{table}[!ht]
+	\caption{Resultados RNA}
+	\centering
+		\begin{tabular}{||c c c||}
+			\hline
+			Arquitectura & F1-Score & Precisión \\ [0.5ex]
+			\hline\hline
+			[16] & $0.91452 \pm 0.00544$ & $0.92437 \pm 0.00475$ \\
+			\hline 
+			[32] & $0.97012 \pm 0.00554$ & $0.97169 \pm 0.00485$ \\
+			\hline 
+			[64] & $0.98034 \pm 0.00697$ & $0.98149 \pm 0.00567$ \\
+			\hline 
+			[128] & $0.98007 \pm 0.00613$ & $0.98054 \pm 0.00449$ \\
+			\hline 
+			[256] & $0.9757 \pm 0.0058$ & $0.97508 \pm 0.00582$ \\
+			\hline 
+			[512] & $0.94062 \pm 0.00657$ & $0.94438 \pm 0.00534$ \\
+			\hline 
+			[64, 64] & $0.95589 \pm 0.00402$ & $0.95973 \pm 0.00353$ \\
+			\hline 
+			[64, 128] & $0.95232 \pm 0.00708$ & $0.95488 \pm 0.00592$ \\
+			\hline 
+		\end{tabular}
+	\label{Tab:CONV_6}
+	\end{table}
+
+
+\subsubsection{Discusión}
+
+
 
 \newpage
 \section{Conclusiones}
