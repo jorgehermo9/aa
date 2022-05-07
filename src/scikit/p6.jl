@@ -597,7 +597,7 @@ function trainConv(parameters::Dict{Any,Any},train_set::Tuple{AbstractArray{<:Re
 		println("Ciclo ", numCiclo, ": F1-Score en el conjunto de entrenamiento: ", 100*f1Entrenamiento, " %");
 
 		# Si se mejora la precision en el conjunto de entrenamiento, se calcula la de test y se guarda el modelo
-		if (f1Entrenamiento >= mejorF1)
+		if (f1Entrenamiento > mejorF1)
 			mejorF1 = f1Entrenamiento;
 			f1Test = f1(test_set);
 			println("Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: ", 100*f1Test, " %");
