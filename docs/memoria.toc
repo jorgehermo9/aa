@@ -50,7 +50,7 @@
 \contentsline {subsubsection}{\numberline {5.6.1}Descripción}{50}{subsubsection.5.6.1}%
 \contentsline {subsubsection}{\numberline {5.6.2}Resultados}{50}{subsubsection.5.6.2}%
 \contentsline {paragraph}{\numberline {5.6.2.1}Redes Convolucionales}{51}{paragraph.5.6.2.1}%
-\contentsline {subsubsection}{\numberline {5.6.3}Discusión}{51}{subsubsection.5.6.3}%
-\contentsline {section}{\numberline {6}Conclusiones}{52}{section.6}%
-\contentsline {section}{\numberline {7}Trabajo futuro}{52}{section.7}%
-\contentsline {section}{\numberline {8}Bibliografía}{52}{section.8}%
+\contentsline {subsubsection}{\numberline {5.6.3}Discusión}{54}{subsubsection.5.6.3}%
+\contentsline {section}{\numberline {6}Conclusiones}{55}{section.6}%
+\contentsline {section}{\numberline {7}Trabajo futuro}{55}{section.7}%
+\contentsline {section}{\numberline {8}Bibliografía}{55}{section.8}%

@@ -250,7 +250,7 @@ for i in 1:length(models)
 	for j in 1:length(configurations)
 		configuration_parameters = configurations[j]
 		if models[i] == :CONV
-			config = "CONV\\textsubscript{$(j)}"
+			config = "conv\\textsubscript{$(j)}"
 		else
 			config=""
 		end

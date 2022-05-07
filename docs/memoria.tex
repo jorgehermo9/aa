@@ -2682,13 +2682,14 @@ solo 0.1 segundos de la muestra, ya que con 3 segundos el tiempo de entrenamient
 se obtienen de la siguiente manera: 
 
 \bigskip
-$filas = fs \cdot d_s \cdot \frac{f_max}{fs}$ 
+$filas = fs \cdot d_s \cdot \frac{f_{max}}{fs}$ 
+
 \bigskip
-Donde, en nuestro caso, $fs = 48000hz$, $d_s = 0.1s$ y $f_max = 5000hz$
+Donde, en nuestro caso, $fs = 48000hz$, $d_s = 0.1s$ y $f_{max} = 5000hz$
 
 \bigskip
 Al reducir los segundos que utizamos de las muestras, además de hacer que tarden menos en entrenarse las redes,
-también estamos intentando mejorar el funcionamiento de nuestro modelo, ya que se puede funcionar bien
+también estamos intentando mejorar el funcionamiento de nuestro modelo, ya que, si puede funcionar bien
 utilizando muestras de 0,1 segundos, sería un avance para poder reconocer notas en tiempo real, sin necesidad
 de tener que utilizar \textit{samples} de 3 segundos.
 
@@ -2719,12 +2720,15 @@ Para el entrenamiento de las Redes Convolucionales, se han utilizado los siguien
 
 Se han utilizado 10 arquitecturas diferentes en los resultados, variando el filtro
 de convolución, el tipo de capa de \textit{pooling} y el tamaño de la ventana de la capa 
-de \textit{pooling}
+de \textit{pooling}. En todas las arquitecturas se ha utilizado una función de transferencia
+para las capas convolucionales de \textit{RELU} (\textit{Rectified Linear Unit}, o rectificador), y
+como función de salida de la red se ha utilizado una funcion \textit{softmax}
 
+\bigskip
 Se muestran los resultados de la experimentación en la Tabla \ref{Tab:CONV_6}.
 
 \begin{table}[!ht]
-	\caption{Resultados RNA}
+	\caption{Resultados Redes Convolucionales}
 	\centering
 		\begin{tabular}{||c c c||}
 			\hline
@@ -2748,8 +2752,123 @@ Se muestran los resultados de la experimentación en la Tabla \ref{Tab:CONV_6}.
 			\hline 
 		\end{tabular}
 	\label{Tab:CONV_6}
-	\end{table}
+\end{table}
 
+\bigskip
+
+\textbf{Denotación de las arquitecturas utilizadas:}
+
+\bigskip
+Cada arquitectura \textit{conv\textsubscript{i}} tendrá varias capas concatenadas. Dichas capas podrán ser capas
+de \textit{pooling}, denotando \textit{MaxPool(i)} como  una capa de pooling en la que se calcula el máximo de
+una ventana de tamaño $i$ y \textit{MeanPool(i)} como una capa en la que se calcula la media de una ventana
+de tamaño $i$. También habrá capas de filtros convolucionales denotadas como \textit{Conv(i, j $=>$ z, t)}, donde $i$ 
+especifica el tamaño del kernel convolucional, $j$ indica el número de canales de entrada al filtro, 
+$z$ indica el número de canales de salida del filtro y $t$ indica el \textit{pad} (o relleno) del filtro.
+Dense($i$,$j$) indica una capa de neuronas densa (todas las neuronas conectadas con la capa anterior
+y con la capa siguiente) de $i$ neuronas, conectada con $j$ neuronas de la siguiente capa.
+
+\bigskip
+Tanto las capas de \textit{pooling} como las capas de filtros convolucionales, tratarán los datos sobre
+en una dimensión (tamaño de ventana para pooling, tamaño del \textit{kernel} convolucional para los filtros convolucionales o el
+tamaño del relleno en el caso del \textit{pad} de los filtros convolucionales),
+ya que estamos utilizando audio, no imágenes.
+
+\bigskip
+\textbf{Arquitecturas utilizadas:}
+
+\begin{itemize}
+	\item conv\textsubscript{1} \begin{itemize}
+		\item Conv(2, 1 $=>$ 16, 1)
+  		\item MaxPool(2)
+		\item Conv(2, 16 $=>$ 32, 1)
+    	\item MaxPool(5)
+		\item Conv(2, 32 $=>$ 32, 1)
+		\item MaxPool(5)
+  		\item Dense(320,85)
+	\end{itemize}
+	\item conv\textsubscript{2} \begin{itemize}
+		\item Conv(2, 1 $=>$ 16, 1)
+  		\item MaxPool(5)
+		\item Conv(2, 16 $=>$ 32, 1)
+    	\item MaxPool(5)
+		\item Conv(2, 32 $=>$ 32, 1)
+		\item MaxPool(2)
+  		\item Dense(320,85)
+	\end{itemize}
+	\item conv\textsubscript{3} \begin{itemize}
+		\item Conv(2, 1 $=>$ 16, 1)
+  		\item MeanPool(5)
+		\item Conv(2, 16 $=>$ 32, 1)
+    	\item MeanPool(2)
+		\item Conv(2, 32 $=>$ 32, 1)
+		\item MeanPool(5)
+  		\item Dense(320,85)
+	\end{itemize}
+	\item conv\textsubscript{4} \begin{itemize}
+		\item Conv(2, 1 $=>$ 16, 1)
+  		\item MeanPool(2)
+		\item Conv(2, 16 $=>$ 32, 1)
+    	\item MeanPool(5)
+		\item Conv(2, 32 $=>$ 32, 1)
+		\item MaxPool(5)
+  		\item Dense(320,85)
+	\end{itemize}
+	\item conv\textsubscript{5} \begin{itemize}
+		\item Conv(3, 1 $=>$ 16, 1)
+  		\item MaxPool(5)
+		\item Conv(3, 16 $=>$ 32, 1)
+    	\item MaxPool(2)
+		\item Conv(3, 32 $=>$ 32, 1)
+		\item MaxPool(5)
+  		\item Dense(320,85)
+	\end{itemize}
+	\item conv\textsubscript{6} \begin{itemize}
+		\item Conv(5, 1 $=>$ 16, 2)
+  		\item MaxPool(2)
+		\item Conv(5, 16 $=>$ 32, 2)
+    	\item MaxPool(5)
+		\item Conv(5, 32 $=>$ 32, 2)
+		\item MaxPool(5)
+  		\item Dense(320,85)
+	\end{itemize}
+	\item conv\textsubscript{7} \begin{itemize}
+		\item Conv(2, 1 $=>$ 8, 1)
+  		\item MaxPool(5)
+		\item Conv(2, 8 $=>$ 16, 1)
+    	\item MaxPool(2)
+		\item Conv(2, 16 $=>$ 32, 1)
+		\item MaxPool(5)
+  		\item Dense(320,85)
+	\end{itemize}
+	\item conv\textsubscript{8} \begin{itemize}
+		\item Conv(3, 1 $=>$ 16, 1)
+  		\item MaxPool(2)
+		\item Conv(3, 16 $=>$ 32, 1)
+    	\item MeanPool(5)
+		\item Conv(3, 32 $=>$ 64, 1)
+		\item MaxPool(5)
+  		\item Dense(320,85)
+	\end{itemize}
+	\item conv\textsubscript{9} \begin{itemize}
+		\item Conv(3, 1 $=>$ 8, 1)
+  		\item MaxPool(2)
+		\item Conv(3, 8 $=>$ 16, 1)
+    	\item MeanPool(5)
+		\item Conv(3, 16 $=>$ 32, 1)
+		\item MeanPool(5)
+  		\item Dense(320,85)
+	\end{itemize}
+	\item conv\textsubscript{10} \begin{itemize}
+		\item Conv(3, 1 $=>$ 16, 1)
+  		\item MeanPool(5)
+		\item Conv(3, 16 $=>$ 32, 1)
+    	\item MeanPool(2)
+		\item Conv(3, 32 $=>$ 32, 1)
+		\item MaxPool(5)
+  		\item Dense(320,85)
+	\end{itemize}
+\end{itemize}
 
 \subsubsection{Discusión}
 
