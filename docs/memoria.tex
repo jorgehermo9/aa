@@ -2075,7 +2075,6 @@ grado del \textit{kernel} (sólo se utiliza en \textit{kernel} polinomial), \tex
 
 Se muestran los resultados de la experimentación en la Tabla \ref{Tab:SVM_4}.
 
-\newpage
 \begin{table}[!ht]
 	\caption{Resultados SVM}
 	\centering
@@ -2171,7 +2170,7 @@ hace modelos menos interesantes, sobre todo comparados con los modelos basados e
 cliclos de entrenamiento de 1500 en las aproximaciones pasdas a 200.
 
 \bigskip
-Con respecto a las características, creemos que tanto la \textbf{frecuencia máxima absoluta} y la \textbf{itensidad máxima absoluta en frecuencia},
+Con respecto a las características, creemos que tanto la \textbf{frecuencia máxima absoluta} y la \textbf{intensidad máxima absoluta en frecuencia},
 son importantes a la hora de clasificar correctamente las notas. Sin embargo, ahora que tenemos el problema completo resuelto, consideramos que
 es el momento de tratar de minimizar el número de características necesarias, perdiendo la menor precisión en la clasificación posible.
 Este aspecto será en el que nos centremos en la siguiente aproximación.
@@ -2225,7 +2224,8 @@ confunde mayoritariamente en notas que se encuentran a distancias cercanas como 
 \subsubsection{Descripción}
 Una vez ya hemos comprobado que nuestro sistema obtiene resultados muy satisfactorios ante el problema completo, ahora
 nos centraremos en reducir el número de características necesarias, tratando de perder la menor precisión posible.
-Esto nos ayudará a disminuir, tanto el tiempo de entrenamiento, como el consumo energético.
+Esto nos ayudará a disminuir, tanto el tiempo de entrenamiento, como el tiempo de predicción, resultando así 
+en sistemas más rápidos y más eficientes en términos de energía consumida.
 
 \bigskip
 Para seleccionar las características más relevantes en la clasificación, hemos utilizado una herramienta desarrollada
@@ -2235,7 +2235,7 @@ Explicar que hace el algoritmo mrmrmrmrmrmr enhanced edition
 
 \bigskip
 Así, tras algunas pruebas, hemos decidido seleccionar las 70 primeras características. Se muestran los parámetros de normalización
-para cada una de ellas (ordenadas por order de relevancia) en las Tablas \ref{Tab:Features_5_1} y \ref{Tab:Features_5_2}.
+para cada una de ellas (ordenadas por orden de relevancia) en las Tablas \ref{Tab:Features_5_1}, \ref{Tab:Features_5_2} y \ref{Tab:Features_5_3}.
 
 \begin{table}
 	\caption{Parámetros de normalización (I)}
@@ -2292,7 +2292,42 @@ para cada una de ellas (ordenadas por order de relevancia) en las Tablas \ref{Ta
 			\hline
 			zero-crossing & $3317.7852$ & $4477.6226$ \\
 			\hline
-			max-freq5 & $308.71167$ & $24.800741$ \\
+			abs-max & $1445.9364$ & $1557.9128$ \\
+			\hline
+			
+		\end{tabular}
+	\label{Tab:Features_5_1}
+\end{table}
+
+
+\begin{table}
+	\caption{Parámetros de normalización (II)}
+	\centering
+		\begin{tabular}{||c c c||}
+			\hline
+			Característica & Media & Desviación Típica  \\ [0.5ex]
+			\hline\hline
+			m\textsubscript{1} & $2.5213237$ & $4.892542$ \\
+			\hline
+			m\textsubscript{2} & $19.776129$ & $34.19082$ \\
+			\hline
+			m\textsubscript{3} & $18.500994$ & $33.448643$ \\
+			\hline
+			m\textsubscript{4} & $20.293629$ & $28.46877$ \\
+			\hline
+			m\textsubscript{5} & $15.832674$ & $24.200994$ \\
+			\hline
+			m\textsubscript{6} & $13.741416$ & $21.621166$ \\
+			\hline
+			m\textsubscript{7} & $13.71829$ & $20.745993$ \\
+			\hline
+			m\textsubscript{8} & $10.299257$ & $17.33558$ \\
+			\hline
+			m\textsubscript{9} & $9.490465$ & $18.469109$ \\
+			\hline
+			m\textsubscript{10} & $9.750799$ & $19.446434$ \\
+			\hline
+			m\textsubscript{11} & $9.340946$ & $13.882007$ \\
 			\hline
 			max-freq6 & $404.29333$ & $26.971804$ \\
 			\hline
@@ -2319,11 +2354,11 @@ para cada una de ellas (ordenadas por order de relevancia) en las Tablas \ref{Ta
 			max9 & $162.63959$ & $375.88123$ \\
 			\hline
 		\end{tabular}
-	\label{Tab:Features_5_1}
+	\label{Tab:Features_5_2}
 \end{table}
 
 \begin{table}
-	\caption{Parámetros de normalización (II)}
+	\caption{Parámetros de normalización (III)}
 	\centering
 		\begin{tabular}{||c c c||}
 			\hline
@@ -2396,7 +2431,7 @@ para cada una de ellas (ordenadas por order de relevancia) en las Tablas \ref{Ta
 			m10 & $9.7507$ & $19.4464$ \\
 			\hline
 		\end{tabular}
-	\label{Tab:Features_5_2}
+	\label{Tab:Features_5_3}
 \end{table}
 
 \newpage
