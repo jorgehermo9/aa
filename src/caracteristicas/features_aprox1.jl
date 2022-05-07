@@ -91,15 +91,9 @@ end
 
 
 # Path a la base de datos. Las clases estarán en  db_dir/<class>
-db_dir = "db/piano"
+db_dir = "../../db/piano"
 # Aproximación 1
-# classes = ["A5","C4"] 
-
-# Aproximación 2
-classes = ["C1","C2","C3","C4","C5","C6","C7","C8","A1","A2","A3","A4","A5","A6","A7"]
-
-# Para todas las clases:
-# classes = readdir(db_dir);
+classes = ["A5","C4"] 
 
 all_instances = Vector{Tuple{String,String}}()
 for class in classes

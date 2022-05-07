@@ -38,4 +38,4 @@ for i in 1:length(all_instances)
 end
 
 println("Mean duration: $(mean(all_durations)), std: $(std(all_durations))")
-
+println("Min duration: $(minimum(all_durations)), Max duration: $(maximum(all_durations))")

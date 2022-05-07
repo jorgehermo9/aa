@@ -9,10 +9,10 @@ using Statistics
 
 include("../scikit/p6.jl")
 
-
-all_signals   = load("db.jld2", "all_signals");
-all_labels = load("db.jld2", "all_labels");
-all_labels_onehot = load("db.jld2","all_labels_onehot");
+db_dir = "low_res_db.jld2"
+all_signals   = load(db_dir, "all_signals");
+all_labels = load(db_dir, "all_labels");
+all_labels_onehot = load(db_dir,"all_labels_onehot");
 
 all_signals = normalizeZeroMean(all_signals);
 all_signals = reshape(all_signals,(size(all_signals,1),1,size(all_signals,2)))
@@ -123,7 +123,7 @@ ann = Chain(
 	
     # Entradas a esta capa: matriz 3D de dimension 7500 x 16canales x <numPatrones>
     # Salidas de esta capa: matriz 3D de dimension 750 x 16canales x <numPatrones>
-    MaxPool((10,)),
+    MaxPool((2,)),
 
     # Tercera capa: segunda convolucion: Le llegan 16 imagenes de tamaño 14x14
     #  16=>32:
@@ -140,7 +140,7 @@ ann = Chain(
 
     # Entradas a esta capa: matriz 3D de dimension 750 x 32canales x <numPatrones>
     # Salidas de esta capa: matriz 3D de dimension  75 x 32canales x <numPatrones>
-    MaxPool((10,)),
+    MaxPool((2,)),
 
     # Tercera convolucion, le llegan 32 imagenes de tamaño 7x7
     #  32=>32:
@@ -193,14 +193,14 @@ ann = Chain(
 )
 
 ann = Chain(
-	Conv((5,), 1=>16, pad=1, funcionTransferenciaCapasConvolucionales),
-	MaxPool((10,)),
-	Conv((5,), 16=>32, pad=1, funcionTransferenciaCapasConvolucionales),
-	MaxPool((10,)),
-	Conv((5,), 32=>32, pad=1, funcionTransferenciaCapasConvolucionales),
+	Conv((3,), 1=>16, pad=1, funcionTransferenciaCapasConvolucionales),
+	MeanPool((5,)),
+	Conv((3,), 16=>32, pad=1, funcionTransferenciaCapasConvolucionales),
+	MeanPool((2,)),
+	Conv((3,), 32=>32, pad=1, funcionTransferenciaCapasConvolucionales),
 	MaxPool((5,)),
 	x -> reshape(x, :, size(x, 3)),
-	Dense(480, length(unique(all_labels))),
+	Dense(320, length(unique(all_labels))),
 	softmax
 )
 

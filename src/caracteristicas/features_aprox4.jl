@@ -105,7 +105,7 @@ end
 
 
 # Path a la base de datos. Las clases estarán en  db_dir/<class>
-db_dir = "db/piano"
+db_dir = "../../db/piano"
 # Para todas las clases (aprox 4):
 classes = readdir(db_dir);
 

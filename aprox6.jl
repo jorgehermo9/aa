@@ -16,8 +16,9 @@ include("src/scikit/p6.jl")
 
 Random.seed!(100)
 
-all_signals   = load("dataset/db.jld2", "all_signals");
-all_labels = load("dataset/db.jld2", "all_labels");
+db_path = "dataset/low_res_db.jld2"
+all_signals   = load(db_path, "all_signals");
+all_labels = load(db_path, "all_labels");
 
 all_signals = normalizeZeroMean(all_signals);
 
@@ -49,15 +50,114 @@ funcionTransferenciaCapasConvolucionales = relu;
 topologies =[
 	Chain(
 		Conv((2,), 1=>16, pad=1, funcionTransferenciaCapasConvolucionales),
-		MaxPool((10,)),
+		MaxPool((2,)),
 		Conv((2,), 16=>32, pad=1, funcionTransferenciaCapasConvolucionales),
-		MaxPool((10,)),
+		MaxPool((5,)),
 		Conv((2,), 32=>32, pad=1, funcionTransferenciaCapasConvolucionales),
 		MaxPool((5,)),
 		x -> reshape(x, :, size(x, 3)),
-		Dense(480, length(unique(all_labels))),
+		Dense(320, length(unique(all_labels))),
 		softmax
-	)
+	),
+	Chain(
+		Conv((2,), 1=>16, pad=1, funcionTransferenciaCapasConvolucionales),
+		MaxPool((5,)),
+		Conv((2,), 16=>32, pad=1, funcionTransferenciaCapasConvolucionales),
+		MaxPool((5,)),
+		Conv((2,), 32=>32, pad=1, funcionTransferenciaCapasConvolucionales),
+		MaxPool((2,)),
+		x -> reshape(x, :, size(x, 3)),
+		Dense(320, length(unique(all_labels))),
+		softmax
+	),
+	Chain(
+		Conv((2,), 1=>16, pad=1, funcionTransferenciaCapasConvolucionales),
+		MeanPool((5,)),
+		Conv((2,), 16=>32, pad=1, funcionTransferenciaCapasConvolucionales),
+		MeanPool((2,)),
+		Conv((2,), 32=>32, pad=1, funcionTransferenciaCapasConvolucionales),
+		MeanPool((5,)),
+		x -> reshape(x, :, size(x, 3)),
+		Dense(320, length(unique(all_labels))),
+		softmax
+	),
+	Chain(
+		Conv((2,), 1=>16, pad=1, funcionTransferenciaCapasConvolucionales),
+		MeanPool((2,)),
+		Conv((2,), 16=>32, pad=1, funcionTransferenciaCapasConvolucionales),
+		MeanPool((5,)),
+		Conv((2,), 32=>32, pad=1, funcionTransferenciaCapasConvolucionales),
+		MaxPool((5,)),
+		x -> reshape(x, :, size(x, 3)),
+		Dense(320, length(unique(all_labels))),
+		softmax
+	),
+	Chain(
+		Conv((3,), 1=>16, pad=1, funcionTransferenciaCapasConvolucionales),
+		MaxPool((5,)),
+		Conv((3,), 16=>32, pad=1, funcionTransferenciaCapasConvolucionales),
+		MaxPool((2,)),
+		Conv((3,), 32=>32, pad=1, funcionTransferenciaCapasConvolucionales),
+		MaxPool((5,)),
+		x -> reshape(x, :, size(x, 3)),
+		Dense(320, length(unique(all_labels))),
+		softmax
+	),
+	Chain(
+		Conv((5,), 1=>16, pad=2, funcionTransferenciaCapasConvolucionales),
+		MaxPool((2,)),
+		Conv((5,), 16=>32, pad=2, funcionTransferenciaCapasConvolucionales),
+		MaxPool((5,)),
+		Conv((5,), 32=>32, pad=2, funcionTransferenciaCapasConvolucionales),
+		MaxPool((5,)),
+		x -> reshape(x, :, size(x, 3)),
+		Dense(320, length(unique(all_labels))),
+		softmax
+	),
+	Chain(
+		Conv((2,), 1=>8, pad=1, funcionTransferenciaCapasConvolucionales),
+		MaxPool((5,)),
+		Conv((2,), 8=>16, pad=1, funcionTransferenciaCapasConvolucionales),
+		MaxPool((2,)),
+		Conv((2,), 16=>32, pad=1, funcionTransferenciaCapasConvolucionales),
+		MaxPool((5,)),
+		x -> reshape(x, :, size(x, 3)),
+		Dense(320, length(unique(all_labels))),
+		softmax
+	),
+	Chain(
+		Conv((3,), 1=>16, pad=1, funcionTransferenciaCapasConvolucionales),
+		MaxPool((2,)),
+		Conv((3,), 16=>32, pad=1, funcionTransferenciaCapasConvolucionales),
+		MeanPool((5,)),
+		Conv((3,), 32=>64, pad=1, funcionTransferenciaCapasConvolucionales),
+		MaxPool((5,)),
+		x -> reshape(x, :, size(x, 3)),
+		Dense(320, length(unique(all_labels))),
+		softmax
+	),
+	Chain(
+		Conv((3,), 1=>8, pad=1, funcionTransferenciaCapasConvolucionales),
+		MaxPool((2,)),
+		Conv((3,), 8=>16, pad=1, funcionTransferenciaCapasConvolucionales),
+		MeanPool((5,)),
+		Conv((3,), 16=>32, pad=1, funcionTransferenciaCapasConvolucionales),
+		MeanPool((5,)),
+		x -> reshape(x, :, size(x, 3)),
+		Dense(320, length(unique(all_labels))),
+		softmax
+	),
+	Chain(
+		Conv((3,), 1=>16, pad=1, funcionTransferenciaCapasConvolucionales),
+		MeanPool((5,)),
+		Conv((3,), 16=>32, pad=1, funcionTransferenciaCapasConvolucionales),
+		MeanPool((2,)),
+		Conv((3,), 32=>32, pad=1, funcionTransferenciaCapasConvolucionales),
+		MaxPool((5,)),
+		x -> reshape(x, :, size(x, 3)),
+		Dense(320, length(unique(all_labels))),
+		softmax
+	),
 ]
 conv_parameters = Vector{Dict{Any,Any}}(undef, length(topologies));
 
@@ -150,7 +250,7 @@ for i in 1:length(models)
 	for j in 1:length(configurations)
 		configuration_parameters = configurations[j]
 		if models[i] == :CONV
-			config = "$(j)"
+			config = "CONV\\textsubscript{$(j)}"
 		else
 			config=""
 		end

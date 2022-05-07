@@ -5,6 +5,8 @@ using WAV
 using SignalAnalysis
 using DelimitedFiles
 
+# NOTA: ESTA EXTRACCIÓN ES LA MISMA QUE EN LA APROX4. LO QUE CAMBIA ES EL CÓDIGO DE LA APROXIMACIÓN,
+# DONDE SE FILTRAN LAS CARACTERÍSTICAS
 
 function interval(bins::Int64,max::Real)
 	
@@ -105,7 +107,7 @@ end
 
 
 # Path a la base de datos. Las clases estarán en  db_dir/<class>
-db_dir = "db/piano"
+db_dir = "../../db/piano"
 # Para todas las clases (aprox 4):
 classes = readdir(db_dir);
 

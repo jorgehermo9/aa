@@ -6,7 +6,7 @@ include("src/scikit/p6.jl")
 
 
 Random.seed!(100)
-dataset = readdlm("dataset/features.csv",',');
+dataset = readdlm("dataset/aprox1.csv",',');
 
 headers = dataset[1:1,1:end-1]
 inputs = dataset[2:end,1:end-1];
@@ -17,10 +17,10 @@ inputs = convert(Array{Float32,2},inputs);
 dataset_size = size(targets,1);
 
 # Para calcular los parámetros de normalización
-# norm_params = calculateZeroMeanNormalizationParameters(inputs)
-# for i in 1:length(headers)
-# 	println("\\item $(headers[i]): \$$(norm_params[1][i]) \\pm $(norm_params[2][i])\$")
-# end
+norm_params = calculateZeroMeanNormalizationParameters(inputs)
+for i in 1:length(headers)
+	println("\\item $(headers[i]): \$$(norm_params[1][i]) \\pm $(norm_params[2][i])\$")
+end
 
 inputs = normalizeZeroMean(inputs);
 
@@ -147,82 +147,82 @@ for i in 1:length(models)
 end
 
 # Resultados 
-for i in 1:length(models)
-
-	println("--------------------------------")
-	println("Model: $(models[i])")
-	configurations = models_parameters[i]
-	for j in 1:length(configurations)
-		println("")
-		configuration_parameters = configurations[j]
-		for key in keys(configuration_parameters)
-			println("$(key): $(configuration_parameters[key])")
-		end
-		println("Accuracy: $(round(acc_models[i][j],digits=5)) ± $(round(acc_std_models[i][j],digits=5))")
-		println("F1-Score: $(round(f1_models[i][j],digits=5)) ± $(round(f1_std_models[i][j],digits=5))")
-		println("")
-	end
-	println("--------------------------------")
-
-end
-
-# Resultados para latex
 # for i in 1:length(models)
 
-# 	if models[i] == :ANN
-# 		config_name ="Arquitectura"
-# 		caption="RNA"
-# 	elseif models[i] == :SVM
-# 		config_name ="(kernel, grado, gamma, C)"
-# 		caption="SVM"
-# 	elseif models[i] == :DecisionTree
-# 		config_name="Altura máxima"
-# 		caption="Árbol de decisión"
-# 	elseif models[i] == :kNN
-# 		config_name="K"
-# 		caption="kNN"
-# 	else
-# 		config_name=""
-# 	end
-
-# 	println("----------------------------")
-# 	println("$(models[i])\n")
-# 	println("\\begin{table}[ht]")
-# 	println("\\caption{Resultados $(caption)}")
-# 	println("\\centering")
-# 	println("\t \\begin{tabular}{||c c c||} ")
-# 	println("\t\t \\hline ")
-# 	println("\t\t $(config_name) & F1-Score & Precisión  \\\\ [0.5ex]  ")
-# 	println("\t\t \\hline\\hline")
+# 	println("--------------------------------")
+# 	println("Model: $(models[i])")
 # 	configurations = models_parameters[i]
 # 	for j in 1:length(configurations)
+# 		println("")
 # 		configuration_parameters = configurations[j]
-# 		if models[i] == :ANN
-# 			config = configuration_parameters["topology"]
-# 		elseif models[i] == :SVM
-# 			kernel = configuration_parameters["kernel"]
-# 			kernelDegree = configuration_parameters["kernelDegree"]
-# 			kernelGamma = configuration_parameters["kernelGamma"]
-# 			C = configuration_parameters["C"]
-# 			config="($(kernel), \$$(kernelDegree)\$, \$$(kernelGamma)\$, \$$(C)\$)"
-# 		elseif models[i] == :DecisionTree
-# 			max_depth = configuration_parameters["max_depth"]
-# 			config="\$$(max_depth)\$"
-# 		elseif models[i] == :kNN
-# 			k = configuration_parameters["k"]
-# 			config="\$$(k)\$"
-# 		else
-# 			config=""
+# 		for key in keys(configuration_parameters)
+# 			println("$(key): $(configuration_parameters[key])")
 # 		end
-# 		println("\t\t $(config) & \$$(round(f1_models[i][j],digits=5)) \\pm $(round(f1_std_models[i][j],digits=5))\$ & \$$(round(acc_models[i][j],digits=5)) \\pm $(round(acc_std_models[i][j],digits=5))\$ \\\\")
-# 		println("\t\t \\hline ")
+# 		println("Accuracy: $(round(acc_models[i][j],digits=5)) ± $(round(acc_std_models[i][j],digits=5))")
+# 		println("F1-Score: $(round(f1_models[i][j],digits=5)) ± $(round(f1_std_models[i][j],digits=5))")
+# 		println("")
 # 	end
-# 	println("\t \\end{tabular}")
-# 	println("\\label{Tab:$(models[i])} ")
-# 	println("\\end{table} ")
+# 	println("--------------------------------")
 
-# 	println("\n----------------------------")
 # end
+
+# Resultados para latex
+for i in 1:length(models)
+
+	if models[i] == :ANN
+		config_name ="Arquitectura"
+		caption="RNA"
+	elseif models[i] == :SVM
+		config_name ="(kernel, grado, gamma, C)"
+		caption="SVM"
+	elseif models[i] == :DecisionTree
+		config_name="Altura máxima"
+		caption="Árbol de decisión"
+	elseif models[i] == :kNN
+		config_name="K"
+		caption="kNN"
+	else
+		config_name=""
+	end
+
+	println("----------------------------")
+	println("$(models[i])\n")
+	println("\\begin{table}[ht]")
+	println("\\caption{Resultados $(caption)}")
+	println("\\centering")
+	println("\t \\begin{tabular}{||c c c||} ")
+	println("\t\t \\hline ")
+	println("\t\t $(config_name) & F1-Score & Precisión  \\\\ [0.5ex]  ")
+	println("\t\t \\hline\\hline")
+	configurations = models_parameters[i]
+	for j in 1:length(configurations)
+		configuration_parameters = configurations[j]
+		if models[i] == :ANN
+			config = configuration_parameters["topology"]
+		elseif models[i] == :SVM
+			kernel = configuration_parameters["kernel"]
+			kernelDegree = configuration_parameters["kernelDegree"]
+			kernelGamma = configuration_parameters["kernelGamma"]
+			C = configuration_parameters["C"]
+			config="($(kernel), \$$(kernelDegree)\$, \$$(kernelGamma)\$, \$$(C)\$)"
+		elseif models[i] == :DecisionTree
+			max_depth = configuration_parameters["max_depth"]
+			config="\$$(max_depth)\$"
+		elseif models[i] == :kNN
+			k = configuration_parameters["k"]
+			config="\$$(k)\$"
+		else
+			config=""
+		end
+		println("\t\t $(config) & \$$(round(f1_models[i][j],digits=5)) \\pm $(round(f1_std_models[i][j],digits=5))\$ & \$$(round(acc_models[i][j],digits=5)) \\pm $(round(acc_std_models[i][j],digits=5))\$ \\\\")
+		println("\t\t \\hline ")
+	end
+	println("\t \\end{tabular}")
+	println("\\label{Tab:$(models[i])} ")
+	println("\\end{table} ")
+
+	println("\n----------------------------")
+end
 
 best_config=(1,1);
 best_mean_f1 = f1_models[1][1];

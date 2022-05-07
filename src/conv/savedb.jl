@@ -38,7 +38,7 @@ function get_signal(file::String)
 
 	max_freq = 5000;
 	
-	duration_threshold = 1.5
+	duration_threshold = 0.1
 	index_threshold = Int(duration_threshold * fs);
 	y = y[:,1];
 	
@@ -71,7 +71,9 @@ function get_signal(file::String)
 end
 
 
-db_dir = "/home/jorge/github/aa/db/piano"
+# db_dir = "/home/jorge/github/aa/db/piano"
+db_dir = "/home/jorge/github/aa/utils/reduced/piano"
+
 classes = readdir(db_dir);
 
 all_instances = Vector{Tuple{String,String}}()
@@ -84,17 +86,11 @@ for class in classes
 	end
 end
 
-# Utilizamos aquí como duración máxima 1.5 segundos, ya que hay algunos audios con 
-# menos de dos segundos de duración. (En concreto, A#7 o B7). Esto no supone ningún problema
-# en las aproximaciones anteriores, ya que los segundos de duración determinan la frecuencia
-# de sampling, y, por lo tanto, el número de elementos en el array de intensidades en frecuencia/tiempo.
-# En la aproximación anterior no nos hacía falta tener en cuenta que pudiese haber muestras con
-# distinto sampling (si era menor de 3s, pues se utilizaba el sampling de esa duración menor), 
-# Y con ese muestreo, pues se sacaban las características. Aquí es distinto, ya que necesitamos
-# que todas las instancias tengan el mismo número de posiciones (n*fs), por lo que tenemos que 
-# utilizar un max_duration que haga que todas las instancias tengan el mismo número de posiciones. 
+# Decidimos utilizar como duración máxima 0.1 segundos. Con más muestreo en frecuencia,
+# tardaba muchísimo. Antes utilizabamos un array de 7500 posiciones, ahora 500. 
+# Pensamos que va a funcionar bien también así. Si funciona bien con 0.1 segundos, aún mejor.
 fs  = 48000
-max_duration = 1.5
+max_duration = 0.1
 n = fs*max_duration
 max_freq = 5000
 m1 = (0+fs/2)/fs * n
@@ -104,9 +100,9 @@ n_target_freq = Int(round(m2-m1))
 classes_unique = unique(classes)
 display(classes_unique)
 
+println("Vector size: $(n_target_freq)")
 all_signals = Array{Float32,2}(undef,n_target_freq,length(all_instances));
 all_labels = Vector(undef,length(all_instances));
-
 for i in 1:length(all_instances)
 	(instance_class,instance_dir) = all_instances[i]
 	all_labels[i] = instance_class
@@ -120,7 +116,7 @@ all_labels_onehot = oneHotEncoding(all_labels,classes_unique)'
 # display(all_labels_onehot)
 
 
-path = "db.jld2"
+path = "low_res_db_2.jld2"
 @save path all_signals all_labels all_labels_onehot
 
 println("Saved signal and labels to $(path)")

@@ -568,7 +568,11 @@ function trainConv(parameters::Dict{Any,Any},train_set::Tuple{AbstractArray{<:Re
 
 	push!(train_loss_vector,loss(train_set[1],train_set[2]));
 	push!(test_loss_vector,loss(test_set[1],test_set[2]));
+	batch_size = 128
 	
+	gruposIndicesBatch = Iterators.partition(1:size(train_set[1],3), batch_size);
+	batch_train_set = [ (train_set[1][:,:,indicesBatch], train_set[2][:,indicesBatch]) for indicesBatch in gruposIndicesBatch];
+
 
 
 	# println("Comenzando entrenamiento...")
@@ -582,7 +586,7 @@ function trainConv(parameters::Dict{Any,Any},train_set::Tuple{AbstractArray{<:Re
 
 
 		# Se entrena un ciclo
-		Flux.train!(loss, params(ann), [train_set], opt);
+		Flux.train!(loss, params(ann), batch_train_set, opt);
 
 		push!(train_loss_vector,loss(train_set[1],train_set[2]))
 		push!(test_loss_vector,loss(test_set[1],test_set[2]));
@@ -590,13 +594,13 @@ function trainConv(parameters::Dict{Any,Any},train_set::Tuple{AbstractArray{<:Re
 
 		# Se calcula la precision en el conjunto de entrenamiento:
 		f1Entrenamiento = f1(train_set);
-		# println("Ciclo ", numCiclo, ": F1-Score en el conjunto de entrenamiento: ", 100*f1Entrenamiento, " %");
+		println("Ciclo ", numCiclo, ": F1-Score en el conjunto de entrenamiento: ", 100*f1Entrenamiento, " %");
 
 		# Si se mejora la precision en el conjunto de entrenamiento, se calcula la de test y se guarda el modelo
 		if (f1Entrenamiento >= mejorF1)
 			mejorF1 = f1Entrenamiento;
 			f1Test = f1(test_set);
-			# println("   Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: ", 100*f1Test, " %");
+			println("Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: ", 100*f1Test, " %");
 			mejorModelo = deepcopy(ann);
 			numCicloUltimaMejora = numCiclo;
 		end
@@ -638,6 +642,7 @@ function repeatTrainConv(train_set::Tuple{AbstractArray{<:Real,3},AbstractArray{
 	f1_rna = zeros(executions)
 
 	for j in 1:executions
+		println("Execution: $(j)")
 		(ann, train_vector, test_vector) = trainConv(parameters, train_set, test_set);\
 
 		test_outputs = ann(test_input_set)
@@ -672,6 +677,7 @@ function modelCrossValidation(model_symbol::Symbol,parameters::Dict{Any,Any},
 	end
 
 	for i = 1:kfolds
+		println("Fold: $(i)")
 		test_fold_idx = findall(x -> x==i, fold_vector)
 		train_fold_idx = findall(x -> x!=i, fold_vector)
 
