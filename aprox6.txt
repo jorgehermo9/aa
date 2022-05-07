@@ -1,0 +1,79 @@
+Training CONV (config 1)
+Fold: 1
+Execution: 1
+Ciclo 1: F1-Score en el conjunto de entrenamiento: 0.32016847270246207 %
+Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: 0.05969406790200224 %
+Ciclo 2: F1-Score en el conjunto de entrenamiento: 0.594578432501019 %
+Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: 0.3366578972438608 %
+Ciclo 3: F1-Score en el conjunto de entrenamiento: 6.680547713999744 %
+Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: 6.653737793614627 %
+Ciclo 4: F1-Score en el conjunto de entrenamiento: 9.503667671869858 %
+Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: 9.21549608794581 %
+Ciclo 5: F1-Score en el conjunto de entrenamiento: 15.844402991093364 %
+Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: 14.330108643102351 %
+Ciclo 6: F1-Score en el conjunto de entrenamiento: 18.208026474913236 %
+Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: 15.168378729746191 %
+Ciclo 7: F1-Score en el conjunto de entrenamiento: 26.325184321884855 %
+Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: 23.853632676842675 %
+Ciclo 8: F1-Score en el conjunto de entrenamiento: 32.52948334112077 %
+Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: 29.215009432949852 %
+Ciclo 9: F1-Score en el conjunto de entrenamiento: 39.92660905943553 %
+Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: 36.679257712503514 %
+Ciclo 10: F1-Score en el conjunto de entrenamiento: 48.29388586986788 %
+Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: 47.85769453730626 %
+Ciclo 11: F1-Score en el conjunto de entrenamiento: 51.80766791023386 %
+Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: 53.95561303811355 %
+Ciclo 12: F1-Score en el conjunto de entrenamiento: 55.221369395189726 %
+Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: 54.42285668351562 %
+Ciclo 13: F1-Score en el conjunto de entrenamiento: 56.907779447520504 %
+Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: 55.75266991996517 %
+Ciclo 14: F1-Score en el conjunto de entrenamiento: 60.10842667769665 %
+Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: 58.335863217755325 %
+Ciclo 15: F1-Score en el conjunto de entrenamiento: 61.004200954525764 %
+Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: 59.84853891391063 %
+Ciclo 16: F1-Score en el conjunto de entrenamiento: 56.23206065362068 %
+Ciclo 17: F1-Score en el conjunto de entrenamiento: 67.50286098399611 %
+Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: 66.68080821510848 %
+Ciclo 18: F1-Score en el conjunto de entrenamiento: 57.60323279983669 %
+Ciclo 19: F1-Score en el conjunto de entrenamiento: 60.405753348991674 %
+Ciclo 20: F1-Score en el conjunto de entrenamiento: 69.25486061504658 %
+Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: 69.41143666535208 %
+Ciclo 21: F1-Score en el conjunto de entrenamiento: 78.40889060703735 %
+Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: 76.10184491289105 %
+Ciclo 22: F1-Score en el conjunto de entrenamiento: 80.71960179566777 %
+Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: 78.08967590993672 %
+Ciclo 23: F1-Score en el conjunto de entrenamiento: 82.04315052767713 %
+Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: 79.26188873296948 %
+Ciclo 24: F1-Score en el conjunto de entrenamiento: 83.34518593093483 %
+Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: 80.03846513214648 %
+Ciclo 25: F1-Score en el conjunto de entrenamiento: 83.3311025161288 %
+Ciclo 26: F1-Score en el conjunto de entrenamiento: 82.88072539216135 %
+Ciclo 27: F1-Score en el conjunto de entrenamiento: 83.23482725254141 %
+Ciclo 28: F1-Score en el conjunto de entrenamiento: 84.0785279720226 %
+Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: 80.35123688463767 %
+Ciclo 29: F1-Score en el conjunto de entrenamiento: 75.32195175287339 %
+Ciclo 30: F1-Score en el conjunto de entrenamiento: 78.89376451094633 %
+Ciclo 31: F1-Score en el conjunto de entrenamiento: 84.32591751154249 %
+Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: 80.8757332739992 %
+Ciclo 32: F1-Score en el conjunto de entrenamiento: 83.93981413055803 %
+Ciclo 33: F1-Score en el conjunto de entrenamiento: 85.80455935841633 %
+Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: 82.8397897438857 %
+Ciclo 34: F1-Score en el conjunto de entrenamiento: 83.06810600287999 %
+Ciclo 35: F1-Score en el conjunto de entrenamiento: 83.50033766256504 %
+Ciclo 36: F1-Score en el conjunto de entrenamiento: 83.64446528522365 %
+Ciclo 37: F1-Score en el conjunto de entrenamiento: 85.05502071180132 %
+Ciclo 38: F1-Score en el conjunto de entrenamiento: 87.45714979014112 %
+Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: 84.85555563156608 %
+Ciclo 39: F1-Score en el conjunto de entrenamiento: 86.94381414301213 %
+Ciclo 40: F1-Score en el conjunto de entrenamiento: 84.43742535803564 %
+Ciclo 41: F1-Score en el conjunto de entrenamiento: 87.03839787811569 %
+Ciclo 42: F1-Score en el conjunto de entrenamiento: 87.75572807587994 %
+Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: 83.09467725478345 %
+Ciclo 43: F1-Score en el conjunto de entrenamiento: 89.76911672319822 %
+Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: 85.98637152744656 %
+Ciclo 44: F1-Score en el conjunto de entrenamiento: 90.76860037312386 %
+Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: 86.63180861255971 %
+Ciclo 45: F1-Score en el conjunto de entrenamiento: 92.09683342645378 %
+Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: 88.54104234812745 %
+Ciclo 46: F1-Score en el conjunto de entrenamiento: 92.17868343289912 %
+Mejora en el conjunto de entrenamiento -> F1-Score en el conjunto de test: 88.86969818206467 %
