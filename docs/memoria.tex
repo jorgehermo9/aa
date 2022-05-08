@@ -199,7 +199,7 @@ la transformada de Q constante a partir de la cual se la aplican diferentes téc
 En un terreno más general, trabajos como el de \cite{chang2017audio}, exploran la identificación de \textit{covers} utilizando
 estructuras más novedosas que no desarrollaremos en este trabajo como son las Redes de Neuronas Convolucionales. Las salidas de este
 sistema corresponderían con la probabilidad de ser una \textit{cover} (comparándola con la canción original), y se ordenarían por dicha 
-probabilidad elaborando un ranking.
+probabilidad elaborando un \textit{ranking}.
 
 \bigskip
 También encontramos la tesis de \cite{klapuri2004signal} que propone un sistema capaz de generar una representación 
@@ -2235,10 +2235,10 @@ en sistemas más rápidos y más eficientes en términos de energía consumida.
 \bigskip
 Para seleccionar las características más relevantes en la clasificación, hemos utilizado la herramienta \textit{mRMR-enhanced} (véase \cite{mRMR-enhanced}).
 
-Esta herramienta utiliza el concepto de información mutua para realizar un ranking de las características del \textit{dataset},
-siguiendo el algoritmo de máxima relevancia-mínima redundancia (\textit{mRMR}), propuesto por \cite{peng2005mrmr}. Este algoritmo busca obtener un ranking
+Esta herramienta utiliza el concepto de información mutua para realizar un \textit{ranking} de las características del \textit{dataset},
+siguiendo el algoritmo de máxima relevancia-mínima redundancia (\textit{mRMR}), propuesto por \cite{peng2005mrmr}. Este algoritmo busca obtener un \textit{ranking}
 de características que maximice la relevancia (ganancia de información) respecto a la clase, pero que también se minimice
-la redundancia entre características.
+la redundancia entre las características previamente seleccionadas.
 
 \bigskip
 Este algoritmo necesita que los datos estén discretizados, por lo que se ha preprocesado el \textit{dataset}, utilizando
@@ -2246,7 +2246,7 @@ una discretización de 10 \textit{bins}, siguiendo una estrategia de reparto de 
 
 \bigskip
 Así, tras algunas pruebas, hemos decidido seleccionar las 70 primeras características. Se muestran los parámetros de normalización
-para cada una de ellas (ordenadas según el ranking producido por el algoritmo \textit{mRMR}) en las Tablas \ref{Tab:Features_5_1}, \ref{Tab:Features_5_2} y \ref{Tab:Features_5_3}.
+para cada una de ellas (ordenadas según el \textit{ranking} producido por el algoritmo \textit{mRMR}) en las Tablas \ref{Tab:Features_5_1}, \ref{Tab:Features_5_2} y \ref{Tab:Features_5_3}.
 
 \begin{table}
 	\caption{Parámetros de normalización (I)}
@@ -2629,7 +2629,7 @@ generalización, ya que se sabe que, cuanto más sencillo sea un modelo, mejor c
 de generalización tiene.
 
 \bigskip
-Se muestra en la tabla \ref{confusion_matrix_5} la matriz de confusión del mejor
+Se muestra en la tabla \ref{Tab:confusion_matrix_5} la matriz de confusión del mejor
 modelo obtenido en una ejecución con una separación de $20\%$ para test. Presenta
 resultados muy similares a los de la aproximación anterior.
 
@@ -2672,7 +2672,7 @@ resultados muy similares a los de la aproximación anterior.
 	}
 	% \end{turn}
 	\caption{Matriz de confusión mejor modelo}
-	\label{tab:confusion_matrix_5}
+	\label{Tab:confusion_matrix_5}
 \end{table}
 
 
@@ -2955,8 +2955,8 @@ tradicionales, haciendo impracticable cualquier tipo de razonamiento que pueda e
 al contrario que pasa con modelos, como por ejemplo, los árboles de decisión.
 
 \bigskip
-Se muestra la matriz de confusión en la tabla \ref{tab:confusion_matrix_6} para una ejecución del sistema
-con una separación de $20\%$ de los patrones para test.
+Se muestra la matriz de confusión en la tabla \ref{Tab:confusion_matrix_6} para una ejecución del sistema
+con una separación del $20\%$ de los patrones para test.
 
 \bigskip
 Esta ejecución muestra muy buenos resultados, con un \textit{F1-Score} del $99.154\%$ y una precisión
@@ -3009,7 +3009,7 @@ muy bien.
 	}
 	% \end{turn}
 	\caption{Matriz de confusión mejor modelo}
-	\label{tab:confusion_matrix_6}
+	\label{Tab:confusion_matrix_6}
 \end{table}
 
 \newpage
@@ -3021,24 +3021,39 @@ muy bien.
 \section{Trabajo futuro}
 \label{Trabajo futuro}
 
-Tras los buenos resultados del sistema podemos concluir que es útil para diferenciar dos notas de piano con muy buena precisión. 
-Esta función aislada puede ser usada en multiple herramientas de afinación o de aprendizaje elemental para los mas novatos que quieran practicar su oido musical.
+Tras los buenos resultados del sistema podemos concluir que es útil para diferenciar las diferentes notas piano con muy buena precisión. 
+Esta función aislada puede ser usada en multiple herramientas de afinación o de aprendizaje elemental para los mas novatos que quieran practicar su oído musical.
+
+También sería interesante avanzar de cara a poder producir cierta explicabilidad de las predicciones
+del sistema, ya que sería beneficioso para el aprendizaje del usuario el poder saber por qué cierto
+sonido se asocia a una nota en concreto.
+
 
 \bigskip
 Tomando como ejemplo trabajos como los de \cite{klapuri2004signal} podemos tener en cuenta nuestro sistema como una herramienta útil para abordar problemas
-más complejos como puede ser la dificil tarea de la transcripción de musica automñatica.
+más complejos como puede ser la dificil tarea de la transcripción de musica de forma automática y en tiempo real,
+ya que hemos visto que nuestro sistema se comporta bastante bien con \textit{samples} de baja duración,como pueden ser de $0.1$ segundos.
 
 \bigskip
-Teniendo en cuenta la eficacia de nuestro sistema cabe destacar que tal como dijimos en la introduccion, este sistema se puede ampliar para ser capaz de
- reconocer mas de dos notas al mismo tiempo o incluso reconocer acordes o tonalidades.
+Así mismo, también sería beneficioso trabajar más sobre el tiempo de entrenamiento del sistema, ya que por ejemplo,
+con modelos como pueden ser las redes convolucionales, el tiempo de entrenamiento es excesivo. Sería un gran aporte
+lograr una alta precisión con un sistema que sea energéticamente eficiente y respetuoso con el medio ambiente, además de
+permitir que la utilización de estos modelos no requiera acceso a grandes recursos ni de tiempo ni computacionales
+y que cualquier persona en su ordenador personal pueda entrenar y ejecutar el sistema y que funcione igual de bien.
+
 
 \bigskip
-La metodología que seguimos a lo largo de esta memoria también puede ser enfocada para otros instrumentos ya que algunas características que usamos en nuestro sistema
-tienen la misma naturaleza en otros instrumentos como puede ser una guitarra, un bajo o un arpa.
+Teniendo en cuenta la eficacia de nuestro sistema cabe destacar que tal como dijimos en la introduccion, este sistema se podría ampliar para ser capaz de
+reconocer varias notas que sean tocadas al mismo tiempo, o incluso reconocer acordes o tonalidades musicales. Esto sería un problema
+\textit{Multi-label}, y tendría una mayor complejidad que el problema que hemos abordado nosotros.
+
+\bigskip
+La metodología que seguimos a lo largo de esta memoria también puede ser enfocada para otros instrumentos, ya que las características que usamos en nuestro sistema
+no son únicas para el piano y tienen la misma naturaleza en otros instrumentos como puede ser una guitarra, un bajo o un arpa.
 
 \bigskip
 En definitiva este sistema es indiscutiblemente útil en diferentes tareas dentro del ámbito musical, siendo asi un sistema facilmente adaptable a un marco comercial. 
-Aplicaciones como Shazam, Spotify, Tidal o Youtube podrian dar distintos usos como el reconocimiento de canciones, covers o clasificaciones por géneros musicales 
+Aplicaciones como Shazam, Spotify, Tidal o Youtube podrian dar distintos usos como el reconocimiento de canciones, \textit{covers} o clasificaciones por géneros musicales,
 usando, adaptando o integrando nuestro sistema dentro de sus empresas.
 
 

@@ -1,12 +1,12 @@
 # Fdb version 3
-["biber memoria"] 1651968988 "memoria.bcf" "memoria.bbl" "memoria" 1651968995
-  "memoria.bcf" 1651968995 125240 05ee1caf7c3f764410786a911ab51bfd "pdflatex"
+["biber memoria"] 1652010329 "memoria.bcf" "memoria.bbl" "memoria" 1652010466
+  "memoria.bcf" 1652010465 125300 6fe20022d53d4649c1333e653acc70cf "pdflatex"
   "references/references.bib" 1651935126 3843 ff6bf2e75573dc60a97c235ea48c4150 ""
   (generated)
   "memoria.bbl"
   "memoria.blg"
-["pdflatex"] 1651968993 "/home/jorge/github/aa/docs/memoria.tex" "memoria.pdf" "memoria" 1651968995
-  "/home/jorge/github/aa/docs/memoria.tex" 1651968985 203841 c45c783ce6874df4def9645844950511 ""
+["pdflatex"] 1652010463 "/home/jorge/github/aa/docs/memoria.tex" "memoria.pdf" "memoria" 1652010466
+  "/home/jorge/github/aa/docs/memoria.tex" 1652010459 216997 25b620990b337fe426631aa5204cd82d ""
   "/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1650183167 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1650183167 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/jknappen/ec/tcrm1200.tfm" 1650183167 1536 74b7293ec3713bb7fdca8dd1bd1f469c ""
@@ -134,12 +134,12 @@
   "assets/G1.pdf" 1650819994 24568 26e008db4e35ca6c40dba629a809a97a ""
   "assets/best_rna_train_1.pdf" 1650716679 22616 95d1a77dfc7f96e029ac3a1cf36c39a2 ""
   "assets/udc.jpg" 1650715211 36444 a83766351d17300c874af243f17773c8 ""
-  "memoria.aux" 1651968995 24510 985940e0ae9a55e9ab91b7cc5b42f70c "pdflatex"
-  "memoria.bbl" 1651968989 24077 62d5bf97ad6201bfd9e1b1b3229b7dd7 "biber memoria"
-  "memoria.out" 1651968995 4323 cd3b770d702ef25cc37bdb3ca99591f7 "pdflatex"
-  "memoria.run.xml" 1651968995 2391 e967521f1a15710d35fb123f8c946986 "pdflatex"
-  "memoria.tex" 1651968985 203841 c45c783ce6874df4def9645844950511 ""
-  "memoria.toc" 1651968995 4565 477ead3a3b0ad146e2e712f3de85468a "pdflatex"
+  "memoria.aux" 1652010465 24857 0ad05b7ac34b9ec75f467b724d6a8e5d "pdflatex"
+  "memoria.bbl" 1652010331 24077 62d5bf97ad6201bfd9e1b1b3229b7dd7 "biber memoria"
+  "memoria.out" 1652010465 4323 cd3b770d702ef25cc37bdb3ca99591f7 "pdflatex"
+  "memoria.run.xml" 1652010465 2391 e967521f1a15710d35fb123f8c946986 "pdflatex"
+  "memoria.tex" 1652010459 216997 25b620990b337fe426631aa5204cd82d ""
+  "memoria.toc" 1652010465 4565 7b89c4ba34239d6e0cb4a4ce85e7e8cd "pdflatex"
   (generated)
   "memoria.aux"
   "memoria.bcf"

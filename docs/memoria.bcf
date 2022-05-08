@@ -2805,20 +2805,21 @@
     <bcf:citekey order="12">baevski2021unsupervised</bcf:citekey>
     <bcf:citekey order="13">mRMR-enhanced</bcf:citekey>
     <bcf:citekey order="14">peng2005mrmr</bcf:citekey>
-    <bcf:citekey order="15">krogh2008artificial</bcf:citekey>
-    <bcf:citekey order="16">cortes1995support</bcf:citekey>
-    <bcf:citekey order="17">myles2004introduction</bcf:citekey>
-    <bcf:citekey order="18">guo2003knn</bcf:citekey>
-    <bcf:citekey order="19">osmalsky2012neural</bcf:citekey>
-    <bcf:citekey order="20">benetos2018automatic</bcf:citekey>
-    <bcf:citekey order="21">foo1999recognition</bcf:citekey>
-    <bcf:citekey order="22">chang2017audio</bcf:citekey>
-    <bcf:citekey order="23">klapuri2004signal</bcf:citekey>
-    <bcf:citekey order="24">marolt2002neural</bcf:citekey>
-    <bcf:citekey order="25">solanki2019music</bcf:citekey>
-    <bcf:citekey order="26">baevski2021unsupervised</bcf:citekey>
-    <bcf:citekey order="27">mRMR-enhanced</bcf:citekey>
-    <bcf:citekey order="28">peng2005mrmr</bcf:citekey>
+    <bcf:citekey order="15">klapuri2004signal</bcf:citekey>
+    <bcf:citekey order="16">krogh2008artificial</bcf:citekey>
+    <bcf:citekey order="17">cortes1995support</bcf:citekey>
+    <bcf:citekey order="18">myles2004introduction</bcf:citekey>
+    <bcf:citekey order="19">guo2003knn</bcf:citekey>
+    <bcf:citekey order="20">osmalsky2012neural</bcf:citekey>
+    <bcf:citekey order="21">benetos2018automatic</bcf:citekey>
+    <bcf:citekey order="22">foo1999recognition</bcf:citekey>
+    <bcf:citekey order="23">chang2017audio</bcf:citekey>
+    <bcf:citekey order="24">klapuri2004signal</bcf:citekey>
+    <bcf:citekey order="25">marolt2002neural</bcf:citekey>
+    <bcf:citekey order="26">solanki2019music</bcf:citekey>
+    <bcf:citekey order="27">baevski2021unsupervised</bcf:citekey>
+    <bcf:citekey order="28">mRMR-enhanced</bcf:citekey>
+    <bcf:citekey order="29">peng2005mrmr</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="apa">
