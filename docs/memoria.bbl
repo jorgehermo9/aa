@@ -355,6 +355,65 @@
       \verb https://github.com/jorgehermo9/mrmr-enhanced
       \endverb
     \endentry
+    \entry{indolia2018679}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=3534f93ba97e6949eb48e52b9731ea1a}{%
+           family={Indolia},
+           familyi={I\bibinitperiod},
+           given={Sakshi},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b3d2e77943760fb0ab262c28d6f1a8a4}{%
+           family={Goswami},
+           familyi={G\bibinitperiod},
+           given={Anil\bibnamedelima Kumar},
+           giveni={A\bibinitperiod\bibinitdelim K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=160c586e1ea6c2dbd6944f209d055de7}{%
+           family={Mishra},
+           familyi={M\bibinitperiod},
+           given={S.P.},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5c1f1d4b6fda8f7054b55792b433505f}{%
+           family={Asopa},
+           familyi={A\bibinitperiod},
+           given={Pooja},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{ab0300296effbd0fd896f2c6eb882186}
+      \strng{fullhash}{1082ced51602da1cec2691f7a973d8b2}
+      \strng{bibnamehash}{1082ced51602da1cec2691f7a973d8b2}
+      \strng{authorbibnamehash}{1082ced51602da1cec2691f7a973d8b2}
+      \strng{authornamehash}{ab0300296effbd0fd896f2c6eb882186}
+      \strng{authorfullhash}{1082ced51602da1cec2691f7a973d8b2}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1877-0509}
+      \field{journaltitle}{Procedia Computer Science}
+      \field{note}{International Conference on Computational Intelligence and Data Science}
+      \field{title}{Conceptual Understanding of Convolutional Neural Network- A Deep Learning Approach}
+      \field{volume}{132}
+      \field{year}{2018}
+      \field{pages}{679\bibrangedash 688}
+      \range{pages}{10}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.procs.2018.05.069
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S1877050918308019
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S1877050918308019
+      \endverb
+      \keyw{Convolution Neural Network,Deep Neural Network,Gradient Descent,ADAM}
+    \endentry
     \entry{klapuri2004signal}{book}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=5d79b2c1c58f54540fd7dce441be6a83}{%
