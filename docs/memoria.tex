@@ -2925,6 +2925,12 @@ son las que solamente tienen capas de \textit{pooling} de máximos, por lo que s
 con estas últimas capas de \textit{pooling} serían un punto sobre el que seguir explorando configuraciones de las redes.
 
 \bigskip
+Así mismo, hay redes con una gran inestabilidad, como pueden ser las redes conv\subscript{3} y
+conv\textsubscript{5}, que presentan una alta desviación típica. Esto quizá se podría mejorar con
+varias ejecuciones en cada fold, ya que parece que los resultados de estas dos redes han dependido
+mucho de si los pesos se han inicializado aleatoriamente en unos buenos valores o no.
+
+\bigskip
 Es también notable decir que hemos utilizado un tamaño del canal de los filtros reducido (el máximo tamaño es 16),
 debido a que con mayores tamaños el tiempo de entrenamiento se hacía excesivo. Quizás con más recursos,
 podríamos explorar configuraciones que alcanzasen filtros con mayor tamaño de canales y que pudiesen
