@@ -2624,7 +2624,7 @@ Podemos concluír, por lo tanto, que llevar a cabo una reducción de caracterís
 satisfactorio y presenta una mejor solución que no hacerlo, puesto que, aunque el mejor
 modelo sea similar, la reducción de características hace que los modelos sean más rápidos
 de entrenar y más rápidos en hacer predicciones. Además, sabiendo que cuanto más sencillo sea un modelo, mejor capacidad
-de generalización tiene, esta reducción favorece mucho al aumento de la potencia de
+de generalización tiene, esta reducción favorece también al aumento de la potencia de
 generalización.
 
 \bigskip
@@ -2678,17 +2678,17 @@ resultados muy similares a los de la aproximación anterior.
 \label{Sexta aproximación}
 
 \subsubsection{Descripción}
-
 En esta aproximación utilizaremos técnicas de \textit{Deep Learning} para producir los modelos.
 En concreto, utilizaremos redes convolucionales.
 
 \bigskip
-Las notas que vamos a clasificar serán las mismas que en la aproximación anterior, es decir, un total de 
-85 notas, que juntas forman un número de 5046 patrones.
+Las notas que vamos a clasificar serán las mismas que en la aproximación anterior, es decir, las 
+85 notas del piano, que juntas forman un total de 5046 patrones.
 
 \bigskip
-Vamos a utilizar nuestra base de datos de otra manera. En lugar de utilizar 3 segundos de audio, utilizaremos
-solo 0.1 segundos de la muestra, ya que con 3 segundos el tiempo de entrenamiento es excesivo con 
+Sin embargo, ahora utilizaremos nuestra base de datos de otra manera. En lugar de extrar las características
+en los primeros 3 segundos de cada \textit{sample}, utilizaremos
+solo los primeros 0.1 segundos, ya que con 3 segundos el tiempo de entrenamiento es excesivo con 
 5406 instancias. Entonces, la matriz que representa la base de datos será de $500$ x $5046$. Las 500 filas
 se obtienen de la siguiente manera: 
 
@@ -2705,8 +2705,7 @@ utilizando muestras de 0,1 segundos, sería un avance para poder reconocer notas
 de tener que utilizar \textit{samples} de 3 segundos.
 
 \bigskip
-En lo referente de los datos, se ha realizado una normalización de media cero y desviación
-típica 1.
+En lo referente de los datos, se ha realizado una normalización de media cero y desviación típica 1.
 
 \bigskip
 Utilizaremos de nuevo como medida el promedio del \textbf{F1-Score} en los \textit{folds}. Si hay empate en dicha media, se elegirá el modelo con menor
@@ -2731,25 +2730,23 @@ Para el entrenamiento de las Redes Convolucionales, se han utilizado los siguien
 
 \bigskip
 Se han utilizado 10 arquitecturas diferentes en los resultados, variando el filtro
-de convolución, el tipo de capa de \textit{pooling} y el tamaño de la ventana de la capa 
-de \textit{pooling}. En todas las arquitecturas se ha utilizado una función de transferencia
+de convolución, el tipo de capa de \textit{pooling} y el tamaño de la ventana de dicha capa. 
+En todas las arquitecturas se ha utilizado una función de transferencia
 para las capas convolucionales de \textit{RELU} (\textit{Rectified Linear Unit}, o rectificador), y
-como función de salida de la red se ha utilizado una funcion \textit{softmax}
+como función de salida de la red se ha utilizado una funcion \textit{softmax}.
 
 \bigskip
 Debido al elevado tiempo de entrenamiento que suponía entrenar estas redes, hemos decidido
 no realizar múltiples ejecuciones en cada \textit{fold}. Esto produce resultados menos fiables,
 ya que la inicialización de los pesos de las neuronas se realiza de forma aleatoria. Si dispusiésemos
-de más recursos y más tiempo, sí que sería correcto realizar múltiples ejecuciones dentro de un
+de más recursos y más tiempo, lo más correcto sería realizar múltiples ejecuciones dentro de un
 mismo \textit{fold} y devolver la media de resultados de estas ejecuciones. Pero, con una única ejecución,
 el entrenamiento de las 10 arquitecturas supuso aproximadamente 4h en nuestros ordenadores. 
 
 \bigskip
-Además, hay que tener en cuenta que también se redujo la duración de las muestras de 3 segundos a $0.1$ segundos,
-lo que implica una reducción de las filas de la matriz de patrones de 7500 a 500. Esta reducción también
-fue motivada debido a que con 7500 filas, los tiempos de entrenamiento eran excesivos. La reducción a $0.1$ segundos
-tiene entonces dos motivaciones; una, la que acabamos de comentar, y otra, aproximar nuestro sistema a un escenario
-más real, donde no sea posible tener muestras de 3 o más segundos.
+Además, hay que tener en cuenta también el papel que juega en la disminución del tiempo de entrenamiento
+la reducción de la duración de las muestras de $3$ a $0.1$ segundos. Esto implica una reducción de las filas de la matriz de patrones 
+de 7500 a 500.
 
 \bigskip
 Se muestran los resultados de la experimentación en la Tabla \ref{Tab:CONV_6}.
@@ -2916,16 +2913,16 @@ siendo el mejor modelo la red conv\textsubscript{1}, que presenta la siguiente a
 	\item Dense(160,85)
 \end{itemize}
 
-Este mejor modelo presenta un \textit{F1-Score} de $0.95735 \pm 0.0161$ y una
-precisión de  $0.96734 \pm 0.01078$. Estos valores son altos, y aunque no tan elevados como en aproximaciones
-anteriores donde se alcanzó un \textit{F1-Score} mayor al $99\%$, este sistema tiene una ventaja; ha trabajado 
-sobre \textit{samples} con una duración de $0.1$ segundos.
+Este mejor modelo obtiene un \textit{F1-Score} de $0.95735 \pm 0.0161$ y una
+precisión de  $0.96734 \pm 0.01078$. Estos valores son altos y, aunque no tan elevados como en aproximaciones
+anteriores donde se alcanzó un \textit{F1-Score} mayor al $99\%$, este sistema tiene la ventaje de haber sido entrenado sobre 
+\textit{samples} con una duración de $0.1$ segundos.
 
 \bigskip
 Cabe destacar que hay varios modelos con valores de \textit{F1-Score} y de precisión increíblemente bajos,
 incluso menores al $1\%$. Creemos que esto se puede deber a que somos inexpertos sobre este tipo de redes
 y no seleccionamos las arquitecturas con las que experimentar de la mejor manera. Además, muchas de las
-redes que peor resultados muestran tienen en común que se ha utilizado una capa de \textit{pooling} de media
+redes que peores resultados muestran tienen en común que se ha utilizado una capa de \textit{pooling} de media
 de la ventana, en lugar de calcular el máximo de la ventana. De la misma manera, las redes que mejor se comportan
 son las que solamente tienen capas de \textit{pooling} de máximos, por lo que sospechamos que otras arquitecturas
 con estas últimas capas de \textit{pooling} serían un punto sobre el que seguir explorando configuraciones de las redes.
