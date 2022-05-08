@@ -1022,7 +1022,7 @@ las frecuencias, para así poder diferenciar de mejor manera dichas notas.
 			&                         &                        &                        &                        &                         &                         &                         &                         &                         &                         &                         &                         &                         &                         &                         &                        & 
 		\end{tabular}
 	}
-	\caption{Matriz de confusión mejor modelo}
+	\caption{Matriz de confusión del mejor modelo}
 	\label{tab:confusion_matrix_2}
 \end{table}
 
@@ -1630,7 +1630,7 @@ parecidas como pueden ser \textit{G1}(\textit{48,99 Hz}) y \textit{A1}(\textit{5
 \multicolumn{1}{c|}{}                       & \multicolumn{1}{c|}{G7}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{}                     & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{0}  & \multicolumn{1}{c|}{17} \\ \cline{2-38} 
 		\end{tabular}
 	}
-	\caption{Matriz de confusión mejor modelo }
+	\caption{Matriz de confusión del mejor modelo }
 	\label{tab:confusion_matrix_3}
 \end{table}
 
@@ -2213,7 +2213,7 @@ confunde mayoritariamente en notas que se encuentran a distancias cercanas como 
 		\end{tabular}
 	}
 	% \end{turn}
-	\caption{Matriz de confusión mejor modelo}
+	\caption{Matriz de confusión del mejor modelo}
 	\label{tab:confusion_matrix_4}
 \end{table}
 
@@ -2663,7 +2663,7 @@ resultados muy similares a los de la aproximación anterior.
 		\end{tabular}
 	}
 	% \end{turn}
-	\caption{Matriz de confusión mejor modelo}
+	\caption{Matriz de confusión del mejor modelo}
 	\label{tab:confusion_matrix_5}
 \end{table}
 
@@ -2676,6 +2676,11 @@ resultados muy similares a los de la aproximación anterior.
 En esta aproximación utilizaremos técnicas de \textit{Deep Learning} para producir los modelos.
 En concreto, utilizaremos redes convolucionales.
 
+\bigskip
+Las notas que vamos a clasificar serán las mismas que en la aproximación anterior, es decir, un total de 
+85 notas, que juntas forman un número de 5046 patrones.
+
+\bigskip
 Vamos a utilizar nuestra base de datos de otra manera. En lugar de utilizar 3 segundos de audio, utilizaremos
 solo 0.1 segundos de la muestra, ya que con 3 segundos el tiempo de entrenamiento es excesivo con 
 5406 instancias. Entonces, la matriz que representa la base de datos será de $500$ x $5046$. Las 500 filas
@@ -2726,34 +2731,53 @@ para las capas convolucionales de \textit{RELU} (\textit{Rectified Linear Unit},
 como función de salida de la red se ha utilizado una funcion \textit{softmax}
 
 \bigskip
+Debido al elevado tiempo de entrenamiento que suponía entrenar estas redes, hemos decidido
+no realizar múltiples ejecuciones en cada \textit{fold}. Esto produce resultados menos fiables,
+ya que la inicialización de los pesos de las neuronas se realiza de forma aleatoria. Si dispusiésemos
+de más recursos y más tiempo, sí que sería correcto realizar múltiples ejecuciones dentro de un
+mismo \textit{fold} y devolver la media de resultados de estas ejecuciones. Pero, con una única ejecución,
+el entrenamiento de las 10 arquitecturas supuso aproximadamente 4h en nuestros ordenadores. 
+
+\bigskip
+Además, hay que tener en cuenta que también se redujo la duración de las muestras de 3 segundos a $0.1$ segundos,
+lo que implica una reducción de las filas de la matriz de patrones de 7500 a 500. Esta reducción también
+fue motivada debido a que con 7500 filas, los tiempos de entrenamiento eran excesivos. La reducción a $0.1$ segundos
+tiene entonces dos motivaciones; una, la que acabamos de comentar, y otra, aproximar nuestro sistema a un escenario
+más real, donde no sea posible tener muestras de 3 o más segundos.
+
+\bigskip
 Se muestran los resultados de la experimentación en la Tabla \ref{Tab:CONV_6}.
 
 \begin{table}[!ht]
 	\caption{Resultados Redes Convolucionales}
 	\centering
-		\begin{tabular}{||c c c||}
-			\hline
-			Arquitectura & F1-Score & Precisión \\ [0.5ex]
-			\hline\hline
-			[16] & $0.91452 \pm 0.00544$ & $0.92437 \pm 0.00475$ \\
-			\hline 
-			[32] & $0.97012 \pm 0.00554$ & $0.97169 \pm 0.00485$ \\
-			\hline 
-			[64] & $0.98034 \pm 0.00697$ & $0.98149 \pm 0.00567$ \\
-			\hline 
-			[128] & $0.98007 \pm 0.00613$ & $0.98054 \pm 0.00449$ \\
-			\hline 
-			[256] & $0.9757 \pm 0.0058$ & $0.97508 \pm 0.00582$ \\
-			\hline 
-			[512] & $0.94062 \pm 0.00657$ & $0.94438 \pm 0.00534$ \\
-			\hline 
-			[64, 64] & $0.95589 \pm 0.00402$ & $0.95973 \pm 0.00353$ \\
-			\hline 
-			[64, 128] & $0.95232 \pm 0.00708$ & $0.95488 \pm 0.00592$ \\
-			\hline 
-		\end{tabular}
+		 \begin{tabular}{||c c c||}
+			 \hline
+			 Arquitectura & F1-Score & Precisión  \\ [0.5ex]
+			 \hline\hline
+			 conv\textsubscript{1} & $0.95735 \pm 0.0161$ & $0.96734 \pm 0.01078$ \\
+			 \hline
+			 conv\textsubscript{2} & $0.93055 \pm 0.01604$ & $0.94942 \pm 0.01134$ \\
+			 \hline
+			 conv\textsubscript{3} & $0.63134 \pm 0.43667$ & $0.65577 \pm 0.43699$ \\
+			 \hline
+			 conv\textsubscript{4} & $0.00066 \pm 2.0e-5$ & $0.02906 \pm 0.00111$ \\
+			 \hline
+			 conv\textsubscript{5} & $0.72455 \pm 0.37877$ & $0.75191 \pm 0.37616$ \\
+			 \hline
+			 conv\textsubscript{6} & $0.00066 \pm 2.0e-5$ & $0.02906 \pm 0.00111$ \\
+			 \hline
+			 conv\textsubscript{7} & $0.00154 \pm 0.00225$ & $0.03017 \pm 0.00326$ \\
+			 \hline
+			 conv\textsubscript{8} & $0.65012 \pm 0.24465$ & $0.70488 \pm 0.24947$ \\
+			 \hline
+			 conv\textsubscript{9} & $0.00124 \pm 0.00181$ & $0.02993 \pm 0.00253$ \\
+			 \hline
+			 conv\textsubscript{10} & $0.00169 \pm 0.00324$ & $0.02924 \pm 0.0012$ \\
+			 \hline
+		 \end{tabular}
 	\label{Tab:CONV_6}
-\end{table}
+	\end{table}
 
 \bigskip
 
@@ -2873,6 +2897,61 @@ ya que estamos utilizando audio, no imágenes.
 
 \subsubsection{Discusión}
 
+Se puede observar en los resultados que hay un par de modelos con alto \textit{F1-Score} y precisión,
+siendo el mejor modelo la red conv\textsubscript{1}, que presenta la siguiente arquitectura:
+
+\begin{itemize}
+	\item Conv(2, 1 $=>$ 4, 1)
+	\item MaxPool(2)
+	\item Conv(2, 4 $=>$ 8, 1)
+	\item MaxPool(5)
+	\item Conv(2, 8 $=>$ 16, 1)
+	\item MaxPool(5)
+	\item Dense(160,85)
+\end{itemize}
+
+Este mejor modelo presenta un \textit{F1-Score} de $0.95735 \pm 0.0161$ y una
+precisión de  $0.96734 \pm 0.01078$. Estos valores son altos, y aunque no tan elevados como en aproximaciones
+anteriores donde se alcanzó un \textit{F1-Score} mayor al $99\%$, este sistema tiene una ventaja; ha trabajado 
+sobre \textit{samples} con una duración de $0.1$ segundos.
+
+\bigskip
+Cabe destacar que hay varios modelos con valores de \textit{F1-Score} y de precisión increíblemente bajos,
+incluso menores al $1\%$. Creemos que esto se puede deber a que somos inexpertos sobre este tipo de redes
+y no seleccionamos las arquitecturas con las que experimentar de la mejor manera. Además, muchas de las
+redes que peor resultados muestran tienen en común que se ha utilizado una capa de \textit{pooling} de media
+de la ventana, en lugar de calcular el máximo de la ventana. De la misma manera, las redes que mejor se comportan
+son las que solamente tienen capas de \textit{pooling} de máximos, por lo que sospechamos que otras arquitecturas
+con estas últimas capas de \textit{pooling} serían un punto sobre el que seguir explorando configuraciones de las redes.
+
+\bigskip
+Es también notable decir que hemos utilizado un tamaño del canal de los filtros reducido (el máximo tamaño es 16),
+debido a que con mayores tamaños el tiempo de entrenamiento se hacía excesivo. Quizás con más recursos,
+podríamos explorar configuraciones que alcanzasen filtros con mayor tamaño de canales y que pudiesen
+ofrecer mejores resultados.
+
+\bigskip
+En definitiva, esta técnica tiene sus ventajas, como puede ser que no sea necesario una extracción previa
+de características y se puedan ofrecer los datos \textit{raw} (en crudo) a la red, ahorrando así mucho tiempo
+al usuario de tener hacer ingeniería de características. Pero a su vez, la desventaja es que los tiempos de entrenamiento
+de estas redes es excesivo, y perdemos el control sobre varias partes de la red, como puede ser la selección de
+características y poder observar y analizar qué características son las mas importantes. Por lo tanto,
+aunque estas redes puedan dar buenos resultados, funcionan como una caja aún mas negra que las redes de neuronas
+tradicionales, haciendo impracticable cualquier tipo de razonamiento que pueda explicar la predicción que realiza,
+al contrario que pasa con modelos, como por ejemplo, los árboles de decisión.
+
+\bigskip
+Se muestra la matriz de confusión en la tabla \ref{tab:confusion_matrix_6} para una ejecución del sistema
+con una separación de $20\%$ de los patrones para test.
+
+\bigskip
+Esta ejecución muestra muy buenos resultados, con un \textit{F1-Score} del $99.154\%$ y una precisión
+del $99.445\%$. Esto se debe a que hacer \textit{cross validation} nos sirve para comparar distintos modelos, 
+pero muestra unos resultados pesimistas del comportamiento real del sistema.
+
+\bigskip 
+A la vista de estos resultados, podemos concluír que son satisfactorios y que el sistema funciona
+muy bien.
 
 
 \newpage
