@@ -2236,12 +2236,12 @@ en sistemas más rápidos y más eficientes en términos de energía consumida.
 Para seleccionar las características más relevantes en la clasificación, hemos utilizado la herramienta \textit{mRMR-enhanced} (véase \cite{mRMR-enhanced}).
 
 Esta herramienta utiliza el concepto de información mutua para realizar un \textit{ranking} de las características del \textit{dataset},
-siguiendo el algoritmo de máxima relevancia-mínima redundancia (\textit{mRMR}), propuesto por \cite{peng2005mrmr}. Este algoritmo busca obtener un \textit{ranking}
-de características que maximice la relevancia (ganancia de información) respecto a la clase, pero que también se minimice
+siguiendo el algoritmo de mínima redundancia-máxima relevancia (\textit{mRMR}), propuesto por \cite{peng2005mrmr}. Este algoritmo busca obtener un \textit{ranking}
+de características que maximicen la ganancia de información (relevancia) respecto a la clase, pero que también se minimice
 la redundancia entre las características previamente seleccionadas.
 
 \bigskip
-Este algoritmo necesita que los datos estén discretizados, por lo que se ha preprocesado el \textit{dataset}, utilizando
+Para su funcionamiento, es necesario que los datos estén discretizados, por lo que se ha preprocesado el \textit{dataset}, utilizando
 una discretización de 10 \textit{bins}, siguiendo una estrategia de reparto de los datos por cuantiles. 
 
 \bigskip
@@ -2257,49 +2257,49 @@ para cada una de ellas (ordenadas según el \textit{ranking} producido por el al
 			\hline\hline
 			abs-max-freq & $980.58826$ & $1027.9849$ \\
 			\hline
-			max-freq19 & $2058.1985$ & $61.4545$ \\
+			max-freq\textsubscript{19} & $2058.1985$ & $61.4545$ \\
 			\hline
-			max-freq17 & $1700.5549$ & $47.24032$ \\
+			max-freq\textsubscript{17} & $1700.5549$ & $47.24032$ \\
 			\hline
-			max-freq14 & $1264.4369$ & $42.46175$ \\
+			max-freq\textsubscript{14} & $1264.4369$ & $42.46175$ \\
 			\hline
-			max-freq13 & $1136.8329$ & $46.666904$ \\
+			max-freq\textsubscript{13} & $1136.8329$ & $46.666904$ \\
 			\hline
-			max-freq21 & $2422.4363$ & $62.446247$ \\
+			max-freq\textsubscript{21} & $2422.4363$ & $62.446247$ \\
 			\hline
-			max-freq12 & $1005.73865$ & $39.89346$ \\
+			max-freq\textsubscript{12} & $1005.73865$ & $39.89346$ \\
 			\hline
-			max-freq27 & $3867.4265$ & $90.45616$ \\
+			max-freq\textsubscript{27} & $3867.4265$ & $90.45616$ \\
 			\hline
-			max-freq11 & $905.13873$ & $34.916843$ \\
+			max-freq\textsubscript{11} & $905.13873$ & $34.916843$ \\
 			\hline
-			max-freq20 & $2220.4458$ & $62.312325$ \\
+			max-freq\textsubscript{20} & $2220.4458$ & $62.312325$ \\
 			\hline
-			max-freq16 & $1537.3774$ & $44.49866$ \\
+			max-freq\textsubscript{16} & $1537.3774$ & $44.49866$ \\
 			\hline
-			max-freq23 & $2861.094$ & $72.73729$ \\
+			max-freq\textsubscript{23} & $2861.094$ & $72.73729$ \\
 			\hline
-			max-freq7 & $488.65253$ & $23.474133$ \\
+			max-freq\textsubscript{7} & $488.65253$ & $23.474133$ \\
 			\hline
-			max-freq24 & $3082.9204$ & $77.84288$ \\
+			max-freq\textsubscript{24} & $3082.9204$ & $77.84288$ \\
 			\hline
-			max-freq10 & $784.3489$ & $33.213223$ \\
+			max-freq\textsubscript{10} & $784.3489$ & $33.213223$ \\
 			\hline
-			max-freq15 & $1412.9193$ & $49.629932$ \\
+			max-freq\textsubscript{15} & $1412.9193$ & $49.629932$ \\
 			\hline
-			max-freq22 & $2629.6775$ & $65.41493$ \\
+			max-freq\textsubscript{22} & $2629.6775$ & $65.41493$ \\
 			\hline
-			max-freq9 & $671.4978$ & $29.488453$ \\
+			max-freq\textsubscript{9} & $671.4978$ & $29.488453$ \\
 			\hline
-			max-freq18 & $1871.9404$ & $52.69005$ \\
+			max-freq\textsubscript{18} & $1871.9404$ & $52.69005$ \\
 			\hline
-			max-freq8 & $584.63116$ & $31.848839$ \\
+			max-freq\textsubscript{8} & $584.63116$ & $31.848839$ \\
 			\hline
-			max-freq25 & $3346.068$ & $74.768135$ \\
+			max-freq\textsubscript{25} & $3346.068$ & $74.768135$ \\
 			\hline
-			max-freq26 & $3592.8464$ & $87.46203$ \\
+			max-freq\textsubscript{26} & $3592.8464$ & $87.46203$ \\
 			\hline
-			max-freq28 & $4171.0786$ & $102.07654$ \\
+			max-freq\textsubscript{28} & $4171.0786$ & $102.07654$ \\
 			\hline
 			zero-crossing & $3317.7852$ & $4477.6226$ \\
 			\hline
@@ -2340,29 +2340,29 @@ para cada una de ellas (ordenadas según el \textit{ranking} producido por el al
 			\hline
 			m\textsubscript{11} & $9.340946$ & $13.882007$ \\
 			\hline
-			max-freq6 & $404.29333$ & $26.971804$ \\
+			max-freq\textsubscript{6} & $404.29333$ & $26.971804$ \\
 			\hline
-			max-freq29 & $4471.467$ & $94.344215$ \\
+			max-freq\textsubscript{29} & $4471.467$ & $94.344215$ \\
 			\hline
-			max-freq30 & $4826.714$ & $102.89994$ \\
+			max-freq\textsubscript{30} & $4826.714$ & $102.89994$ \\
 			\hline
-			max8 & $239.86774$ & $471.9059$ \\
+			max\textsubscript{8} & $239.86774$ & $471.9059$ \\
 			\hline
-			max-freq4 & $237.14865$ & $26.168978$ \\
+			max-freq\textsubscript{4} & $237.14865$ & $26.168978$ \\
 			\hline
-			max6 & $316.10635$ & $644.3593$ \\
+			max\textsubscript{6} & $316.10635$ & $644.3593$ \\
 			\hline
-			std8 & $24.33468$ & $49.075897$ \\
+			std\textsubscript{8} & $24.33468$ & $49.075897$ \\
 			\hline
-			std6 & $31.772034$ & $64.70347$ \\
+			std\textsubscript{6} & $31.772034$ & $64.70347$ \\
 			\hline
 			abs-max & $1445.9364$ & $1557.9128$ \\
 			\hline
-			std7 & $30.2005$ & $56.2919$ \\
+			std\textsubscript{7} & $30.2005$ & $56.2919$ \\
 			\hline
-			max11 & $156.60005$ & $323.31445$ \\
+			max\textsubscript{11} & $156.60005$ & $323.31445$ \\
 			\hline
-			max9 & $162.63959$ & $375.88123$ \\
+			max\textsubscript{9} & $162.63959$ & $375.88123$ \\
 			\hline
 		\end{tabular}
 	\label{Tab:Features_5_2}
@@ -2375,71 +2375,71 @@ para cada una de ellas (ordenadas según el \textit{ranking} producido por el al
 			\hline
 			Característica & Media & Desviación Típica  \\ [0.5ex]
 			\hline\hline
-			max12 & $132.93877$ & $264.18588$ \\
+			max\textsubscript{12} & $132.93877$ & $264.18588$ \\
 			\hline
-			max10 & $207.69164$ & $447.7031$ \\
+			max\textsubscript{10} & $207.69164$ & $447.7031$ \\
 			\hline
-			max14 & $90.64936$ & $186.6918$ \\
+			max\textsubscript{14} & $90.64936$ & $186.6918$ \\
 			\hline
-			max7 & $293.7506$ & $569.4251$ \\
+			max\textsubscript{7} & $293.7506$ & $569.4251$ \\
 			\hline
-			max13 & $129.61961$ & $310.57278$ \\
+			max\textsubscript{13} & $129.61961$ & $310.57278$ \\
 			\hline
-			max-freq2 & $108.991$ & $14.5430$ \\
+			max-freq\textsubscript{2} & $108.991$ & $14.5430$ \\
 			\hline
-			max5 & $317.401$ & $698.8781$ \\
+			max\textsubscript{5} & $317.401$ & $698.8781$ \\
 			\hline
-			std10 & $21.47563$ & $49.6641$ \\
+			std\textsubscript{10} & $21.47563$ & $49.6641$ \\
 			\hline
-			max17 & $55.8599$ & $115.98919$ \\
+			max\textsubscript{17} & $55.8599$ & $115.98919$ \\
 			\hline
-			max15 & $72.60896$ & $163.45084$ \\
+			max\textsubscript{15} & $72.60896$ & $163.45084$ \\
 			\hline
-			std9 & $17.22069$ & $40.07678$ \\
+			std\textsubscript{9} & $17.22069$ & $40.07678$ \\
 			\hline
-			max-freq3 & $157.66272$ & $22.5065$ \\
+			max-freq\textsubscript{3} & $157.66272$ & $22.5065$ \\
 			\hline
-			max16 & $68.42438$ & $165.54524$ \\
+			max\textsubscript{16} & $68.42438$ & $165.54524$ \\
 			\hline
-			max4 & $536.3476$ & $1134.9387$ \\
+			max\textsubscript{4} & $536.3476$ & $1134.9387$ \\
 			\hline
-			m8 & $10.299257$ & $17.33558$ \\
+			m\textsubscript{8} & $10.299257$ & $17.33558$ \\
 			\hline
-			std11 & $16.3562$ & $32.2951$ \\
+			std\textsubscript{11} & $16.3562$ & $32.2951$ \\
 			\hline
 			E & $0.00529$ & $0.00912$ \\
 			\hline
-			m6 & $13.741416$ & $21.621166$ \\
+			m\textsubscript{6} & $13.741416$ & $21.621166$ \\
 			\hline
-			std14 & $9.511233$ & $19.50926$ \\
+			std\textsubscript{14} & $9.511233$ & $19.50926$ \\
 			\hline
-			std13 & $13.4940$ & $35.2555$ \\
+			std\textsubscript{13} & $13.4940$ & $35.2555$ \\
 			\hline
-			std5 & $32.27192$ & $66.25659$ \\
+			std\textsubscript{5} & $32.27192$ & $66.25659$ \\
 			\hline
-			std12 & $13.809475$ & $27.01305$ \\
+			std\textsubscript{12} & $13.809475$ & $27.01305$ \\
 			\hline
-			std4 & $50.62945$ & $97.2513$ \\
+			std\textsubscript{4} & $50.62945$ & $97.2513$ \\
 			\hline
-			m7 & $13.718$ & $20.745993$ \\
+			m\textsubscript{7} & $13.718$ & $20.745993$ \\
 			\hline
-			std15 & $7.4176$ & $16.4802$ \\
+			std\textsubscript{15} & $7.4176$ & $16.4802$ \\
 			\hline
-			max18 & $35.6530$ & $97.61015$ \\
+			max\textsubscript{18} & $35.6530$ & $97.61015$ \\
 			\hline
-			max-freq1 & $34.5448$ & $14.4189$ \\
+			max-freq\textsubscript{1} & $34.5448$ & $14.4189$ \\
 			\hline
-			max19 & $40.517$ & $84.0128$ \\
+			max\textsubscript{19} & $40.517$ & $84.0128$ \\
 			\hline
-			std16 & $7.5551$ & $18.8730$ \\
+			std\textsubscript{16} & $7.5551$ & $18.8730$ \\
 			\hline
-			std17 & $5.63178$ & $11.9381$ \\
+			std\textsubscript{17} & $5.63178$ & $11.9381$ \\
 			\hline
 			m4 & $20.2936$ & $28.468$ \\
 			\hline
-			max21 & $23.7228$ & $55.7828$ \\
+			max\textsubscript{21} & $23.7228$ & $55.7828$ \\
 			\hline
-			m10 & $9.7507$ & $19.4464$ \\
+			m\textsubscript{10} & $9.7507$ & $19.4464$ \\
 			\hline
 		\end{tabular}
 	\label{Tab:Features_5_3}
@@ -2601,38 +2601,36 @@ Se muestran los resultados de la experimentación en la tabla \ref{Tab:kNN_5}.
 
 Como se puede ver en los resultados, el funcionamiento de nuestro sistema sigue siendo
 muy bueno, a pesar de haber reducido el número de  características de $122$ a $70$. 
-El mejor modelo es, de nuevo, un SVM. Dicho modelo alcanza una precisión
+El mejor modelo es, de nuevo, un SVM caracterizado por un \textit{kernel} de base radial,
+un valor de \textit{gamma} de $0.01$ y un valor de \textit{C} de 100. Dicho modelo alcanza una precisión
 de $0.99315 \pm 0.00212$ y un \textit{F1-Score} de $0.99375 \pm 0.00263$,
-unos valores más que suficientes para ser considerado un éxito. 
-Los parámetros de dicho mejor modelo son, un \textit{kernel} de base radial,
-un valor de \textit{gamma} de $0.01$ y un valor de \textit{C} de 100.
+unos valores más que suficientes para ser considerar que resuleve el problema satisfactoriamente. 
 
 \bigskip
 Aunque el mejor modelo de esta aproximación sea muy similar al mejor
-modelo de la cuarta aproximación, cabe destacar que en las RNAs sí hay
-arquitecturas en las que se alcanza peores resultados, pero no es muy grave,
-la que las mejores RNAs siguen teniendo un \textit{F1-Score} superior al $99\%$
+modelo de la anterior, cabe destacar que en las RNAs sí hay
+arquitecturas en las que se alcanzan peores resultados. Sin embargo, ya que las mejores RNAs siguen 
+teniendo un \textit{F1-Score} superior al $99\%$, esto no es muy grave.
 
 \bigskip
 También cabe destacar que, con la reducción del número de las características y,
 por consecuente, la reducción de la dimensionalidad del problema, los modelos basados
-en \textit{kNN} presentan resultados aún mejores que en la aproximación anterior,
-esto es un resultado que tiene sentido que sea así, ya que las instancias se pueden
+en \textit{kNN} presentan resultados aún mejores que en la aproximación anterior.
+Esto es un resultado que tiene sentido que sea así, ya que las instancias se pueden
 distribuír de una mejor manera en el espacio latente de nuestro problema.
 
 \bigskip
-Entonces, podemos concluír que llevar a cabo una reducción de características ha sido
-satisfactorio y presenta una mejor solución que no hacerlo, puesto que aunque el mejor
+Podemos concluír, por lo tanto, que llevar a cabo una reducción de características ha sido
+satisfactorio y presenta una mejor solución que no hacerlo, puesto que, aunque el mejor
 modelo sea similar, la reducción de características hace que los modelos sean más rápidos
-de entrenar y más rápidos en hacer predicciones, a la vez que un aumento de la potencia de
-generalización, ya que se sabe que, cuanto más sencillo sea un modelo, mejor capacidad
-de generalización tiene.
+de entrenar y más rápidos en hacer predicciones. Además, sabiendo que cuanto más sencillo sea un modelo, mejor capacidad
+de generalización tiene, esta reducción favorece mucho al aumento de la potencia de
+generalización.
 
 \bigskip
 Se muestra en la tabla \ref{Tab:confusion_matrix_5} la matriz de confusión del mejor
 modelo obtenido en una ejecución con una separación de $20\%$ para test. Presenta
 resultados muy similares a los de la aproximación anterior.
-
 
 \begin{table}[!ht]
 	\centering
