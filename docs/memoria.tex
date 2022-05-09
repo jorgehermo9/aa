@@ -3015,14 +3015,40 @@ muy bien.
 \section{Conclusiones}
 \label{Conclusiones}
 
-\newpage
+Hemos visto cómo se pueden aplicar distintas técnicas de aprendizaje automático a un problema concreto,
+partiendo de los datos en crudo y realizando primero una extracción de características que representen a los
+datos de una forma más compacta, y posteriormente aplicar modelos de aprendizaje automático para poder
+hacer predicciones sobre los datos.
+
+\bigskip
+Se ha seguido una metodología basada en aproximaciones, que a nuestro parecer, ha sido muy útil, ya que nos
+ha permitido ir familiarizándonos con el problema a medida que íbamos incrementando la complejidad del problema a resolver,
+esto nos ha servido para comprender mejor todo lo que hacemos, además de conseguir muy buenos resultados.
+
+\bigskip
+El mayor problema que hemos tenido ha sido el elevado tiempo de entrenamiento que hemos necesitado para las últimas aproximaciones,
+que aunque tenga sentido ya que tenemos un número considerable de patrones, no deja de ser molesto para poder 
+realizar experimentos, ya que no podemos explorar muchas variantes de las configuraciones, si para cada configuración
+tenemos que dedicarle 1h o más de entrenamiento (con \textit{cross validation}). Además, como ya se ha mencionado,
+este tiempo de entrenamiento es aún más elevado si utilizamos técnicas de \textit{deep learning}.
+Este problema, aunque se pueda paliar disponiendo de más tiempo y recursos computacionales, es uno de los puntos
+débiles de los sistemas que hemos conseguido realizar.
+
+\bigskip
+Pero no todo son problemas; estamos muy contentos con los resultados que hemos obtenido ante un problema que,
+aunque parezca sencillo, la posibilidad de ruido en los patrones puede hacer que se complique das predicciones acertadas.
+En especial, destacamos los sistemas basados en máquinas de soporte vectorial, ya que hemos conseguido muy buenos resultados
+con estos modelos, y que además tienen un tiempo de entrenamiento mucho menor que otros sistemas basados en capas de
+neuronas artificiales.
+
+\bigskip
+En definitiva, todo esto nos ha servido para comprender mucho mejor algunos modelos de aprendizaje automático,
+además de cómo se pueden aplicar dichos modelos de forma práctica en situaciones reales.
 
 \section{Trabajo futuro}
 \label{Trabajo futuro}
 
-Tras los buenos resultados del sistema, podemos concluir su gran utilidad para diferenciar y clasificar todas las notas del piano de forma efectiva y
-con niveles de precisión muy elevados.
-En sí misma, esta funcionalidad podría ser utilizada en múltiples herramientas de afinación o de aprendizaje elemental
+Tras los buenos resultados de nuestro sistema, podemos concluír que podría ser utilizado en múltiples herramientas de afinación o de aprendizaje elemental
 para los más novatos que quieran, por ejemplo, practicar su oído musical.
 
 \bigskip
