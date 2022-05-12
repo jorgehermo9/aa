@@ -1,7 +1,7 @@
 using Statistics
 using Flux
 using Flux.Losses
-using Flux: onehotbatch, onecold
+using Flux: onehotbatch, onecold, params
 using Random
 using ScikitLearn
 
