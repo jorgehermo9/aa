@@ -1,5 +1,6 @@
 \documentclass[12pt]{article}
 \usepackage[utf8]{inputenc}
+\usepackage{float}
 \usepackage{csquotes}
 \usepackage[spanish, es-tabla]{babel}
 \usepackage{graphicx}
@@ -2955,7 +2956,8 @@ al contrario que pasa con modelos, como por ejemplo, los árboles de decisión.
 
 \bigskip
 Se muestra la matriz de confusión en la tabla \ref{Tab:confusion_matrix_6} para una ejecución del sistema
-con una separación del $20\%$ de los patrones para test.
+con una separación del $20\%$ de los patrones para test. También se muestra en la figura
+\ref{fig:best_conv_6} una gráfica del entrenamiento para esta ejecución.
 
 \bigskip
 Esta ejecución muestra muy buenos resultados, con un \textit{F1-Score} del $99.154\%$ y una precisión
@@ -2966,7 +2968,14 @@ pero muestra unos resultados pesimistas del comportamiento real del sistema.
 A la vista de estos resultados, podemos concluír que son satisfactorios y que el sistema funciona
 muy bien.
 
-\begin{table}[!ht]
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\linewidth]{assets/best_conv_train.pdf}
+	\caption{Entrenamiento red convolucional}
+	\label{fig:best_conv_6}
+\end{figure}
+
+\begin{table}[H]
 	\centering
 	% \begin{turn}{90}
 
