@@ -2605,7 +2605,7 @@ muy bueno, a pesar de haber reducido el número de  características de $122$ a 
 El mejor modelo es, de nuevo, un SVM caracterizado por un \textit{kernel} de base radial,
 un valor de \textit{gamma} de $0.01$ y un valor de \textit{C} de 100. Dicho modelo alcanza una precisión
 de $0.99315 \pm 0.00212$ y un \textit{F1-Score} de $0.99375 \pm 0.00263$,
-unos valores más que suficientes para ser considerar que resuleve el problema satisfactoriamente. 
+unos valores más que suficientes para considerar que resuleve el problema satisfactoriamente. 
 
 \bigskip
 Aunque el mejor modelo de esta aproximación sea muy similar al mejor
@@ -3042,15 +3042,21 @@ que, aunque tenga sentido ya que tenemos un número considerable de patrones, no
 realizar experimentos. Nos limita, por ejemplo, en el hecho de no poder explorar muchas variantes de cada configuración, si, para cada una de ellas,
 tenemos que dedicarle 1h o más de entrenamiento (con \textit{cross validation}). Además, como ya se ha mencionado,
 este tiempo de entrenamiento es aún más elevado si utilizamos técnicas de \textit{deep learning}.
-Este problema, aunque se pueda paliar disponiendo de más tiempo y recursos computacionales, es uno de los puntos
-débiles de los sistemas que hemos utilizado.
+Este problema lo hemos intentado paliar a lo largo de la quinta aproximación (Sección \ref{Quinta aproximación}), reduciendo el número de características
+del sistema utilizando algoritmos de selección basados en información mútua. Sin embargo, aunque esto reduce la complejidad y con ella el tiempo
+de entrenamiento, creemos que disponiendo de más tiempo y recursos computacionales, dicho problema podría llegar a paliarse, aunque seguiría siendo
+el punto débil del sistema.
 
 \bigskip
 Pero no todo son problemas; estamos muy contentos con los resultados que hemos obtenido ante un problema que,
 aunque parezca sencillo, la posibilidad de ruido en los patrones puede hacer que sea complicado ofrecer predicciones acertadas.
 En especial, destacamos los sistemas basados en máquinas de soporte vectorial o \textit{SVM} ya que, a la par que tienen un tiempo 
-de entrenamiento mucho menor que otros sistemas basados en capas de neuronas artificiales, nos han ofrecido unos niveles de precisión
-muy elevados.
+de entrenamiento mucho menor que otros sistemas, nos han ofrecido unos niveles de precisión muy elevados. También, hemos comprobado como, a medida que
+la complejidad del sistema iba aumentando, es decir, cuanto mayor es el número de clases, los modelos basados en árboles de decisión obtienen
+unos peores resultados. Los modelos basados en redes neuronales y en \textit{kNN} ofrecen, en cambio, unos valores más constantes a lo largo de todas
+las iteraciones, aunque son las primeras las que alcanzan cotas de precisión más elevadas. Cabe destacar también que las \textit{RNAs} son los
+sistemas que tardaban más tiempo con muchísima diferencia, por lo que, como ya repetimos varias veces en secciones anteriores, las hacen menos
+atractivas que otros sistemas como los \textit{SVM}, sobre todo si no se cuenta con equipos lo suficientemente potentes (como es nuestro caso).
 
 \bigskip
 En definitiva, todo esto nos ha servido para comprender mucho mejor algunos modelos de aprendizaje automático,
@@ -3074,6 +3080,10 @@ con modelos como pueden ser las redes convolucionales, el tiempo de entrenamient
 lograr una alta precisión con un sistema que sea energéticamente más eficiente y respetuoso con el medio ambiente, además de
 permitir que la utilización de estos modelos no requiera acceso a grandes recursos ni de tiempo ni computacionales
 para que, así, cualquier persona en su ordenador personal pueda entrenar, ejecutar el sistema y obtener resultados igualmente buenos.
+
+\bigskip
+Otra alternativa para abordar el problema del excesivo tiempo de entrenamiento y así poder utilizar modelos más complejos,
+sería el contar con equipos más potentes que nos ofreciesen una mayor capacadidad de cálculo.
 
 \bigskip
 Por otra parte, tomando como ejemplo trabajos como los de \cite{klapuri2004signal}, nuestro sistema podría ser una herramienta práctica a la hora de abordar problemas

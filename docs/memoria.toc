@@ -52,5 +52,5 @@
 \contentsline {paragraph}{\numberline {5.6.2.1}Redes Convolucionales}{51}{paragraph.5.6.2.1}%
 \contentsline {subsubsection}{\numberline {5.6.3}Discusión}{55}{subsubsection.5.6.3}%
 \contentsline {section}{\numberline {6}Conclusiones}{59}{section.6}%
-\contentsline {section}{\numberline {7}Trabajo futuro}{59}{section.7}%
+\contentsline {section}{\numberline {7}Trabajo futuro}{60}{section.7}%
 \contentsline {section}{\numberline {8}Bibliografía}{61}{section.8}%
