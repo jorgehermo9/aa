@@ -1,3 +1,6 @@
+# Información de la memoria
+
+La memoria está en `docs/memoria.pdf`
 
 # Información del código fuente 
 El código final de los boletines que se utilizó en las aproximaciones está en `src/scikit/p6.jl`, las demás carpetas en `src/` tienen el código que se fue haciendo en los distintos boletines.
