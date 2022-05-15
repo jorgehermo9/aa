@@ -512,10 +512,10 @@ function trainDataset(inputs::AbstractArray{<:Real,2},targets::AbstractArray{Boo
 	return trainDataset(inputs,new_targets);
 end
 
-dataset = readdlm("/home/jorge/github/aa/src/caracteristicas/features.csv",',');
+dataset = readdlm("iris.data",',');
 
-inputs = dataset[2:end,1:end-1];
-targets = dataset[2:end,end];
+inputs = dataset[:,1:4];
+targets = dataset[:,5];
 
 @assert (size(inputs,1)==size(targets,1)) "Las matrices de entradas y salidas deseadas no tienen el mismo número de filas"
 

@@ -17,7 +17,7 @@ end
 nota="F#1"
 id="98"
 archivo="Piano-$(nota)-$(id).wav"
-y,fs = wavread("/home/jorge/github/aa/db/piano/$(nota)/$(archivo)");
+y,fs = wavread("db/piano/$(nota)/$(archivo)");
 
 max_freq = 5000;
 duration_threshold = 3

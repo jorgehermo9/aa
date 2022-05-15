@@ -25,7 +25,7 @@ function get_signal(file::String)
 end
 
 
-db_dir = "/home/jorge/github/aa/db/piano"
+db_dir = "db/piano"
 classes = readdir(db_dir);
 
 all_instances = Vector{Tuple{String,String}}()
