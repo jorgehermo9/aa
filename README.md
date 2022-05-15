@@ -87,4 +87,4 @@ julia aprox6.jl
 
 Esta aproximación nos tardó aproximadamente 4h. Pero no podemos reducir el número de ejecuciones en cada fold, ya que solo hacemos 1. Ya se comentó anteriormente que puede variar el orden de lectura de los archivos, por lo que aunque se utilice la misma semilla siempre, los resultados pueden diferir un poco. En aproximaciones anteriores no era problema, pero en esta puede suponer una variación mayor, ya que sólo hacemos una ejecución de cada red en cada fold(por motivos de falta de recursos computacionales y tiempo) y la aleatoriedad puede influír mucho en los resultados. Pero esto es una suposición y esperamos que siga dando los mismos resultados.
 
-Esta aproximación es más _verbose_ que las anteriores, ya que al tardar bastante, vemos útil que se vaya mostrando como avanza el entrenamiento de cada red.
+Esta aproximación es más *verbose* que las anteriores, ya que al tardar bastante, vemos útil que se vaya mostrando como avanza el entrenamiento de cada red.
