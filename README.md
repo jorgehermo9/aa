@@ -2,13 +2,6 @@
 # Información del código fuente 
 El código final de los boletines que se utilizó en las aproximaciones está en `src/scikit/p6.jl`, las demás carpetas en `src/` tienen el código que se fue haciendo en los distintos boletines.
 
-
-# Descarga del código
-
-```console
-git clone https://github.com/jorgehermo9/aa.git aa_piano
-```
-
 # Descarga de la base de datos
 Primero, descargar la base de datos [aqui](https://udcgal-my.sharepoint.com/:u:/g/personal/jorge_hermo_gonzalez_udc_es/EQZaXepDQvpIm_FtS6BLYLABbuB1WPmMrtVLPa5rLTfCbg?e=kDgxmN)
 
