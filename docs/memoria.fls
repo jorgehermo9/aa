@@ -1,7 +1,7 @@
-PWD /home/jorge/github/aa/docs
+PWD /home/david/works/aa/docs
 INPUT /usr/share/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /home/jorge/github/aa/docs/memoria.tex
+INPUT /home/david/works/aa/docs/memoria.tex
 OUTPUT memoria.log
 INPUT /usr/share/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/share/texmf-dist/tex/latex/base/article.cls

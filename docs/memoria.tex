@@ -100,10 +100,6 @@ Para el análisis utilizaremos distintas técnicas de aprendizaje supervisado co
 	siguiendo una estructura de árbol donde se va tomando una rama u otra en función del valor de los distintos atributos. Ver \cite{myles2004introduction}.
 	\item \textbf{k-Nearest Neighbors} o \textit{k-NN}, un método con un enfoque diferente, basado en instancias, donde la clasificación
 	se realiza en función de los patrones que más se parecen al de entrada. Ver \cite{guo2003knn}.
-	\item \textbf{Deep Learning}, en concreto una aproximación con \textbf{Redes de Neuronas Convolucionales} o \textit{CNNs} en inglés.
-	Similares a las \textit{RNAs}, hacen uso de capas de neuronas artificiales en conjunto con filtros de convolución, intercaladas con funciones de 
-	\textit{pooling}, que permiten una mayor capacidad de generalización de dichas neuronas, además de no necesitar de una extracción previa de 
-	características de los datos. Ver \cite{indolia2018679}.
 \end{itemize}
 \newpage
 
@@ -2684,7 +2680,13 @@ resultados muy similares a los de la aproximación anterior.
 
 \subsubsection{Descripción}
 En esta aproximación utilizaremos técnicas de \textit{Deep Learning} para producir los modelos.
-En concreto, utilizaremos redes convolucionales.
+En concreto, utilizaremos redes convolucionales o \textit{CNN} en inglés.
+
+\bigskip
+Similares a las \textit{RNAs}, las redes convolucionales hacen 
+uso de capas de neuronas artificiales en conjunto con filtros de convolución, intercaladas con funciones de 
+\textit{pooling}, que permiten una mayor capacidad de generalización de dichas neuronas, además de no necesitar de una extracción previa de 
+características de los datos. Ver \cite{indolia2018679}.
 
 \bigskip
 Las notas que vamos a clasificar serán las mismas que en la aproximación anterior, es decir, las 
@@ -3024,31 +3026,31 @@ muy bien.
 \section{Conclusiones}
 \label{Conclusiones}
 
-Hemos visto cómo se pueden aplicar distintas técnicas de aprendizaje automático a un problema concreto,
-partiendo de los datos en crudo y realizando primero una extracción de características que representen a los
-datos de una forma más compacta, y posteriormente aplicar modelos de aprendizaje automático para poder
-hacer predicciones sobre los datos.
+A lo largo de la memoria hemos visto cómo, partiendo de los datos en crudo, se pueden aplicar distintas técnicas de aprendizaje automático a 
+un problema concreto; realizando primero una extracción de características que representen a los
+datos de una forma más compacta y, posteriormente, aplicando modelos de aprendizaje automático para poder
+hacer predicciones sobre los mismos.
 
 \bigskip
-Se ha seguido una metodología basada en aproximaciones, que a nuestro parecer, ha sido muy útil, ya que nos
-ha permitido ir familiarizándonos con el problema a medida que íbamos incrementando la complejidad del problema a resolver,
-esto nos ha servido para comprender mejor todo lo que hacemos, además de conseguir muy buenos resultados.
+Se ha seguido una metodología basada en aproximaciones que, a nuestro parecer, ha sido muy útil, ya que nos
+ha permitido ir familiarizándonos con el problema a medida que íbamos incrementando su complejidad.
+Esto nos ha servido para comprender mejor todo lo que hacemos, además de conseguir muy buenos resultados.
 
 \bigskip
-El mayor problema que hemos tenido ha sido el elevado tiempo de entrenamiento que hemos necesitado para las últimas aproximaciones,
-que aunque tenga sentido ya que tenemos un número considerable de patrones, no deja de ser molesto para poder 
-realizar experimentos, ya que no podemos explorar muchas variantes de las configuraciones, si para cada configuración
+El mayor problema que hemos tenido ha sido el elevado tiempo de entrenamiento que hemos necesitado para las últimas aproximaciones
+que, aunque tenga sentido ya que tenemos un número considerable de patrones, no deja de ser molesto para poder 
+realizar experimentos. Nos limita, por ejemplo, en el hecho de no poder explorar muchas variantes de cada configuración, si, para cada una de ellas,
 tenemos que dedicarle 1h o más de entrenamiento (con \textit{cross validation}). Además, como ya se ha mencionado,
 este tiempo de entrenamiento es aún más elevado si utilizamos técnicas de \textit{deep learning}.
 Este problema, aunque se pueda paliar disponiendo de más tiempo y recursos computacionales, es uno de los puntos
-débiles de los sistemas que hemos conseguido realizar.
+débiles de los sistemas que hemos utilizado.
 
 \bigskip
 Pero no todo son problemas; estamos muy contentos con los resultados que hemos obtenido ante un problema que,
-aunque parezca sencillo, la posibilidad de ruido en los patrones puede hacer que se complique das predicciones acertadas.
-En especial, destacamos los sistemas basados en máquinas de soporte vectorial, ya que hemos conseguido muy buenos resultados
-con estos modelos, y que además tienen un tiempo de entrenamiento mucho menor que otros sistemas basados en capas de
-neuronas artificiales.
+aunque parezca sencillo, la posibilidad de ruido en los patrones puede hacer que sea complicado ofrecer predicciones acertadas.
+En especial, destacamos los sistemas basados en máquinas de soporte vectorial o \textit{SVM} ya que, a la par que tienen un tiempo 
+de entrenamiento mucho menor que otros sistemas basados en capas de neuronas artificiales, nos han ofrecido unos niveles de precisión
+muy elevados.
 
 \bigskip
 En definitiva, todo esto nos ha servido para comprender mucho mejor algunos modelos de aprendizaje automático,
@@ -3057,8 +3059,9 @@ además de cómo se pueden aplicar dichos modelos de forma práctica en situacio
 \section{Trabajo futuro}
 \label{Trabajo futuro}
 
-Tras los buenos resultados de nuestro sistema, podemos concluír que podría ser utilizado en múltiples herramientas de afinación o de aprendizaje elemental
-para los más novatos que quieran, por ejemplo, practicar su oído musical.
+Tras los buenos resultados de nuestro sistema, podemos concluír que podría ser utilizado en múltiples herramienteas como son
+las aplicaciones de afinación en dispostivos móviles o las aplicaciones
+de aprendizaje elemental para los más novatos que quieran, por ejemplo, practicar su oído musical.
 
 \bigskip
 También sería interesante avanzar de cara a poder producir cierta explicabilidad de las predicciones
