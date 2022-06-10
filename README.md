@@ -1,3 +1,5 @@
+Práctica de Aprendizaje Automático UDC
+
 # Información de la memoria
 
 La memoria está en `docs/memoria.pdf`
